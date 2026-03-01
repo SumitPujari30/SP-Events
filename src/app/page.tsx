@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { HiArrowRight, HiArrowDown } from 'react-icons/hi';
 import AnimatedSection from '@/components/AnimatedSection';
 import CounterAnimation from '@/components/CounterAnimation';
@@ -34,7 +34,7 @@ const testimonials = [
   { quote: 'Impeccable attention to detail, creative masterminds, and a team that truly cares about delivering excellence. They exceeded every expectation.', author: 'Amit Patel', role: 'VP Operations, Global Corp' },
 ];
 
-/* ——— Scroll-Zoom Hero (GTA VI-inspired) ——— */
+/* ——— Scroll-Zoom Hero (Smooth 3-Phase) ——— */
 function ScrollZoomHero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -43,37 +43,73 @@ function ScrollZoomHero() {
     offset: ['start start', 'end start'],
   });
 
-  // Logo scales from 1 → 50 as user scrolls
-  const rawScale = useTransform(scrollYProgress, [0, 0.6], [1, 50]);
-  const scale = useSpring(rawScale, { stiffness: 100, damping: 40 });
+  // ALL hooks called at the top — never inside JSX
 
-  // Logo fades out as it scales past readable size
-  const logoOpacity = useTransform(scrollYProgress, [0.25, 0.5], [1, 0]);
+  // Background dims during zoom, brightens after
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.15, 0.6, 0.75], [1, 0.4, 0.4, 0.9]);
 
-  // Background image fades IN as logo scales
-  const bgOpacity = useTransform(scrollYProgress, [0.15, 0.45], [0, 1]);
+  // Badge + tagline: visible at start, fades as logo enters
+  const badgeOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const badgeY = useTransform(scrollYProgress, [0, 0.1], [0, -30]);
 
-  // Tagline and badge fade out early
-  const textOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.15], [0, -40]);
+  // Scroll indicator fades early
+  const scrollIndOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
 
-  // Bottom content fades in after zoom
-  const contentOpacity = useTransform(scrollYProgress, [0.55, 0.75], [0, 1]);
-  const contentY = useTransform(scrollYProgress, [0.55, 0.75], [60, 0]);
+  // Logo: fades in → holds → fades out while scaling 1→50x
+  const logoOpacity = useTransform(scrollYProgress, [0.08, 0.18, 0.5, 0.6], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0.18, 0.58], [1, 50]);
+
+  // Content: fades in after zoom is completely done
+  const contentOpacity = useTransform(scrollYProgress, [0.65, 0.8], [0, 1]);
+  const contentY = useTransform(scrollYProgress, [0.65, 0.8], [40, 0]);
 
   return (
     <section ref={containerRef} className={styles.heroWrap}>
       <div className={styles.heroSticky}>
-        {/* Background images that reveal behind the text */}
+        {/* Background video — always visible, opacity shifts */}
         <motion.div className={styles.heroBgImage} style={{ opacity: bgOpacity }}>
-          <img
-            src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1800&q=85"
-            alt="Events background"
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1800&q=85"
+            className={styles.heroBgVideo}
+          >
+            <source src="https://cdn.coverr.co/videos/coverr-concert-crowd-in-vibrant-lighting-7982/1080p.mp4" type="video/mp4" />
+          </video>
           <div className={styles.heroBgOverlay} />
         </motion.div>
 
-        {/* The scaling logo/text */}
+        {/* Badge + tagline — centered, visible first */}
+        <motion.div
+          className={styles.heroTopContent}
+          style={{ opacity: badgeOpacity, y: badgeY }}
+        >
+          <span className={styles.heroBadge}>
+            <span className={styles.heroBadgeDot} />
+            Premier Event Management
+          </span>
+          <p className={styles.heroTagline}>
+            Crafting unforgettable experiences across India
+          </p>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className={styles.heroScroll}
+          style={{ opacity: scrollIndOpacity }}
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+          >
+            <HiArrowDown size={16} />
+          </motion.div>
+          <span>Scroll to explore</span>
+        </motion.div>
+
+        {/* Logo that scales up */}
         <motion.div
           className={styles.heroLogoWrap}
           style={{ scale, opacity: logoOpacity }}
@@ -85,18 +121,7 @@ function ScrollZoomHero() {
           </div>
         </motion.div>
 
-        {/* Tagline + badge (visible at start, fades out) */}
-        <motion.div
-          className={styles.heroTopContent}
-          style={{ opacity: textOpacity, y: textY }}
-        >
-          <span className={styles.heroBadge}>
-            <span className={styles.heroBadgeDot} />
-            Premier Event Management
-          </span>
-        </motion.div>
-
-        {/* Bottom content that appears after zoom */}
+        {/* Content — appears after zoom */}
         <motion.div
           className={styles.heroBottomContent}
           style={{ opacity: contentOpacity, y: contentY }}
@@ -115,21 +140,7 @@ function ScrollZoomHero() {
           </div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className={styles.heroScroll}
-          style={{ opacity: textOpacity }}
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          >
-            <HiArrowDown size={16} />
-          </motion.div>
-          <span>Scroll to explore</span>
-        </motion.div>
-
-        {/* Stats bar at bottom */}
+        {/* Stats */}
         <motion.div
           className={styles.heroStats}
           style={{ opacity: contentOpacity }}
@@ -162,7 +173,6 @@ function HorizontalScroll() {
   });
 
   const x = useTransform(scrollYProgress, [0, 1], ['0%', '-60%']);
-  const smoothX = useSpring(x, { stiffness: 80, damping: 30 });
 
   return (
     <section ref={containerRef} className={styles.horizontalWrap}>
@@ -183,7 +193,7 @@ function HorizontalScroll() {
           </div>
         </div>
 
-        <motion.div className={styles.horizontalTrack} style={{ x: smoothX }}>
+        <motion.div className={styles.horizontalTrack} style={{ x }}>
           {horizontalProjects.map((project, i) => (
             <div key={i} className={styles.horizontalCard}>
               <div className={styles.hCardImage} style={{ backgroundImage: `url(${project.image})` }} />

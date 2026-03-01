@@ -1,9 +1,9 @@
 /* ===== HOME PAGE — SCROLL-ZOOM HERO + EDITORIAL ===== */
 
-/* ——— SCROLL-ZOOM HERO (GTA VI-inspired) ——— */
+/* ——— SCROLL-ZOOM HERO (Optimized 3-Phase) ——— */
 .heroWrap {
-  height: 300vh;
-  /* scrollable area for the zoom effect */
+  height: 400vh;
+  /* extra height for 3 distinct scroll phases */
   position: relative;
 }
 
@@ -19,11 +19,18 @@
   background: var(--color-bg-dark);
 }
 
-/* Background image that reveals behind the zooming text */
+/* Background — always visible from the start */
 .heroBgImage {
   position: absolute;
   inset: 0;
   z-index: 1;
+}
+
+.heroBgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .heroBgImage img {
@@ -35,10 +42,11 @@
 .heroBgOverlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center,
-      rgba(12, 12, 12, 0.2) 0%,
-      rgba(12, 12, 12, 0.6) 70%,
-      rgba(12, 12, 12, 0.85) 100%);
+  background: linear-gradient(to bottom,
+      rgba(12, 12, 12, 0.35) 0%,
+      rgba(12, 12, 12, 0.15) 40%,
+      rgba(12, 12, 12, 0.25) 70%,
+      rgba(12, 12, 12, 0.7) 100%);
 }
 
 /* The scaling logo text */
@@ -89,16 +97,28 @@
   text-indent: 24px;
 }
 
-/* Top content: badge */
+/* Top content: badge + tagline */
 .heroTopContent {
   position: absolute;
-  top: 120px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   z-index: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.heroTagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  font-weight: 500;
+  color: var(--color-white);
+  line-height: 1.4;
+  max-width: 520px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .heroBadge {
@@ -140,10 +160,10 @@
   }
 }
 
-/* Bottom content: description + CTAs */
+/* Bottom content: description + CTAs — more breathing room */
 .heroBottomContent {
   position: absolute;
-  bottom: 120px;
+  bottom: 100px;
   left: 0;
   right: 0;
   z-index: 4;
