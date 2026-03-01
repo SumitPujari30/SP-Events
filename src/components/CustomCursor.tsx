@@ -1,89 +1,166 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { useEffect, useRef, useCallback } from 'react';
 import styles from './CustomCursor.module.css';
 
+interface Particle {
+    x: number;
+    y: number;
+    size: number;
+    alpha: number;
+    decay: number;
+    vx: number;
+    vy: number;
+    color: string;
+}
+
 export default function CustomCursor() {
-    const [visible, setVisible] = useState(false);
-    const [hovering, setHovering] = useState(false);
-    const [clicking, setClicking] = useState(false);
-    const cursorX = useSpring(0, { stiffness: 300, damping: 28 });
-    const cursorY = useSpring(0, { stiffness: 300, damping: 28 });
-    const dotX = useSpring(0, { stiffness: 800, damping: 35 });
-    const dotY = useSpring(0, { stiffness: 800, damping: 35 });
-    const isTouchDevice = useRef(false);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const ringRef = useRef<HTMLDivElement>(null);
+    const dotRef = useRef<HTMLDivElement>(null);
+    const mouseRef = useRef({ x: 0, y: 0 });
+    const ringPos = useRef({ x: 0, y: 0 });
+    const particles = useRef<Particle[]>([]);
+    const rafId = useRef<number>(0);
+    const isHovering = useRef(false);
+    const lastSpawn = useRef({ x: 0, y: 0 });
 
-    useEffect(() => {
-        isTouchDevice.current = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        if (isTouchDevice.current) return;
+    const spawnParticles = useCallback((x: number, y: number) => {
+        const dx = x - lastSpawn.current.x;
+        const dy = y - lastSpawn.current.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 6) return; // throttle: only spawn if moved enough
 
-        const move = (e: MouseEvent) => {
-            cursorX.set(e.clientX);
-            cursorY.set(e.clientY);
-            dotX.set(e.clientX);
-            dotY.set(e.clientY);
-            if (!visible) setVisible(true);
-        };
+        lastSpawn.current = { x, y };
 
-        const down = () => setClicking(true);
-        const up = () => setClicking(false);
-        const enter = () => setVisible(true);
-        const leave = () => setVisible(false);
+        const count = Math.min(Math.floor(dist / 8), 3);
+        const colors = ['#c9a84c', '#dfc06e', '#a88a32', '#f0ece4'];
 
-        window.addEventListener('mousemove', move);
-        window.addEventListener('mousedown', down);
-        window.addEventListener('mouseup', up);
-        document.addEventListener('mouseenter', enter);
-        document.addEventListener('mouseleave', leave);
-
-        // Detect hoverable elements
-        const observer = new MutationObserver(() => attachHoverListeners());
-        observer.observe(document.body, { childList: true, subtree: true });
-        attachHoverListeners();
-
-        function attachHoverListeners() {
-            const hoverables = document.querySelectorAll('a, button, [role="button"], input, textarea, select, .cursor-hover');
-            hoverables.forEach((el) => {
-                el.addEventListener('mouseenter', () => setHovering(true));
-                el.addEventListener('mouseleave', () => setHovering(false));
+        for (let i = 0; i < count; i++) {
+            particles.current.push({
+                x: x + (Math.random() - 0.5) * 12,
+                y: y + (Math.random() - 0.5) * 12,
+                size: Math.random() * 3 + 1.5,
+                alpha: Math.random() * 0.6 + 0.4,
+                decay: Math.random() * 0.015 + 0.012,
+                vx: (Math.random() - 0.5) * 1.2,
+                vy: (Math.random() - 0.5) * 1.2,
+                color: colors[Math.floor(Math.random() * colors.length)],
             });
         }
+    }, []);
+
+    useEffect(() => {
+        // Abort on touch devices
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+        const canvas = canvasRef.current;
+        const ring = ringRef.current;
+        const dot = dotRef.current;
+        if (!canvas || !ring || !dot) return;
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        resize();
+        window.addEventListener('resize', resize);
+
+        // Mouse move
+        const onMove = (e: MouseEvent) => {
+            mouseRef.current = { x: e.clientX, y: e.clientY };
+            dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+            dot.style.opacity = '1';
+            ring.style.opacity = '1';
+            spawnParticles(e.clientX, e.clientY);
+        };
+
+        // Hover detection
+        const attachHovers = () => {
+            document.querySelectorAll('a, button, [role="button"], input, textarea, select').forEach((el) => {
+                el.addEventListener('mouseenter', () => {
+                    isHovering.current = true;
+                    ring.classList.add(styles.ringHover);
+                    dot.classList.add(styles.dotHover);
+                });
+                el.addEventListener('mouseleave', () => {
+                    isHovering.current = false;
+                    ring.classList.remove(styles.ringHover);
+                    dot.classList.remove(styles.dotHover);
+                });
+            });
+        };
+
+        const observer = new MutationObserver(attachHovers);
+        observer.observe(document.body, { childList: true, subtree: true });
+        attachHovers();
+
+        // Click
+        const onDown = () => ring.classList.add(styles.ringClick);
+        const onUp = () => ring.classList.remove(styles.ringClick);
+        const onLeave = () => { ring.style.opacity = '0'; dot.style.opacity = '0'; };
+        const onEnter = () => { ring.style.opacity = '1'; dot.style.opacity = '1'; };
+
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mousedown', onDown);
+        window.addEventListener('mouseup', onUp);
+        document.addEventListener('mouseleave', onLeave);
+        document.addEventListener('mouseenter', onEnter);
+
+        // Animation loop
+        const animate = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Ring follow (lerp)
+            ringPos.current.x += (mouseRef.current.x - ringPos.current.x) * 0.15;
+            ringPos.current.y += (mouseRef.current.y - ringPos.current.y) * 0.15;
+            ring.style.transform = `translate(${ringPos.current.x}px, ${ringPos.current.y}px) translate(-50%, -50%)`;
+
+            // Draw & update particles
+            const alive: Particle[] = [];
+            for (const p of particles.current) {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= p.decay;
+                p.size *= 0.985;
+
+                if (p.alpha > 0.01 && p.size > 0.3) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fill();
+                    alive.push(p);
+                }
+            }
+            ctx.globalAlpha = 1;
+            particles.current = alive;
+
+            rafId.current = requestAnimationFrame(animate);
+        };
+        rafId.current = requestAnimationFrame(animate);
 
         return () => {
-            window.removeEventListener('mousemove', move);
-            window.removeEventListener('mousedown', down);
-            window.removeEventListener('mouseup', up);
-            document.removeEventListener('mouseenter', enter);
-            document.removeEventListener('mouseleave', leave);
+            cancelAnimationFrame(rafId.current);
+            window.removeEventListener('resize', resize);
+            window.removeEventListener('mousemove', onMove);
+            window.removeEventListener('mousedown', onDown);
+            window.removeEventListener('mouseup', onUp);
+            document.removeEventListener('mouseleave', onLeave);
+            document.removeEventListener('mouseenter', onEnter);
             observer.disconnect();
         };
-    }, [cursorX, cursorY, dotX, dotY, visible]);
+    }, [spawnParticles]);
 
-    if (typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
-        return null;
-    }
-
+    // Don't render on touch devices (SSR-safe check)
     return (
         <>
-            {/* Outer ring */}
-            <motion.div
-                className={`${styles.ring} ${hovering ? styles.ringHover : ''} ${clicking ? styles.ringClick : ''}`}
-                style={{
-                    x: cursorX,
-                    y: cursorY,
-                    opacity: visible ? 1 : 0,
-                }}
-            />
-            {/* Inner dot */}
-            <motion.div
-                className={`${styles.dot} ${hovering ? styles.dotHover : ''}`}
-                style={{
-                    x: dotX,
-                    y: dotY,
-                    opacity: visible ? 1 : 0,
-                }}
-            />
+            <canvas ref={canvasRef} className={styles.canvas} />
+            <div ref={ringRef} className={styles.ring} />
+            <div ref={dotRef} className={styles.dot} />
         </>
     );
 }
