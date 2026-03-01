@@ -1,0 +1,66 @@
+/* Custom Cursor */
+
+.ring,
+.dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    will-change: transform;
+}
+
+.ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--color-gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    mix-blend-mode: difference;
+}
+
+.ringHover {
+    width: 56px;
+    height: 56px;
+    border-color: var(--color-gold);
+    background: rgba(201, 168, 76, 0.08);
+}
+
+.ringClick {
+    width: 28px;
+    height: 28px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
+}
+
+.dotHover {
+    width: 4px;
+    height: 4px;
+    background: var(--color-white);
+}
+
+/* Hide default cursor globally when custom cursor is active */
+@media (hover: hover) and (pointer: fine) {
+
+    :global(html),
+    :global(body) {
+        cursor: none !important;
+    }
+
+    :global(a),
+    :global(button),
+    :global(input),
+    :global(textarea),
+    :global(select),
+    :global([role="button"]) {
+        cursor: none !important;
+    }
+}

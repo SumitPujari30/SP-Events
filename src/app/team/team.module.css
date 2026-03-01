@@ -1,0 +1,332 @@
+/* Team Page — GTA6-Style Character Reveals + Grid */
+
+/* ——— Leadership Section ——— */
+.leaderSection {
+    padding-top: 80px;
+    padding-bottom: 0;
+}
+
+/* ——— Character Panel (GTA6-style) ——— */
+.charPanel {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.charPanel:nth-child(odd) {
+    background: var(--color-bg);
+}
+
+.charPanel:nth-child(even) {
+    background: var(--color-bg-cream);
+}
+
+.charInner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: var(--container-wide);
+    margin: 0 auto;
+    padding: 0 48px;
+    width: 100%;
+}
+
+.charReverse {
+    direction: rtl;
+}
+
+.charReverse>* {
+    direction: ltr;
+}
+
+/* Image Column */
+.charImageCol {
+    position: relative;
+}
+
+.charImageWrap {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    box-shadow: var(--shadow-lg);
+}
+
+.charImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.charImageGradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(12, 12, 12, 0.3) 0%,
+            transparent 40%);
+}
+
+/* Big number overlay */
+.charNumber {
+    position: absolute;
+    bottom: -30px;
+    right: -20px;
+    font-family: var(--font-display);
+    font-size: clamp(8rem, 15vw, 14rem);
+    font-weight: 900;
+    color: var(--color-black);
+    line-height: 1;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.charReverse .charNumber {
+    right: auto;
+    left: -20px;
+}
+
+/* Text Column */
+.charTextCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    padding: 24px 0;
+}
+
+.charRole {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 8px;
+}
+
+.charName {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--color-black);
+}
+
+.charDivider {
+    width: 48px;
+    height: 2px;
+    background: var(--color-gold);
+    margin: 16px 0;
+}
+
+.charBio {
+    font-size: 1.02rem;
+    color: var(--color-text-secondary);
+    line-height: 1.85;
+    max-width: 480px;
+}
+
+.charQuote {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--color-gold-dark);
+    line-height: 1.6;
+    max-width: 440px;
+    padding-left: 20px;
+    border-left: 2px solid var(--color-gold);
+}
+
+.charSocials {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.socialLink {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    background: var(--color-bg-cream);
+    border: 1px solid var(--color-divider);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    transition: all var(--transition-base);
+}
+
+.socialLink:hover {
+    background: var(--color-gold);
+    color: var(--color-black);
+    border-color: var(--color-gold);
+}
+
+/* ——— Core Team Grid ——— */
+.teamGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.teamCard {
+    background: var(--color-white);
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: default;
+    transition: all var(--transition-base);
+}
+
+.teamCard:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.teamImageWrap {
+    position: relative;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+.teamImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.teamCard:hover .teamImage {
+    transform: scale(1.05);
+}
+
+.teamImageOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 12, 12, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.teamCard:hover .teamImageOverlay {
+    opacity: 1;
+}
+
+.teamInfo {
+    padding: 18px 16px;
+    text-align: center;
+}
+
+.teamInfo h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.teamInfo span {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-heading);
+}
+
+/* ——— Join CTA ——— */
+.joinCta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.joinTitle {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--color-text-on-dark);
+    margin-top: 8px;
+}
+
+.joinTitle em {
+    font-style: italic;
+    color: var(--color-gold);
+}
+
+.joinSub {
+    font-size: 1rem;
+    color: var(--color-text-on-dark-muted);
+    max-width: 420px;
+    line-height: 1.75;
+}
+
+.joinBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    background: var(--color-gold);
+    color: var(--color-black);
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-base);
+    margin-top: 8px;
+}
+
+.joinBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold);
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 900px) {
+    .charInner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 24px;
+    }
+
+    .charReverse {
+        direction: ltr;
+    }
+
+    .charNumber {
+        font-size: 6rem;
+        bottom: -16px;
+        right: 0;
+    }
+
+    .charPanel {
+        min-height: auto;
+        padding: 60px 0;
+    }
+
+    .teamGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .teamGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .charName {
+        font-size: 2rem;
+    }
+
+    .charNumber {
+        font-size: 4rem;
+    }
+}

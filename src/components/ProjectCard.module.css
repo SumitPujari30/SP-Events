@@ -1,0 +1,96 @@
+.card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4 / 3;
+    will-change: transform;
+    background: var(--color-bg-dark);
+}
+
+.image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .image {
+    transform: scale(1.06);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(12, 12, 12, 0.92) 0%,
+            rgba(12, 12, 12, 0.4) 40%,
+            rgba(12, 12, 12, 0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.category {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 8px;
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 12px;
+    line-height: 1.25;
+}
+
+.viewBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--color-gold);
+    font-family: var(--font-heading);
+    padding: 8px 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+    width: fit-content;
+}
+
+.card:hover .viewBtn {
+    border-color: var(--color-gold);
+}
+
+.shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.02) 45%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(255, 255, 255, 0.02) 55%,
+            transparent 60%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .shine {
+    opacity: 1;
+}

@@ -1,0 +1,220 @@
+/* Gallery Page — Editorial Grid + Lightbox */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+    gap: 16px;
+}
+
+.gridItem {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gridTall {
+    grid-row: span 2;
+}
+
+.gridImage {
+    width: 100%;
+    height: 100%;
+}
+
+.gridImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gridItem:hover .gridImage img {
+    transform: scale(1.06);
+}
+
+.gridOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(12, 12, 12, 0.9) 0%,
+            rgba(12, 12, 12, 0.2) 40%,
+            transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.gridItem:hover .gridOverlay {
+    opacity: 1;
+}
+
+.gridCat {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 6px;
+}
+
+.gridTitle {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-white);
+    line-height: 1.2;
+}
+
+.gridShine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg,
+            transparent 42%,
+            rgba(255, 255, 255, 0.04) 48%,
+            rgba(255, 255, 255, 0.06) 50%,
+            rgba(255, 255, 255, 0.04) 52%,
+            transparent 58%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gridItem:hover .gridShine {
+    opacity: 1;
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    background: rgba(12, 12, 12, 0.96);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.lbClose {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast);
+}
+
+.lbClose:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.lbNav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all var(--transition-fast);
+}
+
+.lbNav:hover {
+    background: var(--color-gold);
+    color: var(--color-black);
+    border-color: var(--color-gold);
+}
+
+.lbPrev {
+    left: 24px;
+}
+
+.lbNext {
+    right: 24px;
+}
+
+.lbContent {
+    max-width: 900px;
+    max-height: 80vh;
+    position: relative;
+}
+
+.lbContent img {
+    width: 100%;
+    max-height: 68vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+}
+
+.lbInfo {
+    padding: 20px 0 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.lbInfo h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--color-white);
+}
+
+.lbCount {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    color: var(--color-text-on-dark-muted);
+    letter-spacing: 2px;
+    margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 240px;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 220px;
+    }
+
+    .gridTall {
+        grid-row: span 1;
+    }
+
+    .lightbox {
+        padding: 16px;
+    }
+
+    .lbNav {
+        width: 40px;
+        height: 40px;
+    }
+}

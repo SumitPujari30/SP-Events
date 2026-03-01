@@ -1,0 +1,219 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-sticky);
+    padding: 0 32px;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
+}
+
+.hidden {
+    transform: translateY(-100%);
+}
+
+/* Dark variant for dark hero pages */
+.navbar:not(.scrolled) {
+    color: var(--color-white);
+}
+
+.inner {
+    width: 100%;
+    max-width: var(--container-wide);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logoIcon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-gold);
+    color: var(--color-black);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    letter-spacing: 1px;
+}
+
+.logoText {
+    display: flex;
+    flex-direction: column;
+}
+
+.logoTitle {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    transition: color var(--transition-fast);
+}
+
+.scrolled .logoTitle {
+    color: var(--color-black);
+}
+
+.logoSub {
+    font-size: 0.6rem;
+    color: var(--color-gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: var(--font-heading);
+}
+
+.desktopLinks {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+
+.navLink {
+    position: relative;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: opacity var(--transition-fast);
+    padding: 4px 0;
+}
+
+.navLink:hover {
+    opacity: 1;
+}
+
+.scrolled .navLink {
+    color: var(--color-text);
+}
+
+.active {
+    opacity: 1 !important;
+}
+
+.activeBar {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-gold);
+    border-radius: 1px;
+}
+
+.ctaBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 24px;
+    background: var(--color-gold);
+    color: var(--color-black);
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 600;
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-base);
+    letter-spacing: 0.5px;
+}
+
+.ctaBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold);
+}
+
+.menuBtn {
+    display: none;
+    padding: 8px;
+    z-index: calc(var(--z-overlay) + 10);
+}
+
+.scrolled .menuBtn {
+    color: var(--color-black);
+}
+
+/* --- Mobile Menu --- */
+.mobileMenu {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    background: var(--color-bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobileInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobileLink {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--color-text-on-dark-muted);
+    padding: 10px 20px;
+    transition: color var(--transition-fast);
+}
+
+.mobileLink:hover,
+.mobileLinkActive {
+    color: var(--color-gold);
+}
+
+.mobileCta {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 40px;
+    background: var(--color-gold);
+    color: var(--color-black);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-xl);
+    margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+
+    .desktopLinks,
+    .ctaBtn {
+        display: none;
+    }
+
+    .menuBtn {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .logoSub {
+        display: none;
+    }
+
+    .mobileLink {
+        font-size: 1.5rem;
+    }
+}
