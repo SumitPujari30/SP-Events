@@ -1,208 +1,623 @@
-/* Careers Page — White/Gold/Black */
+/* ===== CINEMATIC CAREERS PAGE ===== */
 
-.cultureGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+.pageWrap {
+    background: var(--color-bg-dark);
+    /* Very dark background */
 }
 
-.cultureCard {
-    background: var(--color-white);
-    border: 1px solid var(--color-divider);
-    border-radius: var(--radius-lg);
-    padding: 36px 24px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    transition: all var(--transition-base);
-}
-
-.cultureCard:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
-}
-
-.cultureEmoji {
-    font-size: 2.5rem;
-}
-
-.cultureCard h3 {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.cultureCard p {
-    font-size: 0.88rem;
-    color: var(--color-text-secondary);
-    line-height: 1.75;
-}
-
-/* Job List */
-.jobList {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.jobCard {
-    background: var(--color-white);
-    border: 1px solid var(--color-divider);
-    border-radius: var(--radius-lg);
-    padding: 0;
-    overflow: hidden;
-    transition: all var(--transition-base);
-}
-
-.jobCard:hover {
-    box-shadow: var(--shadow-sm);
-}
-
-.jobHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 28px;
-    cursor: pointer;
-    transition: background var(--transition-fast);
-}
-
-.jobHeader:hover {
-    background: var(--color-bg-cream);
-}
-
-.jobInfo h3 {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.jobMeta {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-.jobMeta span {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.82rem;
-    color: var(--color-text-muted);
-}
-
-.jobType {
-    padding: 3px 12px;
-    background: var(--color-gold-muted);
-    border-radius: var(--radius-xl);
-    color: var(--color-gold-dark) !important;
-    font-size: 0.75rem !important;
-    font-weight: 600;
-}
-
-.jobToggle {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-full);
-    background: var(--color-bg-cream);
+/* ——— Dark Hero ——— */
+.hero {
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-text-muted);
-    flex-shrink: 0;
-    cursor: pointer;
-    border: none;
-}
-
-.jobDetails {
+    text-align: center;
+    position: relative;
+    background: radial-gradient(circle at center, rgba(30, 30, 30, 1) 0%, rgba(10, 10, 10, 1) 100%);
     overflow: hidden;
 }
 
-.jobDetailsInner {
-    padding: 0 28px 24px;
-    border-top: 1px solid var(--color-divider);
-    padding-top: 20px;
-}
-
-.jobDetailsInner p {
-    font-size: 0.92rem;
-    color: var(--color-text-secondary);
-    line-height: 1.75;
-    margin-bottom: 16px;
-}
-
-.jobDetailsInner h4 {
-    font-family: var(--font-heading);
-    font-size: 0.92rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.jobDetailsInner ul {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.jobDetailsInner li {
-    font-size: 0.88rem;
-    color: var(--color-text-secondary);
-    padding-left: 18px;
+.heroContent {
     position: relative;
+    z-index: 2;
+    padding: 0 24px;
 }
 
-.jobDetailsInner li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--color-gold);
+.heroPre {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
     font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 24px;
 }
 
-/* CTA */
-.careersCta {
-    text-align: center;
-    margin-top: 64px;
+.heroTitle {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 16px;
+    opacity: 0.6;
+}
+
+.scrollIndicator span {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-white);
+}
+
+.scrollLine {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--color-gold), transparent);
+    animation: scrollDrop 2s infinite ease-in-out;
+    transform-origin: top;
+}
+
+@keyframes scrollDrop {
+    0% {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scaleY(0);
+        opacity: 0;
+        transform-origin: bottom;
+    }
+}
+
+
+/* ——— Horizontal Culture Scroll ——— */
+.horizontalWrap {
+    height: 300vh;
+    /* 100vh per slide */
+    position: relative;
+}
+
+.horizontalSticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: var(--color-black);
+}
+
+.horizontalTrack {
+    display: flex;
+    height: 100%;
+    width: 300vw;
+    /* 3 slides = 300vw */
+}
+
+.slide {
+    width: 100vw;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 10vw;
+}
+
+.slideImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.slideOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.4) 100%);
+    z-index: 2;
+}
+
+.slideContent {
+    position: relative;
+    z-index: 3;
+    max-width: 600px;
+}
+
+.slideNum {
+    font-family: var(--font-display);
+    font-size: 6rem;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201, 168, 76, 0.4);
+    line-height: 1;
+    display: block;
+    margin-bottom: -10px;
+}
+
+.slideTitle {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.slideDesc {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+}
+
+
+/* ——— VIP Ticket Job Board ——— */
+.jobBoard {
+    padding: 120px 0;
+    background: var(--color-black);
+    position: relative;
+}
+
+/* Subtle grid texture overlay for the job board background */
+.jobBoard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+.jobHeader {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.ticketGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Individual Ticket wrapper */
+.ticketWrap {
+    position: relative;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+    perspective: 1000px;
+}
+
+.ticketMain {
+    display: flex;
+    background: var(--color-white);
+    /* High contrast white pass */
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-style: preserve-3d;
+}
+
+.ticketWrap:hover .ticketMain {
+    transform: rotateX(2deg) rotateY(-2deg) scale(1.02);
+}
+
+/* Stub section (left side) */
+.ticketStub {
+    width: 140px;
+    background: #111;
+    color: var(--color-gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px dashed rgba(255, 255, 255, 0.2);
+    position: relative;
+    padding: 24px 0;
+    flex-shrink: 0;
+}
+
+/* Perforation cutouts on stub */
+.ticketStub::before,
+.ticketStub::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-black);
+    /* matches page bg to look like a cutout */
+}
+
+.ticketStub::before {
+    top: -10px;
+}
+
+.ticketStub::after {
+    bottom: -10px;
+}
+
+.stubId {
+    font-family: monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    transform: rotate(-90deg);
+    margin-bottom: auto;
+    margin-top: 40px;
+}
+
+.stubBarcode {
+    width: 40px;
+    height: 120px;
+    background: repeating-linear-gradient(transparent,
+            transparent 2px,
+            var(--color-gold) 2px,
+            var(--color-gold) 4px,
+            transparent 4px,
+            transparent 8px,
+            var(--color-gold) 8px,
+            var(--color-gold) 16px);
+    opacity: 0.3;
+}
+
+.stubAdmit {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+/* Main body of ticket */
+.ticketBody {
+    flex: 1;
+    padding: 36px 40px;
+    position: relative;
+    background: #f8f8f8;
+    /* slightly off-white paper feel */
+}
+
+.ticketHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.ticketTitle {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #111;
+    margin: 0;
+}
+
+.ticketType {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: #111;
+    color: var(--color-white);
+    padding: 4px 12px;
+    border-radius: 4px;
+}
+
+.ticketMeta {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 16px;
+}
+
+.ticketMeta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.ticketDesc {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.ticketAction {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-gold-dark);
+}
+
+/* Faux Stamp */
+.ticketStamp {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    border: 3px solid rgba(201, 168, 76, 0.4);
+    color: rgba(201, 168, 76, 0.6);
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    padding: 8px 16px;
+    transform: rotate(-15deg) scale(1.5);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+}
+
+.ticketWrap:hover .ticketStamp {
+    transform: rotate(-15deg) scale(1);
+    opacity: 1;
+}
+
+/* Drawer for requirements */
+.ticketDrawer {
+    background: #1a1a1a;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    margin: 0 16px;
+    /* slightly narrower than ticket above */
+    position: relative;
+    top: -8px;
+    /* tucked under */
+    z-index: -1;
+}
+
+.drawerInner {
+    padding: 40px 40px 32px;
+    position: relative;
+}
+
+/* Jagged top edge to look like it tore out from inside */
+.drawerCutout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: radial-gradient(circle at 10px 0, transparent 4px, #1a1a1a 5px);
+    background-size: 20px 8px;
+    background-repeat: repeat-x;
+}
+
+.drawerInner h4 {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 16px;
+}
+
+.drawerInner ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    display: flex;
+    flex-direction: column;
     gap: 12px;
 }
 
-.careersCta h3 {
+.drawerInner li {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding-left: 20px;
+    position: relative;
+}
+
+.drawerInner li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    font-size: 0.5rem;
+    color: var(--color-gold);
+}
+
+
+/* ——— Backstage Pass CTA ——— */
+.lanyardCta {
+    padding: 120px 0;
+    background: var(--color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.passCard {
+    width: 340px;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    /* Simulate hanging */
+    transform-origin: top center;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+}
+
+/* The Lanyard Strap Line */
+.passCard::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 20px;
+    height: 200px;
+    background: #080808;
+    transform: translateX(-50%);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.passHole {
+    width: 60px;
+    height: 12px;
+    background: var(--color-black);
+    border-radius: 20px;
+    margin: 20px auto;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+.passHeader {
+    background: var(--color-gold);
+    color: var(--color-black);
+    text-align: center;
+    padding: 12px;
     font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
-.careersCta p {
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-    max-width: 400px;
+.passBody {
+    padding: 40px 32px;
+    text-align: center;
+    background: linear-gradient(180deg, #181818 0%, #111 100%);
+    flex: 1;
 }
 
+.passBody h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 12px;
+}
+
+.passBody p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.passBtn {
+    display: inline-block;
+    background: var(--color-white);
+    color: var(--color-black);
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.passBtn:hover {
+    background: var(--color-gold);
+    transform: scale(1.05);
+}
+
+.passFooter {
+    text-align: center;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.2);
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* ——— Responsive ——— */
 @media (max-width: 900px) {
-    .cultureGrid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .cultureGrid {
-        grid-template-columns: 1fr;
+    .horizontalTrack {
+        width: auto;
+        flex-direction: column;
     }
 
-    .jobMeta {
-        gap: 8px;
+    .horizontalSticky {
+        position: static;
+        height: auto;
     }
 
-    .jobHeader {
-        padding: 20px;
+    .slide {
+        width: 100%;
+        height: 60vh;
+        padding: 0 24px;
+    }
+
+    .ticketMain {
+        flex-direction: column;
+    }
+
+    .ticketStub {
+        width: 100%;
+        height: 80px;
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+        padding: 0 24px;
+        justify-content: space-between;
+    }
+
+    .stubId {
+        transform: none;
+        margin: 0;
+    }
+
+    .stubBarcode {
+        display: none;
+    }
+
+    .stubAdmit {
+        transform: none;
+        writing-mode: horizontal-tb;
+        margin: 0;
+    }
+
+    .ticketStamp {
+        display: none;
     }
 }

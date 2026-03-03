@@ -32,6 +32,13 @@ const milestones = [
     { year: '2025', title: 'Industry Leader', desc: 'Delivered 6,000+ events, recognized among top event companies nationwide.' },
 ];
 
+const processSteps = [
+    { num: '01', title: 'Brief', desc: 'We listen deeply to understand your vision, audience, and goals.' },
+    { num: '02', title: 'Concept', desc: 'Our creative team architects a unique experience around your brand.' },
+    { num: '03', title: 'Execution', desc: 'Flawless on-ground delivery by our 100+ dedicated professionals.' },
+    { num: '04', title: 'Legacy', desc: 'Crafting moments that your audience remembers for years to come.' },
+];
+
 export default function AboutPage() {
     return (
         <>
@@ -149,6 +156,9 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* Process Section */}
+            <ProcessSection />
+
             {/* Timeline */}
             <section className="section section-cream">
                 <div className="container">
@@ -223,5 +233,37 @@ export default function AboutPage() {
                 </div>
             </section>
         </>
+    );
+}
+
+/* ——— Process Section Component ——— */
+function ProcessSection() {
+    return (
+        <section className={styles.processSection}>
+            <div className="container">
+                <AnimatedSection>
+                    <div className="section-header center">
+                        <span className="section-label">How We Work</span>
+                        <h2 className="section-title">Our Process</h2>
+                        <p className="section-subtitle">
+                            Every great event starts with a conversation. Here&apos;s how we
+                            bring your vision to life — with precision and passion.
+                        </p>
+                    </div>
+                </AnimatedSection>
+
+                <div className={styles.processGrid}>
+                    {processSteps.map((step, i) => (
+                        <AnimatedSection key={i} variant="fadeUp" delay={i * 0.12}>
+                            <div className={styles.processStep}>
+                                <div className={styles.processNum}>{step.num}</div>
+                                <h3 className={styles.processStepTitle}>{step.title}</h3>
+                                <p className={styles.processStepDesc}>{step.desc}</p>
+                            </div>
+                        </AnimatedSection>
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 }

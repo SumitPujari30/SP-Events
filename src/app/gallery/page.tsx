@@ -1,9 +1,20 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HiX, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import Link from 'next/link';
+import { HiX, HiChevronLeft, HiChevronRight, HiArrowRight } from 'react-icons/hi';
+import AnimatedSection from '@/components/AnimatedSection';
 import styles from './gallery.module.css';
+
+const portfolio = [
+    { title: 'Innovation Summit 2024', category: 'Summit', image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80' },
+    { title: 'Luxury Brand Reveal', category: 'Product Launch', image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&q=80' },
+    { title: 'Annual Excellence Awards', category: 'Awards', image: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=900&q=80' },
+    { title: 'Tech Expo International', category: 'Exhibition', image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=900&q=80' },
+    { title: 'Music Festival Vibes', category: 'Live Music', image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=900&q=80' },
+    { title: 'Global Health Conclave', category: 'Summit', image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80' },
+];
 
 const galleryImages = [
     { src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80', title: 'Innovation Summit', category: 'Summit', tall: true },
@@ -97,6 +108,8 @@ export default function GalleryPage() {
                 </div>
             </section>
 
+            <HorizontalPortfolio />
+
             {/* Lightbox with nav */}
             <AnimatePresence>
                 {selected !== null && (
@@ -145,5 +158,84 @@ export default function GalleryPage() {
                 )}
             </AnimatePresence>
         </>
+    );
+}
+
+/* ——— Horizontal Scroll Portfolio ——— */
+function HorizontalPortfolio() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ['start start', 'end end'],
+    });
+    const x = useTransform(scrollYProgress, [0, 1], ['0%', '-62%']);
+
+    return (
+        <section ref={containerRef} className={styles.horizontalWrap}>
+            <div className={styles.horizontalSticky}>
+                {/* Header */}
+                <div className={styles.horizontalHeader}>
+                    <div className="container">
+                        <AnimatedSection>
+                            <div className={styles.horizontalTop}>
+                                <div>
+                                    <span className={styles.horizontalLabel}>Featured</span>
+                                    <h2 className={styles.horizontalTitle}>Selected Work</h2>
+                                </div>
+                            </div>
+                        </AnimatedSection>
+                    </div>
+                </div>
+
+                {/* Horizontally scrolling track */}
+                <motion.div className={styles.horizontalTrack} style={{ x }}>
+                    {portfolio.map((p, i) => (
+                        <TiltCard key={i} project={p} />
+                    ))}
+                </motion.div>
+            </div>
+        </section>
+    );
+}
+
+/* ——— 3D Tilt Card ——— */
+function TiltCard({ project }: { project: typeof portfolio[0] }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const el = cardRef.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) scale3d(1.02,1.02,1.02)`;
+    };
+
+    const handleMouseLeave = () => {
+        const el = cardRef.current;
+        if (!el) return;
+        el.style.transform = '';
+    };
+
+    return (
+        <div
+            ref={cardRef}
+            className={styles.portfolioCard}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ transition: 'transform 0.15s ease, box-shadow 0.35s ease' }}
+        >
+            <div
+                className={styles.portfolioCardImage}
+                style={{ backgroundImage: `url(${project.image})` }}
+            />
+            <div className={styles.portfolioCardBody}>
+                <span className={styles.portfolioCardCat}>{project.category}</span>
+                <h3 className={styles.portfolioCardTitle}>{project.title}</h3>
+                <div className={styles.portfolioCardArrow}>
+                    View Case <HiArrowRight size={14} />
+                </div>
+            </div>
+        </div>
     );
 }

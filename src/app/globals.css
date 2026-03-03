@@ -7,17 +7,23 @@
 
 /* --- CSS Variables / Design Tokens --- */
 :root {
-  /* Core palette: white, gold, black */
+  /* Core palette: white, gold, purple, black */
   --color-bg: #ffffff;
-  --color-bg-dark: #0c0c0c;
+  --color-bg-dark: #11001C;
+  /* Deepest Purple */
   --color-bg-off: #f5f2ed;
   --color-bg-cream: #faf8f4;
   --color-surface: #ffffff;
-  --color-surface-dark: #111111;
+  --color-surface-dark: #190028;
+  /* Deep Purple Surface */
 
   --color-black: #0c0c0c;
   --color-black-soft: #1a1a1a;
-  --color-black-muted: #2c2c2c;
+  --color-black-muted: #220135;
+  /* Muted Deep Purple */
+
+  --color-purple-primary: #3A015C;
+  --color-purple-secondary: #32004F;
 
   --color-gold: #c9a84c;
   --color-gold-light: #dfc06e;
@@ -29,16 +35,17 @@
   --color-text: #0c0c0c;
   --color-text-secondary: #555555;
   --color-text-muted: #888888;
-  --color-text-on-dark: #f0ece4;
-  --color-text-on-dark-muted: rgba(240, 236, 228, 0.6);
+  --color-text-on-dark: #ffffff;
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.7);
 
   --color-border: rgba(12, 12, 12, 0.08);
   --color-border-dark: rgba(255, 255, 255, 0.1);
   --color-divider: #e8e4dc;
 
   --gradient-gold: linear-gradient(135deg, #c9a84c 0%, #dfc06e 50%, #a88a32 100%);
-  --gradient-dark: linear-gradient(180deg, #0c0c0c 0%, #1a1a1a 100%);
-  --gradient-hero: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 60%, #0c0c0c 100%);
+  --gradient-dark: linear-gradient(180deg, #190028 0%, #11001C 100%);
+  --gradient-hero: linear-gradient(135deg, #11001C 0%, #220135 60%, #11001C 100%);
+  --gradient-purple: linear-gradient(135deg, #3A015C 0%, #32004F 100%);
 
   /* Typography — editorial, not generic */
   --font-display: 'Playfair Display', serif;

@@ -1,179 +1,238 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { HiOutlineChevronDown, HiOutlineChevronUp, HiOutlineLocationMarker, HiOutlineBriefcase } from 'react-icons/hi';
-import AnimatedSection from '@/components/AnimatedSection';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { HiArrowRight, HiOutlineLocationMarker, HiOutlineBriefcase } from 'react-icons/hi';
 import styles from './careers.module.css';
 
-const cultureHighlights = [
-    { emoji: '🚀', title: 'Growth Mindset', desc: 'Continuous learning with mentorship programs and skill development opportunities.' },
-    { emoji: '🎨', title: 'Creative Freedom', desc: 'Express your creativity in a supportive environment that values bold ideas.' },
-    { emoji: '🤝', title: 'Collaborative Spirit', desc: 'Work alongside passionate professionals who inspire and support each other.' },
-    { emoji: '🏆', title: 'Recognition', desc: 'Outstanding achievements are celebrated and rewarded at every level.' },
+/* ——— Data ——— */
+const cultureSlides = [
+    {
+        id: 1,
+        title: 'Crafting the Extraordinary',
+        desc: 'We don\'t just plan events; we architect experiences. From massive stadium builds to intimate luxury galas, you\'ll be part of a team that turns impossible ideas into flawless realities.',
+        image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=85',
+    },
+    {
+        id: 2,
+        title: 'Creative Freedom',
+        desc: 'Bold ideas live here. We foster an environment where your wildest creative concepts are not just heard — they are funded, prototyped, and brought to life.',
+        image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=85',
+    },
+    {
+        id: 3,
+        title: 'Relentless Collaboration',
+        desc: 'Great events are never built in silos. You\'ll work shoulder-to-shoulder with visionary designers, master technicians, and logistics experts who inspire you daily.',
+        image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1600&q=85',
+    },
 ];
 
-const openings = [
+const openPositions = [
     {
+        id: 'TKT-001',
         title: 'Senior Event Manager',
-        department: 'Event Operations',
-        location: 'Mumbai',
-        type: 'Full-time',
-        desc: 'Lead end-to-end event execution for top-tier corporate clients. Requires 5+ years in event management with proven leadership skills and a passion for creating extraordinary experiences.',
-        requirements: ['5+ years event management experience', 'Strong client relationship skills', 'Team leadership experience', 'Budget management expertise'],
+        dept: 'Operations',
+        loc: 'Mumbai HQ',
+        type: 'Full-Time',
+        reqs: ['5+ years high-end event experience', 'Proven budget management over ₹5Cr', 'Vendor negotiation mastery'],
+        desc: 'Lead our flagship accounts from conceptual pitch to final teardown. You are the conductor of the orchestra.',
     },
     {
+        id: 'TKT-002',
         title: 'Creative Director',
-        department: 'Design & Creativity',
-        location: 'Mumbai',
-        type: 'Full-time',
-        desc: 'Drive creative strategy and conceptual direction for all events. Looking for a visionary who can blend art with strategy to create unforgettable brand experiences.',
-        requirements: ['8+ years in creative/design roles', 'Portfolio of event design work', 'Strong presentation skills', 'Proficiency in design tools'],
+        dept: 'Design',
+        loc: 'Mumbai HQ',
+        type: 'Full-Time',
+        reqs: ['8+ years spatial/event design', 'Expert in 3D visualization (SketchUp/Cinema4D)', 'Pitch presentation skills'],
+        desc: 'Own the visual and experiential narrative of all major events. From initial mood boards to material selection.',
     },
     {
-        title: 'Digital Marketing Specialist',
-        department: 'Marketing',
-        location: 'Remote / Mumbai',
-        type: 'Full-time',
-        desc: 'Manage our digital presence and drive marketing campaigns for events. Ideal candidate has strong social media, content strategy, and analytics expertise.',
-        requirements: ['3+ years digital marketing experience', 'Social media management', 'Content creation skills', 'Analytics and reporting'],
-    },
-    {
-        title: 'Production Coordinator',
-        department: 'Production',
-        location: 'Mumbai',
-        type: 'Full-time',
-        desc: 'Coordinate technical production for large-scale events including AV, staging, and logistics. Detail-oriented professional with strong vendor management skills.',
-        requirements: ['3+ years production experience', 'Technical knowledge of AV equipment', 'Vendor management skills', 'Excellent organizational skills'],
-    },
-    {
-        title: 'Event Intern',
-        department: 'Event Operations',
-        location: 'Mumbai',
-        type: 'Internship',
-        desc: 'Join our team as an intern and gain hands-on experience in event management. Great opportunity for fresh graduates passionate about the events industry.',
-        requirements: ['Recent graduate or final year student', 'Strong communication skills', 'Enthusiasm for events', 'Willingness to learn'],
+        id: 'TKT-003',
+        title: 'Production Lead',
+        dept: 'Technical',
+        loc: 'On-Site / Mumbai',
+        type: 'Full-Time',
+        reqs: ['Extensive AV & rigging knowledge', 'Safety certification preferred', 'Experience handling 5000+ pax events'],
+        desc: 'Turn design renders into physical reality. You handle staging, lighting, massive LED arrays, and structural safety.',
     },
 ];
 
-export default function CareersPage() {
-    const [expanded, setExpanded] = useState<number | null>(null);
+/* ——— Components ——— */
+
+function TicketCard({ job }: { job: typeof openPositions[0] }) {
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <>
-            <section className="page-hero">
-                <div className="page-hero-content">
-                    <motion.span className="section-label" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                        Careers
-                    </motion.span>
-                    <motion.h1 className="page-hero-title" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.7 }}>
-                        Join Our <span className="text-gold">Team</span>
-                    </motion.h1>
-                    <motion.p className="page-hero-subtitle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
-                        Be part of a team that turns ordinary moments into extraordinary memories.
-                    </motion.p>
+        <motion.div
+            className={`${styles.ticketWrap} ${isOpen ? styles.ticketOpen : ''}`}
+            onClick={() => setIsOpen(!isOpen)}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.5 }}
+        >
+            <div className={styles.ticketMain}>
+                <div className={styles.ticketStub}>
+                    <span className={styles.stubId}>{job.id}</span>
+                    <div className={styles.stubBarcode} />
+                    <span className={styles.stubAdmit}>ADMIT ONE</span>
                 </div>
-            </section>
 
-            {/* Culture */}
-            <section className="section">
-                <div className="container">
-                    <AnimatedSection>
-                        <div className="section-header">
-                            <span className="section-label">Our Culture</span>
-                            <h2 className="section-title">Why Work With Us</h2>
-                            <p className="section-subtitle">
-                                We foster a dynamic environment where talent thrives and creativity knows no bounds.
-                            </p>
-                        </div>
-                    </AnimatedSection>
-
-                    <div className={styles.cultureGrid}>
-                        {cultureHighlights.map((item, i) => (
-                            <AnimatedSection key={i} delay={i * 0.1}>
-                                <div className={styles.cultureCard}>
-                                    <span className={styles.cultureEmoji}>{item.emoji}</span>
-                                    <h3>{item.title}</h3>
-                                    <p>{item.desc}</p>
-                                </div>
-                            </AnimatedSection>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Open Positions */}
-            <section className="section section-cream">
-                <div className="container">
-                    <AnimatedSection>
-                        <div className="section-header">
-                            <span className="section-label">Open Positions</span>
-                            <h2 className="section-title">Current Openings</h2>
-                            <p className="section-subtitle">
-                                Explore opportunities to make a difference in the world of events.
-                            </p>
-                        </div>
-                    </AnimatedSection>
-
-                    <div className={styles.jobList}>
-                        {openings.map((job, i) => (
-                            <AnimatedSection key={i} delay={i * 0.08}>
-                                <div className={styles.jobCard}>
-                                    <div
-                                        className={styles.jobHeader}
-                                        onClick={() => setExpanded(expanded === i ? null : i)}
-                                    >
-                                        <div className={styles.jobInfo}>
-                                            <h3>{job.title}</h3>
-                                            <div className={styles.jobMeta}>
-                                                <span><HiOutlineBriefcase size={14} /> {job.department}</span>
-                                                <span><HiOutlineLocationMarker size={14} /> {job.location}</span>
-                                                <span className={styles.jobType}>{job.type}</span>
-                                            </div>
-                                        </div>
-                                        <button className={styles.jobToggle}>
-                                            {expanded === i ? <HiOutlineChevronUp size={20} /> : <HiOutlineChevronDown size={20} />}
-                                        </button>
-                                    </div>
-
-                                    <motion.div
-                                        className={styles.jobDetails}
-                                        initial={false}
-                                        animate={{
-                                            height: expanded === i ? 'auto' : 0,
-                                            opacity: expanded === i ? 1 : 0,
-                                        }}
-                                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                                    >
-                                        <div className={styles.jobDetailsInner}>
-                                            <p>{job.desc}</p>
-                                            <h4>Requirements:</h4>
-                                            <ul>
-                                                {job.requirements.map((req, j) => (
-                                                    <li key={j}>{req}</li>
-                                                ))}
-                                            </ul>
-                                            <button className="btn btn-primary" style={{ marginTop: 16 }}>
-                                                Apply Now
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                </div>
-                            </AnimatedSection>
-                        ))}
+                <div className={styles.ticketBody}>
+                    <div className={styles.ticketHeader}>
+                        <h3 className={styles.ticketTitle}>{job.title}</h3>
+                        <span className={styles.ticketType}>{job.type}</span>
                     </div>
 
-                    <AnimatedSection>
-                        <div className={styles.careersCta}>
-                            <h3>Don&apos;t see your role?</h3>
-                            <p>We&apos;re always looking for talented people. Send us your resume and let&apos;s connect!</p>
-                            <a href="mailto:careers@thespevents.com" className="btn btn-outline">
-                                Send Your Resume
+                    <div className={styles.ticketMeta}>
+                        <span><HiOutlineBriefcase /> {job.dept}</span>
+                        <span><HiOutlineLocationMarker /> {job.loc}</span>
+                    </div>
+
+                    <p className={styles.ticketDesc}>{job.desc}</p>
+
+                    <span className={styles.ticketAction}>
+                        {isOpen ? 'Close Details' : 'View Requirements'} <HiArrowRight />
+                    </span>
+
+                    {/* Faux gold stamp that appears on hover */}
+                    <div className={styles.ticketStamp}>APPLY</div>
+                </div>
+            </div>
+
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        className={styles.ticketDrawer}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        <div className={styles.drawerInner}>
+                            <div className={styles.drawerCutout} /> {/* Visual ticket perforation */}
+                            <h4>Essential Requirements</h4>
+                            <ul>
+                                {job.reqs.map((req, i) => (
+                                    <li key={i}>{req}</li>
+                                ))}
+                            </ul>
+                            <a href="mailto:careers@thespevents.com" className="btn btn-primary" onClick={(e) => e.stopPropagation()}>
+                                Submit Portfolio & Resume
                             </a>
                         </div>
-                    </AnimatedSection>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
+    );
+}
+
+export default function CareersPage() {
+    // Horizontal scroll setup
+    const targetRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+    });
+
+    // Convert vertical scroll to horizontal translation
+    const x = useTransform(scrollYProgress, [0, 1], ['0%', '-66.66%']);
+
+    return (
+        <main className={styles.pageWrap}>
+
+            {/* ——— Hero Section ——— */}
+            <section className={styles.hero}>
+                <div className={styles.heroContent}>
+                    <motion.p
+                        className={styles.heroPre}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        Join The SP Events
+                    </motion.p>
+                    <motion.h1
+                        className={styles.heroTitle}
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        Don&apos;t just witness the <br />
+                        <span className="text-gold">spectacle.</span> Build it.
+                    </motion.h1>
+                    <motion.div
+                        className={styles.scrollIndicator}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1 }}
+                    >
+                        <span>Scroll to explore</span>
+                        <div className={styles.scrollLine} />
+                    </motion.div>
                 </div>
             </section>
-        </>
+
+            {/* ——— Horizontal Scroll Culture Journey ——— */}
+            <section ref={targetRef} className={styles.horizontalWrap}>
+                <div className={styles.horizontalSticky}>
+                    <motion.div style={{ x }} className={styles.horizontalTrack}>
+                        {cultureSlides.map((slide) => (
+                            <div key={slide.id} className={styles.slide}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={slide.image} alt={slide.title} className={styles.slideImg} />
+                                <div className={styles.slideOverlay} />
+                                <div className={styles.slideContent}>
+                                    <span className={styles.slideNum}>0{slide.id}</span>
+                                    <h2 className={styles.slideTitle}>{slide.title}</h2>
+                                    <p className={styles.slideDesc}>{slide.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* ——— Ticket Job Board ——— */}
+            <section className={styles.jobBoard}>
+                <div className="container">
+                    <div className={styles.jobHeader}>
+                        <h2 className="section-title">Open Positions</h2>
+                        <p className="section-subtitle" style={{ maxWidth: 500, margin: '0 auto' }}>
+                            Ready for your VIP pass? Select a role below to view requirements and apply.
+                        </p>
+                    </div>
+
+                    <div className={styles.ticketGrid}>
+                        {openPositions.map(job => (
+                            <TicketCard key={job.id} job={job} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ——— Backstage Pass CTA ——— */}
+            <section className={styles.lanyardCta}>
+                <motion.div
+                    className={styles.passCard}
+                    initial={{ rotate: -5, opacity: 0 }}
+                    whileInView={{ rotate: 0, opacity: 1 }}
+                    viewport={{ once: true, margin: '-100px' }}
+                    transition={{ type: 'spring', bounce: 0.4, duration: 1 }}
+                >
+                    <div className={styles.passHole} />
+                    <div className={styles.passHeader}>ALL ACCESS</div>
+                    <div className={styles.passBody}>
+                        <h3>Don&apos;t see your role?</h3>
+                        <p>We are always looking for rogue talent. Pitch us why we need you.</p>
+                        <a href="mailto:careers@thespevents.com" className={styles.passBtn}>
+                            Send Pitch
+                        </a>
+                    </div>
+                    <div className={styles.passFooter}>THE SP EVENTS CREW</div>
+                </motion.div>
+            </section>
+
+        </main>
     );
 }

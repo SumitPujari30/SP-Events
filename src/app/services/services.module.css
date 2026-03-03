@@ -1,0 +1,381 @@
+/* ===== CINEMATIC SERVICES PAGE ===== */
+
+.mainContainer {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 140px;
+    /* Accounts for fixed navbar */
+    padding-bottom: 80px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--color-black);
+}
+
+/* Background Crossfade Images */
+.bgImage {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.08);
+    /* slight zoom out on reveal */
+    transition: opacity 0.8s ease-in-out, transform 4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
+}
+
+.bgActive {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
+}
+
+/* Dark gradient mask — dark on the left (text readable), fades on right (glass card readable) width */
+.bgOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            rgba(10, 10, 10, 0.96) 0%,
+            rgba(10, 10, 10, 0.88) 35%,
+            rgba(10, 10, 10, 0.5) 100%);
+    z-index: 3;
+}
+
+.contentGrid {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+}
+
+/* ——— Left Huge Navigation ——— */
+.navCol {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.navLabel {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navLabel::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--color-gold);
+}
+
+.navList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* Nav items are massive hollow text */
+.navItem {
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navNum {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.25);
+    transition: color 0.4s ease;
+    padding-top: 10px;
+    /* visual align with big text */
+}
+
+/* Hollow text via -webkit-text-stroke */
+.navText {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navItem:hover .navText {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+}
+
+.navItemActive {
+    transform: translateX(40px);
+}
+
+.navItemActive .navNum {
+    color: var(--color-gold);
+}
+
+/* Filled text when active */
+.navItemActive .navText {
+    color: var(--color-white);
+    -webkit-text-stroke: 1px var(--color-white);
+}
+
+/* ——— Right Glassmorphic Card ——— */
+.detailCol {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.glassCard {
+    background: rgba(18, 18, 18, 0.45);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-xl);
+    padding: 56px 48px;
+    max-width: 580px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+    transition: border-color 0.4s ease;
+}
+
+.glassCard:hover {
+    border-color: rgba(201, 168, 76, 0.3);
+}
+
+.cardTitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 8px;
+}
+
+.cardTagline {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--color-gold);
+    letter-spacing: 0.5px;
+}
+
+.cardDivider {
+    width: 60px;
+    height: 2px;
+    background: var(--gradient-gold);
+    margin: 32px 0;
+}
+
+.cardDesc {
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 32px;
+}
+
+.offeringsWrap {
+    margin-bottom: 48px;
+}
+
+.offeringsLabel {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 16px;
+}
+
+.cardList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cardList li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.cardList li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    font-size: 0.5rem;
+    color: var(--color-gold);
+}
+
+/* Submit CTA */
+.ctaBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.ctaBtn:hover {
+    background: var(--color-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(201, 168, 76, 0.25);
+}
+
+/* ——— Responsive Adjustments ——— */
+@media (max-width: 1200px) {
+    .contentGrid {
+        gap: 20px;
+        grid-template-columns: 45% 55%;
+    }
+}
+
+@media (max-width: 900px) {
+    .bgOverlay {
+        background: rgba(10, 10, 10, 0.85);
+        /* Ensure readability */
+    }
+
+    .contentGrid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .detailCol {
+        justify-content: flex-start;
+    }
+
+    .glassCard {
+        max-width: 100%;
+        padding: 40px 32px;
+    }
+}
+
+/* Tablet / Mobile — Convert to horizontally scrollable chips */
+@media (max-width: 768px) {
+    .mainContainer {
+        padding-top: 100px;
+        align-items: flex-start;
+        height: auto;
+    }
+
+    .navLabel {
+        display: none;
+    }
+
+    .navCol {
+        gap: 0;
+    }
+
+    /* Horizontal scroll container for chips */
+    .navList {
+        flex-direction: row;
+        align-items: center;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        gap: 12px;
+        scroll-snap-type: x mandatory;
+        /* Hide scrollbar */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .navList::-webkit-scrollbar {
+        display: none;
+    }
+
+    .navItem {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        padding: 10px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 40px;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(8px);
+        gap: 8px;
+    }
+
+    /* Active pill style */
+    .navItemActive {
+        transform: none;
+        /* remove desktop slide */
+        border-color: var(--color-gold);
+        background: rgba(201, 168, 76, 0.15);
+    }
+
+    /* Standard size text on pills */
+    .navText {
+        font-family: var(--font-heading);
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        -webkit-text-stroke: 0;
+        /* solid text on chips */
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .navItemActive .navText {
+        color: var(--color-gold);
+    }
+
+    .navNum {
+        display: none;
+    }
+
+    /* Hide numbers in pills */
+
+    /* Detail card */
+    .glassCard {
+        padding: 32px 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .cardTitle {
+        font-size: 1.8rem;
+    }
+
+    .cardDesc {
+        margin-bottom: 24px;
+    }
+
+    .offeringsWrap {
+        margin-bottom: 32px;
+    }
+
+    .ctaBtn {
+        width: 100%;
+        justify-content: center;
+    }
+}

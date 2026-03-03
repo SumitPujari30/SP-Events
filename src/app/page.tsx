@@ -1,342 +1,329 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { HiArrowRight, HiArrowDown } from 'react-icons/hi';
-import AnimatedSection from '@/components/AnimatedSection';
-import CounterAnimation from '@/components/CounterAnimation';
-import ProjectCard from '@/components/ProjectCard';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from 'framer-motion';
+import { HiArrowRight } from 'react-icons/hi';
 import styles from './page.module.css';
 
 /* ——— Data ——— */
-const services = [
-  { num: '01', title: 'Corporate Events', desc: 'Elevating brands through meticulously crafted gatherings that forge connections and inspire action.' },
-  { num: '02', title: 'Exhibitions & Activations', desc: 'Immersive experiential spaces designed to captivate, engage, and tell your brand story.' },
-  { num: '03', title: 'Award Ceremonies', desc: 'Grand celebrations of excellence — designed with elegance, prestige, and theatrical flair.' },
-  { num: '04', title: 'Product Launches', desc: 'High-impact reveal events that turn your product debut into a cultural moment.' },
-  { num: '05', title: 'Virtual & Hybrid', desc: 'Seamless digital experiences connecting global audiences through cutting-edge technology.' },
-  { num: '06', title: 'Summits & Conclaves', desc: 'Bringing together industry leaders for transformative conversations and meaningful impact.' },
+const showcaseItems = [
+  { title: 'Corporate', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80', num: '01' },
+  { title: 'Exhibitions', img: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=900&q=80', num: '02' },
+  { title: 'Awards', img: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=900&q=80', num: '03' },
+  { title: 'Launches', img: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&q=80', num: '04' },
 ];
 
-const horizontalProjects = [
-  { title: 'Innovation Summit 2024', category: 'Summit', image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80' },
-  { title: 'Luxury Brand Reveal', category: 'Product Launch', image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&q=80' },
-  { title: 'Annual Excellence Awards', category: 'Awards', image: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=900&q=80' },
-  { title: 'Tech Expo International', category: 'Exhibition', image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=900&q=80' },
-  { title: 'Music Festival Vibes', category: 'Music', image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=900&q=80' },
-  { title: 'Global Health Conclave', category: 'Summit', image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80' },
+const philosophyBlocks = [
+  "We don't just plan events. We architect precise, living environments that shift perceptions.",
+  "Every detail matters. The lighting, the sound, the space — all calibrated to forge genuine human connection.",
+  "From the subtle to the spectacular, we build legacies that resonate long after the lights go down."
 ];
 
-const testimonials = [
-  { quote: 'The SP Events elevated our annual summit to a whole new level. The seamless execution and creative vision set a new benchmark for our industry.', author: 'Rajesh Kumar', role: 'CEO, TechVista India' },
-  { quote: 'Working with this team was transformative. They turned our product launch into an experience that our audience is still talking about months later.', author: 'Priya Sharma', role: 'Marketing Director, Luxe Brands' },
-  { quote: 'Impeccable attention to detail, creative masterminds, and a team that truly cares about delivering excellence. They exceeded every expectation.', author: 'Amit Patel', role: 'VP Operations, Global Corp' },
-];
-
-/* ——— Scroll-Zoom Hero (Smooth 3-Phase) ——— */
-function ScrollZoomHero() {
+/* ——— MASK REVEAL HERO ——— */
+function MaskRevealHero() {
   const containerRef = useRef<HTMLDivElement>(null);
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
   });
 
-  // ALL hooks called at the top — never inside JSX
+  // Calculate the clip path from a small circle to expanding and covering the whole view
+  // We use string interpolation to make it a circle
+  const clipSize = useTransform(scrollYProgress, [0, 0.4], [10, 150]);
 
-  // Background dims during zoom, brightens after
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.15, 0.6, 0.75], [1, 0.4, 0.4, 0.9]);
+  // To handle string conversion smoothly in Framer Motion, best to pass it to style
+  const clipPathStyle = useTransform(clipSize, (val) => `circle(${val}% at 50% 50%)`);
 
-  // Badge + tagline: visible at start, fades as logo enters
-  const badgeOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
-  const badgeY = useTransform(scrollYProgress, [0, 0.1], [0, -30]);
+  // Move the scattered text away as the circle expands
+  const textScale = useTransform(scrollYProgress, [0, 0.4], [1, 1.3]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [0.15, 0]);
 
-  // Scroll indicator fades early
-  const scrollIndOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
-
-  // Logo: fades in → holds → fades out while scaling 1→50x
-  const logoOpacity = useTransform(scrollYProgress, [0.08, 0.18, 0.5, 0.6], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0.18, 0.58], [1, 50]);
-
-  // Content: fades in after zoom is completely done
-  const contentOpacity = useTransform(scrollYProgress, [0.65, 0.8], [0, 1]);
-  const contentY = useTransform(scrollYProgress, [0.65, 0.8], [40, 0]);
+  // Fade the video slightly as you scroll down further
+  const videoOpacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
 
   return (
     <section ref={containerRef} className={styles.heroWrap}>
       <div className={styles.heroSticky}>
-        {/* Background video — always visible, opacity shifts */}
-        <motion.div className={styles.heroBgImage} style={{ opacity: bgOpacity }}>
+
+        {/* Dark Intro Text — Disappears quickly */}
+        <motion.h1
+          className={styles.heroIntroText}
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
+        >
+          We architect<br /><em>extraordinary</em>
+        </motion.h1>
+
+        {/* Scattered Background Text */}
+        <motion.div className={styles.heroLogoScattered} style={{ scale: textScale, opacity: textOpacity }}>
+          <span className={styles.scatterWord1}>THE SP</span>
+          <span className={styles.scatterWord2}>EVENTS</span>
+          <span className={styles.scatterWord3}>EXPERIENCE</span>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div className={styles.scrollIndicator} style={{ opacity: useTransform(scrollYProgress, [0, 0.05], [1, 0]) }}>
+          <div className={styles.scrollLine}>
+            <div className={styles.scrollLineInner} />
+          </div>
+          <span>Discover</span>
+        </motion.div>
+
+        {/* Expanding Video Reveal */}
+        <motion.div
+          className={styles.heroVideoWrap}
+          style={{ clipPath: clipPathStyle, opacity: videoOpacity }}
+        >
           <video
-            autoPlay
-            muted
-            loop
-            playsInline
+            autoPlay muted loop playsInline
             poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1800&q=85"
-            className={styles.heroBgVideo}
+            className={styles.heroVideo}
           >
             <source src="https://cdn.coverr.co/videos/coverr-concert-crowd-in-vibrant-lighting-7982/1080p.mp4" type="video/mp4" />
           </video>
-          <div className={styles.heroBgOverlay} />
-        </motion.div>
-
-        {/* Badge + tagline — centered, visible first */}
-        <motion.div
-          className={styles.heroTopContent}
-          style={{ opacity: badgeOpacity, y: badgeY }}
-        >
-          <span className={styles.heroBadge}>
-            <span className={styles.heroBadgeDot} />
-            Premier Event Management
-          </span>
-          <p className={styles.heroTagline}>
-            Crafting unforgettable experiences across India
-          </p>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className={styles.heroScroll}
-          style={{ opacity: scrollIndOpacity }}
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          >
-            <HiArrowDown size={16} />
-          </motion.div>
-          <span>Scroll to explore</span>
-        </motion.div>
-
-        {/* Logo that scales up */}
-        <motion.div
-          className={styles.heroLogoWrap}
-          style={{ scale, opacity: logoOpacity }}
-        >
-          <div className={styles.heroLogo}>
-            <span className={styles.heroLogoThe}>THE</span>
-            <span className={styles.heroLogoSP}>SP</span>
-            <span className={styles.heroLogoEvents}>EVENTS</span>
-          </div>
-        </motion.div>
-
-        {/* Content — appears after zoom */}
-        <motion.div
-          className={styles.heroBottomContent}
-          style={{ opacity: contentOpacity, y: contentY }}
-        >
-          <p className={styles.heroDesc}>
-            We create extraordinary experiences that captivate audiences,
-            inspire action, and build lasting brand legacies.
-          </p>
-          <div className={styles.heroActions}>
-            <Link href="/work" className={styles.heroCta}>
-              Explore Our Work <HiArrowRight />
-            </Link>
-            <Link href="/contact" className={styles.heroCtaLine}>
-              Get In Touch
-            </Link>
-          </div>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          className={styles.heroStats}
-          style={{ opacity: contentOpacity }}
-        >
-          {[
-            { val: 6000, suf: '+', lab: 'Events' },
-            { val: 15, suf: '+', lab: 'Years' },
-            { val: 100, suf: '+', lab: 'Team' },
-            { val: 500, suf: '+', lab: 'Clients' },
-          ].map((s, i) => (
-            <div key={i} className={styles.heroStatItem}>
-              <span className={styles.heroStatVal}>
-                <CounterAnimation end={s.val} suffix={s.suf} />
-              </span>
-              <span className={styles.heroStatLab}>{s.lab}</span>
-            </div>
-          ))}
+          <div className={styles.heroVideoOverlay} />
         </motion.div>
       </div>
     </section>
   );
 }
 
-/* ——— Horizontal Scroll Portfolio ——— */
-function HorizontalScroll() {
+/* ——— SCROLL MANIFESTO ——— */
+function ScrollManifesto() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end'],
+    offset: ['start 80%', 'end center'],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-60%']);
+  const words = [
+    "We ", "believe ", "that ", "a ", "truly ", "great ", "event ",
+    "is ", "not ", "measured ", "by ", "the ", "number ", "of ",
+    "attendees, ", "but ", "by ", "the ", "intensity ", "of ", "the ",
+    "memories ", "created. ", "Welcome ", "to ", "the ", "new ", "standard ",
+    "of ", "experiential ", "design."
+  ];
 
   return (
-    <section ref={containerRef} className={styles.horizontalWrap}>
-      <div className={styles.horizontalSticky}>
-        <div className={styles.horizontalHeader}>
-          <div className="container">
-            <AnimatedSection>
-              <div className={styles.horizontalTop}>
-                <div>
-                  <span className="section-label">Portfolio</span>
-                  <h2 className={styles.horizontalTitle}>Selected Work</h2>
-                </div>
-                <Link href="/work" className="btn btn-outline-light btn-sm">
-                  View All <HiArrowRight />
-                </Link>
-              </div>
-            </AnimatedSection>
+    <section ref={containerRef} className={styles.manifestoWrap}>
+      <h2 className={styles.manifestoText}>
+        {words.map((word, i) => {
+          const step = 1 / words.length;
+          const start = i * step;
+          const end = start + step;
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
+          const isGold = word.includes("memories") || word.includes("experiential");
+
+          return (
+            <motion.span
+              key={i}
+              className={`${styles.manifestoWord} ${isGold ? styles.manifestoWordGold : ''}`}
+              style={{ opacity }}
+            >
+              {word}
+            </motion.span>
+          );
+        })}
+      </h2>
+    </section>
+  );
+}
+
+/* ——— CURSOR FOLLOWER SHOWCASE ——— */
+function CursorFollowerShowcase() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth springing for the image follower
+  const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 100, damping: 20 });
+  const opacity = useSpring(0, { stiffness: 300, damping: 25 });
+  const scale = useSpring(0.5, { stiffness: 300, damping: 25 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  useEffect(() => {
+    if (hoveredIndex !== null) {
+      opacity.set(1);
+      scale.set(1);
+    } else {
+      opacity.set(0);
+      scale.set(0.5);
+    }
+  }, [hoveredIndex, opacity, scale]);
+
+  return (
+    <section className={styles.showcaseWrap}>
+      <div className="container">
+        <div className={styles.showcaseHeader}>
+          <p className="section-label">Our Expertise</p>
+          <h2 className="section-title">Showcase</h2>
+        </div>
+
+        <div className={styles.showcaseList} onMouseLeave={() => setHoveredIndex(null)}>
+          {showcaseItems.map((item, i) => (
+            <Link
+              key={i}
+              href="/services"
+              className={styles.showcaseRow}
+              onMouseEnter={() => setHoveredIndex(i)}
+            >
+              <span className={styles.showcaseNum}>{item.num}</span>
+              <span className={styles.showcaseTitle}>{item.title}</span>
+              <HiArrowRight className={styles.showcaseArrow} />
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* The Floating Image */}
+      <motion.div
+        className={styles.showcaseImageFollower}
+        style={{ x: springX, y: springY, opacity, scale }}
+      >
+        {showcaseItems.map((item, i) => (
+          <div
+            key={i}
+            className={styles.showcaseImageInner}
+            style={{
+              backgroundImage: `url(${item.img})`,
+              position: 'absolute',
+              inset: 0,
+              opacity: hoveredIndex === i ? 1 : 0,
+              transition: 'opacity 0.4s ease'
+            }}
+          />
+        ))}
+      </motion.div>
+    </section>
+  );
+}
+
+/* ——— STICKY PHILOSOPHY ——— */
+function StickyPhilosophy() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <section className={styles.philosophyWrap} ref={containerRef}>
+      <div className={styles.philosophyContainer}>
+        {/* Left: Sticky pinned */}
+        <div>
+          <div className={styles.philosophySticky}>
+            <div className={styles.philosophyLabel}>Our Philosophy</div>
+            <h2 className={styles.philosophyTitle}>
+              Beyond Standard.<br />
+              <em>Beyond Expected.</em>
+            </h2>
           </div>
         </div>
 
-        <motion.div className={styles.horizontalTrack} style={{ x }}>
-          {horizontalProjects.map((project, i) => (
-            <div key={i} className={styles.horizontalCard}>
-              <div className={styles.hCardImage} style={{ backgroundImage: `url(${project.image})` }} />
-              <div className={styles.hCardContent}>
-                <span className={styles.hCardCat}>{project.category}</span>
-                <h3 className={styles.hCardTitle}>{project.title}</h3>
-              </div>
-            </div>
+        {/* Right: Scrolling Text Blocks */}
+        <div className={styles.philosophyContent}>
+          {philosophyBlocks.map((text, i) => (
+            <PhilosophyBlock key={i} text={text} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ——— Main Page ——— */
+// Sub-component to handle in-view tracking per paragraph
+function PhilosophyBlock({ text }: { text: string }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 80%', 'end 30%'] // Element highlights as it reaches center of screen
+  });
+
+  // Transform opacity based on position in viewport
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.15, 1, 1, 0.15]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 0.95]);
+
+  return (
+    <motion.p ref={ref} className={styles.philosophyBlock} style={{ opacity, scale }}>
+      {text}
+    </motion.p>
+  );
+}
+
+/* ——— 3D FLIP STATS GRID ——— */
+function FlipStatsGrid() {
+  const stats = [
+    { val: '6000+', lab: 'Events Delivered', desc: 'Across India & Abroad', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80' },
+    { val: '15+', lab: 'Years Experience', desc: 'In Premium Event Management', img: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=600&q=80' },
+    { val: '100+', lab: 'Team Members', desc: 'Passionate Professionals', img: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80' },
+    { val: '500+', lab: 'Happy Clients', desc: 'Global & Local Brands', img: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&q=80' },
+  ];
+
+  return (
+    <section className={styles.statsWrap}>
+      <div className={styles.statsGrid}>
+        {stats.map((s, i) => (
+          <div key={i} className={styles.statCardWrap}>
+            <div className={styles.statCardInner}>
+              {/* Front side just shows the big number */}
+              <div className={styles.statCardFront}>
+                <span className={styles.statVal}>{s.val}</span>
+              </div>
+
+              {/* Back side flips to show image, label, and desc */}
+              <div className={styles.statCardBack}>
+                <div className={styles.statBackImage} style={{ backgroundImage: `url(${s.img})` }} />
+                <span className={styles.statLab}>{s.lab}</span>
+                <span className={styles.statDesc}>{s.desc}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ——— CURTAIN REVEAL CTA ——— */
+function CurtainRevealCta() {
+  return (
+    <>
+      <div className={styles.ctaSpacer} />
+      <section className={styles.ctaRevealFixed}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1800&q=85" alt="Footer Event" className={styles.ctaBgImage} />
+        <div className={styles.ctaOverlay} />
+
+        <div className={styles.ctaContent}>
+          <h2 className={styles.ctaTitle}>
+            Let&apos;s craft your next<br />
+            <em>unforgettable moment</em>
+          </h2>
+          <Link href="/contact" className={styles.ctaBtn}>
+            Start a Conversation <HiArrowRight />
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}
+
+/* ——— Main Page Component ——— */
 export default function HomePage() {
   return (
     <>
-      {/* ===== SCROLL-ZOOM HERO ===== */}
-      <ScrollZoomHero />
-
-      {/* ===== ABOUT STRIP ===== */}
-      <section className={`section ${styles.aboutStrip}`}>
-        <div className="container">
-          <div className={styles.aboutGrid}>
-            <AnimatedSection variant="fadeLeft">
-              <div>
-                <span className="section-label">About Us</span>
-                <h2 className={styles.aboutHeading}>
-                  Where vision meets
-                  <br />
-                  <em>flawless execution</em>
-                </h2>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection variant="fadeRight" delay={0.2}>
-              <div className={styles.aboutRight}>
-                <p>
-                  At The SP Events, every event tells a story. We blend creative artistry
-                  with strategic precision — our signature philosophy.
-                  Like master craftsmen, we shape raw ideas into spellbinding
-                  experiences that captivate audiences and create lasting impact.
-                </p>
-                <p>
-                  With over 6,000 events delivered across India, our team of 100+ passionate
-                  professionals transforms visions into realities that people remember.
-                </p>
-                <Link href="/about" className="btn btn-outline btn-sm" style={{ marginTop: 8 }}>
-                  Learn More <HiArrowRight />
-                </Link>
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== SERVICES ===== */}
-      <section className="section section-cream">
-        <div className="container">
-          <AnimatedSection>
-            <div className="section-header center">
-              <span className="section-label">What We Do</span>
-              <h2 className="section-title">Our Expertise</h2>
-              <p className="section-subtitle">
-                From intimate brand activations to grand-scale spectacles — we bring vision
-                and mastery to every format of event.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className={styles.servicesGrid}>
-            {services.map((s, i) => (
-              <AnimatedSection key={i} delay={i * 0.06}>
-                <div className={styles.serviceRow}>
-                  <span className={styles.serviceNum}>{s.num}</span>
-                  <div className={styles.serviceInfo}>
-                    <h3>{s.title}</h3>
-                    <p>{s.desc}</p>
-                  </div>
-                  <HiArrowRight className={styles.serviceArrow} />
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== HORIZONTAL SCROLL PORTFOLIO ===== */}
-      <HorizontalScroll />
-
-      {/* ===== TESTIMONIALS ===== */}
-      <section className="section section-cream">
-        <div className="container">
-          <AnimatedSection>
-            <div className="section-header center">
-              <span className="section-label">Testimonials</span>
-              <h2 className="section-title">Client Stories</h2>
-            </div>
-          </AnimatedSection>
-
-          <div className={styles.testimonialsGrid}>
-            {testimonials.map((t, i) => (
-              <AnimatedSection key={i} delay={i * 0.12}>
-                <div className={styles.testimonialCard}>
-                  <div className={styles.quoteIcon}>&ldquo;</div>
-                  <p className={styles.quoteText}>{t.quote}</p>
-                  <div className={styles.quoteAuthor}>
-                    <div className={styles.authorAvatar}>{t.author.charAt(0)}</div>
-                    <div>
-                      <strong>{t.author}</strong>
-                      <span>{t.role}</span>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== CTA ===== */}
-      <section className={styles.ctaSection}>
-        <div className="container">
-          <AnimatedSection variant="scaleUp">
-            <div className={styles.ctaContent}>
-              <span className="section-label">Ready?</span>
-              <h2 className={styles.ctaTitle}>
-                Let&apos;s craft your next
-                <br />
-                <em>unforgettable moment</em>
-              </h2>
-              <p className={styles.ctaSub}>
-                Whether it&apos;s a corporate summit, product launch, or grand celebration —
-                we&apos;re here to make it extraordinary.
-              </p>
-              <Link href="/contact" className={styles.ctaBtnLink}>
-                Start a Conversation <HiArrowRight />
-              </Link>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+      <MaskRevealHero />
+      <ScrollManifesto />
+      <CursorFollowerShowcase />
+      <StickyPhilosophy />
+      <FlipStatsGrid />
+      <CurtainRevealCta />
     </>
   );
 }

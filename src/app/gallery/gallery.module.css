@@ -218,3 +218,148 @@
         height: 40px;
     }
 }
+
+/* ——— HORIZONTAL SCROLL PORTFOLIO ——— */
+.horizontalWrap {
+    height: 300vh;
+    position: relative;
+    background: var(--color-bg-dark);
+}
+
+.horizontalSticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontalHeader {
+    padding: 52px 0 32px;
+    flex-shrink: 0;
+}
+
+.horizontalTop {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.horizontalLabel {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.horizontalTitle {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 600;
+    color: var(--color-text-on-dark);
+    line-height: 1.1;
+}
+
+.horizontalTrack {
+    display: flex;
+    gap: 24px;
+    padding: 0 48px;
+    align-items: stretch;
+    flex: 1;
+    padding-bottom: 52px;
+}
+
+/* Portfolio Card — 3D Tilt */
+.portfolioCard {
+    flex-shrink: 0;
+    width: 400px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: #111;
+    transition: transform 0.15s ease, box-shadow 0.35s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
+}
+
+.portfolioCard:hover {
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(201, 168, 76, 0.2);
+}
+
+.portfolioCardImage {
+    width: 100%;
+    height: 68%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.portfolioCardImage::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(12, 12, 12, 0.7) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.portfolioCard:hover .portfolioCardImage::after {
+    opacity: 1;
+}
+
+.portfolioCard:hover .portfolioCardImage {
+    transform: scale(1.06);
+}
+
+.portfolioCardBody {
+    padding: 24px 28px;
+    background: #111;
+}
+
+.portfolioCardCat {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.portfolioCardTitle {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-text-on-dark);
+    line-height: 1.25;
+}
+
+.portfolioCardArrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.35s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.portfolioCard:hover .portfolioCardArrow {
+    opacity: 1;
+    transform: translateY(0);
+}
