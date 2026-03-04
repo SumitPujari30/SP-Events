@@ -15,6 +15,10 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
             touchMultiplier: 2,
         });
 
+        // Expose on window so velocity hooks can subscribe
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).__lenis = lenis;
+
         function raf(time: number) {
             lenis.raf(time);
             requestAnimationFrame(raf);

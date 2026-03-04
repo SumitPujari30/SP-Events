@@ -1,65 +1,75 @@
-.preloader {
+.preloaderContainer {
     position: fixed;
     inset: 0;
-    z-index: var(--z-preloader);
-    background: var(--color-bg-dark);
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-}
-
-.logoBox {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-gold);
-    border-radius: 14px;
-    box-shadow: 0 0 60px rgba(201, 168, 76, 0.3);
-}
-
-.logoText {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.8rem;
-    color: var(--color-black);
-    letter-spacing: 2px;
-}
-
-.name {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--color-text-on-dark);
-    letter-spacing: 1px;
-}
-
-.progressWrap {
-    width: 180px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 1px;
     overflow: hidden;
 }
 
-.progressBar {
+.curtainPanelLeft,
+.curtainPanelRight {
+    position: absolute;
+    top: 0;
+    width: 50.5%;
+    /* slight overlap to prevent gaps */
     height: 100%;
-    background: var(--color-gold);
-    border-radius: 1px;
-    transform-origin: left;
+    background: #000;
+    z-index: 1;
 }
 
-.percent {
-    font-family: var(--font-heading);
-    font-size: 0.75rem;
+.curtainPanelLeft {
+    left: 0;
+}
+
+.curtainPanelRight {
+    right: 0;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.counterWrap {
+    display: flex;
+    align-items: baseline;
+    line-height: 1;
+}
+
+.bigNumber {
+    font-family: var(--font-display);
+    font-size: clamp(8rem, 20vw, 15rem);
+    font-weight: 900;
     color: var(--color-gold);
-    letter-spacing: 2px;
+    letter-spacing: -5px;
+}
+
+.percentSymbol {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--color-gold);
+}
+
+.prepTextWrap {
+    margin-top: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prepText {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-white);
+    opacity: 0.8;
 }

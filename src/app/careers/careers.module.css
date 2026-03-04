@@ -1,623 +1,564 @@
-/* ===== CINEMATIC CAREERS PAGE ===== */
-
 .pageWrap {
-    background: var(--color-bg-dark);
-    /* Very dark background */
+    width: 100%;
+    background: var(--color-bg-dark, #0a0014);
+    /* Deep immersive dark */
+    color: var(--color-white);
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-/* ——— Dark Hero ——— */
-.hero {
+/* =============================================
+/* =============================================
+   SECTION 1: STAGE LIGHT HERO
+   ============================================= */
+.stageHeroSection {
+    position: relative;
+    width: 100%;
     height: 100vh;
+    background: #000;
+    overflow: hidden;
+    cursor: default;
+}
+
+/* Base dimly lit layer */
+.stageHeroBase {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    position: relative;
-    background: radial-gradient(circle at center, rgba(30, 30, 30, 1) 0%, rgba(10, 10, 10, 1) 100%);
-    overflow: hidden;
 }
 
-.heroContent {
+.stageHeroGridDark {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.stageHeroContent {
     position: relative;
     z-index: 2;
-    padding: 0 24px;
+    text-align: center;
+    pointer-events: none;
+    width: 100%;
 }
 
 .heroPre {
     font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 24px;
+}
+
+.stageHeroTitleDark {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.02);
+    /* very faint */
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+    /* slight outline */
+    text-transform: uppercase;
+    letter-spacing: -2px;
+}
+
+/* The revealed glowing layer */
+.stageHeroLit {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    /* Let pointer events pass to section */
+
+    /* The core trick: a radial gradient mask */
+    -webkit-mask-image: radial-gradient(circle 300px at center, black 0%, transparent 100%);
+    mask-image: radial-gradient(circle 300px at center, black 0%, transparent 100%);
+    -webkit-mask-size: 600px 600px;
+    mask-size: 600px 600px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    /* initial position off screen */
+    -webkit-mask-position: -1000px -1000px;
+    mask-position: -1000px -1000px;
+}
+
+.stageHeroGridLit {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image:
+        linear-gradient(var(--color-gold) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-gold) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.heroPreLit {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--color-gold);
     margin-bottom: 24px;
+    text-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
 }
 
-.heroTitle {
+.stageHeroTitleLit {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 700;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
     color: var(--color-white);
-    line-height: 1.1;
-    letter-spacing: -1px;
-}
-
-/* Scroll indicator */
-.scrollIndicator {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    opacity: 0.6;
-}
-
-.scrollIndicator span {
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--color-white);
+    letter-spacing: -2px;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
 }
 
-.scrollLine {
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--color-gold), transparent);
-    animation: scrollDrop 2s infinite ease-in-out;
-    transform-origin: top;
+.textGold {
+    color: var(--color-gold);
+    text-shadow: 0 0 40px rgba(201, 168, 76, 0.8);
 }
 
-@keyframes scrollDrop {
-    0% {
-        transform: scaleY(0);
-        opacity: 0;
-    }
-
-    50% {
-        transform: scaleY(1);
-        opacity: 1;
-    }
-
-    100% {
-        transform: scaleY(0);
-        opacity: 0;
-        transform-origin: bottom;
-    }
-}
-
-
-/* ——— Horizontal Culture Scroll ——— */
-.horizontalWrap {
-    height: 300vh;
-    /* 100vh per slide */
+/* =============================================
+   SECTION 2: BACKSTAGE PARALLAX
+   ============================================= */
+.parallaxSection {
     position: relative;
+    width: 100%;
+    height: 150vh;
+    /* Reduced further for shorter, punchier scroll */
+    background: #05000a;
 }
 
-.horizontalSticky {
+.parallaxBgDesign {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 100px 100px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.parallaxGlow {
+    position: absolute;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.parallaxSticky {
     position: sticky;
     top: 0;
     height: 100vh;
     width: 100%;
     overflow: hidden;
-    background: var(--color-black);
-}
-
-.horizontalTrack {
-    display: flex;
-    height: 100%;
-    width: 300vw;
-    /* 3 slides = 300vw */
-}
-
-.slide {
-    width: 100vw;
-    height: 100%;
-    position: relative;
     display: flex;
     align-items: center;
-    padding: 0 10vw;
+    justify-content: center;
 }
 
-.slideImg {
+/* Base image styling for parallax items */
+.parallaxItem {
+    position: absolute;
+    will-change: transform;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    opacity: 0.6;
+    filter: grayscale(40%) contrast(1.2);
+}
+
+.parallaxItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Specific position and sizing for parallax layers */
+.pLayer1 {
+    width: 300px;
+    height: 400px;
+    left: 10%;
+    top: 10%;
+    z-index: 1;
+}
+
+.pLayer2 {
+    width: 450px;
+    height: 300px;
+    right: 5%;
+    top: 40%;
+    z-index: 2;
+}
+
+.pLayer3 {
+    width: 350px;
+    height: 500px;
+    left: 20%;
+    bottom: -10%;
+    z-index: 3;
+}
+
+/* Center storytelling typography */
+.parallaxTextWrap {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 1200px;
+    height: 400px;
+    /* Explicit height to contain absolute panels */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.parallaxPanel {
+    display: flex;
+    flex-direction: row;
+    /* Asymmetrical layout */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    gap: 40px;
+    padding: 0 5%;
+}
+
+.bgNumber {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: clamp(10rem, 30vw, 25rem);
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.05);
+    /* very faint stroke outline */
+    z-index: -1;
+    /* behind text */
+    pointer-events: none;
+    line-height: 1;
+}
+
+.parallaxTitle {
+    flex: 1;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    /* Giant font */
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    /* Animated Gradient Mask */
+    background: linear-gradient(135deg, #fff 20%, var(--color-gold) 50%, #fff 80%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShimmer 4s linear infinite;
+}
+
+@keyframes textShimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.parallaxDesc {
+    flex: 1;
+    text-align: right;
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: var(--color-gold);
+    line-height: 1.5;
+    max-width: 450px;
+    margin-left: auto;
+    /* Push to right */
+    letter-spacing: 1px;
+}
+
+/* Gradient transitions between sections */
+.parallaxFadeTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, #0a0014, transparent);
+    z-index: 10;
+}
+
+.parallaxFadeBottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, #080010, transparent);
+    z-index: 10;
+}
+
+/* =============================================
+   SECTION 3: MINIMALIST ACCORDION JOB BOARD
+   ============================================= */
+.jobBoardSection {
+    padding: 100px 0;
+    background: #080010;
+    position: relative;
+    overflow: hidden;
+}
+
+.jobHeader {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.jobListWrap {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 20px;
+}
+
+/* Row interaction logic managed by React state for dimming, 
+   but base styles define the look and transitions */
+.jobRow {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+    /* For dimming un-hovered rows */
+}
+
+.jobRowHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    transition: background 0.4s ease;
+}
+
+.jobRowHeader:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.jobRowTitle {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--color-white);
+    margin: 0;
+    text-transform: uppercase;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.jobRowHeader:hover .jobRowTitle {
+    transform: translateX(40px);
+}
+
+.jobRowMeta {
+    font-family: var(--font-heading);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-align: right;
+}
+
+/* Accordion Dropdown Content */
+.jobAccordion {
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.jobAccordionInner {
+    padding: 0 20px 60px 60px;
+    /* Aligns with the shifted title */
+    display: flex;
+    flex-direction: column;
+}
+
+.jobAccordionInner h4 {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.jobAccordionInner .expandedDesc {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    max-width: 700px;
+    margin-bottom: 32px;
+}
+
+.reqList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+}
+
+.reqList li {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    padding-left: 20px;
+}
+
+.reqList li::before {
+    content: '•';
+    color: var(--color-gold);
+    position: absolute;
+    left: 0;
+}
+
+.applyBtnWrap {
+    display: flex;
+    align-items: center;
+}
+
+.applyBtn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--color-gold);
+    color: #000;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.applyBtn:hover {
+    box-shadow: 0 10px 20px rgba(201, 168, 76, 0.3);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .jobRowHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 30px 10px;
+    }
+
+    .jobRowMeta {
+        text-align: left;
+    }
+
+    .jobRowHeader:hover .jobRowTitle {
+        transform: translateX(10px);
+    }
+
+    .jobAccordionInner {
+        padding: 0 10px 40px 20px;
+    }
+}
+
+/* =============================================
+   SECTION 4: CURTAIN REVEAL CTA
+   ============================================= */
+.curtainSection {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.curtainBgVideo {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0.5;
+    /* Moody lighting */
     z-index: 1;
 }
 
-.slideOverlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.4) 100%);
+.curtainContent {
+    position: relative;
     z-index: 2;
-}
-
-.slideContent {
-    position: relative;
-    z-index: 3;
-    max-width: 600px;
-}
-
-.slideNum {
-    font-family: var(--font-display);
-    font-size: 6rem;
-    font-weight: 800;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(201, 168, 76, 0.4);
-    line-height: 1;
-    display: block;
-    margin-bottom: -10px;
-}
-
-.slideTitle {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 700;
-    color: var(--color-white);
-    line-height: 1.1;
-    margin-bottom: 24px;
-}
-
-.slideDesc {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.8;
-}
-
-
-/* ——— VIP Ticket Job Board ——— */
-.jobBoard {
-    padding: 120px 0;
-    background: var(--color-black);
-    position: relative;
-}
-
-/* Subtle grid texture overlay for the job board background */
-.jobBoard::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-}
-
-.jobHeader {
     text-align: center;
-    margin-bottom: 80px;
-    position: relative;
-    z-index: 2;
+    padding: 0 40px;
 }
 
-.ticketGrid {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
-
-/* Individual Ticket wrapper */
-.ticketWrap {
-    position: relative;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
-    perspective: 1000px;
-}
-
-.ticketMain {
-    display: flex;
-    background: var(--color-white);
-    /* High contrast white pass */
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    transform-style: preserve-3d;
-}
-
-.ticketWrap:hover .ticketMain {
-    transform: rotateX(2deg) rotateY(-2deg) scale(1.02);
-}
-
-/* Stub section (left side) */
-.ticketStub {
-    width: 140px;
-    background: #111;
-    color: var(--color-gold);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-right: 2px dashed rgba(255, 255, 255, 0.2);
-    position: relative;
-    padding: 24px 0;
-    flex-shrink: 0;
-}
-
-/* Perforation cutouts on stub */
-.ticketStub::before,
-.ticketStub::after {
-    content: '';
-    position: absolute;
-    right: -10px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--color-black);
-    /* matches page bg to look like a cutout */
-}
-
-.ticketStub::before {
-    top: -10px;
-}
-
-.ticketStub::after {
-    bottom: -10px;
-}
-
-.stubId {
-    font-family: monospace;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    transform: rotate(-90deg);
-    margin-bottom: auto;
-    margin-top: 40px;
-}
-
-.stubBarcode {
-    width: 40px;
-    height: 120px;
-    background: repeating-linear-gradient(transparent,
-            transparent 2px,
-            var(--color-gold) 2px,
-            var(--color-gold) 4px,
-            transparent 4px,
-            transparent 8px,
-            var(--color-gold) 8px,
-            var(--color-gold) 16px);
-    opacity: 0.3;
-}
-
-.stubAdmit {
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    margin-top: auto;
-    margin-bottom: 20px;
-}
-
-/* Main body of ticket */
-.ticketBody {
-    flex: 1;
-    padding: 36px 40px;
-    position: relative;
-    background: #f8f8f8;
-    /* slightly off-white paper feel */
-}
-
-.ticketHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 16px;
-}
-
-.ticketTitle {
+.curtainContent h2 {
     font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #111;
-    margin: 0;
-}
-
-.ticketType {
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    background: #111;
+    font-size: clamp(3rem, 7vw, 6rem);
     color: var(--color-white);
-    padding: 4px 12px;
-    border-radius: 4px;
+    margin: 0 0 40px;
+    line-height: 1.1;
 }
 
-.ticketMeta {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 24px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding-bottom: 16px;
+.curtainDrop {
+    position: absolute;
+    inset: 0;
+    background: #080010;
+    z-index: 10;
+    transform-origin: top;
+    /* Framer motion will handle translating this up */
+    border-bottom: 2px solid var(--color-gold);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
 }
 
-.ticketMeta span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.85rem;
-    color: #666;
-    font-weight: 500;
-}
-
-.ticketDesc {
-    font-size: 0.95rem;
-    color: #444;
-    line-height: 1.7;
-    margin-bottom: 24px;
-}
-
-.ticketAction {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+.curtainLabel {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: var(--font-heading);
     font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--color-gold-dark);
-}
-
-/* Faux Stamp */
-.ticketStamp {
-    position: absolute;
-    bottom: 30px;
-    right: 40px;
-    border: 3px solid rgba(201, 168, 76, 0.4);
-    color: rgba(201, 168, 76, 0.6);
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 800;
-    padding: 8px 16px;
-    transform: rotate(-15deg) scale(1.5);
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    pointer-events: none;
-}
-
-.ticketWrap:hover .ticketStamp {
-    transform: rotate(-15deg) scale(1);
-    opacity: 1;
-}
-
-/* Drawer for requirements */
-.ticketDrawer {
-    background: #1a1a1a;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    margin: 0 16px;
-    /* slightly narrower than ticket above */
-    position: relative;
-    top: -8px;
-    /* tucked under */
-    z-index: -1;
-}
-
-.drawerInner {
-    padding: 40px 40px 32px;
-    position: relative;
-}
-
-/* Jagged top edge to look like it tore out from inside */
-.drawerCutout {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 8px;
-    background-image: radial-gradient(circle at 10px 0, transparent 4px, #1a1a1a 5px);
-    background-size: 20px 8px;
-    background-repeat: repeat-x;
-}
-
-.drawerInner h4 {
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
     color: var(--color-gold);
-    margin-bottom: 16px;
-}
-
-.drawerInner ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 32px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.drawerInner li {
-    font-size: 0.92rem;
-    color: rgba(255, 255, 255, 0.7);
-    padding-left: 20px;
-    position: relative;
-}
-
-.drawerInner li::before {
-    content: '◆';
-    position: absolute;
-    left: 0;
-    top: 4px;
-    font-size: 0.5rem;
-    color: var(--color-gold);
-}
-
-
-/* ——— Backstage Pass CTA ——— */
-.lanyardCta {
-    padding: 120px 0;
-    background: var(--color-black);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.passCard {
-    width: 340px;
-    background: #111;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-    /* Simulate hanging */
-    transform-origin: top center;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
-}
-
-/* The Lanyard Strap Line */
-.passCard::before {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    width: 20px;
-    height: 200px;
-    background: #080808;
-    transform: translateX(-50%);
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.passHole {
-    width: 60px;
-    height: 12px;
-    background: var(--color-black);
-    border-radius: 20px;
-    margin: 20px auto;
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.8);
-}
-
-.passHeader {
-    background: var(--color-gold);
-    color: var(--color-black);
-    text-align: center;
-    padding: 12px;
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-}
-
-.passBody {
-    padding: 40px 32px;
-    text-align: center;
-    background: linear-gradient(180deg, #181818 0%, #111 100%);
-    flex: 1;
-}
-
-.passBody h3 {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--color-white);
-    margin-bottom: 12px;
-}
-
-.passBody p {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.6);
-    line-height: 1.6;
-    margin-bottom: 32px;
-}
-
-.passBtn {
-    display: inline-block;
-    background: var(--color-white);
-    color: var(--color-black);
-    padding: 14px 32px;
-    border-radius: 4px;
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.passBtn:hover {
-    background: var(--color-gold);
-    transform: scale(1.05);
-}
-
-.passFooter {
-    text-align: center;
-    padding: 16px;
-    font-family: monospace;
-    font-size: 0.75rem;
     letter-spacing: 4px;
-    color: rgba(255, 255, 255, 0.2);
-    border-top: 1px dashed rgba(255, 255, 255, 0.1);
-}
-
-/* ——— Responsive ——— */
-@media (max-width: 900px) {
-    .horizontalTrack {
-        width: auto;
-        flex-direction: column;
-    }
-
-    .horizontalSticky {
-        position: static;
-        height: auto;
-    }
-
-    .slide {
-        width: 100%;
-        height: 60vh;
-        padding: 0 24px;
-    }
-
-    .ticketMain {
-        flex-direction: column;
-    }
-
-    .ticketStub {
-        width: 100%;
-        height: 80px;
-        flex-direction: row;
-        border-right: none;
-        border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
-        padding: 0 24px;
-        justify-content: space-between;
-    }
-
-    .stubId {
-        transform: none;
-        margin: 0;
-    }
-
-    .stubBarcode {
-        display: none;
-    }
-
-    .stubAdmit {
-        transform: none;
-        writing-mode: horizontal-tb;
-        margin: 0;
-    }
-
-    .ticketStamp {
-        display: none;
-    }
+    text-transform: uppercase;
 }
