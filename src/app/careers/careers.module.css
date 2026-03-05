@@ -8,7 +8,6 @@
 }
 
 /* =============================================
-/* =============================================
    SECTION 1: STAGE LIGHT HERO
    ============================================= */
 .stageHeroSection {
@@ -84,10 +83,10 @@
     /* Let pointer events pass to section */
 
     /* The core trick: a radial gradient mask */
-    -webkit-mask-image: radial-gradient(circle 300px at center, black 0%, transparent 100%);
-    mask-image: radial-gradient(circle 300px at center, black 0%, transparent 100%);
-    -webkit-mask-size: 600px 600px;
-    mask-size: 600px 600px;
+    -webkit-mask-image: radial-gradient(circle 450px at center, black 0%, transparent 100%);
+    mask-image: radial-gradient(circle 450px at center, black 0%, transparent 100%);
+    -webkit-mask-size: 900px 900px;
+    mask-size: 900px 900px;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     /* initial position off screen */
@@ -98,7 +97,7 @@
 .stageHeroGridLit {
     position: absolute;
     inset: 0;
-    opacity: 0.15;
+    opacity: 0.25;
     background-image:
         linear-gradient(var(--color-gold) 1px, transparent 1px),
         linear-gradient(90deg, var(--color-gold) 1px, transparent 1px);
@@ -107,13 +106,17 @@
 
 .heroPreLit {
     font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 4px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--color-gold);
-    margin-bottom: 24px;
-    text-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+    margin-bottom: 28px;
+    text-shadow: 0 0 20px rgba(201, 168, 76, 0.7), 0 0 40px rgba(201, 168, 76, 0.4);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-gold);
 }
 
 .stageHeroTitleLit {
@@ -328,177 +331,60 @@
     z-index: 10;
 }
 
+
 /* =============================================
-   SECTION 3: MINIMALIST ACCORDION JOB BOARD
+   AMBIENT BACKGROUND ORBS (pure CSS)
    ============================================= */
-.jobBoardSection {
-    padding: 100px 0;
-    background: #080010;
-    position: relative;
-    overflow: hidden;
-}
-
-.jobHeader {
-    text-align: center;
-    margin-bottom: 60px;
-    position: relative;
-    z-index: 2;
-}
-
-.jobListWrap {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0 20px;
-}
-
-/* Row interaction logic managed by React state for dimming, 
-   but base styles define the look and transitions */
-.jobRow {
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    transition: opacity 0.4s ease;
-    /* For dimming un-hovered rows */
-}
-
-.jobRowHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px 20px;
-    transition: background 0.4s ease;
-}
-
-.jobRowHeader:hover {
-    background: rgba(255, 255, 255, 0.02);
-}
-
-.jobRowTitle {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 4rem);
-    color: var(--color-white);
-    margin: 0;
-    text-transform: uppercase;
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.jobRowHeader:hover .jobRowTitle {
-    transform: translateX(40px);
-}
-
-.jobRowMeta {
-    font-family: var(--font-heading);
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-align: right;
-}
-
-/* Accordion Dropdown Content */
-.jobAccordion {
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.jobAccordionInner {
-    padding: 0 20px 60px 60px;
-    /* Aligns with the shifted title */
-    display: flex;
-    flex-direction: column;
-}
-
-.jobAccordionInner h4 {
-    font-family: var(--font-heading);
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    color: var(--color-gold);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-}
-
-.jobAccordionInner .expandedDesc {
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-    max-width: 700px;
-    margin-bottom: 32px;
-}
-
-.reqList {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    list-style: none;
-    padding: 0;
-    margin-bottom: 40px;
-}
-
-.reqList li {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    position: relative;
-    padding-left: 20px;
-}
-
-.reqList li::before {
-    content: '•';
-    color: var(--color-gold);
+.ambientOrb1 {
     position: absolute;
-    left: 0;
+    top: 10%;
+    left: -10%;
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50%;
+    box-shadow: 0 0 150px 100px rgba(201, 168, 76, 0.08);
+    animation: ambientPulse1 10s ease-in-out infinite;
 }
 
-.applyBtnWrap {
-    display: flex;
-    align-items: center;
+.ambientOrb2 {
+    position: absolute;
+    bottom: -10%;
+    right: -10%;
+    width: 40vw;
+    height: 40vw;
+    border-radius: 50%;
+    box-shadow: 0 0 200px 150px rgba(100, 40, 180, 0.08);
+    animation: ambientPulse2 15s ease-in-out 2s infinite;
 }
 
-.applyBtn {
-    display: inline-block;
-    padding: 16px 40px;
-    background: var(--color-gold);
-    color: #000;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 40px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
+@keyframes ambientPulse1 {
 
-.applyBtn:hover {
-    box-shadow: 0 10px 20px rgba(201, 168, 76, 0.3);
-    transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-    .jobRowHeader {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 30px 10px;
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
     }
 
-    .jobRowMeta {
-        text-align: left;
-    }
-
-    .jobRowHeader:hover .jobRowTitle {
-        transform: translateX(10px);
-    }
-
-    .jobAccordionInner {
-        padding: 0 10px 40px 20px;
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
     }
 }
+
+@keyframes ambientPulse2 {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.4;
+    }
+}
+
 
 /* =============================================
    SECTION 4: CURTAIN REVEAL CTA

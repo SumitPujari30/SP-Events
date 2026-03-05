@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import styles from './careers.module.css';
 
 /* =============================================
@@ -16,9 +16,9 @@ function StageLightHero() {
 
     const handlePointerMove = (e: React.PointerEvent) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        // 300 is half of the 600px mask size to center it on cursor
-        mouseX.set(e.clientX - rect.left - 300);
-        mouseY.set(e.clientY - rect.top - 300);
+        // 450 is half of the 900px mask size to center it on cursor
+        mouseX.set(e.clientX - rect.left - 450);
+        mouseY.set(e.clientY - rect.top - 450);
     };
 
     return (
@@ -127,128 +127,7 @@ function BackstageParallax() {
     );
 }
 
-/* =============================================
-   SECTION 3: INTERACTIVE TICKET JOB BOARD
-   ============================================= */
-const openPositions = [
-    {
-        id: 'TKT-001',
-        title: 'Senior Event Manager',
-        dept: 'Operations',
-        loc: 'Mumbai HQ',
-        reqs: ['5+ years high-end event experience', 'Proven budget management over ₹5Cr', 'Vendor negotiation mastery'],
-        desc: 'Lead our flagship accounts from conceptual pitch to final teardown. You are the conductor of the orchestra.',
-        rotation: -4,
-        xOff: -120,
-        yOff: -60
-    },
-    {
-        id: 'TKT-002',
-        title: 'Creative Director',
-        dept: 'Design',
-        loc: 'Mumbai HQ',
-        reqs: ['8+ years spatial/event design', 'Expert in 3D visualization (SketchUp/Cinema4D)', 'Pitch presentation skills'],
-        desc: 'Own the visual and experiential narrative of all major events. From initial mood boards to material selection.',
-        rotation: 6,
-        xOff: 120,
-        yOff: 30
-    },
-    {
-        id: 'TKT-003',
-        title: 'Production Lead',
-        dept: 'Technical',
-        loc: 'On-Site / Mumbai',
-        reqs: ['Extensive AV & rigging knowledge', 'Safety certification preferred', 'Experience handling 5000+ pax events'],
-        desc: 'Turn design renders into physical reality. You handle staging, lighting, massive LED arrays, and structural safety.',
-        rotation: -2,
-        xOff: -30,
-        yOff: 80
-    },
-];
 
-function JobBoard() {
-    const [expandedId, setExpandedId] = useState<string | null>(null);
-
-    return (
-        <section className={styles.jobBoardSection}>
-            <div className={styles.jobDesk} />
-
-            <div className={styles.jobHeader}>
-                <motion.h2
-                    className={styles.heroTitle}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', margin: '0 0 16px', textTransform: 'uppercase' }}
-                >
-                    Open Roles
-                </motion.h2>
-                <motion.p
-                    className={styles.heroPre}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                >
-                    Join The Crew
-                </motion.p>
-            </div>
-
-            <div className={styles.jobListWrap}>
-                {openPositions.map((job) => {
-                    const isExpanded = expandedId === job.id;
-
-                    return (
-                        <div
-                            key={job.id}
-                            className={styles.jobRow}
-                            style={{ opacity: expandedId && !isExpanded ? 0.3 : 1 }}
-                        >
-                            <div
-                                className={styles.jobRowHeader}
-                                onClick={() => setExpandedId(isExpanded ? null : job.id)}
-                            >
-                                <h3 className={styles.jobRowTitle}>{job.title}</h3>
-                                <div className={styles.jobRowMeta}>
-                                    {job.loc} <br />
-                                    <span style={{ fontSize: '0.8em', color: 'var(--color-gold)' }}>{job.dept}</span>
-                                </div>
-                            </div>
-
-                            <AnimatePresence>
-                                {isExpanded && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: 'auto', opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-                                        className={styles.jobAccordion}
-                                    >
-                                        <div className={styles.jobAccordionInner}>
-                                            <h4>About The Role</h4>
-                                            <p className={styles.expandedDesc}>{job.desc}</p>
-
-                                            <h4>Requirements</h4>
-                                            <ul className={styles.reqList}>
-                                                {job.reqs.map((req, i) => <li key={i}>{req}</li>)}
-                                            </ul>
-
-                                            <div className={styles.applyBtnWrap}>
-                                                <a href="mailto:careers@thespevents.com" className={styles.applyBtn}>
-                                                    Apply Now
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-                    );
-                })}
-            </div>
-        </section>
-    );
-}
 
 /* =============================================
    SECTION 4: CURTAIN REVEAL CTA
@@ -306,31 +185,8 @@ function CurtainCTA() {
 function AmbientBackground() {
     return (
         <div style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-            {/* Replaced expensive CSS filters with box-shadow spreading for performance */}
-            <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-                style={{
-                    position: 'absolute', top: '10%', left: '-10%',
-                    width: '30vw', height: '30vw',
-                    background: 'transparent',
-                    borderRadius: '50%',
-                    boxShadow: '0 0 150px 100px rgba(201, 168, 76, 0.08)',
-                    willChange: 'transform, opacity'
-                }}
-            />
-            <motion.div
-                animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-                style={{
-                    position: 'absolute', bottom: '-10%', right: '-10%',
-                    width: '40vw', height: '40vw',
-                    background: 'transparent',
-                    borderRadius: '50%',
-                    boxShadow: '0 0 200px 150px rgba(100, 40, 180, 0.08)',
-                    willChange: 'transform, opacity'
-                }}
-            />
+            <div className={styles.ambientOrb1} />
+            <div className={styles.ambientOrb2} />
         </div>
     );
 }
@@ -341,7 +197,6 @@ export default function CareersPage() {
             <AmbientBackground />
             <StageLightHero />
             <BackstageParallax />
-            <JobBoard />
             <CurtainCTA />
         </main>
     );

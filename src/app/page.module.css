@@ -259,30 +259,7 @@
   transform: translateX(0) rotate(-45deg);
 }
 
-/* Floating Image Follower */
-.showcaseImageFollower {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 350px;
-  height: 450px;
-  pointer-events: none;
-  z-index: 10;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-  /* Centering the follower on the cursor */
-  margin-top: -225px;
-  margin-left: -175px;
-  will-change: transform;
-}
 
-.showcaseImageInner {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
 
 /* ——— STICKY PHILOSOPHY ——— */
 .philosophyWrap {

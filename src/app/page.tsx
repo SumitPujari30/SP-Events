@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { HiArrowRight } from 'react-icons/hi';
 import styles from './page.module.css';
 
@@ -130,37 +130,8 @@ function ScrollManifesto() {
   );
 }
 
-/* ——— CURSOR FOLLOWER SHOWCASE ——— */
+/* ——— SHOWCASE ——— */
 function CursorFollowerShowcase() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth springing for the image follower
-  const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 100, damping: 20 });
-  const opacity = useSpring(0, { stiffness: 300, damping: 25 });
-  const scale = useSpring(0.5, { stiffness: 300, damping: 25 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  useEffect(() => {
-    if (hoveredIndex !== null) {
-      opacity.set(1);
-      scale.set(1);
-    } else {
-      opacity.set(0);
-      scale.set(0.5);
-    }
-  }, [hoveredIndex, opacity, scale]);
-
   return (
     <section className={styles.showcaseWrap}>
       <div className="container">
@@ -169,13 +140,12 @@ function CursorFollowerShowcase() {
           <h2 className="section-title">Showcase</h2>
         </div>
 
-        <div className={styles.showcaseList} onMouseLeave={() => setHoveredIndex(null)}>
+        <div className={styles.showcaseList}>
           {showcaseItems.map((item, i) => (
             <Link
               key={i}
               href="/services"
               className={styles.showcaseRow}
-              onMouseEnter={() => setHoveredIndex(i)}
             >
               <span className={styles.showcaseNum}>{item.num}</span>
               <span className={styles.showcaseTitle}>{item.title}</span>
@@ -184,26 +154,6 @@ function CursorFollowerShowcase() {
           ))}
         </div>
       </div>
-
-      {/* The Floating Image */}
-      <motion.div
-        className={styles.showcaseImageFollower}
-        style={{ x: springX, y: springY, opacity, scale }}
-      >
-        {showcaseItems.map((item, i) => (
-          <div
-            key={i}
-            className={styles.showcaseImageInner}
-            style={{
-              backgroundImage: `url(${item.img})`,
-              position: 'absolute',
-              inset: 0,
-              opacity: hoveredIndex === i ? 1 : 0,
-              transition: 'opacity 0.4s ease'
-            }}
-          />
-        ))}
-      </motion.div>
     </section>
   );
 }

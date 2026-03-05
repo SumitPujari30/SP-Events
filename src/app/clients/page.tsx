@@ -16,26 +16,24 @@ import styles from './clients.module.css';
 
 /* ——— DATA ——— */
 const clients = [
-    { name: 'Microsoft', impact: '50k+ Minds Inspired' },
-    { name: 'Google', impact: 'Innovation Unleashed' },
-    { name: 'Amazon', impact: 'Global Connections' },
-    { name: 'Netflix', impact: 'Stories Brought to Life' },
-    { name: 'Apple', impact: 'Designing the Future' },
-    { name: 'Spotify', impact: 'Rhythms of Engagement' },
-    { name: 'Adobe', impact: 'Empowering Creativity' },
-    { name: 'Salesforce', impact: 'Transforming Business' },
-    { name: 'Intel', impact: 'Powering Tomorrow' },
-    { name: 'Cisco', impact: 'Connecting the World' },
-    { name: 'IBM', impact: 'Smarter Solutions' },
-    { name: 'Samsung', impact: 'Inspiring the World' },
-    { name: 'Sony', impact: 'Redefining Entertainment' },
-    { name: 'Nike', impact: 'Just Do It' },
-    { name: 'Adidas', impact: 'Impossible is Nothing' },
-    { name: 'Tesla', impact: 'Accelerating Tomorrow' },
-    { name: 'Oracle', impact: 'Data-Driven Excellence' },
-    { name: 'Meta', impact: 'Building Connections' },
-    { name: 'Twitter', impact: 'Real-Time Engagement' },
-    { name: 'Uber', impact: 'Moving the World' },
+    { name: 'Udaya' },
+    { name: 'Govt of Karnataka' },
+    { name: 'Deshpande Startups' },
+    { name: 'Digvijay News' },
+    { name: 'JK Tyre' },
+    { name: 'Jockey' },
+    { name: 'Samsung' },
+    { name: 'KLE Institute' },
+    { name: 'Reliance Ltd' },
+    { name: 'Toyota' },
+    { name: 'USV' },
+    { name: 'Vijayvani' },
+    { name: 'Hero MotoCorp' },
+    { name: 'HDFC Bank' },
+    { name: 'HDFC Ergo' },
+    { name: 'Mini Sou' },
+    { name: 'Red FM' },
+    { name: 'Tata Power Solar' },
 ];
 
 const marqueeItems = [
@@ -216,42 +214,37 @@ function MarqueeStrip() {
 /* =============================================
    SECTION 2: INTERACTIVE ROSTER (BRAND SHOWCASE)
    ============================================= */
-
-// Curated list of specific clients grouped by industry
+// Real SP Events clients. Removed external logo URLs that were failing due to CORS / hotlinking blocks.
 const rosterClients = [
-    { name: 'Microsoft', industry: 'Tech & Finance', image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80' },
-    { name: 'Google', industry: 'Tech & Finance', image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&q=80' },
-    { name: 'Intel', industry: 'Tech & Finance', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80' },
-    { name: 'L&T', industry: 'Tech & Finance', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80' },
-    { name: 'Axis Bank', industry: 'Tech & Finance', image: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=800&q=80' },
-    { name: 'HDFC', industry: 'Tech & Finance', image: 'https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?w=800&q=80' },
-    { name: 'SBI Card', industry: 'Tech & Finance', image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80' },
+    { name: 'Govt of Karnataka', color: '#B32821' }, // Red theme for Karnataka Govt
+    { name: 'Deshpande Startups', color: '#1B4D82' },
+    { name: 'Digvijay News', color: '#D32F2F' },
+    { name: 'Red FM', color: '#E53935' },
+    { name: 'Vijayvani', color: '#FFB300' },
 
-    { name: 'Glenmark', industry: 'Healthcare & Pharma', image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80' },
-    { name: 'Sun Pharma', industry: 'Healthcare & Pharma', image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&q=80' },
-    { name: 'Cipla', industry: 'Healthcare & Pharma', image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80' },
+    { name: 'JK Tyre', color: '#FDD835' },
+    { name: 'Toyota', color: '#D32F2F' },
+    { name: 'Hero MotoCorp', color: '#D32F2F' },
+    { name: 'Tata Power Solar', color: '#1976D2' },
 
-    { name: 'Nivea', industry: 'FMCG & Retail', image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&q=80' },
-    { name: 'Nykaa', industry: 'FMCG & Retail', image: 'https://images.unsplash.com/photo-1596462502278-27bf85033e5a?w=800&q=80' },
-    { name: 'Diageo', industry: 'FMCG & Retail', image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80' },
+    { name: 'HDFC Bank', color: '#1565C0' },
+    { name: 'HDFC Ergo', color: '#C62828' },
+    { name: 'Reliance Ltd', color: '#0277BD' },
 
-    { name: 'Star Plus', industry: 'Media & Entertainment', image: 'https://images.unsplash.com/photo-1485095329183-d0797cdc5676?w=800&q=80' },
-    { name: 'Sony TV', industry: 'Media & Entertainment', image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86faa3?w=800&q=80' },
-    { name: 'Viacom 18', industry: 'Media & Entertainment', image: 'https://images.unsplash.com/photo-1470229722913-7c092dbbaf33?w=800&q=80' },
-
-    { name: 'Lodha', industry: 'Real Estate', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80' },
-    { name: 'Godrej Properties', industry: 'Real Estate', image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80' },
-
-    { name: 'Mahindra', industry: 'Auto', image: 'https://images.unsplash.com/photo-1503376760302-8f253303cb89?w=800&q=80' },
-    { name: 'Tata Motors', industry: 'Auto', image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80' },
+    { name: 'Samsung', color: '#0D47A1' },
+    { name: 'Jockey', color: '#D32F2F' },
+    { name: 'USV', color: '#00838F' },
+    { name: 'KLE Institute', color: '#F57C00' },
+    { name: 'Udaya', color: '#FBC02D' },
+    { name: 'Mini Sou', color: '#E91E63' },
 ];
 
-// Group clients into 4 asymmetric rows of varying lengths (4, 6, 5, 5)
+// Group clients into rows of varying lengths
 const bentoRows = [
-    rosterClients.slice(0, 4),
-    rosterClients.slice(4, 10),
-    rosterClients.slice(10, 15),
-    rosterClients.slice(15, 20),
+    rosterClients.slice(0, 5),
+    rosterClients.slice(5, 9),
+    rosterClients.slice(9, 12),
+    rosterClients.slice(12, 18),
 ];
 
 // A pre-defined array of varied flex values to make the grid look "scrambled"
@@ -286,7 +279,7 @@ function BentoGrid() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
                     >
-                        From global tech giants to luxury innovators — we partner with visionaries to craft moments that redefine what&apos;s possible.
+                        From government agencies to global brands — we partner with visionaries to craft moments that redefine what&apos;s possible.
                     </motion.p>
                 </div>
             </div>
@@ -295,40 +288,27 @@ function BentoGrid() {
                 {bentoRows.map((row, rowIndex) => (
                     <div key={rowIndex} className={styles.bentoRow}>
                         {row.map((client, i) => {
-                            const monogram = client.name.slice(0, 2).toUpperCase();
                             const flexVal = flexPattern[(rowIndex * 7 + i) % flexPattern.length];
+                            const initials = client.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
                             return (
                                 <div
                                     key={client.name + i}
                                     className={styles.bentoCard}
                                     style={{ '--base-flex': flexVal } as React.CSSProperties}
                                 >
-                                    {/* Background Image (revealed on hover) */}
-                                    <motion.img
-                                        src={client.image}
-                                        alt={client.name}
-                                        className={styles.bentoBg}
-                                        loading="lazy"
-                                    />
-                                    <div className={styles.bentoOverlay} />
-
-                                    {/* Content Container */}
-                                    <div className={styles.bentoContent}>
-                                        {/* Default State: Monogram */}
-                                        <div className={styles.bentoDefaultText}>
-                                            {monogram}
+                                    {/* Brand Box shown by default */}
+                                    <div className={styles.bentoLogoWrap}>
+                                        <div
+                                            className={styles.bentoBrandBox}
+                                            style={{ backgroundColor: client.color || '#333' }}
+                                        >
+                                            <span className={styles.bentoInitials}>{initials}</span>
                                         </div>
+                                    </div>
 
-                                        {/* Expanded State: Full Details */}
-                                        <div className={styles.bentoExpandedDetails}>
-                                            <div>
-                                                <p className={styles.bentoIndustry}>{client.industry}</p>
-                                                <h3 className={styles.bentoName}>{client.name}</h3>
-                                            </div>
-                                            <div className={styles.bentoArrow}>
-                                                <HiArrowRight />
-                                            </div>
-                                        </div>
+                                    {/* Company name on hover */}
+                                    <div className={styles.bentoHoverName}>
+                                        <span>{client.name}</span>
                                     </div>
                                 </div>
                             );
