@@ -1,158 +1,275 @@
-/* ESG Page — White/Gold/Black */
+/* ===== ESG PAGE — Green & Gold Premium ===== */
 
+/* ESG Pillars */
 .pillarsGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
 .pillarCard {
-    background: var(--color-white);
-    border: 1px solid var(--color-divider);
-    border-radius: var(--radius-lg);
-    padding: 44px 28px 36px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    transition: all var(--transition-base);
+  background: var(--color-white);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-lg);
+  padding: 48px 28px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transition: all var(--transition-base);
+  cursor: default;
+}
+
+.pillarCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg-dark);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 0;
 }
 
 .pillarCard:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+}
+
+.pillarCard:hover::before {
+  transform: scaleY(1);
+}
+
+.pillarCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+.pillarCard:hover h3,
+.pillarCard:hover p {
+  color: var(--color-text-on-dark);
+}
+
+.pillarCard:hover .pillarIcon {
+  transform: scale(1.1);
 }
 
 .pillarIcon {
-    font-size: 3rem;
+  font-size: 3rem;
+  transition: transform var(--transition-base);
 }
 
 .pillarCard h3 {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-gold-dark);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-black);
+  transition: color var(--transition-base);
 }
 
 .pillarCard p {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    line-height: 1.75;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  transition: color var(--transition-base);
 }
 
 .pillarNumber {
-    position: absolute;
-    top: 14px;
-    right: 18px;
-    font-family: var(--font-display);
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--color-gold-muted);
-    line-height: 1;
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--color-gold-muted);
+  line-height: 1;
+  z-index: 1;
+  transition: color var(--transition-base);
 }
 
-/* Steps */
+/* 7 Steps */
 .stepsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .stepCard {
-    background: var(--color-white);
-    border: 1px solid var(--color-divider);
-    border-radius: var(--radius-lg);
-    padding: 32px 24px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    transition: all var(--transition-base);
+  background: var(--color-white);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all var(--transition-base);
+}
+
+.stepCard::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .stepCard:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.stepCard:hover::after {
+  transform: scaleX(1);
 }
 
 .stepNum {
-    font-family: var(--font-heading);
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--color-gold);
-    letter-spacing: 2px;
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .stepIcon {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-md);
-    background: var(--color-gold-muted);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-gold);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--color-gold-muted);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  transition: all var(--transition-base);
+}
+
+.stepCard:hover .stepIcon {
+  background: var(--gradient-gold);
+  color: var(--color-black);
 }
 
 .stepCard h4 {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-black);
 }
 
 .stepCard p {
-    font-size: 0.88rem;
-    color: var(--color-text-secondary);
-    line-height: 1.75;
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
 }
 
-/* Impact */
+/* Impact Stats */
 .impactGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    padding: 48px 0;
-    border-top: 1px solid var(--color-divider);
-    border-bottom: 1px solid var(--color-divider);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .impactItem {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 20px;
+  position: relative;
+  transition: background var(--transition-base);
+}
+
+.impactItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 0;
+  height: 60%;
+  width: 1px;
+  background: var(--color-divider);
+}
+
+.impactItem:hover {
+  background: var(--color-bg-cream);
 }
 
 .impactValue {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-gold);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-gold);
+  line-height: 1;
 }
 
 .impactLabel {
-    font-size: 0.82rem;
-    color: var(--color-text-muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-family: var(--font-heading);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+  max-width: 120px;
+  text-align: center;
+  line-height: 1.4;
 }
 
-@media (max-width: 900px) {
-    .pillarsGrid {
-        grid-template-columns: 1fr;
-    }
+/* Responsive */
+@media (max-width: 1024px) {
+  .pillarsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    .impactGrid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .impactGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .impactItem:nth-child(2)::after,
+  .impactItem:nth-child(4)::after {
+    display: none;
+  }
+
+  .impactItem:nth-child(1)::after,
+  .impactItem:nth-child(3)::after {
+    display: block;
+  }
 }
 
-@media (max-width: 600px) {
-    .stepsGrid {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 768px) {
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .impactGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .impactGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .impactItem {
+    padding: 32px 16px;
+  }
+
+  .impactItem::after {
+    display: none;
+  }
 }

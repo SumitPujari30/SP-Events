@@ -1,96 +1,127 @@
+/* ===== PROJECT CARD — Premium Tilt Card ===== */
+
 .card {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    cursor: pointer;
-    aspect-ratio: 4 / 3;
-    will-change: transform;
-    background: var(--color-bg-dark);
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--color-bg-dark);
+  will-change: transform;
+  transform-style: preserve-3d;
 }
 
 .image {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+  aspect-ratio: 4/3;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .card:hover .image {
-    transform: scale(1.06);
+  transform: scale(1.06);
 }
 
+/* Gradient reveal overlay */
 .overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top,
-            rgba(12, 12, 12, 0.92) 0%,
-            rgba(12, 12, 12, 0.4) 40%,
-            rgba(12, 12, 12, 0) 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 28px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(12, 12, 12, 0.97) 0%,
+    rgba(12, 12, 12, 0.5) 50%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .card:hover .overlay {
-    opacity: 1;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .category {
-    display: inline-block;
-    font-family: var(--font-heading);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    margin-bottom: 8px;
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 8px;
 }
 
 .title {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--color-white);
-    margin-bottom: 12px;
-    line-height: 1.25;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 600;
+  color: var(--color-white);
+  line-height: 1.25;
+  margin-bottom: 14px;
 }
 
 .viewBtn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--color-gold);
-    font-family: var(--font-heading);
-    padding: 8px 0;
-    border-bottom: 1px solid transparent;
-    transition: border-color var(--transition-fast);
-    width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  transition: gap 0.3s ease;
 }
 
-.card:hover .viewBtn {
-    border-color: var(--color-gold);
+.viewBtn::after {
+  content: '→';
+  transition: transform 0.3s ease;
 }
 
+.card:hover .viewBtn::after {
+  transform: translateX(4px);
+}
+
+/* Shine sweep effect */
 .shine {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg,
-            transparent 40%,
-            rgba(255, 255, 255, 0.02) 45%,
-            rgba(255, 255, 255, 0.05) 50%,
-            rgba(255, 255, 255, 0.02) 55%,
-            transparent 60%);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.07) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  pointer-events: none;
+  transition: background-position 0.55s ease;
 }
 
 .card:hover .shine {
-    opacity: 1;
+  background-position: 100% 0;
+}
+
+/* Bottom gold border reveal */
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover::after {
+  transform: scaleX(1);
 }

@@ -1,0 +1,198 @@
+/* ===== CASE HERO SLIDER ===== */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--color-black);
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    will-change: transform, opacity;
+    transform-origin: center;
+}
+
+.wipe {
+    position: absolute;
+    inset: 0;
+    background: var(--color-bg-dark);
+    transform-origin: left;
+    z-index: 5;
+}
+
+.slideImage {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.gradientOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(12, 12, 12, 0.25) 0%,
+        rgba(12, 12, 12, 0.5) 45%,
+        rgba(12, 12, 12, 0.95) 100%
+    );
+    z-index: 2;
+}
+
+.grain {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    opacity: 0.03;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+}
+
+.content {
+    position: absolute;
+    bottom: 100px;
+    left: 64px;
+    right: 64px;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    will-change: transform, opacity;
+}
+
+.categoryPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    backdrop-filter: blur(12px);
+    border-radius: 40px;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    align-self: flex-start;
+}
+
+.pillDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    flex-shrink: 0;
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 800;
+    color: var(--color-white);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    max-width: 900px;
+}
+
+/* Controls */
+.controls {
+    position: absolute;
+    bottom: 40px;
+    left: 64px;
+    right: 64px;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.counterCurrent {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1;
+}
+
+.counterSep {
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.counterTotal {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 2px;
+}
+
+.navBtns {
+    display: flex;
+    gap: 10px;
+}
+
+.navBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.navBtn:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-black);
+}
+
+/* Dot indicators */
+.dots {
+    position: absolute;
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dot {
+    width: 4px;
+    height: 20px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.35s ease;
+}
+
+.dotActive {
+    background: var(--color-gold);
+    height: 36px;
+}
+
+@media (max-width: 768px) {
+    .content { left: 24px; right: 24px; bottom: 80px; }
+    .controls { left: 24px; right: 24px; }
+    .dots { right: 20px; }
+    .title { font-size: clamp(2.2rem, 8vw, 4rem); }
+}

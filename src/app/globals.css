@@ -303,6 +303,20 @@ h6 {
   font-size: 0.82rem;
 }
 
+.btn-glass {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
+  backdrop-filter: blur(8px);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
 /* --- Cards --- */
 .card {
   background: var(--color-surface);
@@ -330,7 +344,7 @@ h6 {
 /* --- Page Hero (inner pages) --- */
 .page-hero {
   position: relative;
-  min-height: 50vh;
+  min-height: 52vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -339,6 +353,23 @@ h6 {
   overflow: hidden;
   background: var(--color-bg-dark);
   color: var(--color-text-on-dark);
+}
+
+/* Atmospheric dot grid texture */
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(201, 168, 76, 0.12) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Radial purple glow center */
+.page-hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .page-hero::after {
@@ -350,6 +381,7 @@ h6 {
   height: 120px;
   background: linear-gradient(to top, var(--color-bg), transparent);
   pointer-events: none;
+  z-index: 2;
 }
 
 .page-hero-content {

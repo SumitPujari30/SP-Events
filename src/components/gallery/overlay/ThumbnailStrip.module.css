@@ -1,0 +1,60 @@
+/* ===== THUMBNAIL STRIP ===== */
+
+.stripWrap {
+    width: 100%;
+    padding: 24px 0;
+    position: relative;
+    z-index: 20;
+}
+
+.stripInner {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 0 40px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.stripInner::-webkit-scrollbar {
+    display: none;
+}
+
+.thumbBtn {
+    flex-shrink: 0;
+    width: 80px;
+    height: 56px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    opacity: 0.4;
+    outline: none;
+}
+
+.thumbImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.thumbBtn.active {
+    opacity: 1;
+    border-color: var(--color-gold);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(201, 168, 76, 0.2);
+}
+
+.thumbBtn:hover:not(.active) {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .stripInner { padding: 0 20px; }
+    .thumbBtn { width: 64px; height: 48px; }
+}

@@ -1,0 +1,46 @@
+/* ===== MODULAR MATRIX GRID ===== */
+
+.matrixWrap {
+    padding: 80px 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.emptyState {
+    padding: 120px 40px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: var(--font-body);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 32px;
+    grid-auto-flow: row dense;
+}
+
+/* Grid Spans */
+.span3 { grid-column: span 3; }
+.span4 { grid-column: span 4; }
+.span6 { grid-column: span 6; }
+.span12 { grid-column: span 12; }
+
+@media (max-width: 1200px) {
+    .grid { grid-gap: 24px; }
+}
+
+@media (max-width: 1024px) {
+    /* Collapse down to fewer columns on tablet */
+    .grid { grid-template-columns: repeat(6, 1fr); }
+    .span3 { grid-column: span 3; } /* Still 50% width on a 6-col grid */
+    .span4 { grid-column: span 6; } /* 100% width on tablet to preserve space */
+    .span6 { grid-column: span 6; }
+    .span12 { grid-column: span 6; }
+}
+
+@media (max-width: 768px) {
+    .matrixWrap { padding: 40px 20px; }
+    /* Stack everything on mobile */
+    .grid { display: flex; flex-direction: column; gap: 24px; }
+}

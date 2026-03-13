@@ -1,0 +1,153 @@
+/* ===== EVENT CARD (MODULAR) ===== */
+
+.card {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--color-bg-dark);
+    transform-style: preserve-3d;
+    will-change: transform;
+    width: 100%;
+}
+
+/* Height Variations */
+.sizeXS { height: 280px; }
+.sizeS { height: 340px; }
+.sizeM { height: 420px; }
+.sizeL { height: 520px; }
+
+/* Image Layer */
+.imageBg {
+    position: absolute;
+    inset: -5%; /* Overbleed for scale hop */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(1);
+    will-change: transform;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(12, 12, 12, 0.95) 0%,
+        rgba(12, 12, 12, 0.3) 50%,
+        transparent 100%
+    );
+    transition: opacity 0.6s ease;
+}
+
+.grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="a"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23a)"/></svg>');
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Glow Border */
+.glowBorder {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Content */
+.content {
+    position: absolute;
+    inset: 0;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 4;
+}
+
+/* Category Pill */
+.categoryPill {
+    display: inline-flex;
+    padding: 6px 14px;
+    background: rgba(12, 12, 12, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 40px;
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+}
+
+/* Bottom Text */
+.bottomInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(0);
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-white);
+    line-height: 1.2;
+}
+
+.metaRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.dot {
+    color: var(--color-gold);
+    font-size: 0.9rem;
+}
+
+/* HOVER STATES */
+.card:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+}
+
+.card:hover .imageBg {
+    transform: scale(1.04);
+}
+
+.card:hover .glowBorder {
+    border-color: rgba(201, 168, 76, 0.4);
+    box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.15);
+}
+
+.card:hover .categoryPill {
+    background: var(--gradient-gold);
+    color: var(--color-black);
+    border-color: transparent;
+}
+
+.card:hover .bottomInfo {
+    transform: translateY(-4px);
+}
+
+/* Breakpoints */
+@media (max-width: 768px) {
+    .sizeXS, .sizeS, .sizeM, .sizeL { height: 320px; }
+    .title { font-size: 1.35rem; }
+}

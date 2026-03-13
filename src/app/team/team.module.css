@@ -1,332 +1,340 @@
-/* Team Page — GTA6-Style Character Reveals + Grid */
+/* ===== TEAM PAGE — Character Reveal + Grid ===== */
 
-/* ——— Leadership Section ——— */
+/* ——— Leadership Character Panels ——— */
 .leaderSection {
-    padding-top: 80px;
-    padding-bottom: 0;
+  padding: 80px 0 0;
+  background: var(--color-white);
 }
 
-/* ——— Character Panel (GTA6-style) ——— */
 .charPanel {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 80px 0;
-    overflow: hidden;
-    position: relative;
+  padding: 80px 0;
+  border-top: 1px solid var(--color-divider);
 }
 
-.charPanel:nth-child(odd) {
-    background: var(--color-bg);
-}
-
-.charPanel:nth-child(even) {
-    background: var(--color-bg-cream);
+.charPanel:first-of-type {
+  border-top: none;
 }
 
 .charInner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
-    max-width: var(--container-wide);
-    margin: 0 auto;
-    padding: 0 48px;
-    width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
 }
 
 .charReverse {
-    direction: rtl;
+  direction: rtl;
 }
 
-.charReverse>* {
-    direction: ltr;
+.charReverse > * {
+  direction: ltr;
 }
 
-/* Image Column */
+/* Image side */
 .charImageCol {
-    position: relative;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
 }
 
 .charImageWrap {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    aspect-ratio: 3/4;
-    box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  will-change: transform;
 }
 
 .charImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-lg);
 }
 
 .charImageGradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top,
-            rgba(12, 12, 12, 0.3) 0%,
-            transparent 40%);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(12, 12, 12, 0.5) 100%
+  );
+  border-radius: var(--radius-lg);
 }
 
-/* Big number overlay */
+/* Large background number */
 .charNumber {
-    position: absolute;
-    bottom: -30px;
-    right: -20px;
-    font-family: var(--font-display);
-    font-size: clamp(8rem, 15vw, 14rem);
-    font-weight: 900;
-    color: var(--color-black);
-    line-height: 1;
-    pointer-events: none;
-    z-index: 2;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  font-family: var(--font-display);
+  font-size: 12rem;
+  font-weight: 900;
+  color: var(--color-gold);
+  line-height: 1;
+  pointer-events: none;
+  z-index: -1;
 }
 
-.charReverse .charNumber {
-    right: auto;
-    left: -20px;
-}
-
-/* Text Column */
+/* Text side */
 .charTextCol {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 32px;
-    padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .charRole {
-    display: inline-block;
-    font-family: var(--font-heading);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    margin-bottom: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-gold);
 }
 
 .charName {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -1px;
-    color: var(--color-black);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-black);
+  line-height: 1.05;
+  margin-top: 8px;
 }
 
 .charDivider {
-    width: 48px;
-    height: 2px;
-    background: var(--color-gold);
-    margin: 16px 0;
+  width: 50px;
+  height: 2px;
+  background: var(--gradient-gold);
+  border-radius: 1px;
 }
 
 .charBio {
-    font-size: 1.02rem;
-    color: var(--color-text-secondary);
-    line-height: 1.85;
-    max-width: 480px;
-}
-
-.charQuote {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-style: italic;
-    color: var(--color-gold-dark);
-    line-height: 1.6;
-    max-width: 440px;
-    padding-left: 20px;
-    border-left: 2px solid var(--color-gold);
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  max-width: 480px;
 }
 
 .charSocials {
-    display: flex;
-    gap: 10px;
-    margin-top: 4px;
+  display: flex;
+  gap: 12px;
 }
 
 .socialLink {
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-full);
-    background: var(--color-bg-cream);
-    border: 1px solid var(--color-divider);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-muted);
-    transition: all var(--transition-base);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid var(--color-divider);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: all var(--transition-base);
 }
 
 .socialLink:hover {
-    background: var(--color-gold);
-    color: var(--color-black);
-    border-color: var(--color-gold);
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.charQuote {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  border-left: 3px solid var(--color-gold);
+  padding-left: 20px;
+  line-height: 1.7;
+  margin-top: 8px;
 }
 
 /* ——— Core Team Grid ——— */
 .teamGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 
 .teamCard {
-    background: var(--color-white);
-    border: 1px solid var(--color-divider);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    cursor: default;
-    transition: all var(--transition-base);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-white);
+  border: 1px solid var(--color-divider);
+  transition: all var(--transition-base);
+  cursor: default;
 }
 
 .teamCard:hover {
-    box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
 }
 
 .teamImageWrap {
-    position: relative;
-    aspect-ratio: 1/1;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
 }
 
 .teamImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .teamCard:hover .teamImage {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
+/* Social icons on hover */
 .teamImageOverlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(12, 12, 12, 0.55);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 0, 28, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .teamCard:hover .teamImageOverlay {
-    opacity: 1;
+  opacity: 1;
 }
 
+.teamImageOverlay .socialLink {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+}
+
+.teamImageOverlay .socialLink:hover {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-black);
+}
+
+/* Name + role beneath */
 .teamInfo {
-    padding: 18px 16px;
-    text-align: center;
+  padding: 16px 18px;
+  background: var(--color-white);
 }
 
 .teamInfo h4 {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 2px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 4px;
 }
 
 .teamInfo span {
-    font-size: 0.78rem;
-    color: var(--color-text-muted);
-    font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  font-family: var(--font-heading);
+  letter-spacing: 0.5px;
 }
 
 /* ——— Join CTA ——— */
 .joinCta {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 0;
 }
 
 .joinTitle {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
-    font-weight: 600;
-    line-height: 1.15;
-    color: var(--color-text-on-dark);
-    margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--color-text-on-dark);
+  line-height: 1.15;
+  text-align: center;
 }
 
 .joinTitle em {
-    font-style: italic;
-    color: var(--color-gold);
+  font-style: italic;
+  color: var(--color-gold);
 }
 
 .joinSub {
-    font-size: 1rem;
-    color: var(--color-text-on-dark-muted);
-    max-width: 420px;
-    line-height: 1.75;
+  font-size: 1rem;
+  color: var(--color-text-on-dark-muted);
+  max-width: 440px;
+  text-align: center;
+  line-height: 1.75;
 }
 
 .joinBtn {
-    display: inline-flex;
-    align-items: center;
-    padding: 14px 32px;
-    background: var(--color-gold);
-    color: var(--color-black);
-    font-family: var(--font-heading);
-    font-size: 0.88rem;
-    font-weight: 600;
-    border-radius: var(--radius-xl);
-    transition: all var(--transition-base);
-    margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 44px;
+  background: var(--gradient-gold);
+  color: var(--color-black);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  transition: all var(--transition-spring);
+  box-shadow: var(--shadow-gold);
 }
 
 .joinBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-gold);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(201, 168, 76, 0.45);
 }
 
-/* ——— Responsive ——— */
-@media (max-width: 900px) {
-    .charInner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 0 24px;
-    }
+/* Responsive */
+@media (max-width: 1024px) {
+  .charInner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 32px;
+  }
 
-    .charReverse {
-        direction: ltr;
-    }
+  .charReverse {
+    direction: ltr;
+  }
 
-    .charNumber {
-        font-size: 6rem;
-        bottom: -16px;
-        right: 0;
-    }
+  .charImage {
+    height: 400px;
+  }
 
-    .charPanel {
-        min-height: auto;
-        padding: 60px 0;
-    }
-
-    .teamGrid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .teamGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-@media (max-width: 600px) {
-    .teamGrid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
+@media (max-width: 768px) {
+  .teamGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
 
-    .charName {
-        font-size: 2rem;
-    }
+@media (max-width: 480px) {
+  .teamGrid {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .charNumber {
-        font-size: 4rem;
-    }
+  .charImage {
+    height: 320px;
+  }
+
+  .charNumber {
+    font-size: 7rem;
+  }
 }

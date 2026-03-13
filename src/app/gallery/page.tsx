@@ -1,241 +1,89 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import Link from 'next/link';
-import { HiX, HiChevronLeft, HiChevronRight, HiArrowRight } from 'react-icons/hi';
-import AnimatedSection from '@/components/AnimatedSection';
+import GalleryHero from '@/components/gallery/GalleryHero';
+import CategoryRail from '@/components/gallery/CategoryRail';
+import ModularMatrix from '@/components/gallery/ModularMatrix';
+import EventOverlay from '@/components/gallery/overlay/EventOverlay';
+import Footer from '@/components/Footer';
+import { events } from '@/lib/galleryData';
+import type { GalleryEvent } from '@/lib/galleryData';
 import styles from './gallery.module.css';
 
-const portfolio = [
-    { title: 'Innovation Summit 2024', category: 'Summit', image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80' },
-    { title: 'Luxury Brand Reveal', category: 'Product Launch', image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&q=80' },
-    { title: 'Annual Excellence Awards', category: 'Awards', image: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=900&q=80' },
-    { title: 'Tech Expo International', category: 'Exhibition', image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=900&q=80' },
-    { title: 'Music Festival Vibes', category: 'Live Music', image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=900&q=80' },
-    { title: 'Global Health Conclave', category: 'Summit', image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80' },
-];
+function FooterCurtain() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ['start end', 'end end'],
+    });
+    
+    // The curtain stays stuck to the viewport as user scrolls, revealing the footer
+    const curtainY = useTransform(scrollYProgress, [0.15, 1], ['0%', '-100%']);
 
-const galleryImages = [
-    { src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80', title: 'Innovation Summit', category: 'Summit', tall: true },
-    { src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80', title: 'Grand Celebration', category: 'Event', tall: false },
-    { src: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80', title: 'Award Night', category: 'Awards', tall: false },
-    { src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80', title: 'Corporate Gala', category: 'Corporate', tall: true },
-    { src: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80', title: 'Tech Exhibition', category: 'Exhibition', tall: false },
-    { src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80', title: 'Team Workshop', category: 'Corporate', tall: true },
-    { src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80', title: 'Music Festival', category: 'Music', tall: false },
-    { src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80', title: 'Conference Stage', category: 'Summit', tall: false },
-    { src: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&q=80', title: 'Exhibition Hall', category: 'Exhibition', tall: true },
-    { src: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80', title: 'Health Summit', category: 'Summit', tall: false },
-    { src: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80', title: 'CSR Initiative', category: 'CSR', tall: false },
-    { src: 'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?w=800&q=80', title: 'Government Event', category: 'Government', tall: true },
-];
+    return (
+        <div ref={sectionRef} className={styles.footerCurtainWrap}>
+            {/* The revealed footer underneath */}
+            <div className={styles.revealedFooterContent}>
+                <Footer />
+            </div>
 
-const stagger = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: { staggerChildren: 0.06 },
-    },
-};
-
-const cardAnim = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    show: {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-    },
-};
+            {/* The black curtain that slides up */}
+            <motion.div className={styles.curtain} style={{ y: curtainY }}>
+                <span className={styles.curtainLabel}>End of Gallery</span>
+            </motion.div>
+        </div>
+    );
+}
 
 export default function GalleryPage() {
-    const [selected, setSelected] = useState<number | null>(null);
+    const [activeCategory, setActiveCategory] = useState<string>('All');
+    const [selectedEvent, setSelectedEvent] = useState<GalleryEvent | null>(null);
 
-    const goNext = () => {
-        if (selected !== null)
-            setSelected((selected + 1) % galleryImages.length);
-    };
-    const goPrev = () => {
-        if (selected !== null)
-            setSelected(selected === 0 ? galleryImages.length - 1 : selected - 1);
-    };
+    // Derive unique categories dynamically
+    const allCategories = ['All', ...Array.from(new Set(events.map(e => e.category)))];
+
+    const filteredEvents = activeCategory === 'All' 
+        ? events 
+        : events.filter(e => e.category === activeCategory);
 
     return (
-        <>
-            <section className="page-hero">
-                <div className="page-hero-content">
-                    <motion.span className="section-label" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                        Gallery
-                    </motion.span>
-                    <motion.h1 className="page-hero-title" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.7 }}>
-                        Event <span className="text-gold">Gallery</span>
-                    </motion.h1>
-                    <motion.p className="page-hero-subtitle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
-                        Visual stories from our most memorable events and celebrations.
-                    </motion.p>
-                </div>
-            </section>
+        <main className={styles.pageWrap}>
+            <GalleryHero />
+            
+            <CategoryRail 
+                categories={allCategories} 
+                activeCategory={activeCategory} 
+                onSelect={setActiveCategory} 
+            />
 
-            <section className="section">
-                <div className="container">
-                    <motion.div
-                        className={styles.grid}
-                        variants={stagger}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.1 }}
-                    >
-                        {galleryImages.map((img, i) => (
-                            <motion.div
-                                key={i}
-                                className={`${styles.gridItem} ${img.tall ? styles.gridTall : ''}`}
-                                variants={cardAnim}
-                                whileHover={{ y: -6 }}
-                                onClick={() => setSelected(i)}
-                            >
-                                <div className={styles.gridImage}>
-                                    <img src={img.src} alt={img.title} loading="lazy" />
-                                </div>
-                                <div className={styles.gridOverlay}>
-                                    <span className={styles.gridCat}>{img.category}</span>
-                                    <h4 className={styles.gridTitle}>{img.title}</h4>
-                                </div>
-                                <div className={styles.gridShine} />
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
+            <ModularMatrix 
+                events={filteredEvents}
+                onEventClick={setSelectedEvent}
+            />
 
-            <HorizontalPortfolio />
+            <FooterCurtain />
 
-            {/* Lightbox with nav */}
-            <AnimatePresence>
-                {selected !== null && (
-                    <motion.div
-                        className={styles.lightbox}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setSelected(null)}
-                    >
-                        <button className={styles.lbClose} onClick={() => setSelected(null)}>
-                            <HiX size={24} />
-                        </button>
+            {/* Force hide the global layout footer, but allow the one inside the curtain */}
+            <style jsx global>{`
+                footer {
+                    display: none !important;
+                }
+                .${styles.footerCurtainWrap} footer {
+                    display: block !important;
+                    position: relative;
+                }
+            `}</style>
 
-                        <button
-                            className={`${styles.lbNav} ${styles.lbPrev}`}
-                            onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                        >
-                            <HiChevronLeft size={28} />
-                        </button>
-
-                        <motion.div
-                            key={selected}
-                            className={styles.lbContent}
-                            initial={{ scale: 0.85, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.85, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <img src={galleryImages[selected].src} alt={galleryImages[selected].title} />
-                            <div className={styles.lbInfo}>
-                                <span className={styles.gridCat}>{galleryImages[selected].category}</span>
-                                <h3>{galleryImages[selected].title}</h3>
-                                <span className={styles.lbCount}>{selected + 1} / {galleryImages.length}</span>
-                            </div>
-                        </motion.div>
-
-                        <button
-                            className={`${styles.lbNav} ${styles.lbNext}`}
-                            onClick={(e) => { e.stopPropagation(); goNext(); }}
-                        >
-                            <HiChevronRight size={28} />
-                        </button>
-                    </motion.div>
+            <AnimatePresence mode="wait">
+                {selectedEvent && (
+                    <EventOverlay 
+                        event={selectedEvent} 
+                        events={events}
+                        onClose={() => setSelectedEvent(null)} 
+                    />
                 )}
             </AnimatePresence>
-        </>
-    );
-}
-
-/* ——— Horizontal Scroll Portfolio ——— */
-function HorizontalPortfolio() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ['start start', 'end end'],
-    });
-    const x = useTransform(scrollYProgress, [0, 1], ['0%', '-62%']);
-
-    return (
-        <section ref={containerRef} className={styles.horizontalWrap}>
-            <div className={styles.horizontalSticky}>
-                {/* Header */}
-                <div className={styles.horizontalHeader}>
-                    <div className="container">
-                        <AnimatedSection>
-                            <div className={styles.horizontalTop}>
-                                <div>
-                                    <span className={styles.horizontalLabel}>Featured</span>
-                                    <h2 className={styles.horizontalTitle}>Selected Work</h2>
-                                </div>
-                            </div>
-                        </AnimatedSection>
-                    </div>
-                </div>
-
-                {/* Horizontally scrolling track */}
-                <motion.div className={styles.horizontalTrack} style={{ x }}>
-                    {portfolio.map((p, i) => (
-                        <TiltCard key={i} project={p} />
-                    ))}
-                </motion.div>
-            </div>
-        </section>
-    );
-}
-
-/* ——— 3D Tilt Card ——— */
-function TiltCard({ project }: { project: typeof portfolio[0] }) {
-    const cardRef = useRef<HTMLDivElement>(null);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        const el = cardRef.current;
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        el.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) scale3d(1.02,1.02,1.02)`;
-    };
-
-    const handleMouseLeave = () => {
-        const el = cardRef.current;
-        if (!el) return;
-        el.style.transform = '';
-    };
-
-    return (
-        <div
-            ref={cardRef}
-            className={styles.portfolioCard}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{ transition: 'transform 0.15s ease, box-shadow 0.35s ease' }}
-        >
-            <div
-                className={styles.portfolioCardImage}
-                style={{ backgroundImage: `url(${project.image})` }}
-            />
-            <div className={styles.portfolioCardBody}>
-                <span className={styles.portfolioCardCat}>{project.category}</span>
-                <h3 className={styles.portfolioCardTitle}>{project.title}</h3>
-                <div className={styles.portfolioCardArrow}>
-                    View Case <HiArrowRight size={14} />
-                </div>
-            </div>
-        </div>
+        </main>
     );
 }
