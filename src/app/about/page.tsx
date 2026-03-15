@@ -73,29 +73,31 @@ export default function AboutPage() {
             </section>
 
             {/* Story Section */}
-            <section className="section section-cream">
+            <section className="section section-violet">
                 <div className="container">
                     <div className={styles.storyGrid}>
                         <AnimatedSection variant="fadeLeft">
                             <div className={styles.storyImage}>
                                 <img
-                                    src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=700&q=80"
-                                    alt="Team collaboration"
+                                    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=90"
+                                    alt="Grand event production"
                                 />
+                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(12, 0, 26, 0.4), transparent)' }} />
                             </div>
                         </AnimatedSection>
                         <AnimatedSection variant="fadeRight" delay={0.2}>
                             <div className={styles.storyContent}>
+                                <span className="section-label">Our Legacy</span>
                                 <TextReveal text="The Art of Weaving Experiences" as="h2" className="section-title" />
-                                <div className="divider" style={{ margin: '20px 0' }} />
+                                <div style={{ height: '2px', width: '60px', background: 'var(--gradient-primary)', margin: '24px 0' }} />
                                 <p className={styles.storyText}>
-                                    The SP Events was born from a simple yet powerful idea — that every event deserves to be a masterpiece. Founded in 2010 by a team that brought over 100 years of combined industry experience, we identified a gap in the market for a truly professional, innovative, and reliable event management company.
+                                    The SP Events was born from a simple yet powerful idea — that every event deserves to be a masterpiece. Founded in 2010, we identified a gap for truly professional, innovative, and reliable event management.
                                 </p>
                                 <p className={styles.storyText}>
-                                    Our name reflects the essence of what we do. Like the art of weaving, where individual threads come together to create something beautiful, we interlace creativity and strategy — what we call our <strong>&ldquo;Taana-Baana&rdquo;</strong> approach — to craft spellbinding experiences that resonate long after the event ends.
+                                    Our name reflects the essence of our craft. Like the art of weaving, we interlace creativity and strategy — our <strong>&ldquo;Taana-Baana&rdquo;</strong> approach — to craft experiences that resonate.
                                 </p>
                                 <p className={styles.storyText}>
-                                    Today, with 100+ passionate professionals and 6,000+ successful events, we continue to push the boundaries of what&apos;s possible, transforming ordinary moments into extraordinary memories.
+                                    Today, with 6,000+ successful events, we continue to push the boundaries of wonder, transforming moments into extraordinary memories.
                                 </p>
                             </div>
                         </AnimatedSection>
@@ -103,8 +105,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Taana-Baana Approach */}
-            <section className="section">
+            <section className="section section-dark">
                 <div className="container">
                     <AnimatedSection>
                         <div className="section-header center">
@@ -159,13 +160,13 @@ export default function AboutPage() {
             {/* Process Section */}
             <ProcessSection />
 
-            {/* Timeline */}
-            <section className="section section-cream">
+            {/* Milestones */}
+            <section className="section section-violet">
                 <div className="container">
                     <AnimatedSection>
-                        <div className="section-header">
+                        <div className="section-header center">
                             <span className="section-label">Our Journey</span>
-                            <h2 className="section-title">Milestones</h2>
+                            <h2 className="section-title">Milestones of Excellence</h2>
                         </div>
                     </AnimatedSection>
 

@@ -8,10 +8,10 @@
    /* --- CSS Variables / Design Tokens --- */
    :root {
      /* Core palette - Deep Purple Premium */
-     --color-bg: #0a0014; /* Deep luxurious purple-black */
-     --color-bg-dark: #05000a;
-     --color-surface: rgba(18, 8, 30, 0.75);
-     --color-surface-hover: rgba(30, 14, 50, 0.85);
+     --color-bg: #0c001a; /* Deeper, more saturated luxurious purple-black */
+     --color-bg-dark: #070012;
+     --color-surface: rgba(20, 10, 35, 0.75);
+     --color-surface-hover: rgba(35, 18, 55, 0.85);
      
      /* Elegant Accents */
      --color-accent-gold: #d4af37;        /* Metallic Gold */
@@ -135,3 +135,106 @@
    ::-webkit-scrollbar-thumb:hover {
      background: var(--color-accent-gold);
    }
+/* --- Global Section Utilities --- */
+.section {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-violet {
+  background-color: var(--color-bg);
+}
+
+.section-dark {
+  background-color: var(--color-bg-dark);
+}
+
+.section-header {
+  margin-bottom: 60px;
+}
+
+.section-header.center {
+  text-align: center;
+}
+
+.section-label {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-accent-gold);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 24px;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.section-header.center .section-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-gold {
+  color: var(--color-accent-gold);
+}
+
+/* --- Global Hero Styles --- */
+.page-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--color-bg-dark);
+  overflow: hidden;
+  padding-top: 80px; /* Accounts for navbar */
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(58, 1, 92, 0.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 24px;
+}
+
+.page-hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+.page-hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+/* globals.css */
+:root {
+  --color-gold: #c9a84c;
+  --color-white: #ffffff;
+}

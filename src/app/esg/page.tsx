@@ -88,7 +88,7 @@ export default function ESGPage() {
             </section>
 
             {/* 7 Steps */}
-            <section className="section section-cream">
+            <section className="section section-violet">
                 <div className="container">
                     <AnimatedSection>
                         <div className="section-header">

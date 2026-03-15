@@ -29,8 +29,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <CustomCursor />
         <SmoothScroll>
-          <CustomCursor />
           <Preloader />
           <Navbar />
           <main>{children}</main>

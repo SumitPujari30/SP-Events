@@ -163,7 +163,7 @@ export default function TeamPage() {
             </section>
 
             {/* Core Team Grid */}
-            <section className="section section-cream">
+            <section className="section section-violet">
                 <div className="container">
                     <AnimatedSection>
                         <div className="section-header center">

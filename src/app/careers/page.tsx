@@ -191,12 +191,102 @@ function AmbientBackground() {
     );
 }
 
+/* =============================================
+   SECTION 3: OUR CULTURE
+   ============================================= */
+function CultureSection() {
+    const culture = [
+        { icon: '🚀', title: 'Moonshot Thinking', desc: 'We don\'t just iterate; we leap. We encourage ideas that seem impossible until we make them happen.' },
+        { icon: '🤝', title: 'Radical Collaboration', desc: 'Break the silos. Designers, engineers, and producers work as one single creative organism.' },
+        { icon: '💎', title: 'Obsessive Quality', desc: 'We care about the pixels you\'ll never see and the logistics you\'ll never feel. Excellence is our only baseline.' },
+    ];
+
+    return (
+        <section className="section section-violet">
+            <div className="container">
+                <div className="section-header center">
+                    <span className="section-label">Life at SP Events</span>
+                    <h2 className="section-title">A Culture of <span className="text-gold">Spectacle</span></h2>
+                    <p className="section-subtitle">
+                        We are a collective of dreamers, builders, and perfectionists. Here, your work isn&apos;t just a job — it&apos;s a contribution to a legacy of wonder.
+                    </p>
+                </div>
+                
+                <div className={styles.cultureGrid}>
+                    {culture.map((item, i) => (
+                        <motion.div 
+                            key={i} 
+                            className={styles.cultureCard}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                            viewport={{ once: true }}
+                        >
+                            <span className={styles.cultureIcon}>{item.icon}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* =============================================
+   SECTION 4: CURRENT OPENINGS
+   ============================================= */
+function OpeningsSection() {
+    const jobs = [
+        { title: 'Senior Event Producer', type: 'Full-time', location: 'Hubli / Bangalore' },
+        { title: 'Immersive Experience Designer', type: 'Hybrid', location: 'Remote' },
+        { title: 'Technical Production Lead', type: 'Contract', location: 'On-site' },
+        { title: 'Brand Strategy Consultant', type: 'Part-time', location: 'Bangalore' },
+    ];
+
+    return (
+        <section className="section section-dark">
+            <div className="container">
+                <div className="section-header">
+                    <span className="section-label">Join The Crew</span>
+                    <h2 className="section-title">Open Positions</h2>
+                </div>
+
+                <div className={styles.openingsGrid}>
+                    {jobs.map((job, i) => (
+                        <motion.div 
+                            key={i} 
+                            className={styles.jobCard}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                            viewport={{ once: true }}
+                        >
+                            <div className={styles.jobInfo}>
+                                <h3>{job.title}</h3>
+                                <div className={styles.jobMeta}>
+                                    <span>{job.type}</span>
+                                    <span>•</span>
+                                    <span>{job.location}</span>
+                                </div>
+                            </div>
+                            <button className={styles.applyBtn}>Apply Now</button>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
 export default function CareersPage() {
     return (
         <main className={styles.pageWrap}>
             <AmbientBackground />
             <StageLightHero />
             <BackstageParallax />
+            <CultureSection />
+            <OpeningsSection />
             <CurtainCTA />
         </main>
     );

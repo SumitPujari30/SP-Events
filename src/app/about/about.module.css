@@ -2,21 +2,30 @@
 
 .storyGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 72px;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
     align-items: center;
+    margin: 40px 0;
 }
 
 .storyImage {
+    position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4/5;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .storyImage img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.storyImage:hover img {
+    transform: scale(1.05);
 }
 
 .storyContent {
@@ -25,10 +34,15 @@
 }
 
 .storyText {
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-    line-height: 1.85;
-    margin-top: 14px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.storyText strong {
+    color: var(--color-gold);
+    font-weight: 600;
 }
 
 /* Approach */
@@ -40,27 +54,32 @@
 }
 
 .approachCard {
-    background: var(--color-white);
-    border: 1px solid var(--color-divider);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-lg);
     padding: 40px 28px;
     transition: all var(--transition-base);
 }
 
 .approachCard:hover {
-    box-shadow: var(--shadow-md);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     transform: translateY(-4px);
 }
 
 .approachCard h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.3rem;
     margin: 16px 0 12px;
+    color: var(--color-white);
 }
 
 .approachCard p {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.75;
 }
 
@@ -76,14 +95,14 @@
 }
 
 .approachList li {
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
     padding-left: 20px;
     position: relative;
 }
 
 .approachList li::before {
-    content: '—';
+    content: '→';
     position: absolute;
     left: 0;
     color: var(--color-gold);
@@ -97,13 +116,15 @@
     justify-content: center;
     text-align: center;
     padding: 32px 24px;
-    border: 1px dashed var(--color-gold);
+    border: 1px dashed rgba(212, 175, 55, 0.3);
+    background: rgba(212, 175, 55, 0.03);
     border-radius: var(--radius-lg);
     max-width: 200px;
+    backdrop-filter: blur(8px);
 }
 
 .approachCenter h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.1rem;
     margin: 12px 0 8px;
     color: var(--color-gold);
@@ -111,7 +132,7 @@
 
 .approachCenter p {
     font-size: 0.82rem;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.4);
     line-height: 1.6;
 }
 
@@ -119,6 +140,7 @@
     font-size: 2.5rem;
     color: var(--color-gold);
     animation: weaveRotate 10s linear infinite;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
 }
 
 @keyframes weaveRotate {
@@ -134,11 +156,11 @@
 /* Timeline */
 .timeline {
     position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 900px;
+    margin: 80px auto 0;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 48px;
 }
 
 .timelineLine {
@@ -146,8 +168,8 @@
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 1px;
-    background: var(--color-divider);
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.2), transparent);
     transform: translateX(-50%);
     z-index: 0;
 }
@@ -167,30 +189,33 @@
 }
 
 .timelineYear {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--color-gold);
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-white);
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
     white-space: nowrap;
 }
 
 .timelineCard {
-    padding: 24px;
+    padding: 32px;
     flex: 1;
-    background: var(--color-white);
-    border: 1px solid var(--color-divider);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-lg);
 }
 
 .timelineCard h4 {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    margin-bottom: 6px;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: var(--color-gold);
 }
 
 .timelineCard p {
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.65;
 }
 
@@ -198,79 +223,94 @@
 .aboutStats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    padding: 56px 0;
-    border-top: 1px solid var(--color-divider);
-    border-bottom: 1px solid var(--color-divider);
+    gap: 32px;
+    padding: 80px 0;
+    margin: 60px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .aboutStatItem {
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
 }
 
 .aboutStatValue {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-gold);
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--color-white);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .aboutStatLabel {
-    font-size: 0.82rem;
-    color: var(--color-text-muted);
-    letter-spacing: 1px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
     text-transform: uppercase;
     font-family: var(--font-heading);
+    font-weight: 600;
 }
 
 /* Values */
 .valuesGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 32px;
 }
 
 .valueCard {
-    background: var(--color-white);
-    border: 1px solid var(--color-divider);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-lg);
-    padding: 36px 28px;
+    padding: 48px 32px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 20px;
     transition: all var(--transition-base);
 }
 
 .valueCard:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-8px);
 }
 
 .valueCard h4 {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--color-white);
 }
 
 .valueCard p {
-    font-size: 0.88rem;
-    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.75;
 }
 
 .valueIcon {
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius-full);
-    background: var(--color-gold-muted);
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    background: rgba(212, 175, 55, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-gold);
+    transition: transform 0.3s ease;
+}
+
+.valueCard:hover .valueIcon {
+    transform: rotate(10deg) scale(1.1);
+    background: rgba(212, 175, 55, 0.2);
 }
 
 @media (max-width: 900px) {
@@ -315,26 +355,27 @@
 
 /* ——— PROCESS ——— */
 .processSection {
-    background: var(--color-white);
-    padding: 120px 0;
+    background: var(--color-bg-dark);
+    padding: 160px 0;
+    position: relative;
 }
 
 .processGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
-    margin-top: 72px;
+    margin-top: 100px;
     position: relative;
 }
 
 .processGrid::before {
     content: '';
     position: absolute;
-    top: 40px;
+    top: 50px;
     left: 12%;
     right: 12%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-divider) 10%, var(--color-divider) 90%, transparent);
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3) 10%, rgba(212, 175, 55, 0.3) 90%, transparent);
 }
 
 .processStep {
@@ -343,48 +384,49 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
 }
 
 .processNum {
-    width: 80px;
-    height: 80px;
-    border-radius: var(--radius-full);
-    border: 1.5px solid var(--color-divider);
-    background: var(--color-white);
+    width: 100px;
+    height: 100px;
+    border-radius: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: rgba(20, 10, 35, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--color-gold);
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-white);
     position: relative;
     z-index: 1;
-    transition: all 0.35s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
 }
 
 .processStep:hover .processNum {
-    background: var(--color-gold);
-    color: var(--color-black);
+    background: var(--gradient-primary);
+    color: #000;
     border-color: var(--color-gold);
-    box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35);
-    transform: scale(1.08);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+    transform: scale(1.15) rotate(5deg);
 }
 
 .processStepTitle {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-black);
-    letter-spacing: 0.2px;
+    color: var(--color-white);
+    letter-spacing: 0.5px;
 }
 
 .processStepDesc {
-    font-size: 0.88rem;
-    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.7;
-    max-width: 200px;
+    max-width: 220px;
 }
 
 @media (max-width: 1024px) {
