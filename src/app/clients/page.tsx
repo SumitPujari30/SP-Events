@@ -1,17 +1,15 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import {
     motion,
     useScroll,
     useTransform,
-    useMotionValue,
-    useSpring,
     useInView,
     AnimatePresence,
 } from 'framer-motion';
 import Link from 'next/link';
-import { HiArrowRight } from 'react-icons/hi';
+import { HiArrowRight, HiX } from 'react-icons/hi';
 import styles from './clients.module.css';
 
 /* ——— DATA ——— */
@@ -212,111 +210,191 @@ function MarqueeStrip() {
 }
 
 /* =============================================
-   SECTION 2: INTERACTIVE ROSTER (BRAND SHOWCASE)
+   SECTION 2: ADAPTIVE ASYMMETRIC CLIENT MATRIX
    ============================================= */
-// Real SP Events clients. Removed external logo URLs that were failing due to CORS / hotlinking blocks.
-const rosterClients = [
-    { name: 'Govt of Karnataka', color: '#B32821' }, // Red theme for Karnataka Govt
-    { name: 'Deshpande Startups', color: '#1B4D82' },
-    { name: 'Digvijay News', color: '#D32F2F' },
-    { name: 'Red FM', color: '#E53935' },
-    { name: 'Vijayvani', color: '#FFB300' },
+import { clientsData, ClientRecord } from '@/lib/clientData';
 
-    { name: 'JK Tyre', color: '#FDD835' },
-    { name: 'Toyota', color: '#D32F2F' },
-    { name: 'Hero MotoCorp', color: '#D32F2F' },
-    { name: 'Tata Power Solar', color: '#1976D2' },
+function ClientMatrix() {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
+    const gridRef = useRef<HTMLDivElement>(null);
 
-    { name: 'HDFC Bank', color: '#1565C0' },
-    { name: 'HDFC Ergo', color: '#C62828' },
-    { name: 'Reliance Ltd', color: '#0277BD' },
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
-    { name: 'Samsung', color: '#0D47A1' },
-    { name: 'Jockey', color: '#D32F2F' },
-    { name: 'USV', color: '#00838F' },
-    { name: 'KLE Institute', color: '#F57C00' },
-    { name: 'Udaya', color: '#FBC02D' },
-    { name: 'Mini Sou', color: '#E91E63' },
-];
+    // Close on click outside
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (gridRef.current && !gridRef.current.contains(e.target as Node)) {
+                setActiveIndex(null);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
-// Group clients into rows of varying lengths
-const bentoRows = [
-    rosterClients.slice(0, 5),
-    rosterClients.slice(5, 9),
-    rosterClients.slice(9, 12),
-    rosterClients.slice(12, 18),
-];
+    const activeClient = activeIndex !== null ? clientsData[activeIndex] : null;
 
-// A pre-defined array of varied flex values to make the grid look "scrambled"
-const flexPattern = [1.4, 0.8, 1.2, 0.9, 1.5, 1, 0.75, 1.3];
-
-function BentoGrid() {
     return (
-        <section className={styles.bentoSection} id="roster">
-            <div className={styles.sectionContainer} style={{ paddingBottom: '40px' }}>
-                <div className={styles.sectionHeader}>
-                    <motion.span
-                        className={styles.sectionLabel}
+        <section className={styles.matrixSection} id="roster">
+            <div className={styles.sectionContainer} style={{ paddingBottom: '60px' }}>
+                <div className={styles.matrixHeader}>
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        The Constellation
-                    </motion.span>
-                    <motion.h2
-                        className={styles.sectionTitle}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                    >
-                        Brands We&apos;ve Elevated
-                    </motion.h2>
-                    <motion.p
-                        className={styles.sectionSubtitle}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        From government agencies to global brands — we partner with visionaries to craft moments that redefine what&apos;s possible.
-                    </motion.p>
+                        <h2 className={styles.matrixTitle}>Brands We&apos;ve Engineered Experiences For</h2>
+                        <p className={styles.matrixSubtitle}>Trusted by global leaders, innovators and creators.</p>
+                    </motion.div>
                 </div>
             </div>
 
-            <div className={styles.bentoWrap}>
-                {bentoRows.map((row, rowIndex) => (
-                    <div key={rowIndex} className={styles.bentoRow}>
-                        {row.map((client, i) => {
-                            const flexVal = flexPattern[(rowIndex * 7 + i) % flexPattern.length];
-                            const initials = client.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
-                            return (
-                                <div
-                                    key={client.name + i}
-                                    className={styles.bentoCard}
-                                    style={{ '--base-flex': flexVal } as React.CSSProperties}
-                                >
-                                    {/* Brand Box shown by default */}
-                                    <div className={styles.bentoLogoWrap}>
-                                        <div
-                                            className={styles.bentoBrandBox}
-                                            style={{ backgroundColor: client.color || '#333' }}
-                                        >
-                                            <span className={styles.bentoInitials}>{initials}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Company name on hover */}
-                                    <div className={styles.bentoHoverName}>
-                                        <span>{client.name}</span>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                ))}
+            <div className={styles.matrixWrap}>
+                <div ref={gridRef} className={styles.matrixGrid}>
+                    {clientsData.map((client, i) => (
+                        <MatrixTile
+                            key={client.name + i}
+                            client={client}
+                            index={i}
+                            isActive={activeIndex === i}
+                            hasDimSiblings={activeIndex !== null && activeIndex !== i}
+                            onClick={() => {
+                                if (isMobile) {
+                                    setActiveIndex(activeIndex === i ? null : i);
+                                } else {
+                                    setActiveIndex(activeIndex === i ? null : i);
+                                }
+                            }}
+                        />
+                    ))}
+                </div>
             </div>
+
+            {/* Floating detail overlay — appears on top, grid stays static */}
+            <AnimatePresence mode="wait">
+                {activeClient && (
+                    <motion.div
+                        key={activeClient.name}
+                        className={styles.detailOverlay}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        onClick={() => setActiveIndex(null)}
+                    >
+                        <motion.div
+                            className={styles.detailCard}
+                            initial={{ y: 30, scale: 0.95, opacity: 0 }}
+                            animate={{ y: 0, scale: 1, opacity: 1 }}
+                            exit={{ y: 15, scale: 0.97, opacity: 0 }}
+                            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                            onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                        >
+                            <button
+                                className={styles.detailCloseBtn}
+                                onClick={() => setActiveIndex(null)}
+                            >
+                                <HiX />
+                            </button>
+                            <div className={styles.detailLogo}>
+                                {(activeClient.logo || activeClient.domain) ? (
+                                    // eslint-disable-next-line @next/next/no-img-element
+                                    <img
+                                        src={
+                                            activeClient.logo
+                                                ? `/assets/clientLogos/${activeClient.logo}`
+                                                : `https://logo.clearbit.com/${activeClient.domain}`
+                                        }
+                                        alt={activeClient.name}
+                                        onError={(e) => {
+                                            (e.target as HTMLElement).style.display = 'none';
+                                        }}
+                                    />
+                                ) : (
+                                    <span className={styles.detailInitials}>
+                                        {activeClient.name.substring(0, 2).toUpperCase()}
+                                    </span>
+                                )}
+                            </div>
+                            <h3 className={styles.detailName}>{activeClient.name}</h3>
+                            <span className={styles.detailTag}>Partner Network</span>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
+    );
+}
+
+function MatrixTile({
+    client,
+    index,
+    isActive,
+    hasDimSiblings,
+    onClick,
+}: {
+    client: ClientRecord;
+    index: number;
+    isActive: boolean;
+    hasDimSiblings: boolean;
+    onClick: () => void;
+}) {
+    const [logoError, setLogoError] = useState(false);
+    const initials = client.name.substring(0, 2).toUpperCase();
+
+    return (
+        <motion.div
+            className={`${styles.matrixCard} ${isActive ? styles.matrixCardActive : ''}`}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-30px' }}
+            transition={{ duration: 0.4, delay: (index % 15) * 0.03, ease: [0.22, 1, 0.36, 1] }}
+            animate={{
+                opacity: hasDimSiblings ? 0.55 : 1,
+                scale: isActive ? 1.1 : hasDimSiblings ? 0.96 : 1,
+            }}
+            whileHover={{ scale: isActive ? 1.1 : 1.06, opacity: 1 }}
+            onClick={onClick}
+        >
+            <div className={styles.matrixCardInner}>
+                <div className={styles.matrixLogoWrap}>
+                    {/* Priority: 1. Local logo  2. Clearbit  3. Initials */}
+                    {!logoError && (client.logo || client.domain) ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                            src={
+                                client.logo
+                                    ? `/assets/clientLogos/${client.logo}`
+                                    : `https://logo.clearbit.com/${client.domain}`
+                            }
+                            alt={client.name}
+                            className={styles.matrixLogoImage}
+                            onError={() => setLogoError(true)}
+                            loading="lazy"
+                        />
+                    ) : (
+                        <div className={styles.matrixLogoFallback}>
+                            <span>{initials}</span>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* Subtle gold ring when active */}
+            {isActive && (
+                <motion.div
+                    className={styles.matrixActiveRing}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                />
+            )}
+        </motion.div>
     );
 }
 
@@ -594,7 +672,7 @@ export default function ClientsPage() {
         <main className={styles.pageWrap}>
             <SplitTextHero />
             <MarqueeStrip />
-            <BentoGrid />
+            <ClientMatrix />
             <TestimonialsSection />
             <AnimatedStats />
             <ImmersiveCTA />

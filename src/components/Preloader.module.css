@@ -2,74 +2,35 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
+    background: #11001C; /* Matches --color-bg-dark */
+    background: radial-gradient(circle at center, #1a012e 0%, #11001c 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 
-.curtainPanelLeft,
-.curtainPanelRight {
-    position: absolute;
-    top: 0;
-    width: 50.5%;
-    /* slight overlap to prevent gaps */
-    height: 100%;
-    background: #000;
-    z-index: 1;
-}
-
-.curtainPanelLeft {
-    left: 0;
-}
-
-.curtainPanelRight {
-    right: 0;
-}
-
-.content {
+.logoWrap {
     position: relative;
-    z-index: 2;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.counterWrap {
-    display: flex;
-    align-items: baseline;
-    line-height: 1;
-}
-
-.bigNumber {
-    font-family: var(--font-display);
-    font-size: clamp(8rem, 20vw, 15rem);
-    font-weight: 900;
-    color: var(--color-gold);
-    letter-spacing: -5px;
-}
-
-.percentSymbol {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 4rem);
-    color: var(--color-gold);
-}
-
-.prepTextWrap {
-    margin-top: 20px;
-    height: 30px;
+    width: clamp(160px, 25vw, 240px);
+    height: clamp(160px, 25vw, 240px);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.prepText {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--color-white);
-    opacity: 0.8;
+.logoImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* We use Framer Motion to animate the filters, but define base styles here */
+    will-change: filter, transform, opacity;
+}
+
+.fallbackText {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--color-gold);
+    letter-spacing: -2px;
 }
