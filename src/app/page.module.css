@@ -1,563 +1,415 @@
-/* ===== SP EVENTS — HOME PAGE V2 ===== */
+/* ============================================
+   SP EVENTS - Neon / Glassmorphism Module CSS
+   ============================================ */
 
-/* ——— MASK REVEAL HERO ——— */
-.heroWrap {
-  height: 300vh;
+.wrapper {
   position: relative;
-  background: var(--color-bg-dark);
-  /* Start completely dark purple */
+  overflow: hidden;
+  background: transparent;
+  width: 100%;
 }
 
-.heroSticky {
-  position: sticky;
+/* --- VIDEO BACKGROUND --- */
+.bgVideoContainer {
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
-  width: 100%;
+  z-index: -1;
   overflow: hidden;
+}
+
+.bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6; /* Slight dimming so text is readable */
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(3, 0, 11, 0.4) 0%, rgba(3, 0, 11, 0.9) 100%);
+}
+
+/* --- HERO --- */
+.hero {
+  position: relative;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* Background video that gets revealed */
-.heroVideoWrap {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  /* Clip path will be controlled directly via inline style in React */
-  will-change: clip-path;
-}
-
-.heroVideo {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-}
-
-.heroVideoOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(12, 12, 12, 0.4);
-}
-
-/* Introduction Text (visible first on dark) */
-.heroIntroText {
-  position: absolute;
-  z-index: 2;
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 500;
-  color: var(--color-white);
   text-align: center;
-  line-height: 1.1;
-  pointer-events: none;
-  mix-blend-mode: difference;
+  z-index: 10;
+  padding: 0 24px;
 }
 
-.heroIntroText em {
-  font-style: italic;
-  color: var(--color-gold);
-}
-
-.heroLogoScattered {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  font-family: var(--font-display);
-  font-size: clamp(6rem, 15vw, 12rem);
-  font-weight: 900;
-  color: var(--color-white);
-  line-height: 1;
-  text-transform: uppercase;
-  mix-blend-mode: overlay;
-  opacity: 0.15;
-}
-
-.scatterWord1 {
-  position: absolute;
-  top: 15%;
-  left: 5%;
-}
-
-.scatterWord2 {
-  position: absolute;
-  top: 45%;
-  right: 5%;
-  color: var(--color-gold);
-}
-
-.scatterWord3 {
-  position: absolute;
-  bottom: 10%;
-  left: 10%;
-}
-
-.scrollIndicator {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
+.heroContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  color: rgba(255, 255, 255, 0.4);
-  font-family: var(--font-heading);
-  font-size: 0.65rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
+  max-width: 900px;
 }
 
-.scrollLine {
-  width: 1px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.scrollLineInner {
-  position: absolute;
-  top: 0;
-  left: 0;
+.heroLogoImage {
   width: 100%;
-  height: 50%;
-  background: var(--color-gold);
-  animation: scrollDownDrop 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+  max-width: 400px; /* Adjust as needed for the GOLD N ORANGE logo */
+  height: auto;
+  margin-bottom: 24px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.4)); /* Orange glow for the logo */
 }
 
-@keyframes scrollDownDrop {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(200%);
-  }
+.heroTitle {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 24px;
+  text-shadow: 0 0 40px rgba(181, 56, 255, 0.4);
 }
 
-/* ——— SCROLL MANIFESTO ——— */
-.manifestoWrap {
-  background: var(--color-bg-dark);
-  padding: 150px 24px;
-  min-height: 100vh;
+.heroSubtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.heroCta {
   display: flex;
-  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
-.manifestoText {
-  max-width: 1200px;
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 500;
-  line-height: 1.25;
-  color: rgba(255, 255, 255, 0.1);
-  /* Base is dim */
-  text-align: left;
-}
-
-.manifestoWord {
-  display: inline;
-  transition: color 0.1s;
-}
-
-.manifestoWordGold {
-  font-style: italic;
+/* --- BUTTONS --- */
+.btnPrimary {
+  padding: 16px 32px;
+  border-radius: var(--radius-xl);
+  font-family: var(--font-heading);
   font-weight: 600;
+  font-size: 1rem;
+  background: var(--gradient-neon);
+  color: #fff;
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 15px rgba(181, 56, 255, 0.3);
 }
 
-/* ——— CURSOR FOLLOWER SHOWCASE ——— */
-.showcaseWrap {
-  background: var(--color-bg-cream);
-  padding: 140px 0;
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 240, 255, 0.5);
+}
+
+.btnOutline {
+  padding: 16px 32px;
+  border-radius: var(--radius-xl);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-base);
+}
+
+.btnOutline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-neon-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* --- SECTIONS --- */
+.section {
+  padding: 120px 0;
   position: relative;
-  overflow: hidden;
+  z-index: 5;
 }
 
-.showcaseHeader {
+.sectionHeader {
   text-align: center;
   margin-bottom: 80px;
 }
 
-.showcaseList {
+.sectionTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 20px;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- 3D CINEMA SCREEN --- */
+.cinemaSection {
+  position: relative;
+  width: 100%;
+  min-height: 120vh; /* Extra scroll space for scrub animation */
   display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 2;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.showcaseRow {
-  padding: 4vw 48px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
   align-items: center;
-  position: relative;
-  text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  overflow: hidden;
+  justify-content: center;
+  perspective: 2500px;
+  z-index: 15;
+  padding: 0 40px;
+  margin-top: -30vh; /* Overlap the spacer slightly to start rotating up smoothly */
 }
 
-.showcaseRow::before {
-  content: '';
+.cinemaWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  aspect-ratio: 16/9;
+  background: #020202;
+  border-radius: 20px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  /* The rest of the 3D rotation is controlled via GSAP */
+}
+
+.cinemaOverlay {
   position: absolute;
   inset: 0;
-  background: var(--color-purple-primary);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  z-index: -1;
+  box-shadow: inset 0 0 120px rgba(0,0,0,0.8);
+  pointer-events: none;
+  z-index: 5;
 }
 
-.showcaseRow:hover::before {
-  transform: scaleY(1);
-  transform-origin: top;
-}
-
-.showcaseNum {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-  transition: color 0.4s;
-}
-
-.showcaseTitle {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 700;
-  color: var(--color-black);
-  text-transform: uppercase;
-  line-height: 0.9;
-  letter-spacing: -2px;
-  transition: color 0.4s;
-}
-
-.showcaseArrow {
-  font-size: 2rem;
-  color: var(--color-black);
-  opacity: 0;
-  transform: translateX(-20px) rotate(-45deg);
-  transition: all 0.4s ease;
-}
-
-.showcaseRow:hover .showcaseNum {
-  color: var(--color-gold);
-}
-
-.showcaseRow:hover .showcaseTitle {
-  color: var(--color-white);
-}
-
-.showcaseRow:hover .showcaseArrow {
-  color: var(--color-gold);
-  opacity: 1;
-  transform: translateX(0) rotate(-45deg);
-}
-
-
-
-/* ——— STICKY PHILOSOPHY ——— */
-.philosophyWrap {
-  background: var(--color-white);
-  position: relative;
-  /* Extra height to allow scrolling past the sticky element */
-  padding-bottom: 20vh;
-}
-
-.philosophyContainer {
+.cinemaScreen {
   display: grid;
-  grid-template-columns: 40% 60%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 100px 48px;
-}
-
-.philosophySticky {
-  position: sticky;
-  top: 15vh;
-  height: max-content;
-}
-
-.philosophyLabel {
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.philosophyLabel::before {
-  content: '';
-  width: 40px;
-  height: 1px;
-  background: var(--color-gold);
-}
-
-.philosophyTitle {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 600;
-  color: var(--color-black);
-  line-height: 1.1;
-}
-
-.philosophyContent {
-  display: flex;
-  flex-direction: column;
-  padding-top: 20vh;
-  padding-bottom: 20vh;
-}
-
-.philosophyBlock {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  line-height: 1.6;
-  color: var(--color-black);
-  margin-bottom: 120px;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  font-weight: 400;
-}
-
-/* ——— 3D FLIP STATS GRID ——— */
-.statsWrap {
-  background: var(--color-bg-dark);
-  padding: 150px 0;
-  color: var(--color-white);
-}
-
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.statCardWrap {
-  background: var(--color-bg-dark);
-  aspect-ratio: 16/9;
-  position: relative;
-  perspective: 2000px;
-  /* 3D effect container */
-}
-
-.statCardInner {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 12px;
   width: 100%;
   height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  padding: 12px;
 }
 
-.statCardWrap:hover .statCardInner {
-  transform: rotateX(180deg);
-}
-
-/* Front (Numbers) */
-.statCardFront,
-.statCardBack {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.statCardFront {
-  background: var(--color-surface-dark);
-}
-
-.statVal {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 8vw, 7rem);
-  font-weight: 700;
-  color: var(--color-gold);
-  line-height: 1;
-  letter-spacing: -2px;
-}
-
-/* Back (Image & Label) */
-.statCardBack {
-  background: var(--color-bg-dark);
-  transform: rotateX(180deg);
-  overflow: hidden;
-}
-
-.statBackImage {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.3;
-  transition: transform 1.5s ease;
-}
-
-.statCardWrap:hover .statBackImage {
-  transform: scale(1.1);
-}
-
-.statLab {
-  position: relative;
-  z-index: 2;
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3vw, 2.5rem);
-  font-weight: 600;
-  color: var(--color-white);
-}
-
-.statDesc {
-  position: relative;
-  z-index: 2;
-  font-family: var(--font-heading);
-  font-size: 0.8rem;
-  color: var(--color-gold);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-top: 12px;
-}
-
-/* ——— CURTAIN REVEAL CTA ——— */
-.ctaSpacer {
-  /* Provides scroll distance for the fixed CTA underneath */
-  height: 80vh;
-  background: transparent;
-  pointer-events: none;
-}
-
-.ctaRevealFixed {
-  position: fixed;
-  bottom: 0;
-  /* Sit underneath the rest of the page, above footer */
-  left: 0;
-  width: 100%;
-  height: 80vh;
-  z-index: -2;
-  /* Underneath the main flow */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.ctaBgImage {
-  position: absolute;
-  inset: 0;
+.cinemaMedia {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s;
+  cursor: pointer;
+  filter: brightness(0.8) contrast(1.1);
 }
 
-.ctaOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(12, 12, 12, 0.95), rgba(12, 12, 12, 0.4));
+.cinemaMedia:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2) contrast(1.2);
 }
 
-.ctaContent {
-  position: relative;
-  z-index: 2;
-  text-align: center;
+/* --- FEATURES GRID --- */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.featureCard {
+  padding: 40px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.featureIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  background: rgba(181, 56, 255, 0.1);
+  border: 1px solid rgba(181, 56, 255, 0.2);
+  display: flex;
   align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--color-neon-cyan);
+  margin-bottom: 24px;
+  box-shadow: inset 0 0 20px rgba(181, 56, 255, 0.1);
 }
 
-.ctaTitle {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  font-weight: 700;
-  color: var(--color-white);
-  line-height: 1.05;
-  margin-bottom: 40px;
+.featureCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #fff;
 }
 
-.ctaTitle em {
-  font-style: italic;
-  color: var(--color-gold);
+.featureCard p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
 }
 
-.ctaBtn {
-  display: inline-flex;
+/* --- HOW IT WORKS --- */
+.stepsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.stepRow {
+  display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 24px 56px;
-  background: var(--gradient-gold);
-  color: var(--color-black);
+  gap: 40px;
+  padding: 32px;
+}
+
+.stepNum {
+  font-size: 4rem;
   font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: 100px;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-neon-purple);
+  opacity: 0.5;
+}
+
+.stepContent h3 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--color-neon-cyan);
+}
+
+.stepContent p {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+}
+
+/* --- UPCOMING EVENTS PREVIEW --- */
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.eventCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  aspect-ratio: 4/5;
+  cursor: pointer;
+}
+
+.eventImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.eventCard:hover .eventImage {
+  transform: scale(1.05);
+}
+
+.eventOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.eventDate {
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 12px 40px rgba(201, 168, 76, 0.3);
+  color: var(--color-neon-purple);
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
-.ctaBtn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 60px rgba(201, 168, 76, 0.5);
+.eventCard h3 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
 }
 
-/* ——— RESPONSIVE ——— */
-@media (max-width: 1024px) {
-  .philosophyContainer {
-    grid-template-columns: 1fr;
-    padding: 80px 32px;
-  }
-
-  .philosophySticky {
-    position: relative;
-    top: 0;
-    margin-bottom: 60px;
-  }
-
-  .philosophyContent {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .philosophyBlock {
-    margin-bottom: 60px;
-  }
-
-  .showcaseRow {
-    grid-template-columns: 60px 1fr auto;
-    padding: 6vw 32px;
-  }
+.eventLocation {
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+/* --- TESTIMONIALS --- */
+.testimonialGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.testimonialCard {
+  padding: 40px;
+}
+
+.quote {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 24px;
+  color: #fff;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.authorImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.authorInfo h4 {
+  font-size: 1.1rem;
+  color: var(--color-neon-cyan);
+}
+
+.authorInfo p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* --- CTA SECTION --- */
+.ctaSection {
+  text-align: center;
+  padding: 160px 24px;
+  background: radial-gradient(circle at center, rgba(181, 56, 255, 0.15) 0%, transparent 70%);
+}
+
+.ctaSection h2 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin-bottom: 24px;
+}
+
+.ctaSection p {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .statsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .showcaseRow {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 32px 24px;
+  .stepRow {
+    flex-direction: column;
     text-align: center;
-    justify-content: center;
-  }
-
-  .showcaseNum {
-    display: none;
-  }
-
-  .showcaseArrow {
-    display: none;
+    gap: 20px;
   }
 }

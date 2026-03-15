@@ -40,6 +40,23 @@ const socials = [
 export default function Footer() {
     return (
         <footer className={styles.footer}>
+            {/* Background Video */}
+            <div className={styles.videoContainer}>
+                <video
+                    autoPlay
+                    muted
+                    playsInline
+                    className={styles.bgVideo}
+                    onEnded={(e) => {
+                        e.currentTarget.currentTime = 21.5;
+                        e.currentTarget.play();
+                    }}
+                >
+                    <source src="/assets/The SP Events office --footer.mp4#t=21.5" type="video/mp4" />
+                </video>
+                <div className={styles.videoOverlay} />
+            </div>
+
             <div className={styles.glowTop} />
             <div className="container">
                 <AnimatedSection>

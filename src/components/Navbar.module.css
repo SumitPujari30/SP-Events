@@ -9,16 +9,19 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: var(--z-sticky);
+    z-index: 100000; /* Force above everything including custom cursor */
     padding: 12px 24px;
     will-change: transform, opacity;
+    pointer-events: none; /* Let clicks pass through the container... */
 }
 
-.invisible {
-    pointer-events: none;
+/* ...but make the inner pill exactly clickable */
+.inner {
+    pointer-events: auto;
+    max-width: var(--container-wide);
+    margin: 0 auto;
 }
 
-/* Slim scroll progress bar along the top edge of the island */
 .progressBar {
     position: absolute;
     top: 0;

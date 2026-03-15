@@ -84,8 +84,13 @@ export default function Navbar() {
     useEffect(() => {
         const onScroll = () => {
             const y = window.scrollY;
-            if (isHomePage) setVisible(y > window.innerHeight * 2.4);
+            // The hero animation pins for 150% of the viewport height (window.innerHeight * 1.5).
+            // We want the Navbar to appear exactly when the logo finishes its animation and settles.
+            if (isHomePage) setVisible(y > window.innerHeight * 1.2);
+            
             setScrolled(y > 30);
+            
+            // Hide the navbar when scrolling down, show when scrolling up
             if (y > lastScrollY.current && y > 300 && visible) {
                 setHidden(true);
             } else if (y < lastScrollY.current) {
