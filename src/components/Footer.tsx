@@ -1,7 +1,8 @@
 'use client';
 
+import { useRef } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
     FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube
 } from 'react-icons/fa';
@@ -38,26 +39,37 @@ const socials = [
 ];
 
 export default function Footer() {
-    return (
-        <footer className={styles.footer}>
-            {/* Background Video */}
-            <div className={styles.videoContainer}>
-                <video
-                    autoPlay
-                    muted
-                    playsInline
-                    className={styles.bgVideo}
-                    onEnded={(e) => {
-                        e.currentTarget.currentTime = 21.5;
-                        e.currentTarget.play();
-                    }}
-                >
-                    <source src="/assets/The SP Events office --footer.mp4#t=21.5" type="video/mp4" />
-                </video>
-                <div className={styles.videoOverlay} />
-            </div>
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ['start end', 'end end'],
+    });
 
-            <div className={styles.glowTop} />
+    // The curtain stays stuck to the viewport as user scrolls, revealing the footer
+    const curtainY = useTransform(scrollYProgress, [0.15, 1], ['0%', '-100%']);
+
+    return (
+        <div ref={sectionRef} className={styles.footerCurtainWrap}>
+            <div className={styles.revealedFooterContent}>
+                <footer className={styles.footer}>
+                    {/* Background Video */}
+                    <div className={styles.videoContainer}>
+                        <video
+                            autoPlay
+                            muted
+                            playsInline
+                            className={styles.bgVideo}
+                            onEnded={(e) => {
+                                e.currentTarget.currentTime = 21.5;
+                                e.currentTarget.play();
+                            }}
+                        >
+                            <source src="/assets/The SP Events office --footer.mp4#t=21.5" type="video/mp4" />
+                        </video>
+                        <div className={styles.videoOverlay} />
+                    </div>
+
+                    <div className={styles.glowTop} />
             <div className="container">
                 <AnimatedSection>
                     <div className={styles.grid}>
@@ -150,5 +162,12 @@ export default function Footer() {
                 </div>
             </div>
         </footer>
+        </div>
+        
+        {/* The black curtain that slides up */}
+        <motion.div className={styles.curtain} style={{ y: curtainY }}>
+            <span className={styles.curtainLabel}>The SP Events</span>
+        </motion.div>
+    </div>
     );
 }

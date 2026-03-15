@@ -331,18 +331,18 @@
 }
 
 /* =============================================
-   SECTION 2: ADAPTIVE ASYMMETRIC CLIENT MATRIX
+   SECTION 2: THREE-ROW CLIENT MARQUEE
    ============================================= */
 
 .matrixSection {
     width: 100%;
-    padding: 120px 0;
+    padding: 120px 0 80px;
     background: var(--color-bg-dark);
     position: relative;
     border-top: 1px solid rgba(201, 168, 76, 0.08);
+    overflow: hidden;
 }
 
-/* Subtle particle glow in background */
 .matrixSection::before {
     content: '';
     position: absolute;
@@ -379,297 +379,334 @@
     margin: 0 auto;
 }
 
-.matrixWrap {
-    max-width: var(--container-wide, 1600px);
-    margin: 0 auto;
-    padding: 0 40px;
+/* --- Marquee Wrapper --- */
+.marqueeWrapper {
     position: relative;
-    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* Desktop Grid: 9 columns, dense packing */
-.matrixGrid {
-    display: grid;
-    grid-template-columns: repeat(9, minmax(70px, 1fr));
-    grid-auto-flow: dense;
-    gap: 16px;
-    justify-content: center;
+.marqueeWrapper:hover .clientTrack {
+    animation-play-state: running;
+}
+
+.marqueeRow {
+    width: 100%;
+    overflow: hidden;
+}
+
+.clientTrack {
+    display: flex;
     align-items: center;
+    gap: 20px;
+    width: max-content;
+    will-change: transform;
 }
 
-/* BASE TILE — square */
-.matrixCard {
-    position: relative;
-    grid-column: span 1;
-    grid-row: span 1;
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
+.scrollLeft {
+    animation: scrollClientL 100s linear infinite;
+}
+
+.scrollRight {
+    animation: scrollClientR 120s linear infinite;
+}
+
+@keyframes scrollClientL {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollClientR {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* --- Logo Card --- */
+.logoCard {
+    flex-shrink: 0;
+    width: 250px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 22px 18px 14px;
+    border-radius: 16px;
     background: rgba(255, 255, 255, 0.025);
     border: 1px solid rgba(255, 255, 255, 0.06);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
+    position: relative;
     overflow: hidden;
-    transition: border-color 0.3s ease, background 0.3s ease;
 }
 
-.matrixCardInner {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
+.logoCard:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(201, 168, 76, 0.3);
+    transform: translateY(-6px) scale(1.04);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.35),
+        0 0 24px rgba(201, 168, 76, 0.08);
 }
 
-.matrixLogoWrap {
-    width: 65%;
-    height: 65%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.matrixLogoImage {
+.logoCardImg {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 55px;
     object-fit: contain;
-    filter: brightness(1) contrast(1);
-    transition: filter 0.3s ease;
+    filter: grayscale(60%) brightness(140%) opacity(0.65);
+    transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.matrixLogoFallback {
-    width: 100%;
-    height: 100%;
+.logoCard:hover .logoCardImg {
+    filter: grayscale(0%) brightness(100%) opacity(1);
+}
+
+.logoCardFallback {
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.matrixLogoFallback span {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* ACTIVE TILE (CLICKED — just a subtle highlight, no grid change) */
-.matrixCardActive {
-    border: 1px solid rgba(201, 168, 76, 0.4);
     background: rgba(255, 255, 255, 0.04);
-    border-radius: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.matrixCardActive .matrixLogoImage {
-    filter: grayscale(0) opacity(1);
-}
-
-.matrixActiveRing {
-    position: absolute;
-    inset: -2px;
-    border-radius: 14px;
-    border: 1.5px solid rgba(201, 168, 76, 0.35);
-    box-shadow: 0 0 18px rgba(201, 168, 76, 0.12);
-    pointer-events: none;
-}
-
-/* FLOATING DETAIL OVERLAY */
-.detailOverlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(17, 0, 28, 0.75);
-    backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-}
-
-.detailCard {
-    background: linear-gradient(135deg, rgba(30, 15, 45, 0.95), rgba(20, 5, 35, 0.98));
-    border: 1px solid rgba(201, 168, 76, 0.25);
-    border-radius: 28px;
-    padding: 48px 40px;
-    width: 100%;
-    max-width: 380px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(201, 168, 76, 0.08);
-}
-
-.detailCloseBtn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--color-white);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.logoCardFallback span {
+    font-family: var(--font-heading);
     font-size: 1.1rem;
-    transition: background 0.2s ease;
-}
-
-.detailCloseBtn:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.detailLogo {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 16px;
-}
-
-.detailLogo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.detailInitials {
-    font-family: var(--font-heading);
-    font-size: 2rem;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.5);
 }
 
-.detailName {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--color-white);
-    margin-bottom: 8px;
-}
-
-.detailTag {
+.logoCardName {
     font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: var(--color-gold);
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
-/* MOBILE OVERLAY */
-.mobileOverlay {
+.logoCard:hover .logoCardName {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* --- Client Detail Overlay --- */
+.detailOverlay {
     position: fixed;
     inset: 0;
-    z-index: 9999;
-    background: rgba(17, 0, 28, 0.85);
-    backdrop-filter: blur(16px);
+    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
 }
 
-.mobileOverlayCard {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(201, 168, 76, 0.3);
-    border-radius: 24px;
-    padding: 40px 24px;
-    width: 100%;
-    max-width: 320px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+.detailBackdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 0, 10, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    cursor: pointer;
 }
 
-.mobileCloseBtn {
+.detailCard {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    background: rgba(20, 10, 30, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 48px;
+    z-index: 2;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 40px rgba(201, 168, 76, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.detailClose {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    background: rgba(255, 255, 255, 0.1);
+    top: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
     border: none;
-    color: var(--color-white);
-    width: 32px;
-    height: 32px;
     border-radius: 50%;
+    color: var(--color-white);
+    font-size: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 1.2rem;
+    transition: background 0.3s, transform 0.3s;
 }
 
-.mobileOverlayLogo {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 24px;
+.detailClose:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1) rotate(90deg);
+}
+
+.detailLogoWrap {
+    height: 80px;
+    margin-bottom: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.mobileOverlayLogo img {
-    max-width: 100%;
+.detailLogoWrap img {
     max-height: 100%;
+    max-width: 200px;
     object-fit: contain;
 }
 
-.mobileOverlayName {
+.detailInitials {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+.detailName {
+    font-family: var(--font-heading);
+    font-size: 2rem;
     font-weight: 700;
     color: var(--color-white);
     margin-bottom: 8px;
 }
 
-.mobileOverlayTag {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--color-gold);
-    letter-spacing: 1px;
-    text-transform: uppercase;
+.detailMeta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1200px) {
-    .matrixGrid {
-        grid-template-columns: repeat(7, minmax(60px, 1fr));
-    }
+.detailIndustry {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-gold);
+    padding: 6px 12px;
+    background: rgba(201, 168, 76, 0.1);
+    border-radius: 20px;
+}
+
+.detailDomain {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.detailDomain:hover {
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+.detailDesc {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 @media (max-width: 768px) {
-    .matrixWrap {
-        padding: 0 20px;
+    .detailCard {
+        padding: 32px 24px;
     }
     
-    .matrixGrid {
-        /* On mobile, fallback to symmetric tighter grid */
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
+    .detailName {
+        font-size: 1.5rem;
     }
     
-    .matrixCard {
-        /* Disable hover span on mobile entirely */
-        grid-column: span 1 !important;
-        grid-row: span 1 !important;
+    .detailClose {
+        top: 16px;
+        right: 16px;
     }
+}
 
-    .matrixLogoImage {
-        /* Keep logos slightly more visible on mobile since no hover */
-        filter: grayscale(0.8) opacity(0.8);
+/* --- Gradient Fade Masks --- */
+.fadeMaskLeft,
+.fadeMaskRight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.fadeMaskLeft {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg-dark) 0%, transparent 100%);
+}
+
+.fadeMaskRight {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg-dark) 0%, transparent 100%);
+}
+
+/* RESPONSIVE — Marquee Cards */
+@media (max-width: 768px) {
+    .logoCard {
+        width: 140px;
+        height: 90px;
+        padding: 14px 12px 10px;
+    }
+    .logoCardImg {
+        max-height: 36px;
+    }
+    .marqueeWrapper {
+        gap: 14px;
+    }
+    .fadeMaskLeft,
+    .fadeMaskRight {
+        width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logoCard {
+        width: 120px;
+        height: 78px;
+        padding: 12px 10px 8px;
+        border-radius: 12px;
+    }
+    .logoCardImg {
+        max-height: 30px;
+    }
+    .marqueeWrapper {
+        gap: 10px;
+    }
+    .fadeMaskLeft,
+    .fadeMaskRight {
+        width: 50px;
     }
 }
 
@@ -832,19 +869,20 @@
     border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.testiFeaturedAvatar {
+.testiFeaturedInitial {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    overflow: hidden;
+    background: rgba(201, 168, 76, 0.1);
     border: 2px solid var(--color-gold);
     flex-shrink: 0;
-}
-
-.testiFeaturedAvatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-gold);
 }
 
 .testiFeaturedName {
@@ -910,32 +948,28 @@
     transform: scaleY(1);
 }
 
-.testiListAvatar {
+.testiListInitial {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
     flex-shrink: 0;
     border: 1.5px solid rgba(255, 255, 255, 0.1);
-    transition: border-color 0.35s ease;
+    transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
 }
 
-.testiListAvatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.4);
-    transition: filter 0.35s ease;
-}
-
-.testiListItem:hover .testiListAvatar,
-.testiListItem.activeItem .testiListAvatar {
+.testiListItem:hover .testiListInitial,
+.testiListItem.activeItem .testiListInitial {
     border-color: var(--color-gold);
-}
-
-.testiListItem:hover .testiListAvatar img,
-.testiListItem.activeItem .testiListAvatar img {
-    filter: grayscale(0);
+    background: rgba(201, 168, 76, 0.15);
+    color: var(--color-white);
 }
 
 .testiListInfo {
@@ -1232,7 +1266,7 @@
     align-items: center;
     gap: 14px;
     background: var(--color-gold);
-    color: var(--color-bg-dark);
+    color: var(--color-bg-light);
     padding: 22px 60px;
     border-radius: 100px;
     font-family: var(--font-heading);

@@ -78,25 +78,32 @@ export default function CustomCursor() {
             spawnParticles(e.clientX, e.clientY);
         };
 
-        // Hover detection
-        const attachHovers = () => {
-            document.querySelectorAll('a, button, [role="button"], input, textarea, select').forEach((el) => {
-                el.addEventListener('mouseenter', () => {
-                    isHovering.current = true;
-                    ring.classList.add(styles.ringHover);
-                    dot.classList.add(styles.dotHover);
-                });
-                el.addEventListener('mouseleave', () => {
-                    isHovering.current = false;
-                    ring.classList.remove(styles.ringHover);
-                    dot.classList.remove(styles.dotHover);
-                });
-            });
+        // Global Hover Delegation (Safe for Next.js routing)
+        const onMouseOver = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            // Check if hovered element or any of its parents is a clickable element
+            const isClickable = target.closest('a, button, [role="button"], input, textarea, select');
+            
+            if (isClickable) {
+                isHovering.current = true;
+                ring.classList.add(styles.ringHover);
+                dot.classList.add(styles.dotHover);
+            }
         };
 
-        const observer = new MutationObserver(attachHovers);
-        observer.observe(document.body, { childList: true, subtree: true });
-        attachHovers();
+        const onMouseOut = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            const isClickable = target.closest('a, button, [role="button"], input, textarea, select');
+            
+            if (isClickable) {
+                isHovering.current = false;
+                ring.classList.remove(styles.ringHover);
+                dot.classList.remove(styles.dotHover);
+            }
+        };
+
+        window.addEventListener('mouseover', onMouseOver);
+        window.addEventListener('mouseout', onMouseOut);
 
         // Click
         const onDown = () => ring.classList.add(styles.ringClick);
@@ -149,9 +156,10 @@ export default function CustomCursor() {
             window.removeEventListener('mousemove', onMove);
             window.removeEventListener('mousedown', onDown);
             window.removeEventListener('mouseup', onUp);
+            window.removeEventListener('mouseover', onMouseOver);
+            window.removeEventListener('mouseout', onMouseOut);
             document.removeEventListener('mouseleave', onLeave);
             document.removeEventListener('mouseenter', onEnter);
-            observer.disconnect();
         };
     }, [spawnParticles]);
 

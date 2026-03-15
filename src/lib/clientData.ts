@@ -56,7 +56,7 @@ export const clientsData: ClientRecord[] = [
     { name: 'Ganesh Hotel (Crave)', logo: 'crave.png' },
     { name: 'Arrow Clothing', domain: 'arrowlife.com', logo: 'arrow clothing.png' },
     { name: 'Bally\'s Casino', domain: 'ballys.com', logo: 'bally casino.png' },
-    { name: 'Paradeep Phosphates', domain: 'paradeepphosphates.com' },
+    { name: 'Paradeep Phosphates', domain: 'paradeepphosphates.com', logo: 'paradeep_phosphates.png' },
     { name: 'Karanji International School' },
     { name: 'Dharwad International School' },
     { name: 'Naan 2.0 Startup Karnataka', logo: 'nain startup.png' },

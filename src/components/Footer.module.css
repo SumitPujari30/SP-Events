@@ -1,3 +1,40 @@
+/* --- FULL SCREEN FOOTER CURTAIN --- */
+.footerCurtainWrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.revealedFooterContent {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}
+
+.curtain {
+    position: absolute;
+    inset: 0;
+    background: var(--color-bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+    z-index: 5;
+    border-top: 1px solid rgba(201, 168, 76, 0.15); /* Subtly golden edge */
+    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.curtainLabel {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    opacity: 0.25;
+}
+
+/* --- ACTUAL FOOTER --- */
 .footer {
     position: relative;
     background: var(--color-bg-dark);
@@ -23,8 +60,7 @@
 .videoOverlay {
     position: absolute;
     inset: 0;
-    /* Removed heavy gradient to make video fully visible */
-    background: linear-gradient(to top, rgba(3, 0, 11, 0.6) 0%, transparent 60%);
+    background: linear-gradient(to top, rgba(10, 0, 20, 0.95) 0%, rgba(10, 0, 20, 0.5) 60%);
     pointer-events: none;
 }
 
@@ -92,9 +128,10 @@
 }
 
 .brandDesc {
-    color: var(--color-text-on-dark-muted);
+    color: var(--color-white);
     font-size: 0.88rem;
     line-height: 1.75;
+    font-weight: 500;
 }
 
 .socials {
@@ -142,10 +179,11 @@
 }
 
 .footerLink {
-    font-size: 0.88rem;
-    color: var(--color-text-on-dark-muted);
+    font-size: 0.9rem;
+    color: var(--color-white);
+    font-weight: 500;
     transition: color var(--transition-fast);
-    cursor: pointer;
+    cursor: none;
 }
 
 .footerLink:hover {
@@ -162,8 +200,9 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    font-size: 0.88rem;
-    color: var(--color-text-on-dark-muted);
+    font-size: 0.9rem;
+    color: var(--color-white);
+    font-weight: 500;
 }
 
 .contactIcon {
@@ -183,19 +222,21 @@
 }
 
 .copyright {
-    font-size: 0.82rem;
-    color: var(--color-text-on-dark-muted);
+    font-size: 0.85rem;
+    color: var(--color-white);
+    font-weight: 500;
 }
 
 .bottomLinks {
     display: flex;
     gap: 24px;
-    font-size: 0.82rem;
-    color: var(--color-text-on-dark-muted);
+    font-size: 0.85rem;
+    color: var(--color-white);
+    font-weight: 500;
 }
 
 .bottomLinks span {
-    cursor: pointer;
+    cursor: none;
     transition: color var(--transition-fast);
 }
 

@@ -86,7 +86,7 @@ export default function Navbar() {
             const y = window.scrollY;
             // The hero animation pins for 150% of the viewport height (window.innerHeight * 1.5).
             // We want the Navbar to appear exactly when the logo finishes its animation and settles.
-            if (isHomePage) setVisible(y > window.innerHeight * 1.2);
+            if (isHomePage) setVisible(y > window.innerHeight * 1.0);
             
             setScrolled(y > 30);
             

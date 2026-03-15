@@ -1,13 +1,7 @@
 'use client';
 
-import { useRef, useState, useEffect, useMemo } from 'react';
-import {
-    motion,
-    useScroll,
-    useTransform,
-    useInView,
-    AnimatePresence,
-} from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { HiArrowRight, HiX } from 'react-icons/hi';
 import styles from './clients.module.css';
@@ -41,32 +35,52 @@ const marqueeItems = [
 
 const testimonials = [
     {
-        name: 'Sarah Jenkins',
-        role: 'CMO, TechVision Inc.',
-        text: 'SP Events completely transformed our annual summit. Their attention to detail and creative execution resulted in our highest attendee engagement ever. They didn\'t just manage an event — they crafted an experience.',
-        category: 'Corporate Summit',
-        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
+        name: 'Vikram B Khot',
+        role: 'Director, B N Khot International School',
+        text: 'I\'ve had the opportunity to work with THE SP EVENTS and Samarth U Patangi on multiple occasions, and every experience has been exceptional. Their professionalism, planning, and flawless execution truly set them apart. Their dedication and commitment to delivering high-quality experiences make THE SP EVENTS a highly reliable event management partner.',
+        category: 'Education',
     },
     {
-        name: 'David Chen',
-        role: 'Director, Global Innovations',
-        text: 'From the initial concept to the final tear-down, the SP Events team was flawless. The launch of our product line was a massive success, widely covered by international media.',
-        category: 'Product Launch',
-        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80',
+        name: 'Rajesh',
+        role: 'Marketing Manager, Volvo',
+        text: 'One of the best event organisers I have come across in Hubli region. Best Event Company to rely on in and around Hubli region. Their coordination and response time was good. They made sure the event was well executed in a short notice. Satisfied by the way the team presented themselves. Definitely looking forward for further projects.',
+        category: 'Corporate',
     },
     {
-        name: 'Priya Sharma',
-        role: 'Founder, The Artisan Collective',
-        text: 'We wanted an intimate, luxury feel for our brand anniversary gala. The floral arrangements, the ambient lighting, and the seamless flow of the evening were nothing short of perfection.',
-        category: 'Gala Dinner',
-        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80',
+        name: 'Dr Arpitha Pawadshettar',
+        role: 'Founder & MD, Dr Arpitha\'s Skin Hair & Aesthetics',
+        text: 'I would like to thank Team SP Events for their exceptional support and professionalism. They organize every event with great attention to detail and perfection, and the team is always there to guide and support throughout the entire process.',
+        category: 'Healthcare',
     },
     {
-        name: 'Marcus Thorne',
-        role: 'VP Marketing, Apex Sports',
-        text: 'The logistics involved in our city-wide marathon were staggering, but SP Events handled every hurdle with immaculate grace. Their operational expertise is truly unmatched in the industry.',
-        category: 'Sports Event',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+        name: 'Abdul Riyaz',
+        role: 'Director, Sulthan Diamonds & Gold',
+        text: 'Samarth and the SP Events team have delivered an outstanding experience. His professionalism, creativity, and attention to detail make every inaugural event vibrant, grand, and perfectly organized. The way his team transforms a vision into a memorable celebration is truly remarkable.',
+        category: 'Retail',
+    },
+    {
+        name: 'Radhika Naikar',
+        role: 'Marketing Head, Shri Durga Developers & Promoters',
+        text: 'We had a wonderful experience working with THE SP EVENTS. Samarth Sir and his team manage every event with great professionalism, punctuality, and attention to detail. Once the requirements are shared, everything is handled smoothly and stress-free. Their dedication truly stands out.',
+        category: 'Real Estate',
+    },
+    {
+        name: 'Satya Srinivasan',
+        role: 'Producer, Kannada Film Industry',
+        text: 'The SP Events came highly recommended by the hotel where my event was hosted, and from the very first interaction, Samarth made an excellent impression. He delivered exactly what was promised and even went above and beyond. What truly sets him apart is his personal involvement — he remained onsite until the very end.',
+        category: 'Entertainment',
+    },
+    {
+        name: 'Rakesh Ballary',
+        role: 'Co-Managing Director, Shri Rajeshwari Properties',
+        text: 'We would like to thank Team The SP Events for the grand launch event. The team executed the entire event with great professionalism. The 40-feet curved LED wall, stage design, and lighting were handled flawlessly. Everything was smooth and highly appreciated by our guests. Highly recommended.',
+        category: 'Real Estate',
+    },
+    {
+        name: 'Rakshit Kalyani',
+        role: 'COO, dhaRti Foundation, IIT Dharwad',
+        text: 'We had an outstanding experience working with SP Events for the inauguration of dhaRti BioNEST at IIT Dharwad, attended by senior government dignitaries including Hon\'ble Ministers. The team demonstrated exceptional professionalism, meticulous planning, and a strong understanding of protocol requirements. Their ability to manage a high-profile institutional event smoothly was truly commendable.',
+        category: 'Institutional',
     },
 ];
 
@@ -215,29 +229,13 @@ function MarqueeStrip() {
 import { clientsData, ClientRecord } from '@/lib/clientData';
 
 function ClientMatrix() {
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
-    const [isMobile, setIsMobile] = useState(false);
-    const gridRef = useRef<HTMLDivElement>(null);
+    const [selectedClient, setSelectedClient] = useState<ClientRecord | null>(null);
 
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    // Close on click outside
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if (gridRef.current && !gridRef.current.contains(e.target as Node)) {
-                setActiveIndex(null);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
-    const activeClient = activeIndex !== null ? clientsData[activeIndex] : null;
+    // Split clients into 3 rows
+    const third = Math.ceil(clientsData.length / 3);
+    const row1 = clientsData.slice(0, third);
+    const row2 = clientsData.slice(third, third * 2);
+    const row3 = clientsData.slice(third * 2);
 
     return (
         <section className={styles.matrixSection} id="roster">
@@ -254,75 +252,98 @@ function ClientMatrix() {
                 </div>
             </div>
 
-            <div className={styles.matrixWrap}>
-                <div ref={gridRef} className={styles.matrixGrid}>
-                    {clientsData.map((client, i) => (
-                        <MatrixTile
-                            key={client.name + i}
-                            client={client}
-                            index={i}
-                            isActive={activeIndex === i}
-                            hasDimSiblings={activeIndex !== null && activeIndex !== i}
-                            onClick={() => {
-                                if (isMobile) {
-                                    setActiveIndex(activeIndex === i ? null : i);
-                                } else {
-                                    setActiveIndex(activeIndex === i ? null : i);
-                                }
-                            }}
-                        />
-                    ))}
+            <div className={styles.marqueeWrapper}>
+                {/* Row 1 — scrolls LEFT */}
+                <div className={styles.marqueeRow}>
+                    <div className={`${styles.clientTrack} ${styles.scrollLeft}`}>
+                        {[...row1, ...row1].map((client, i) => (
+                            <LogoCard key={`r1-${i}`} client={client} onClick={() => setSelectedClient(client)} />
+                        ))}
+                    </div>
                 </div>
+                {/* Row 2 — scrolls RIGHT */}
+                <div className={styles.marqueeRow}>
+                    <div className={`${styles.clientTrack} ${styles.scrollRight}`}>
+                        {[...row2, ...row2].map((client, i) => (
+                            <LogoCard key={`r2-${i}`} client={client} onClick={() => setSelectedClient(client)} />
+                        ))}
+                    </div>
+                </div>
+                {/* Row 3 — scrolls LEFT */}
+                <div className={styles.marqueeRow}>
+                    <div className={`${styles.clientTrack} ${styles.scrollLeft}`}>
+                        {[...row3, ...row3].map((client, i) => (
+                            <LogoCard key={`r3-${i}`} client={client} onClick={() => setSelectedClient(client)} />
+                        ))}
+                    </div>
+                </div>
+                {/* Gradient fade edges */}
+                <div className={styles.fadeMaskLeft} />
+                <div className={styles.fadeMaskRight} />
             </div>
 
-            {/* Floating detail overlay — appears on top, grid stays static */}
-            <AnimatePresence mode="wait">
-                {activeClient && (
+            {/* Client Detail Overlay */}
+            <AnimatePresence>
+                {selectedClient && (
                     <motion.div
-                        key={activeClient.name}
                         className={styles.detailOverlay}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.25, ease: 'easeOut' }}
-                        onClick={() => setActiveIndex(null)}
                     >
+                        <div
+                            className={styles.detailBackdrop}
+                            onClick={() => setSelectedClient(null)}
+                        />
                         <motion.div
                             className={styles.detailCard}
-                            initial={{ y: 30, scale: 0.95, opacity: 0 }}
-                            animate={{ y: 0, scale: 1, opacity: 1 }}
-                            exit={{ y: 15, scale: 0.97, opacity: 0 }}
-                            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                            onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                            initial={{ y: 40, opacity: 0, scale: 0.95 }}
+                            animate={{ y: 0, opacity: 1, scale: 1 }}
+                            exit={{ y: 20, opacity: 0, scale: 0.95 }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
                         >
                             <button
-                                className={styles.detailCloseBtn}
-                                onClick={() => setActiveIndex(null)}
+                                className={styles.detailClose}
+                                onClick={() => setSelectedClient(null)}
                             >
                                 <HiX />
                             </button>
-                            <div className={styles.detailLogo}>
-                                {(activeClient.logo || activeClient.domain) ? (
-                                    // eslint-disable-next-line @next/next/no-img-element
-                                    <img
-                                        src={
-                                            activeClient.logo
-                                                ? `/assets/clientLogos/${activeClient.logo}`
-                                                : `https://logo.clearbit.com/${activeClient.domain}`
-                                        }
-                                        alt={activeClient.name}
-                                        onError={(e) => {
-                                            (e.target as HTMLElement).style.display = 'none';
-                                        }}
-                                    />
+                            <div className={styles.detailLogoWrap}>
+                                {selectedClient.logo ? (
+                                    /* eslint-disable-next-line @next/next/no-img-element */
+                                    <img src={`/assets/clientLogos/${selectedClient.logo}`} alt={selectedClient.name} />
+                                ) : selectedClient.domain ? (
+                                    /* eslint-disable-next-line @next/next/no-img-element */
+                                    <img src={`https://logo.clearbit.com/${selectedClient.domain}`} alt={selectedClient.name} />
                                 ) : (
-                                    <span className={styles.detailInitials}>
-                                        {activeClient.name.substring(0, 2).toUpperCase()}
-                                    </span>
+                                    <div className={styles.detailInitials}>
+                                        {selectedClient.name.substring(0, 2).toUpperCase()}
+                                    </div>
                                 )}
                             </div>
-                            <h3 className={styles.detailName}>{activeClient.name}</h3>
-                            <span className={styles.detailTag}>Partner Network</span>
+                            <h3 className={styles.detailName}>{selectedClient.name}</h3>
+                            <div className={styles.detailMeta}>
+                                <span className={styles.detailIndustry}>
+                                    {/* @ts-ignore - industry may not exist on all clients */}
+                                    {selectedClient.industry || 'Client Partner'}
+                                </span>
+                                {/* {selectedClient.domain && (
+                                    <a
+                                        href={`https://${selectedClient.domain}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.detailDomain}
+                                    >
+                                        Visit Website
+                                    </a>
+                                )} */}
+                            </div>
+                            <div className={styles.detailDesc}>
+                                <p>
+                                    {/* @ts-ignore - description may not exist on all clients */}
+                                    {selectedClient.description || `A valued partner of SP Events. We are proud to have collaborated with ${selectedClient.name} to engineer extraordinary experiences.`}
+                                </p>
+                            </div>
                         </motion.div>
                     </motion.div>
                 )}
@@ -331,70 +352,44 @@ function ClientMatrix() {
     );
 }
 
-function MatrixTile({
-    client,
-    index,
-    isActive,
-    hasDimSiblings,
-    onClick,
-}: {
-    client: ClientRecord;
-    index: number;
-    isActive: boolean;
-    hasDimSiblings: boolean;
-    onClick: () => void;
-}) {
+function LogoCard({ client, onClick }: { client: ClientRecord; onClick: () => void }) {
     const [logoError, setLogoError] = useState(false);
     const initials = client.name.substring(0, 2).toUpperCase();
+    const logoSrc = client.logo
+        ? `/assets/clientLogos/${client.logo}`
+        : client.domain
+            ? `https://logo.clearbit.com/${client.domain}`
+            : null;
 
     return (
-        <motion.div
-            className={`${styles.matrixCard} ${isActive ? styles.matrixCardActive : ''}`}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.4, delay: (index % 15) * 0.03, ease: [0.22, 1, 0.36, 1] }}
-            animate={{
-                opacity: hasDimSiblings ? 0.55 : 1,
-                scale: isActive ? 1.1 : hasDimSiblings ? 0.96 : 1,
-            }}
-            whileHover={{ scale: isActive ? 1.1 : 1.06, opacity: 1 }}
+        <div 
+            className={styles.logoCard} 
             onClick={onClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onClick();
+                }
+            }}
         >
-            <div className={styles.matrixCardInner}>
-                <div className={styles.matrixLogoWrap}>
-                    {/* Priority: 1. Local logo  2. Clearbit  3. Initials */}
-                    {!logoError && (client.logo || client.domain) ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                            src={
-                                client.logo
-                                    ? `/assets/clientLogos/${client.logo}`
-                                    : `https://logo.clearbit.com/${client.domain}`
-                            }
-                            alt={client.name}
-                            className={styles.matrixLogoImage}
-                            onError={() => setLogoError(true)}
-                            loading="lazy"
-                        />
-                    ) : (
-                        <div className={styles.matrixLogoFallback}>
-                            <span>{initials}</span>
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            {/* Subtle gold ring when active */}
-            {isActive && (
-                <motion.div
-                    className={styles.matrixActiveRing}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
+            {!logoError && logoSrc ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                    src={logoSrc}
+                    alt={client.name}
+                    className={styles.logoCardImg}
+                    onError={() => setLogoError(true)}
+                    loading="lazy"
                 />
+            ) : (
+                <div className={styles.logoCardFallback}>
+                    <span>{initials}</span>
+                </div>
             )}
-        </motion.div>
+            <span className={styles.logoCardName}>{client.name}</span>
+        </div>
     );
 }
 
@@ -461,10 +456,9 @@ function TestimonialsSection() {
                             <motion.div
                                 key={active}
                                 className={styles.testiFeaturedContent}
-                                initial={{ opacity: 0, y: 24 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -16 }}
-                                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
+                                exit={{ opacity: 0, y: -8, transition: { duration: 0.15, ease: 'easeIn' } }}
                             >
                                 {/* Category tag */}
                                 <div className={styles.testiFeaturedTag}>
@@ -479,9 +473,8 @@ function TestimonialsSection() {
 
                                 {/* Author */}
                                 <div className={styles.testiFeaturedAuthor}>
-                                    <div className={styles.testiFeaturedAvatar}>
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={t.image} alt={t.name} />
+                                    <div className={styles.testiFeaturedInitial}>
+                                        {t.name.charAt(0)}
                                     </div>
                                     <div>
                                         <div className={styles.testiFeaturedName}>{t.name}</div>
@@ -501,9 +494,8 @@ function TestimonialsSection() {
                                 onMouseEnter={() => setActive(i)}
                                 onClick={() => setActive(i)}
                             >
-                                <div className={styles.testiListAvatar}>
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={item.image} alt={item.name} />
+                                <div className={styles.testiListInitial}>
+                                    {item.name.charAt(0)}
                                 </div>
                                 <div className={styles.testiListInfo}>
                                     <div className={styles.testiListName}>{item.name}</div>

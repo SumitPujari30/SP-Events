@@ -7,32 +7,4 @@
 }
 
 /* ——— Curtain CTA ——— */
-/* ——— End of Gallery Transition ——— */
-.footerCurtainWrap {
-    position: relative;
-    width: 100%;
-    /* We don't set height so it naturally expands to fit the Footer */
-    overflow: hidden;
-}
-
-.curtain {
-    position: absolute;
-    inset: 0;
-    background: var(--color-bg-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    will-change: transform;
-    z-index: 5;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.curtainLabel {
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    opacity: 0.5;
-}
+/* ——— End of Gallery Transition ——— */
