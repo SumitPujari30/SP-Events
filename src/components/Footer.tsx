@@ -13,10 +13,10 @@ import AnimatedSection from './AnimatedSection';
 const quickLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Us' },
-    { href: '/work', label: 'Our Work' },
+    { href: '/services', label: 'Services' },
     { href: '/gallery', label: 'Gallery' },
-    { href: '/esg', label: 'ESG' },
     { href: '/careers', label: 'Careers' },
+    { href: '/clients', label: 'Client' },
     { href: '/contact', label: 'Connect' },
 ];
 
@@ -33,7 +33,6 @@ const services = [
 const socials = [
     { icon: FaFacebookF, href: '#', label: 'Facebook' },
     { icon: FaInstagram, href: '#', label: 'Instagram' },
-    { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
     { icon: FaTwitter, href: '#', label: 'Twitter' },
     { icon: FaYoutube, href: '#', label: 'YouTube' },
 ];

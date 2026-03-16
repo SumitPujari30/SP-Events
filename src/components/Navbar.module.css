@@ -1,457 +1,170 @@
-/* ============================================
-   NAVBAR — iOS/Mac Floating Island Style
-   Dynamic, smooth, event-brand focused
-   ============================================ */
-
-/* --- Floating Header Container --- */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100000; /* Force above everything including custom cursor */
-    padding: 12px 24px;
-    will-change: transform, opacity;
-    pointer-events: none; /* Let clicks pass through the container... */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 60px;
+  z-index: 1000;
+  transition: background 0.3s ease, padding 0.3s ease;
 }
 
-/* ...but make the inner pill exactly clickable */
+.scrolled {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px 60px;
+}
+
 .inner {
-    pointer-events: auto;
-    max-width: var(--container-wide);
-    margin: 0 auto;
-}
-
-.progressBar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--gradient-gold);
-    transform-origin: 0%;
-    z-index: 10;
-    border-radius: 0 0 2px 0;
-    pointer-events: none;
-}
-
-/* The premium dark glass island pill */
-.inner {
-    max-width: var(--container-wide);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(10, 0, 20, 0.65);
-    backdrop-filter: blur(28px) saturate(200%);
-    -webkit-backdrop-filter: blur(28px) saturate(200%);
-    border-radius: 18px;
-    padding: 10px 28px;
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.2),
-        0 8px 32px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: box-shadow 0.4s ease, background 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.scrolled .inner {
-    background: rgba(5, 0, 10, 0.85);
-    box-shadow:
-        0 4px 16px rgba(0, 0, 0, 0.4),
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-/* --- Left & Right Link Groups --- */
-.leftLinks,
-.rightLinks {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-/* --- Individual Nav Link (wraps MagneticLink) --- */
-.navLink {
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-    padding: 8px 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px;
-    overflow: visible;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: color 0.25s ease, background 0.25s ease;
-}
-
-.navLink:hover {
-    color: var(--color-white);
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.navLinkIndex {
-    font-family: var(--font-heading);
-    font-size: 0.5rem;
-    font-weight: 500;
-    color: var(--color-gold);
-    letter-spacing: 1px;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-    line-height: 1;
-}
-
-.navLink:hover .navLinkIndex {
-    opacity: 1;
-}
-
-.navLinkLabel {
-    display: block;
-    line-height: 1;
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.navLink:hover .navLinkLabel {
-    transform: translateY(-1px);
-}
-
-.navLink.active {
-    color: var(--color-gold);
-    font-weight: 700;
-}
-
-.navLink.active .navLinkIndex {
-    opacity: 1;
-}
-
-/* Sliding active indicator */
-.activeBar {
-    position: absolute;
-    bottom: 4px;
-    left: 14px;
-    right: 14px;
-    height: 2px;
-    background: var(--gradient-gold);
-    border-radius: 1px;
-}
-
-/* --- Center Logo --- */
-.logoLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    padding: 0 24px;
-    text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 .logoImage {
-    object-fit: contain;
-    height: 48px;
-    width: auto;
-    display: block;
+  object-fit: contain;
 }
 
-/* --- CTA Button --- */
-.ctaBtn {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 12px 26px;
-    background: var(--color-gold);
-    color: var(--color-black);
-    font-family: var(--font-heading);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    border-radius: 12px;
-    text-decoration: none;
-    cursor: pointer;
-    white-space: nowrap;
-    flex-shrink: 0;
-    margin-left: 8px;
-    box-shadow: 0 2px 12px rgba(201, 168, 76, 0.35), 0 0 0 2px rgba(201, 168, 76, 0.15);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.ctaBtn:hover {
-    box-shadow: 0 8px 28px rgba(201, 168, 76, 0.5), 0 0 0 2px rgba(201, 168, 76, 0.3);
-    transform: translateY(-2px);
-}
-
-.ctaArrow {
-    display: inline-block;
-    font-size: 1rem;
-    line-height: 1;
-}
-
-/* --- Mobile Hamburger --- */
 .menuBtn {
-    display: none;
-    width: 40px;
-    height: 40px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.menuBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.overlayContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0 100px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  z-index: 2005;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeBtn:hover {
+  color: #fff;
+}
+
+.overlayLeft {
+  flex: 2.5;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 40px;
+  height: 100%;
+}
+
+.overlayRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 60px;
+}
+
+.linkContainer {
+  overflow: hidden;
+  padding: 5px 0;
+}
+
+.link {
+  font-family: inherit;
+  font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  transition: color 0.4s ease;
+  display: inline-block;
+  line-height: 1.1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: var(--color-accent-gold, #d4af37);
+}
+
+.socialIcons {
+  display: flex;
+  gap: 30px;
+  margin-right: 10px;
+}
+
+.socialIcon {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.socialIcon:hover {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 20px 30px;
+  }
+  .overlayContent {
+    flex-direction: column-reverse;
+    padding: 100px 40px;
+  }
+  .overlayLeft {
+    display: none; /* Hide images on small mobile for space */
+  }
+  .overlayRight {
     align-items: center;
-    justify-content: center;
-    color: var(--color-white);
-    background: rgba(255, 255, 255, 0.05);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    z-index: calc(var(--z-overlay) + 10);
-    transition: background 0.2s ease;
-}
-
-.menuBtn:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* ============================================
-   MOBILE MENU — full-screen dark overlay
-   ============================================ */
-.mobileMenu {
-    position: fixed;
-    inset: 0;
-    z-index: var(--z-overlay);
-    background: rgba(17, 0, 28, 0.97);
-    backdrop-filter: blur(40px) saturate(150%);
-    -webkit-backdrop-filter: blur(40px) saturate(150%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Decorative glowing blob in bg */
-.mobileBlob {
-    position: absolute;
-    width: 70vw;
-    height: 70vw;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(58, 1, 92, 0.5) 0%, transparent 70%);
-    top: -20%;
-    right: -20%;
-    filter: blur(80px);
-    pointer-events: none;
-}
-
-.mobileInner {
+    text-align: center;
     width: 100%;
-    max-width: 520px;
-    padding: 40px 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    position: relative;
-    z-index: 2;
-}
-
-.mobileLogo {
-    margin-bottom: 48px;
-}
-
-.mobileLogoImg {
-    height: 44px;
-    width: auto;
-    object-fit: contain;
-}
-
-/* Nav list */
-.mobileNav {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.mobileLink {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 22px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-/* Hover fill sweep */
-.mobileLink::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(201, 168, 76, 0.06) 0%, transparent 80%);
-    left: -100%;
-    transition: left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.mobileLink:hover::before {
-    left: 0;
-}
-
-.mobileLinkIndex {
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: var(--color-gold);
-    letter-spacing: 2px;
-    width: 28px;
-    flex-shrink: 0;
-    opacity: 0.6;
-}
-
-.mobileLinkText {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 5vw, 2.4rem);
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: -0.5px;
-    flex-grow: 1;
-    transition: color 0.3s ease;
-    line-height: 1;
-}
-
-.mobileLink:hover .mobileLinkText,
-.mobileLinkActive .mobileLinkText {
-    color: var(--color-white);
-}
-
-.mobileLinkActive .mobileLinkIndex {
-    opacity: 1;
-}
-
-.mobileLinkArrow {
-    font-size: 1.5rem;
-    color: var(--color-gold);
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.mobileLink:hover .mobileLinkArrow,
-.mobileLinkActive .mobileLinkArrow {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Footer: tagline + CTA */
-.mobileFooter {
-    width: 100%;
-    margin-top: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-}
-
-.mobileTagline {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.3);
-    line-height: 1.5;
-}
-
-.mobileCta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-    padding: 14px 32px;
-    background: var(--color-gold);
-    color: var(--color-bg-dark);
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 12px;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
-}
-
-.mobileCta:hover {
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 10px 30px rgba(201, 168, 76, 0.4);
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-@media (max-width: 1100px) {
-    .navLink {
-        font-size: 0.65rem;
-        padding: 6px 10px;
-        letter-spacing: 0;
-    }
-
-    .ctaBtn {
-        padding: 8px 16px;
-        font-size: 0.7rem;
-    }
-
-    .logoLink {
-        padding: 0 16px;
-    }
-}
-
-@media (max-width: 900px) {
-
-    .leftLinks,
-    .rightLinks {
-        display: none;
-    }
-
-    .ctaBtn {
-        display: none;
-    }
-
-    .menuBtn {
-        display: flex;
-    }
-
-    .inner {
-        padding: 8px 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header {
-        padding: 8px 12px;
-    }
-
-    .inner {
-        border-radius: 14px;
-        padding: 6px 12px;
-    }
-
-    .logoImage {
-        height: 40px;
-    }
-
-    .mobileInner {
-        padding: 32px 24px;
-    }
-
-    .mobileLinkText {
-        font-size: 1.6rem;
-    }
-
-    .mobileFooter {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
+  }
+  .link {
+    font-size: 2.5rem;
+  }
+  .closeBtn {
+    top: 20px;
+    right: 20px;
+  }
 }
