@@ -56,8 +56,8 @@ export default function Navbar() {
                         <Image
                             src="/assets/GOLD N ORANGE.png"
                             alt="SP Events"
-                            width={140}
-                            height={48}
+                            width={200}
+                            height={68}
                             className={styles.logoImage}
                             priority
                         />

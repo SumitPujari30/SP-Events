@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
 
@@ -31,7 +30,6 @@ export default function RootLayout({
       <body>
         <CustomCursor />
         <SmoothScroll>
-          <Preloader />
           <Navbar />
           <main>{children}</main>
           <Footer />

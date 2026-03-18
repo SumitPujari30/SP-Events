@@ -3,15 +3,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 30px 60px;
+  padding: 0px 60px; /* Brought down from top */
   z-index: 1000;
   transition: background 0.3s ease, padding 0.3s ease;
 }
 
 .scrolled {
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  padding: 20px 60px;
+  padding: 24px 60px; /* Thinner when scrolled */
 }
 
 .inner {
@@ -23,7 +21,9 @@
 }
 
 .logoImage {
-  object-fit: contain;
+  height: auto;
+  width: 260px; /* Made the logo much bigger */
+  max-width: 260px;
 }
 
 .menuBtn {

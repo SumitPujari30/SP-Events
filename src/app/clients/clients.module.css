@@ -364,103 +364,137 @@
 
 .matrixTitle {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 700;
     color: var(--color-white);
     letter-spacing: -1px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 }
 
 .matrixSubtitle {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.45);
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 40px;
+    font-style: italic;
 }
 
-/* --- Marquee Wrapper --- */
-.marqueeWrapper {
-    position: relative;
+/* --- Category Filter Buttons --- */
+.filterContainer {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
-.marqueeWrapper:hover .clientTrack {
-    animation-play-state: running;
+.filterBtn {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.marqueeRow {
+.filterBtn:hover {
+    color: var(--color-white);
+    border-color: rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.08);
+}
+
+.filterBtn.activeFilter {
+    color: var(--color-bg-dark);
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* --- Clients Grid --- */
+.clientsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    padding-top: 20px;
+}
+
+@media (max-width: 1200px) {
+    .clientsGrid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 992px) {
+    .clientsGrid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .clientsGrid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+}
+
+.gridItemWrapper {
     width: 100%;
-    overflow: hidden;
-}
-
-.clientTrack {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: max-content;
-    will-change: transform;
-}
-
-.scrollLeft {
-    animation: scrollClientL 100s linear infinite;
-}
-
-.scrollRight {
-    animation: scrollClientR 120s linear infinite;
-}
-
-@keyframes scrollClientL {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-@keyframes scrollClientR {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
 }
 
 /* --- Logo Card --- */
 .logoCard {
     flex-shrink: 0;
-    width: 250px;
-    height: 150px;
+    width: 100%;
+    height: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 22px 18px 14px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 12px;
+    padding: 24px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
     position: relative;
     overflow: hidden;
 }
 
 .logoCard:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(201, 168, 76, 0.3);
-    transform: translateY(-6px) scale(1.04);
-    box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.35),
-        0 0 24px rgba(201, 168, 76, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(212, 175, 55, 0.4);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.logoCard::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.logoCard:hover::after {
+    opacity: 1;
 }
 
 .logoCardImg {
-    max-width: 100%;
-    max-height: 55px;
+    max-width: 90%;
+    max-height: 60px;
     object-fit: contain;
-    filter: grayscale(60%) brightness(140%) opacity(0.65);
-    transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: grayscale(100%) opacity(0.4);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 1;
 }
 
 .logoCard:hover .logoCardImg {
-    filter: grayscale(0%) brightness(100%) opacity(1);
+    filter: grayscale(0%) opacity(1) scale(1.1);
 }
 
 .logoCardFallback {
@@ -483,21 +517,24 @@
 
 .logoCardName {
     font-family: var(--font-body);
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.35);
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    font-weight: 600;
-    transition: color 0.3s;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .logoCard:hover .logoCardName {
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--color-white);
+    letter-spacing: 1.5px;
 }
 
 /* --- Client Detail Overlay --- */
@@ -651,62 +688,37 @@
     }
 }
 
-/* --- Gradient Fade Masks --- */
-.fadeMaskLeft,
-.fadeMaskRight {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 150px;
-    z-index: 5;
-    pointer-events: none;
-}
-
-.fadeMaskLeft {
-    left: 0;
-    background: linear-gradient(to right, var(--color-bg-dark) 0%, transparent 100%);
-}
-
-.fadeMaskRight {
-    right: 0;
-    background: linear-gradient(to left, var(--color-bg-dark) 0%, transparent 100%);
-}
-
-/* RESPONSIVE — Marquee Cards */
+/* RESPONSIVE — Client Grid Cards */
 @media (max-width: 768px) {
     .logoCard {
-        width: 140px;
-        height: 90px;
-        padding: 14px 12px 10px;
+        height: 120px;
+        padding: 18px 14px;
     }
     .logoCardImg {
-        max-height: 36px;
+        max-height: 42px;
     }
-    .marqueeWrapper {
-        gap: 14px;
+    .filterContainer {
+        gap: 8px;
     }
-    .fadeMaskLeft,
-    .fadeMaskRight {
-        width: 80px;
+    .filterBtn {
+        padding: 8px 18px;
+        font-size: 0.7rem;
     }
 }
 
 @media (max-width: 480px) {
     .logoCard {
-        width: 120px;
-        height: 78px;
-        padding: 12px 10px 8px;
-        border-radius: 12px;
+        height: 100px;
+        padding: 14px 10px;
+        border-radius: 10px;
     }
     .logoCardImg {
-        max-height: 30px;
+        max-height: 34px;
     }
-    .marqueeWrapper {
-        gap: 10px;
-    }
-    .fadeMaskLeft,
-    .fadeMaskRight {
-        width: 50px;
+    .filterBtn {
+        padding: 7px 14px;
+        font-size: 0.65rem;
+        letter-spacing: 1px;
     }
 }
 

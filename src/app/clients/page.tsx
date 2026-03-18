@@ -145,14 +145,13 @@ function SplitTextHero() {
                     </div>
                 </div>
 
-                {/* Subtitle fades in after letters spread */}
+                {/* Subtitle revealed after scroll */}
                 <motion.div className={styles.heroSubtitle} style={{ opacity: subtitleOpacity }}>
                     <h2>
-                        Trusted by the world&apos;s <em>finest brands</em>
+                        Clientele
                     </h2>
                     <p className={styles.heroSubtitleText}>
-                        We design immersive experiences that leave a lasting impact — a constellation
-                        of success stories forged with industry leaders worldwide.
+                        Elevating Partnerships
                     </p>
                 </motion.div>
 
@@ -228,14 +227,28 @@ function MarqueeStrip() {
    ============================================= */
 import { clientsData, ClientRecord } from '@/lib/clientData';
 
+const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: { staggerChildren: 0.05 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } as any }
+};
+
 function ClientMatrix() {
     const [selectedClient, setSelectedClient] = useState<ClientRecord | null>(null);
+    const [activeCategory, setActiveCategory] = useState<string>('All');
 
-    // Split clients into 3 rows
-    const third = Math.ceil(clientsData.length / 3);
-    const row1 = clientsData.slice(0, third);
-    const row2 = clientsData.slice(third, third * 2);
-    const row3 = clientsData.slice(third * 2);
+    const categories = ['All', 'Corporate', 'Government', 'Education', 'Startup', 'Foundation', 'Other'];
+
+    const filteredClients = activeCategory === 'All' 
+        ? clientsData 
+        : clientsData.filter(c => c.category === activeCategory);
 
     return (
         <section className={styles.matrixSection} id="roster">
@@ -246,40 +259,38 @@ function ClientMatrix() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className={styles.matrixTitle}>Brands We&apos;ve Engineered Experiences For</h2>
-                        <p className={styles.matrixSubtitle}>Trusted by global leaders, innovators and creators.</p>
+                        <h2 className={styles.matrixTitle}>Clientele</h2>
+                        <p className={styles.matrixSubtitle}>Elevating Partnerships</p>
                     </motion.div>
-                </div>
-            </div>
 
-            <div className={styles.marqueeWrapper}>
-                {/* Row 1 — scrolls LEFT */}
-                <div className={styles.marqueeRow}>
-                    <div className={`${styles.clientTrack} ${styles.scrollLeft}`}>
-                        {[...row1, ...row1].map((client, i) => (
-                            <LogoCard key={`r1-${i}`} client={client} onClick={() => setSelectedClient(client)} />
+                    {/* Category Filters */}
+                    <div className={styles.filterContainer}>
+                        {categories.map(cat => (
+                            <button
+                                key={cat}
+                                className={`${styles.filterBtn} ${activeCategory === cat ? styles.activeFilter : ''}`}
+                                onClick={() => setActiveCategory(cat)}
+                            >
+                                {cat}
+                            </button>
                         ))}
                     </div>
                 </div>
-                {/* Row 2 — scrolls RIGHT */}
-                <div className={styles.marqueeRow}>
-                    <div className={`${styles.clientTrack} ${styles.scrollRight}`}>
-                        {[...row2, ...row2].map((client, i) => (
-                            <LogoCard key={`r2-${i}`} client={client} onClick={() => setSelectedClient(client)} />
-                        ))}
-                    </div>
-                </div>
-                {/* Row 3 — scrolls LEFT */}
-                <div className={styles.marqueeRow}>
-                    <div className={`${styles.clientTrack} ${styles.scrollLeft}`}>
-                        {[...row3, ...row3].map((client, i) => (
-                            <LogoCard key={`r3-${i}`} client={client} onClick={() => setSelectedClient(client)} />
-                        ))}
-                    </div>
-                </div>
-                {/* Gradient fade edges */}
-                <div className={styles.fadeMaskLeft} />
-                <div className={styles.fadeMaskRight} />
+
+                <motion.div 
+                    key={activeCategory} // Force re-animation on filter change
+                    className={styles.clientsGrid}
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="show"
+                    viewport={{ once: true, margin: "-50px" }}
+                >
+                    {filteredClients.map((client, i) => (
+                        <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
+                            <LogoCard client={client} onClick={() => setSelectedClient(client)} />
+                        </motion.div>
+                    ))}
+                </motion.div>
             </div>
 
             {/* Client Detail Overlay */}

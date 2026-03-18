@@ -1,112 +1,66 @@
 /* eslint-disable @next/next/no-img-element, react/no-unescaped-entities */
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './page.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function HomePage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Custom Cursor Refs
-  const cursorDotRef = useRef<HTMLDivElement>(null);
-  const cursorRingRef = useRef<HTMLDivElement>(null);
+// ─── Event Categories ────────────────────────────────────────
+const eventCategories = [
+  {
+    id: 'corporate',
+    label: 'Corporate',
+    title: 'Corporate Events',
+    desc: 'Boardroom-precision meets experiential design. Conferences, leadership conclaves, AGMs, and team summits that command authority.',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+    color: '#d4af37',
+  },
+  {
+    id: 'musical',
+    label: 'Music',
+    title: 'Musical Events',
+    desc: 'Concert production, artist management, and stage design that transforms venues into electric arenas. Pure energy, flawlessly staged.',
+    image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80',
+    color: '#a855f7',
+  },
+  {
+    id: 'sports',
+    label: 'Sports',
+    title: 'Sports Events',
+    desc: 'From marathons to tournaments — we handle on-ground logistics, branding, spectator experience, and broadcast coordination.',
+    image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80',
+    color: '#22c55e',
+  },
+  {
+    id: 'launches',
+    label: 'Launch',
+    title: 'Launch Events',
+    desc: 'Day-one buzz engineered from the ground up. Product reveals, brand launches, and store openings that become cultural moments.',
+    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80',
+    color: '#3b82f6',
+  },
+  {
+    id: 'special',
+    label: 'Special',
+    title: 'Special Events',
+    desc: 'Award nights, gala dinners, anniversary celebrations, and milestone events designed to leave every guest breathless.',
+    image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80',
+    color: '#f97316',
+  },
+  {
+    id: 'weddings',
+    label: 'Weddings',
+    title: 'Weddings',
+    desc: 'Luxury wedding experiences crafted with meticulous attention to every detail — from venue transformation to live entertainment.',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+    color: '#ec4899',
+  },
+];
 
-  useEffect(() => {
-    // Only run GSAP on client
-    const ctx = gsap.context(() => {
-      
-      // Custom Cursor Mouse Tracking
-      const cursorDot = cursorDotRef.current;
-      const cursorRing = cursorRingRef.current;
-
-      if (cursorDot && cursorRing) {
-        gsap.set(cursorDot, { xPercent: -50, yPercent: -50 });
-        gsap.set(cursorRing, { xPercent: -50, yPercent: -50 });
-
-        const onMouseMove = (e: MouseEvent) => {
-          gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1, ease: 'power2.out' });
-          gsap.to(cursorRing, { x: e.clientX, y: e.clientY, duration: 0.35, ease: 'power3.out' });
-        };
-
-        window.addEventListener('mousemove', onMouseMove);
-
-        // Hover effects for interactive elements
-        const interactiveElements = document.querySelectorAll(`button, a, .glass-panel, .${styles.logoCard}`);
-        interactiveElements.forEach((el) => {
-          el.addEventListener('mouseenter', () => {
-             gsap.to(cursorRing, { scale: 1.8, borderColor: 'rgba(212, 175, 55, 0.8)', backgroundColor: 'rgba(212, 175, 55, 0.08)', duration: 0.3 });
-             gsap.to(cursorDot, { scale: 0, duration: 0.3 });
-          });
-          el.addEventListener('mouseleave', () => {
-             gsap.to(cursorRing, { scale: 1, borderColor: 'rgba(212, 175, 55, 0.5)', backgroundColor: 'transparent', duration: 0.3 });
-             gsap.to(cursorDot, { scale: 1, duration: 0.3 });
-          });
-        });
-
-        return () => window.removeEventListener('mousemove', onMouseMove);
-      }
-
-    }, containerRef);
-    
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <div className={styles.wrapper} ref={containerRef}>
-      
-      {/* Custom Cursor */}
-      <div className={styles.cursorDot} ref={cursorDotRef} />
-      <div className={styles.cursorRing} ref={cursorRingRef} />
-
-      {/* 4. TRUSTED BY — THREE ROW MARQUEE */}
-      <section className={styles.marqueeSection} style={{ marginTop: '100px' }}>
-         <h4 className={styles.marqueeTitle}>Trusted By Industry Leaders</h4>
-         <div className={styles.marqueeWrapper}>
-           {/* Row 1 — scrolls LEFT */}
-           <div className={styles.marqueeRow}>
-             <div className={`${styles.marqueeTrack} ${styles.scrollLeft}`}>
-               {[...clientsRow1, ...clientsRow1].map((c, i) => (
-                 <div key={i} className={styles.logoCard}>
-                   <img src={c.logo} alt={c.name} className={styles.logoImg} />
-                 </div>
-               ))}
-             </div>
-           </div>
-           {/* Row 2 — scrolls RIGHT */}
-           <div className={styles.marqueeRow}>
-             <div className={`${styles.marqueeTrack} ${styles.scrollRight}`}>
-               {[...clientsRow2, ...clientsRow2].map((c, i) => (
-                 <div key={i} className={styles.logoCard}>
-                   <img src={c.logo} alt={c.name} className={styles.logoImg} />
-                 </div>
-               ))}
-             </div>
-           </div>
-           {/* Row 3 — scrolls LEFT */}
-           <div className={styles.marqueeRow}>
-             <div className={`${styles.marqueeTrack} ${styles.scrollLeft}`}>
-               {[...clientsRow3, ...clientsRow3].map((c, i) => (
-                 <div key={i} className={styles.logoCard}>
-                   <img src={c.logo} alt={c.name} className={styles.logoImg} />
-                 </div>
-               ))}
-             </div>
-           </div>
-           {/* Gradient fade edges */}
-           <div className={styles.fadeMaskLeft} />
-           <div className={styles.fadeMaskRight} />
-         </div>
-      </section>
-
-    </div>
-  );
-}
-
-// Data Sets
+// ─── Clients Data ────────────────────────────────────────────
 const clientsRow1 = [
    { name: "Samsung", logo: "/assets/clientLogos/samsung.png" },
    { name: "Reliance", logo: "/assets/clientLogos/reliance_logo.png" },
@@ -164,3 +118,282 @@ const clientsRow3 = [
    { name: "Trust Grow", logo: "/assets/clientLogos/trust grow fertilizers.png" },
    { name: "Uni Abex", logo: "/assets/clientLogos/uni abex.png" },
 ];
+
+// ─── Component ───────────────────────────────────────────────
+const rhymeWords = ["Unforgettable", "Indelible", "Incredible", "Exceptional", "Unparalleled"];
+
+export default function HomePage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % rhymeWords.length);
+    }, 2800); // Cycle every 2.8 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+
+      // ── Hero video fade in ───────────────────────────────────
+      gsap.fromTo(
+        videoRef.current,
+        { opacity: 0, scale: 1.05 },
+        { opacity: 1, scale: 1, duration: 2.2, ease: 'power2.out', delay: 0.2 }
+      );
+
+      // Scroll line bounce
+      gsap.fromTo(scrollIndicatorRef.current, { opacity: 0 }, { opacity: 1, duration: 0.6, delay: 1.2 });
+      gsap.to(scrollIndicatorRef.current, {
+        y: 10, repeat: -1, yoyo: true, duration: 1.2, ease: 'sine.inOut', delay: 1.4,
+      });
+
+      // ── Experiences Unique Text Reveal ─────────────────────
+      const expTitleLines = document.querySelectorAll(`.${styles.expUniqueLineInner}`);
+      if (expTitleLines.length) {
+        gsap.fromTo(
+          expTitleLines,
+          { y: '100%', rotation: 5 },
+          {
+            y: '0%',
+            rotation: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: 'power4.out',
+            scrollTrigger: {
+              trigger: `.${styles.experiencesSection}`,
+              start: 'top 70%',
+            },
+          }
+        );
+      }
+
+      // Exp text fade in
+      gsap.fromTo(
+        `.${styles.expTextFade}`,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: 'power3.out',
+          scrollTrigger: { trigger: `.${styles.expRight}`, start: 'top 75%' },
+        }
+      );
+
+      // ── Category cards ───────────────────────────────────────
+      gsap.fromTo(
+        `.${styles.catCard}`,
+        { opacity: 0, y: 70 },
+        {
+          opacity: 1, y: 0, duration: 0.75, stagger: 0.1, ease: 'power3.out',
+          scrollTrigger: { trigger: `.${styles.catGrid}`, start: 'top 82%' },
+        }
+      );
+
+      // ── Divider banner image arrival ─────────────────────────
+      gsap.fromTo(
+        `.${styles.wowImage}`,
+        { y: 120, opacity: 0, scale: 0.9 },
+        {
+          y: 0, opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(1.2)',
+          scrollTrigger: { trigger: `.${styles.dividerBanner}`, start: 'top 85%' },
+        }
+      );
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div className={styles.wrapper} ref={containerRef}>
+
+      {/* ═══════════════════════════════════════════════════════
+          1. HERO — pure video, no text/buttons over it
+      ════════════════════════════════════════════════════════ */}
+      <section className={styles.heroSection}>
+
+        <div className={styles.videoBg}>
+          <video
+            ref={videoRef}
+            src="https://www.tantraa.net/wp-content/uploads/2024/05/video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className={styles.videoBgEl}
+          />
+          <div className={styles.videoOverlayBase} />
+          <div className={styles.videoOverlayGradient} />
+        </div>
+
+        {/* Scroll indicator only */}
+        <div className={styles.scrollIndicator} ref={scrollIndicatorRef}>
+          <div className={styles.scrollLine} />
+          <span className={styles.scrollText}>SCROLL</span>
+        </div>
+
+        <div className={styles.heroBottomFade} />
+      </section>
+
+
+      {/* ═══════════════════════════════════════════════════════
+          2. EXPERIENCES — Custom SP Events Design
+      ════════════════════════════════════════════════════════ */}
+      <section className={styles.experiencesSection}>
+        {/* Soft glowing orb for brand identity */}
+        <div className={styles.expOrbGold} />
+        <div className={styles.expOrbPurple} />
+        
+        <div className={`container ${styles.expContainer}`}>
+          
+          {/* Left Column - Unique Staggered Title */}
+          <div className={styles.expLeft}>
+            <div className={styles.expBadge}>
+              <span className={styles.expBadgeDiamond}>✧</span>
+              Our Philosophy
+            </div>
+            
+            <h2 className={styles.expTitle}>
+              <div className={styles.expUniqueLine}>
+                <span className={styles.expUniqueLineInner}>Architecting</span>
+              </div>
+              <div className={styles.expUniqueLine}>
+                <span className={`${styles.expUniqueLineInner} ${styles.rhymeHoverWrapper}`}>
+                  <span key={wordIndex} className={`${styles.animatedWord} ${styles.expTextGoldItalic}`}>
+                    {rhymeWords[wordIndex]}
+                  </span>
+                </span>
+              </div>
+              <div className={styles.expUniqueLine}>
+                <span className={styles.expUniqueLineInner}>Moments.</span>
+              </div>
+            </h2>
+          </div>
+
+          {/* Right Column - Brand Story */}
+          <div className={styles.expRight}>
+            <div className={styles.expStoryBlock}>
+              <p className={`${styles.expText} ${styles.expTextFade}`}>
+                At <strong className={styles.expTextHighlight}>The SP Events</strong>, ideas transform into immersive realities. We fuse bold creativity with microscopic attention to detail and razor-sharp execution. For us, the magic lies in orchestrating the perfect balance between the grand vision and the smallest touchpoints.
+              </p>
+              
+              <div className={`${styles.expDivider} ${styles.expTextFade}`} />
+              
+              <p className={`${styles.expTextSecondary} ${styles.expTextFade}`}>
+                Born from over 15 years of industry mastery, our founding team recognized a profound need for a truly professional, innovation-driven event management partner. We don't just plan events; we engineer environments that resonate.
+              </p>
+            </div>
+            
+            <div className={`${styles.expAction} ${styles.expTextFade}`}>
+              <a href="/about" className={styles.expButton}>
+                <span className={styles.expButtonText}>Discover Our Story</span>
+                <span className={styles.expButtonArrow}>→</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* ═══════════════════════════════════════════════════════
+          3. EVENT CATEGORIES — image cards grid
+      ════════════════════════════════════════════════════════ */}
+      <section className={styles.categoriesSection}>
+        <div className="container">
+
+          {/* Section heading */}
+          <div className={styles.catHeader}>
+            <span className="section-label">We specialise in</span>
+            <h2 className={styles.catTitle}>
+              Corporate Event<br />
+              <span className="gradient-text">Management</span>
+            </h2>
+          </div>
+        </div>
+
+        {/* Image cards grid — Full width to cover screen */}
+        <div className={styles.catGridWrapper}>
+          <div className={styles.catGrid}>
+            {eventCategories.map(cat => (
+              <div
+                key={cat.id}
+                className={styles.catCard}
+                style={{ '--cat-color': cat.color } as React.CSSProperties}
+              >
+                {/* Full bleed background image */}
+                <div
+                  className={styles.catCardBg}
+                  style={{ backgroundImage: `url(${cat.image})` }}
+                />
+                {/* Simple dark gradient at bottom for text readability */}
+                <div className={styles.catCardGradient} />
+
+                {/* Content */}
+                <div className={styles.catCardContent}>
+                  <h3 className={styles.catCardTitle}>{cat.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* ═══════════════════════════════════════════════════════
+          4. CREATING WOW EXPERIENCES — Image Banner
+      ════════════════════════════════════════════════════════ */}
+      <div className={styles.dividerBanner}>
+        <div className={styles.dividerBannerInner}>
+          <img 
+            src="https://www.tantraa.net/wp-content/uploads/2024/05/cwe-1-2048x438.png" 
+            alt="Creating Wow Experiences"
+            className={styles.wowImage}
+          />
+        </div>
+      </div>
+
+
+      {/* ═══════════════════════════════════════════════════════
+          5. TRUSTED BY — THREE ROW MARQUEE
+      ════════════════════════════════════════════════════════ */}
+      <section className={styles.marqueeSection}>
+        <h4 className={styles.marqueeTitle}>Trusted By Industry Leaders</h4>
+        <div className={styles.marqueeWrapper}>
+          <div className={styles.marqueeRow}>
+            <div className={`${styles.marqueeTrack} ${styles.scrollLeft}`}>
+              {[...clientsRow1, ...clientsRow1].map((c, i) => (
+                <div key={i} className={styles.logoCard}>
+                  <img src={c.logo} alt={c.name} className={styles.logoImg} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.marqueeRow}>
+            <div className={`${styles.marqueeTrack} ${styles.scrollRight}`}>
+              {[...clientsRow2, ...clientsRow2].map((c, i) => (
+                <div key={i} className={styles.logoCard}>
+                  <img src={c.logo} alt={c.name} className={styles.logoImg} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.marqueeRow}>
+            <div className={`${styles.marqueeTrack} ${styles.scrollLeft}`}>
+              {[...clientsRow3, ...clientsRow3].map((c, i) => (
+                <div key={i} className={styles.logoCard}>
+                  <img src={c.logo} alt={c.name} className={styles.logoImg} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.fadeMaskLeft} />
+          <div className={styles.fadeMaskRight} />
+        </div>
+      </section>
+
+    </div>
+  );
+}
