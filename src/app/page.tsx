@@ -119,6 +119,14 @@ const clientsRow3 = [
    { name: "Uni Abex", logo: "/assets/clientLogos/uni abex.png" },
 ];
 
+// ─── Stats Data ──────────────────────────────────────────────
+const stats = [
+  { value: "4+", label: "Years of Excellence" },
+  { value: "300+", label: "Happy Clients" },
+  { value: "1500+", label: "Magic Experiences" },
+  { value: "30+", label: "Professionals" },
+];
+
 // ─── Component ───────────────────────────────────────────────
 const rhymeWords = ["Unforgettable", "Indelible", "Incredible", "Exceptional", "Unparalleled"];
 
@@ -201,6 +209,15 @@ export default function HomePage() {
         }
       );
 
+      // ── Stats Section ─────────────────────────────────────────
+      gsap.fromTo(
+        `.${styles.statItem}`,
+        { opacity: 0, y: 50, scale: 0.9 },
+        {
+          opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.15, ease: 'back.out(1.7)',
+          scrollTrigger: { trigger: `.${styles.statsGrid}`, start: 'top 85%' },
+        }
+      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -357,7 +374,26 @@ export default function HomePage() {
 
 
       {/* ═══════════════════════════════════════════════════════
-          5. TRUSTED BY — THREE ROW MARQUEE
+          5. STATS SECTION — Premium Metrics
+      ════════════════════════════════════════════════════════ */}
+      <section className={styles.statsSection}>
+        <div className="container">
+          <div className={styles.statsGrid}>
+            {stats.map((stat, i) => (
+              <div key={i} className={styles.statItem}>
+                <div className={styles.statGlass}>
+                  <div className={styles.statNumber}>{stat.value}</div>
+                  <div className={styles.statLabel}>{stat.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* ═══════════════════════════════════════════════════════
+          6. TRUSTED BY — THREE ROW MARQUEE
       ════════════════════════════════════════════════════════ */}
       <section className={styles.marqueeSection}>
         <h4 className={styles.marqueeTitle}>Trusted By Industry Leaders</h4>

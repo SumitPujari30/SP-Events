@@ -1,6 +1,6 @@
 'use client';
-
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
     HiOutlineHeart,
     HiOutlineLightningBolt,
@@ -39,12 +39,54 @@ const processSteps = [
     { num: '04', title: 'Legacy', desc: 'Crafting moments that your audience remembers for years to come.' },
 ];
 
+const grassrootsImages = [
+    { url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80', artist: 'Event Vibes' },
+    { url: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80', artist: 'Musical Night' },
+    { url: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80', artist: 'Corporate Gala' },
+    { url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80', artist: 'DJ Performance' },
+    { url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80', artist: 'Celebration' },
+    { url: 'https://images.unsplash.com/photo-1459749411177-042180ce673c?w=800&q=80', artist: 'Concert Hall' },
+];
+
+const destinations = [
+    { name: 'BENGALURU', url: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1200&q=80', size: 'large' },
+    { name: 'MUMBAI', url: 'https://images.unsplash.com/photo-1566552881560-0be862a7c445?w=1200&q=80', size: 'large' },
+    { name: 'KOLKATA', url: 'https://images.unsplash.com/photo-1558431382-7f28df621a00?w=600&q=80', size: 'small' },
+    { name: 'HYDERABAD', url: 'https://images.unsplash.com/photo-1572445271230-a78b5944a659?w=600&q=80', size: 'small' },
+    { name: 'DELHI', url: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80', size: 'small' },
+    { name: 'DUBAI', url: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80', size: 'small' },
+    { name: 'CAPE TOWN', url: 'https://images.unsplash.com/photo-1580619305218-85e23b49e894?w=600&q=80', size: 'small' },
+];
+
 export default function AboutPage() {
+    const heroRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ["start start", "end start"]
+    });
+
+    const yTitle = useTransform(scrollYProgress, [0, 1], [0, 150]);
+    const ySubtitle = useTransform(scrollYProgress, [0, 1], [0, 80]);
+    const opacityHero = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+    const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+
     return (
         <>
             {/* Hero */}
-            <section className="page-hero">
-                <div className="page-hero-content">
+            <section ref={heroRef} className={styles.heroSection}>
+                <motion.div 
+                    className={styles.heroBg}
+                    style={{ 
+                        scale: bgScale,
+                        backgroundImage: 'url(https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1920&q=80)'
+                    }}
+                />
+                <div className={styles.heroOverlay} />
+                
+                <motion.div 
+                    className={styles.heroContent}
+                    style={{ opacity: opacityHero }}
+                >
                     <motion.span
                         className="section-label"
                         initial={{ opacity: 0, y: 20 }}
@@ -54,7 +96,8 @@ export default function AboutPage() {
                         About Us
                     </motion.span>
                     <motion.h1
-                        className="page-hero-title"
+                        className={styles.heroTitle}
+                        style={{ y: yTitle }}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5, duration: 0.7 }}
@@ -62,97 +105,124 @@ export default function AboutPage() {
                         Our <span className="text-gold">Story</span>
                     </motion.h1>
                     <motion.p
-                        className="page-hero-subtitle"
+                        className={styles.heroSubtitle}
+                        style={{ y: ySubtitle }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.7 }}
                     >
                         A journey of creativity, resilience, and relentless pursuit of excellence in event management.
                     </motion.p>
-                </div>
+                </motion.div>
             </section>
 
-            {/* Story Section */}
-            <section className="section section-violet">
+            {/* Grassroots Slider Section */}
+            <section className={styles.grassrootsSection}>
+                <motion.div 
+                    className={styles.grassrootsHeader}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: 'easeOut' }}
+                >
+                    <h2 className={styles.grassrootsTitle}>GRASSROOTS</h2>
+                </motion.div>
+
+                <div className={styles.sliderContainer}>
+                    <motion.div 
+                        className={styles.sliderTrack}
+                        drag="x"
+                        dragConstraints={{ left: -1200, right: 0 }}
+                        whileTap={{ cursor: 'grabbing' }}
+                    >
+                        {grassrootsImages.map((img, i) => (
+                            <div key={i} className={styles.sliderItem}>
+                                <img src={img.url} alt={img.artist} className={styles.sliderImage} />
+                                <div className={styles.sliderOverlay}>
+                                    <span className={styles.sliderArtist}>{img.artist}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
+
+                <motion.div 
+                    className={styles.grassrootsFooter}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                >
+                    <p className={styles.grassrootsSubtitle}>PIONEERING MAGICAL EVENT EXPERIENCES</p>
+                </motion.div>
+            </section>
+
+            {/* Values — Moved to item 3 */}
+            <section className="section bg-dark-alt">
                 <div className="container">
-                    <div className={styles.storyGrid}>
-                        <AnimatedSection variant="fadeLeft">
-                            <div className={styles.storyImage}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=90"
-                                    alt="Grand event production"
-                                />
-                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(12, 0, 26, 0.4), transparent)' }} />
-                            </div>
-                        </AnimatedSection>
-                        <AnimatedSection variant="fadeRight" delay={0.2}>
-                            <div className={styles.storyContent}>
-                                <span className="section-label">Our Legacy</span>
-                                <TextReveal text="The Art of Weaving Experiences" as="h2" className="section-title" />
-                                <div style={{ height: '2px', width: '60px', background: 'var(--gradient-primary)', margin: '24px 0' }} />
-                                <p className={styles.storyText}>
-                                    The SP Events was born from a simple yet powerful idea — that every event deserves to be a masterpiece. Founded in 2010, we identified a gap for truly professional, innovative, and reliable event management.
-                                </p>
-                                <p className={styles.storyText}>
-                                    Our name reflects the essence of our craft. Like the art of weaving, we interlace creativity and strategy — our <strong>&ldquo;Taana-Baana&rdquo;</strong> approach — to craft experiences that resonate.
-                                </p>
-                                <p className={styles.storyText}>
-                                    Today, with 6,000+ successful events, we continue to push the boundaries of wonder, transforming moments into extraordinary memories.
-                                </p>
-                            </div>
-                        </AnimatedSection>
+                    <AnimatedSection>
+                        <div className="section-header">
+                            <span className="section-label">03. Our Values</span>
+                            <h2 className="section-title">The Foundation of <span className="text-gold">Excellence</span></h2>
+                        </div>
+                    </AnimatedSection>
+
+                    <div className={styles.valuesGrid}>
+                        {values.map((v, i) => (
+                            <AnimatedSection key={i} delay={i * 0.08}>
+                                <div className={styles.valueCard}>
+                                    <div className={styles.valueIcon}>
+                                        <v.icon size={26} />
+                                    </div>
+                                    <div className={styles.valueCardContent}>
+                                        <h4>{v.title}</h4>
+                                        <p>{v.desc}</p>
+                                    </div>
+                                    <div className={styles.valueCardEdge} />
+                                </div>
+                            </AnimatedSection>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            <section className="section section-dark">
+            {/* Destinations — Where You Can Find Us */}
+            <section className={styles.destinationsSection}>
                 <div className="container">
                     <AnimatedSection>
-                        <div className="section-header center">
-                            <span className="section-label">Our Approach</span>
-                            <h2 className="section-title">Taana-Baana Philosophy</h2>
-                            <p className="section-subtitle">
-                                The perfect interlacing of creativity and strategy that defines every event we create.
+                        <div className="section-header center mb-0">
+                            <h2 className={styles.destTitle}>WHERE YOU CAN<br />FIND US</h2>
+                            <p className={styles.destSubtitle}>
+                                Our expertise and services extended to these destinations for your convenience.
                             </p>
                         </div>
                     </AnimatedSection>
+                </div>
 
-                    <div className={styles.approachGrid}>
-                        <AnimatedSection variant="fadeLeft" delay={0.1}>
-                            <div className={styles.approachCard}>
-                                <div className={styles.approachIcon}>🎨</div>
-                                <h3>Taana — Creativity</h3>
-                                <p>The warp threads of imagination, artistic vision, and boundless creative energy that give each event its unique character and soul.</p>
-                                <ul className={styles.approachList}>
-                                    <li>Conceptual Design</li>
-                                    <li>Visual Storytelling</li>
-                                    <li>Immersive Experiences</li>
-                                    <li>Artistic Direction</li>
-                                </ul>
-                            </div>
-                        </AnimatedSection>
-
-                        <AnimatedSection variant="scaleUp" delay={0.2}>
-                            <div className={styles.approachCenter}>
-                                <div className={styles.weaveIcon}>✦</div>
-                                <h3>The Weave</h3>
-                                <p>Where magic happens — the perfect intersection of creative brilliance and strategic precision.</p>
-                            </div>
-                        </AnimatedSection>
-
-                        <AnimatedSection variant="fadeRight" delay={0.3}>
-                            <div className={styles.approachCard}>
-                                <div className={styles.approachIcon}>📊</div>
-                                <h3>Baana — Strategy</h3>
-                                <p>The weft threads of meticulous planning, data-driven decisions, and flawless execution that bring every vision to life.</p>
-                                <ul className={styles.approachList}>
-                                    <li>Strategic Planning</li>
-                                    <li>Budget Optimization</li>
-                                    <li>Logistics Management</li>
-                                    <li>Performance Metrics</li>
-                                </ul>
-                            </div>
-                        </AnimatedSection>
+                <div className={styles.destGrid}>
+                    <div className={styles.destLargeRow}>
+                        {destinations.filter(d => d.size === 'large').map((dest, i) => (
+                            <AnimatedSection key={i} variant={i === 0 ? 'fadeLeft' : 'fadeRight'} className={styles.destCardLarge}>
+                                <div className={styles.destCard}>
+                                    <img src={dest.url} alt={dest.name} className={styles.destImage} />
+                                    <div className={styles.destOverlay}>
+                                        <span className={styles.destCity}>{dest.name}</span>
+                                    </div>
+                                </div>
+                            </AnimatedSection>
+                        ))}
+                    </div>
+                    <div className={styles.destSmallRow}>
+                        {destinations.filter(d => d.size === 'small').map((dest, i) => (
+                            <AnimatedSection key={i} variant="fadeUp" delay={0.1 * i} className={styles.destCardSmall}>
+                                <div className={styles.destCard}>
+                                    <img src={dest.url} alt={dest.name} className={styles.destImage} />
+                                    <div className={styles.destOverlay}>
+                                        <span className={styles.destCitySmall}>{dest.name}</span>
+                                    </div>
+                                </div>
+                            </AnimatedSection>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -192,41 +262,15 @@ export default function AboutPage() {
                 <div className="container">
                     <div className={styles.aboutStats}>
                         {[
-                            { value: 6000, suffix: '+', label: 'Events Delivered' },
-                            { value: 100, suffix: '+', label: 'Team Members' },
-                            { value: 15, suffix: '+', label: 'Cities Covered' },
-                            { value: 50, suffix: '+', label: 'Award Wins' },
+                            { value: 4, suffix: '+', label: 'Years of Excellence' },
+                            { value: 300, suffix: '+', label: 'Happy Clients' },
+                            { value: 1500, suffix: '+', label: 'Magic Experiences' },
+                            { value: 30, suffix: '+', label: 'Professionals' },
                         ].map((stat, i) => (
                             <AnimatedSection key={i} delay={i * 0.1}>
                                 <div className={styles.aboutStatItem}>
                                     <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.aboutStatValue} />
                                     <span className={styles.aboutStatLabel}>{stat.label}</span>
-                                </div>
-                            </AnimatedSection>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Values */}
-            <section className="section">
-                <div className="container">
-                    <AnimatedSection>
-                        <div className="section-header">
-                            <span className="section-label">What Drives Us</span>
-                            <h2 className="section-title">Our Core Values</h2>
-                        </div>
-                    </AnimatedSection>
-
-                    <div className={styles.valuesGrid}>
-                        {values.map((v, i) => (
-                            <AnimatedSection key={i} delay={i * 0.08}>
-                                <div className={styles.valueCard}>
-                                    <div className={styles.valueIcon}>
-                                        <v.icon size={24} />
-                                    </div>
-                                    <h4>{v.title}</h4>
-                                    <p>{v.desc}</p>
                                 </div>
                             </AnimatedSection>
                         ))}
