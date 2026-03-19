@@ -301,7 +301,7 @@ export default function HomePage() {
               <div className={`${styles.expDivider} ${styles.expTextFade}`} />
               
               <p className={`${styles.expTextSecondary} ${styles.expTextFade}`}>
-                Born from over 15 years of industry mastery, our founding team recognized a profound need for a truly professional, innovation-driven event management partner. We don't just plan events; we engineer environments that resonate.
+                Born from over 4+ years of industry mastery, our founding team recognized a profound need for a truly professional, innovation-driven event management partner. We don't just plan events; we engineer environments that resonate.
               </p>
             </div>
             

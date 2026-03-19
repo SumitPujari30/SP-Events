@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
-import gsap from 'gsap';
+import React from 'react';
 import Image from 'next/image';
 import styles from './HomeBrandsSection.module.css';
 
@@ -16,15 +15,10 @@ interface Props {
 
 export default function HomeBrandsSection({ brands }: Props) {
 
-    const sectionRef = useRef<HTMLDivElement>(null);
-
-    const col1Ref = useRef<HTMLDivElement>(null);
-    const col2Ref = useRef<HTMLDivElement>(null);
-    const col3Ref = useRef<HTMLDivElement>(null);
-
-    const col1 = React.useMemo(() => brands.slice(0, 15), [brands]);
-    const col2 = React.useMemo(() => brands.slice(15, 30), [brands]);
-    const col3 = React.useMemo(() => brands.slice(30, 45), [brands]);
+    const third = Math.ceil(brands.length / 3);
+    const col1 = React.useMemo(() => brands.slice(0, third), [brands, third]);
+    const col2 = React.useMemo(() => brands.slice(third, third * 2), [brands, third]);
+    const col3 = React.useMemo(() => brands.slice(third * 2), [brands, third]);
 
     const getImgSrc = (logo: string | undefined) => {
         if (!logo) return '';
@@ -33,100 +27,33 @@ export default function HomeBrandsSection({ brands }: Props) {
             : `/assets/clientLogos/${logo}`;
     };
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            const createInfiniteLoop = (
-                el: HTMLDivElement | null,
-                duration = 30,
-                direction: 'up' | 'down' = 'up'
-            ) => {
-                if (!el) return;
-
-                let tween: gsap.core.Tween | null = null;
-                let lastHeight = 0;
-
-                const initTween = () => {
-                    const currentHeight = el.scrollHeight;
-                    if (currentHeight <= 0 || currentHeight === lastHeight) return;
-                    lastHeight = currentHeight;
-
-                    if (tween) tween.kill();
-                    
-                    if (direction === 'up') {
-                        tween = gsap.fromTo(
-                            el,
-                            { yPercent: 0 },
-                            {
-                                yPercent: -50,
-                                duration,
-                                ease: 'none',
-                                repeat: -1,
-                            }
-                        );
-                    } else {
-                        tween = gsap.fromTo(
-                            el,
-                            { yPercent: -50 },
-                            {
-                                yPercent: 0,
-                                duration,
-                                ease: 'none',
-                                repeat: -1,
-                            }
-                        );
-                    }
-                };
-
-                const observer = new ResizeObserver(() => {
-                    initTween();
-                });
-                observer.observe(el);
-
-                el.addEventListener('mouseenter', () => {
-                    if (tween) gsap.to(tween, { timeScale: 0, duration: 0.4 });
-                });
-
-                el.addEventListener('mouseleave', () => {
-                    if (tween) gsap.to(tween, { timeScale: 1, duration: 0.4 });
-                });
-
-                return () => {
-                    observer.disconnect();
-                    if (tween) tween.kill();
-                };
-            };
-
-            const cleanup1 = createInfiniteLoop(col1Ref.current, 28, 'up');
-            const cleanup2 = createInfiniteLoop(col2Ref.current, 34, 'down');
-            const cleanup3 = createInfiniteLoop(col3Ref.current, 30, 'up');
-
-            return () => {
-                cleanup1?.();
-                cleanup2?.();
-                cleanup3?.();
-            };
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, [brands]); // Add brands to dependencies to ensure correct slices are used if they change
-
     const Column = ({
         list,
-        innerRef
+        direction,
+        duration
     }: {
         list: Brand[],
-        innerRef: React.RefObject<HTMLDivElement | null>
+        direction: 'up' | 'down',
+        duration: number
     }) => (
         <div className={styles.carouselLogosWrap}>
-            <div className={styles.carouselLogosCol} ref={innerRef}>
-                {list.concat(list).map((brand, i) => (
-                    <div key={i} className={styles.logoItem}>
-                        <Image
-                            src={getImgSrc(brand.logo)}
-                            alt={brand.name}
-                            fill
-                            className={styles.logoImage}
-                        />
+            <div 
+                className={`${styles.carouselLogosCol} ${styles[direction]}`}
+                style={{ animationDuration: `${duration}s` }}
+            >
+                {/* We render exactly 2 identical lists side-by-side to create a seamless infinite loop */}
+                {[...Array(2)].map((_, groupIndex) => (
+                    <div key={groupIndex} className={styles.marqueeGroup}>
+                        {list.map((brand, i) => (
+                            <div key={`${groupIndex}-${i}`} className={styles.logoItem}>
+                                <Image
+                                    src={getImgSrc(brand.logo)}
+                                    alt={brand.name === "Govt of Karnataka" ? "GOK" : brand.name} // minor accessibility text fallback optimization
+                                    fill
+                                    className={styles.logoImage}
+                                />
+                            </div>
+                        ))}
                     </div>
                 ))}
             </div>
@@ -134,7 +61,7 @@ export default function HomeBrandsSection({ brands }: Props) {
     );
 
     return (
-        <section className={styles.section} ref={sectionRef}>
+        <section className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.content}>
 
@@ -149,9 +76,9 @@ export default function HomeBrandsSection({ brands }: Props) {
 
                     <div className={styles.logoSide}>
                         <div className={styles.marqueeContainer}>
-                            <Column list={col1} innerRef={col1Ref} />
-                            <Column list={col2} innerRef={col2Ref} />
-                            <Column list={col3} innerRef={col3Ref} />
+                            <Column list={col1} direction="up" duration={28} />
+                            <Column list={col2} direction="down" duration={34} />
+                            <Column list={col3} direction="up" duration={30} />
                         </div>
                     </div>
 

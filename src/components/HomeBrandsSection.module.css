@@ -70,11 +70,47 @@
     flex-direction: column;
 }
 
+/* The parent column now just holds the animation and no gap, to allow child groups to dictate size perfectly */
 .carouselLogosCol {
     display: flex;
     flex-direction: column;
-    gap: 30px;
     will-change: transform;
+}
+
+/* 
+ * A single group contains exactly N items + N gaps.
+ * By using padding-bottom for the gap after the last item,
+ * the group's exact offsetHeight perfectly equals the shift distance.
+ * This guarantees a mathematically perfect loop without tricky calcs.
+ */
+.marqueeGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 30px; 
+}
+
+.carouselLogosCol:hover {
+    animation-play-state: paused;
+}
+
+.up {
+    animation: marqueeUp linear infinite;
+}
+
+.down {
+    animation: marqueeDown linear infinite;
+}
+
+/* -50% shifts by exactly one group since there are exactly 2 identical groups */
+@keyframes marqueeUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+@keyframes marqueeDown {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
 }
 
 .logoItem {

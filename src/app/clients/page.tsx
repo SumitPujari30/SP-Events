@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'fra
 import Link from 'next/link';
 import { HiArrowRight, HiX } from 'react-icons/hi';
 import styles from './clients.module.css';
-import ClientsSection from '@/components/ClientsSection';
+import ClientGrid from '@/components/ClientGrid';
 
 /* ——— DATA ——— */
 const clients = [
@@ -668,11 +668,8 @@ export default function ClientsPage() {
         <main className={styles.pageWrap}>
             <SplitTextHero />
             <MarqueeStrip />
-            {/* The new reusable Multi-Layer component replacing the entire old grid */}
-            <ClientsSection 
-                clients={clientsData as any}
-                testimonials={testimonials as any}
-            />
+            <ClientGrid />
+            <TestimonialsSection />
             <AnimatedStats />
             <ImmersiveCTA />
         </main>
