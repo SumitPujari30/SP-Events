@@ -1,0 +1,133 @@
+.section {
+    width: 100%;
+    padding: 120px 0;
+    background-color: var(--color-bg);
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+/* LEFT SIDE: TYPOGRAPHY */
+.textSide {
+    flex: 1;
+    max-width: 600px;
+}
+
+.mainTitle {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+}
+
+.brandName {
+    color: #fff;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: var(--color-accent-gold);
+}
+
+/* RIGHT SIDE: VERTICAL MARQUEE */
+.logoSide {
+    flex: 1.2;
+    height: 650px;
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.marqueeContainer {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    height: 100%;
+}
+
+.carouselLogosWrap {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.carouselLogosCol {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    will-change: transform;
+}
+
+.logoItem {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.logoImage {
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logoItem:hover .logoImage {
+    transform: scale(1.12);
+}
+
+@media (max-width: 1200px) {
+    .content { gap: 60px; }
+    .mainTitle { font-size: clamp(2rem, 5vw, 3.5rem); }
+}
+
+@media (max-width: 992px) {
+    .content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .textSide {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+    .logoSide {
+        width: 100%;
+        height: 450px;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        padding: 80px 0;
+    }
+    .container {
+        padding: 0 20px;
+    }
+    .logoSide {
+        height: 350px;
+    }
+    .logoItem {
+        height: 80px;
+    }
+}

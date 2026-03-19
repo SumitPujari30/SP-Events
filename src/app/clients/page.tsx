@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'fra
 import Link from 'next/link';
 import { HiArrowRight, HiX } from 'react-icons/hi';
 import styles from './clients.module.css';
+import ClientsSection from '@/components/ClientsSection';
 
 /* ——— DATA ——— */
 const clients = [
@@ -250,9 +251,13 @@ function ClientMatrix() {
         ? clientsData 
         : clientsData.filter(c => c.category === activeCategory);
 
+    const halfwayIndex = Math.ceil(filteredClients.length / 2);
+    const firstHalf = filteredClients.slice(0, halfwayIndex);
+    const secondHalf = filteredClients.slice(halfwayIndex);
+
     return (
         <section className={styles.matrixSection} id="roster">
-            <div className={styles.sectionContainer} style={{ paddingBottom: '60px' }}>
+            <div className={styles.sectionContainer} style={{ paddingBottom: '20px' }}>
                 <div className={styles.matrixHeader}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -277,20 +282,44 @@ function ClientMatrix() {
                     </div>
                 </div>
 
-                <motion.div 
-                    key={activeCategory} // Force re-animation on filter change
-                    className={styles.clientsGrid}
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="show"
-                    viewport={{ once: true, margin: "-50px" }}
-                >
-                    {filteredClients.map((client, i) => (
-                        <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
-                            <LogoCard client={client} onClick={() => setSelectedClient(client)} />
-                        </motion.div>
-                    ))}
-                </motion.div>
+                <div className={styles.matrixWrapper}>
+                    <motion.div 
+                        key={`${activeCategory}-1`} // Force re-animation on filter change
+                        className={styles.clientsGrid}
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="show"
+                        viewport={{ once: true, margin: "-50px" }}
+                    >
+                        {firstHalf.map((client, i) => (
+                            <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
+                                <LogoCard client={client} onClick={() => setSelectedClient(client)} />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* Testimonials inserted perfectly in the middle */}
+            <TestimonialsSection />
+
+            <div className={styles.sectionContainer} style={{ paddingTop: '20px', paddingBottom: '60px' }}>
+                <div className={styles.matrixWrapper}>
+                    <motion.div 
+                        key={`${activeCategory}-2`} // Force re-animation on filter change
+                        className={styles.clientsGrid}
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="show"
+                        viewport={{ once: true, margin: "-50px" }}
+                    >
+                        {secondHalf.map((client, i) => (
+                            <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
+                                <LogoCard client={client} onClick={() => setSelectedClient(client)} />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
             </div>
 
             {/* Client Detail Overlay */}
@@ -541,44 +570,8 @@ function TestimonialsSection() {
    ============================================= */
 function AnimatedStats() {
     return (
-        <section className={styles.statsSection}>
-            <div className={styles.statsInner}>
-                <div className={styles.statsHeader}>
-                    <motion.span
-                        className={styles.sectionLabel}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        Proven Track Record
-                    </motion.span>
-                    <motion.h2
-                        className={styles.statsTitle}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                    >
-                        By The Numbers
-                    </motion.h2>
-                    <motion.p
-                        className={styles.statsSubtitle}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        Our numbers tell a story of dedication, immense scale, and an unwavering
-                        commitment to excellence across every single project we take on.
-                    </motion.p>
-                </div>
-
-                <div className={styles.statsGrid}>
-                    {stats.map((stat, i) => (
-                        <StatCounter key={i} stat={stat} index={i} />
-                    ))}
-                </div>
-            </div>
+        <section>
+            
         </section>
     );
 }
@@ -628,7 +621,7 @@ function ImmersiveCTA() {
     }));
 
     return (
-        <section className={styles.ctaSection}>
+        <section  className={styles.statsSection}>
             <div className={styles.ctaParticles}>
                 {particles.map((p, i) => (
                     <div
@@ -675,8 +668,11 @@ export default function ClientsPage() {
         <main className={styles.pageWrap}>
             <SplitTextHero />
             <MarqueeStrip />
-            <ClientMatrix />
-            <TestimonialsSection />
+            {/* The new reusable Multi-Layer component replacing the entire old grid */}
+            <ClientsSection 
+                clients={clientsData as any}
+                testimonials={testimonials as any}
+            />
             <AnimatedStats />
             <ImmersiveCTA />
         </main>

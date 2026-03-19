@@ -1,0 +1,81 @@
+.cardContainer {
+    width: 100%;
+    aspect-ratio: 3/2; /* Adjust aspect ratio for a crisp rectangle */
+    perspective: 1200px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.cardInner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.cardFace {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.cardFront {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+}
+
+.cardBack {
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.05) 0%, rgba(10, 5, 20, 0.98) 100%);
+    transform: rotateY(180deg);
+    border-color: rgba(255, 255, 255, 0.05); 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 60px; /* Slightly larger logos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoImage {
+    object-fit: contain;
+    filter: none; /* No more grayscale */
+    transition: transform 0.6s ease;
+}
+
+.backLogoPatch {
+    filter: none;
+}
+
+.fallbackLogo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.fallbackLogoBack {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-gold, #c9a84c);
+}
+
+
+@media (max-width: 768px) {
+    .cardContainer { aspect-ratio: 1.3; }
+    .cardFace { padding: 16px; }
+    .imageWrapper { height: 40px; }
+}

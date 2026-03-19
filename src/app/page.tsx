@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './page.module.css';
+import HomeBrandsSection from '@/components/HomeBrandsSection';
+import JoinUsSection from '@/components/JoinUsSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -393,42 +395,16 @@ export default function HomePage() {
 
 
       {/* ═══════════════════════════════════════════════════════
-          6. TRUSTED BY — THREE ROW MARQUEE
+          6. TRUSTED BY — PREMIUM GRID
       ════════════════════════════════════════════════════════ */}
-      <section className={styles.marqueeSection}>
-        <h4 className={styles.marqueeTitle}>Trusted By Industry Leaders</h4>
-        <div className={styles.marqueeWrapper}>
-          <div className={styles.marqueeRow}>
-            <div className={`${styles.marqueeTrack} ${styles.scrollLeft}`}>
-              {[...clientsRow1, ...clientsRow1].map((c, i) => (
-                <div key={i} className={styles.logoCard}>
-                  <img src={c.logo} alt={c.name} className={styles.logoImg} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className={styles.marqueeRow}>
-            <div className={`${styles.marqueeTrack} ${styles.scrollRight}`}>
-              {[...clientsRow2, ...clientsRow2].map((c, i) => (
-                <div key={i} className={styles.logoCard}>
-                  <img src={c.logo} alt={c.name} className={styles.logoImg} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className={styles.marqueeRow}>
-            <div className={`${styles.marqueeTrack} ${styles.scrollLeft}`}>
-              {[...clientsRow3, ...clientsRow3].map((c, i) => (
-                <div key={i} className={styles.logoCard}>
-                  <img src={c.logo} alt={c.name} className={styles.logoImg} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className={styles.fadeMaskLeft} />
-          <div className={styles.fadeMaskRight} />
-        </div>
-      </section>
+      <HomeBrandsSection 
+         brands={[...clientsRow1, ...clientsRow2, ...clientsRow3]} 
+      />
+
+      {/* ═══════════════════════════════════════════════════════
+          7. JOIN US
+      ════════════════════════════════════════════════════════ */}
+      <JoinUsSection />
 
     </div>
   );

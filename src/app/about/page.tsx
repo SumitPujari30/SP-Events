@@ -232,7 +232,7 @@ export default function AboutPage() {
 
             {/* Milestones */}
             <section className="section section-violet">
-                <div className="container">
+                {/* <div className="container">
                     <AnimatedSection>
                         <div className="section-header center">
                             <span className="section-label">Our Journey</span>
@@ -254,7 +254,7 @@ export default function AboutPage() {
                         ))}
                         <div className={styles.timelineLine} />
                     </div>
-                </div>
+                </div> */}
             </section>
 
             {/* Stats */}
