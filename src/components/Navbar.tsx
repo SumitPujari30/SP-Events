@@ -69,6 +69,7 @@ export default function Navbar() {
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Toggle menu"
                         whileTap={{ scale: 0.9 }}
+                        suppressHydrationWarning
                     >
                         <HiMenuAlt3 size={32} />
                     </motion.button>

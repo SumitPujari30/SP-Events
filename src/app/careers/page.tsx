@@ -197,52 +197,6 @@ function CultureSection() {
 }
 
 /* =============================================
-   SECTION 4: CURRENT OPENINGS
-   ============================================= */
-function OpeningsSection() {
-    const jobs = [
-        { title: 'Senior Event Producer', type: 'Full-time', location: 'Hubli / Bangalore' },
-        { title: 'Immersive Experience Designer', type: 'Hybrid', location: 'Remote' },
-        { title: 'Technical Production Lead', type: 'Contract', location: 'On-site' },
-        { title: 'Brand Strategy Consultant', type: 'Part-time', location: 'Bangalore' },
-    ];
-
-    return (
-        <section className="section section-dark">
-            <div className="container">
-                <div className="section-header">
-                    <span className="section-label">Join The Crew</span>
-                    <h2 className="section-title">Open Positions</h2>
-                </div>
-
-                <div className={styles.openingsGrid}>
-                    {jobs.map((job, i) => (
-                        <motion.div 
-                            key={i} 
-                            className={styles.jobCard}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: i * 0.1 }}
-                            viewport={{ once: true }}
-                        >
-                            <div className={styles.jobInfo}>
-                                <h3>{job.title}</h3>
-                                <div className={styles.jobMeta}>
-                                    <span>{job.type}</span>
-                                    <span>•</span>
-                                    <span>{job.location}</span>
-                                </div>
-                            </div>
-                            <a href="#apply-form" className={styles.applyBtn}>Apply Now</a>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-}
-
-/* =============================================
    SECTION 5: APPLICATION FORM
    ============================================= */
 function ApplicationFormSection() {
@@ -281,21 +235,21 @@ function ApplicationFormSection() {
                             <div className={styles.formRow}>
                                 <div className="form-group">
                                     <label className="form-label">Full Name *</label>
-                                    <input className="form-input" type="text" required placeholder="John Doe" />
+                                    <input className="form-input" type="text" required placeholder="John Doe" suppressHydrationWarning />
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label">Email Address *</label>
-                                    <input className="form-input" type="email" required placeholder="john@example.com" />
+                                    <input className="form-input" type="email" required placeholder="john@example.com" suppressHydrationWarning />
                                 </div>
                             </div>
                             <div className={styles.formRow}>
                                 <div className="form-group">
                                     <label className="form-label">Phone Number</label>
-                                    <input className="form-input" type="tel" placeholder="+91 98765 43210" />
+                                    <input className="form-input" type="tel" placeholder="+91 98765 43210" suppressHydrationWarning />
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label">Role of Interest *</label>
-                                    <select className="form-input" required>
+                                    <select className="form-input" required suppressHydrationWarning>
                                         <option value="">Select a role</option>
                                         <option value="producer">Senior Event Producer</option>
                                         <option value="designer">Immersive Experience Designer</option>
@@ -307,13 +261,13 @@ function ApplicationFormSection() {
                             </div>
                             <div className="form-group" style={{ marginBottom: '24px' }}>
                                 <label className="form-label">Portfolio / LinkedIn URL</label>
-                                <input className="form-input" type="url" placeholder="https://" />
+                                <input className="form-input" type="url" placeholder="https://" suppressHydrationWarning />
                             </div>
                             <div className="form-group" style={{ marginBottom: '24px' }}>
                                 <label className="form-label">Why SP Events? *</label>
-                                <textarea className="form-textarea" required placeholder="Tell us why you want to join our spectacle..." />
+                                <textarea className="form-textarea" required placeholder="Tell us why you want to join our spectacle..." suppressHydrationWarning />
                             </div>
-                            <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '16px' }}>
+                            <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '16px' }} suppressHydrationWarning>
                                 Submit Application
                             </button>
                         </form>
@@ -331,7 +285,6 @@ export default function CareersPage() {
             <StageLightHero />
             <ExperienceSection />
             <CultureSection />
-            <OpeningsSection />
             <ApplicationFormSection />
             <CurtainCTA />
         </main>

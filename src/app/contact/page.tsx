@@ -10,7 +10,7 @@ const contactInfo = [
     {
         icon: HiOutlineLocationMarker,
         title: 'Visit Us',
-        lines: ['The SP Events HQ', 'Andheri West, Mumbai', 'Maharashtra 400053, India'],
+        lines: ['The SP Events HQ', 'Marvel Arteza , Vidya Nagar, Hubli', 'Karnataka 580029, India'],
     },
     {
         icon: HiOutlinePhone,
@@ -20,7 +20,7 @@ const contactInfo = [
     {
         icon: HiOutlineMail,
         title: 'Email Us',
-        lines: ['hello@thespevents.com', 'careers@thespevents.com', 'press@thespevents.com'],
+        lines: ['thespevents@gmail.com', 'careers@thespevents.com', 'press@thespevents.com'],
     },
 ];
 
@@ -181,7 +181,7 @@ export default function ContactPage() {
                                 <div className={styles.mapCard}>
                                     <div className={styles.mapPlaceholder}>
                                         <HiOutlineLocationMarker size={40} />
-                                        <p>Mumbai, Maharashtra, India</p>
+                                        <p>Hubli, Karnataka , India</p>
                                         <a
                                             href="https://maps.google.com/?q=Andheri+West+Mumbai"
                                             target="_blank"

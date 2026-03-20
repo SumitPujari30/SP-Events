@@ -168,7 +168,7 @@
 
 .infoCard p {
   font-size: 0.88rem;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(250, 254, 255, 0.952);
   line-height: 1.65;
 }
 
@@ -195,7 +195,7 @@
 
 .mapPlaceholder p {
   font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(244, 248, 250, 0.989);
   line-height: 1.6;
 }
 
