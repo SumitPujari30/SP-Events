@@ -57,7 +57,7 @@
 .subtitle {
     font-family: var(--font-body);
     font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(0, 0, 0, 0.45);
     max-width: 520px;
     margin: 0 auto;
     line-height: 1.7;
@@ -81,9 +81,9 @@
     text-transform: uppercase;
     padding: 10px 24px;
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.12);
     background: transparent;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -102,19 +102,25 @@
 }
 
 /* ── Responsive Grid ── */
+.gridContainer {
+    max-width: 1400px;
+    margin: 40px auto 0;
+    padding: 0 40px;
+}
+
 .grid {
     width: 100%;
-    max-width: 100%; /* Spans the entire screen */
     margin: 0 auto;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 0; /* Zero gaps for matrix look */
     position: relative;
     z-index: 1;
-    /* Create the top and left boundaries of the matrix grid */
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    /* Create the boundary of the matrix grid */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 /* ── 3D Flip Card ── */
@@ -123,15 +129,15 @@
     cursor: pointer;
     outline: none;
     /* Create the right and bottom boundaries for each cell */
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     background: transparent;
 }
 
 .flipCardInner {
     position: relative;
     width: 100%;
-    aspect-ratio: 1.1 / 1; /* Squarish/rectangle sizing to match screenshot */
+    aspect-ratio: 1.25 / 1; /* More horizontal rectangle to fit logos securely */
     transition: transform 0.65s cubic-bezier(0.4, 0.0, 0.2, 1);
     transform-style: preserve-3d;
 }
@@ -150,7 +156,7 @@
     justify-content: center;
     overflow: hidden;
     
-    background: rgba(255, 255, 255, 0.015);
+    background: rgba(0, 0, 0, 0.015);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -169,7 +175,7 @@
 .flipCard:hover .flipCardBack,
 .flipCard:focus-visible .flipCardFront,
 .flipCard:focus-visible .flipCardBack {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(0, 0, 0, 0.04);
     box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.06);
 }
 
@@ -235,11 +241,15 @@
 }
 
 /* ── Responsive ── */
+@media (max-width: 1400px) {
+    .grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
 @media (max-width: 1200px) {
     .grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 0;
-        padding: 0;
     }
 }
 

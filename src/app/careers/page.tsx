@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import styles from './careers.module.css';
 
@@ -56,73 +56,36 @@ function StageLightHero() {
 }
 
 /* =============================================
-   SECTION 2: BACKSTAGE PARALLAX
+   SECTION 2: EXPERIENCE SECTION (Replacing Parallax)
    ============================================= */
-function BackstageParallax() {
-    const targetRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-        offset: ['start start', 'end end'],
-    });
-
-    // Parallax transforms - Restored to use vh for noticeable but smooth movement
-    const y1 = useTransform(scrollYProgress, [0, 1], ['10vh', '-40vh']);
-    const y2 = useTransform(scrollYProgress, [0, 1], ['-20vh', '50vh']);
-    const y3 = useTransform(scrollYProgress, [0, 1], ['30vh', '-20vh']);
-
-    // Text appearances - Reduced pixel travel distance heavily to slow it down
-    const text1Op = useTransform(scrollYProgress, [0.05, 0.2, 0.35], [0, 1, 0]);
-    const text1Y = useTransform(scrollYProgress, [0.05, 0.2, 0.35], [30, 0, -30]);
-
-    const text2Op = useTransform(scrollYProgress, [0.3, 0.5, 0.65], [0, 1, 0]);
-    const text2Y = useTransform(scrollYProgress, [0.3, 0.5, 0.65], [30, 0, -30]);
-
-    const text3Op = useTransform(scrollYProgress, [0.6, 0.8, 0.95], [0, 1, 0]);
-    const text3Y = useTransform(scrollYProgress, [0.6, 0.8, 0.95], [30, 0, -30]);
-
+function ExperienceSection() {
     return (
-        <section ref={targetRef} className={styles.parallaxSection}>
-            <div className={styles.parallaxBgDesign} />
-            <div className={styles.parallaxGlow} />
-            <div className={styles.parallaxFadeTop} />
-
-            <div className={styles.parallaxSticky}>
-                {/* Floating Images (Rigging, Cases, Stage) */}
-                <motion.div className={`${styles.parallaxItem} ${styles.pLayer1}`} style={{ y: y1 }}>
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80" alt="Backstage rigging" />
-                </motion.div>
-
-                <motion.div className={`${styles.parallaxItem} ${styles.pLayer2}`} style={{ y: y2 }}>
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Event setup" />
-                </motion.div>
-
-                <motion.div className={`${styles.parallaxItem} ${styles.pLayer3}`} style={{ y: y3 }}>
-                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80" alt="Control desk" />
-                </motion.div>
-
-                {/* Central Storytelling Text */}
-                <div className={styles.parallaxTextWrap}>
-                    <motion.div className={styles.parallaxPanel} style={{ opacity: text1Op, y: text1Y, position: 'absolute', inset: 0 }}>
-                        <span className={styles.bgNumber}>01</span>
-                        <h2 className={styles.parallaxTitle}>Crafting the<br />Extraordinary</h2>
-                        <p className={styles.parallaxDesc}>We don&apos;t just plan events; we architect experiences. From massive stadium builds to intimate luxury galas.</p>
+        <section className="section" style={{ background: 'var(--color-bg-dark)', position: 'relative', zIndex: 1 }}>
+            <div className="container">
+                <div className="section-header center">
+                    <span className="section-label">Our DNA</span>
+                    <h2 className="section-title">Crafting the <span className="text-gold">Extraordinary</span></h2>
+                </div>
+                
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
+                    <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                        <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', marginBottom: '20px', color: 'var(--color-white)' }}>Relentless Collaboration</h3>
+                        <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.8, fontSize: '1.1rem', marginBottom: '24px' }}>
+                            We don&apos;t just plan events; we architect experiences. From massive stadium builds to intimate luxury galas, bold ideas live here.
+                        </p>
+                        <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.8, fontSize: '1.1rem' }}>
+                            We foster an environment where your wildest concepts are funded, prototyped, and perfectly executed alongside master technicians, designers, and logistics experts.
+                        </p>
                     </motion.div>
-
-                    <motion.div className={styles.parallaxPanel} style={{ opacity: text2Op, y: text2Y, position: 'absolute', inset: 0 }}>
-                        <span className={styles.bgNumber}>02</span>
-                        <h2 className={styles.parallaxTitle}>Creative<br />Freedom</h2>
-                        <p className={styles.parallaxDesc}>Bold ideas live here. We foster an environment where your wildest concepts are funded, prototyped, and perfectly executed.</p>
-                    </motion.div>
-
-                    <motion.div className={styles.parallaxPanel} style={{ opacity: text3Op, y: text3Y, position: 'absolute', inset: 0 }}>
-                        <span className={styles.bgNumber}>03</span>
-                        <h2 className={styles.parallaxTitle}>Relentless<br />Collaboration</h2>
-                        <p className={styles.parallaxDesc}>Work shoulder-to-shoulder with master technicians, designers, and logistics experts who inspire you daily.</p>
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
+                        <img 
+                            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" 
+                            alt="Event setup" 
+                            style={{ width: '100%', borderRadius: '24px', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', border: '1px solid rgba(0, 0, 0,0.05)' }}
+                        />
                     </motion.div>
                 </div>
             </div>
-
-            <div className={styles.parallaxFadeBottom} />
         </section>
     );
 }
@@ -270,9 +233,91 @@ function OpeningsSection() {
                                     <span>{job.location}</span>
                                 </div>
                             </div>
-                            <button className={styles.applyBtn}>Apply Now</button>
+                            <a href="#apply-form" className={styles.applyBtn}>Apply Now</a>
                         </motion.div>
                     ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* =============================================
+   SECTION 5: APPLICATION FORM
+   ============================================= */
+function ApplicationFormSection() {
+    const [submitted, setSubmitted] = useState(false);
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 4000);
+    };
+
+    return (
+        <section className="section" id="apply-form" style={{ background: 'var(--color-bg)' }}>
+            <div className="container">
+                <div className="section-header center" style={{ marginBottom: '40px' }}>
+                    <span className="section-label">Apply Now</span>
+                    <h2 className="section-title">Submit Your <span className="text-gold">Application</span></h2>
+                </div>
+
+                <div className={styles.formWrap}>
+                    {submitted ? (
+                        <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+                            <div style={{ 
+                                width: '68px', height: '68px', borderRadius: '50%', background: 'var(--gradient-gold)', 
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', 
+                                color: 'black', margin: '0 auto 16px', boxShadow: 'var(--shadow-gold)'
+                            }}>
+                                ✓
+                            </div>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '16px', fontWeight: 600 }}>Application Sent!</h3>
+                            <p style={{ color: 'rgba(0, 0, 0,0.6)', lineHeight: 1.7 }}>
+                                Thank you for wanting to join the crew. We will review your application and be in touch soon.
+                            </p>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit}>
+                            <div className={styles.formRow}>
+                                <div className="form-group">
+                                    <label className="form-label">Full Name *</label>
+                                    <input className="form-input" type="text" required placeholder="John Doe" />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-label">Email Address *</label>
+                                    <input className="form-input" type="email" required placeholder="john@example.com" />
+                                </div>
+                            </div>
+                            <div className={styles.formRow}>
+                                <div className="form-group">
+                                    <label className="form-label">Phone Number</label>
+                                    <input className="form-input" type="tel" placeholder="+91 98765 43210" />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-label">Role of Interest *</label>
+                                    <select className="form-input" required>
+                                        <option value="">Select a role</option>
+                                        <option value="producer">Senior Event Producer</option>
+                                        <option value="designer">Immersive Experience Designer</option>
+                                        <option value="tech">Technical Production Lead</option>
+                                        <option value="strategy">Brand Strategy Consultant</option>
+                                        <option value="other">Other / Open Pitch</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="form-group" style={{ marginBottom: '24px' }}>
+                                <label className="form-label">Portfolio / LinkedIn URL</label>
+                                <input className="form-input" type="url" placeholder="https://" />
+                            </div>
+                            <div className="form-group" style={{ marginBottom: '24px' }}>
+                                <label className="form-label">Why SP Events? *</label>
+                                <textarea className="form-textarea" required placeholder="Tell us why you want to join our spectacle..." />
+                            </div>
+                            <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '16px' }}>
+                                Submit Application
+                            </button>
+                        </form>
+                    )}
                 </div>
             </div>
         </section>
@@ -284,9 +329,10 @@ export default function CareersPage() {
         <main className={styles.pageWrap}>
             <AmbientBackground />
             <StageLightHero />
-            <BackstageParallax />
+            <ExperienceSection />
             <CultureSection />
             <OpeningsSection />
+            <ApplicationFormSection />
             <CurtainCTA />
         </main>
     );

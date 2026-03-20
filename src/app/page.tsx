@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './page.module.css';
 import HomeBrandsSection from '@/components/HomeBrandsSection';
 import JoinUsSection from '@/components/JoinUsSection';
+import CounterAnimation from '@/components/CounterAnimation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -123,10 +124,10 @@ const clientsRow3 = [
 
 // ─── Stats Data ──────────────────────────────────────────────
 const stats = [
-  { value: "4+", label: "Years of Excellence" },
-  { value: "300+", label: "Happy Clients" },
-  { value: "1500+", label: "Magic Experiences" },
-  { value: "30+", label: "Professionals" },
+  { value: 4, suffix: "+", label: "Years of Excellence" },
+  { value: 300, suffix: "+", label: "Happy Clients" },
+  { value: 1500, suffix: "+", label: "Magic Experiences" },
+  { value: 30, suffix: "+", label: "Professionals" },
 ];
 
 // ─── Component ───────────────────────────────────────────────
@@ -384,7 +385,7 @@ export default function HomePage() {
             {stats.map((stat, i) => (
               <div key={i} className={styles.statItem}>
                 <div className={styles.statGlass}>
-                  <div className={styles.statNumber}>{stat.value}</div>
+                  <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
                   <div className={styles.statLabel}>{stat.label}</div>
                 </div>
               </div>

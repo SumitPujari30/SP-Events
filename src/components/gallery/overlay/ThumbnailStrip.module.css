@@ -28,7 +28,7 @@
     border-radius: 8px;
     border: 2px solid transparent;
     padding: 0;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
     overflow: hidden;
     cursor: pointer;
     transition: all var(--transition-base);

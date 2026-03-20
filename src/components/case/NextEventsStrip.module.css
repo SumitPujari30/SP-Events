@@ -110,7 +110,7 @@
 
 .miniYear {
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(0, 0, 0, 0.35);
     font-family: var(--font-heading);
 }
 

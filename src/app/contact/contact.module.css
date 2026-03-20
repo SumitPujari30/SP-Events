@@ -9,11 +9,12 @@
 
 /* Form Card */
 .formCard {
-  background: var(--color-white);
-  border: 1px solid var(--color-divider);
-  border-radius: var(--radius-lg);
+  background: rgba(10, 5, 20, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
   padding: 56px 48px;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   position: relative;
   overflow: hidden;
 }
@@ -33,12 +34,12 @@
   font-size: clamp(1.6rem, 2.5vw, 2rem);
   font-weight: 600;
   margin-bottom: 8px;
-  color: var(--color-black);
+  color: var(--color-white);
 }
 
 .formSubtitle {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.5);
   margin-bottom: 36px;
   line-height: 1.6;
 }
@@ -82,12 +83,12 @@
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-black);
+  color: var(--color-white);
 }
 
 .successMsg p {
   font-size: 0.95rem;
-  color: var(--color-text-secondary);
+  color: rgba(0, 0, 0, 0.6);
   max-width: 300px;
   line-height: 1.7;
 }
@@ -102,9 +103,10 @@
 }
 
 .infoCard {
-  background: var(--color-white);
-  border: 1px solid var(--color-divider);
-  border-radius: var(--radius-lg);
+  background: rgba(10, 5, 20, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
   padding: 24px 20px;
   display: flex;
   gap: 16px;
@@ -166,15 +168,16 @@
 
 .infoCard p {
   font-size: 0.88rem;
-  color: var(--color-text-secondary);
+  color: rgba(0, 0, 0, 0.6);
   line-height: 1.65;
 }
 
 /* Map Card */
 .mapCard {
-  background: var(--color-bg-dark);
-  border: 1px solid var(--color-border-dark);
-  border-radius: var(--radius-lg);
+  background: rgba(10, 5, 20, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
 }
@@ -192,7 +195,7 @@
 
 .mapPlaceholder p {
   font-size: 0.9rem;
-  color: var(--color-text-on-dark-muted);
+  color: rgba(0, 0, 0, 0.6);
   line-height: 1.6;
 }
 

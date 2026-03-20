@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useInView } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { useInView, animate } from 'framer-motion';
 
 interface Props {
     end: number;
@@ -13,44 +13,37 @@ interface Props {
 
 export default function CounterAnimation({
     end,
-    duration = 2,
+    duration = 2.5,
     suffix = '',
     prefix = '',
     className,
 }: Props) {
-    const [count, setCount] = useState(0);
     const ref = useRef<HTMLSpanElement>(null);
     const isInView = useInView(ref, { once: true, amount: 0.5 });
     const hasAnimated = useRef(false);
 
     useEffect(() => {
-        if (!isInView || hasAnimated.current) return;
+        if (!isInView || hasAnimated.current || !ref.current) return;
         hasAnimated.current = true;
 
-        const startTime = performance.now();
-        const durationMs = duration * 1000;
+        const node = ref.current;
 
-        const easeOutExpo = (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+        const controls = animate(0, end, {
+            duration,
+            ease: "easeOut",
+            onUpdate(value) {
+                if (node) {
+                    node.textContent = `${prefix}${Math.floor(value).toLocaleString()}${suffix}`;
+                }
+            },
+        });
 
-        const tick = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / durationMs, 1);
-            const eased = easeOutExpo(progress);
-            setCount(Math.floor(eased * end));
-
-            if (progress < 1) {
-                requestAnimationFrame(tick);
-            } else {
-                setCount(end);
-            }
-        };
-
-        requestAnimationFrame(tick);
-    }, [isInView, end, duration]);
+        return () => controls.stop();
+    }, [isInView, end, duration, prefix, suffix]);
 
     return (
         <span ref={ref} className={className}>
-            {prefix}{count.toLocaleString()}{suffix}
+            {prefix}0{suffix}
         </span>
     );
 }

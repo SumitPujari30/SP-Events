@@ -124,7 +124,7 @@
 
 .subtitle {
     font-size: clamp(1rem, 1.8vw, 1.2rem);
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.6);
     max-width: 520px;
     line-height: 1.75;
     font-family: var(--font-body);
@@ -162,7 +162,7 @@
     font-size: 0.6rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(0, 0, 0, 0.35);
 }
 
 @keyframes pulseDot {

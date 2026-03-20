@@ -2,7 +2,7 @@
     width: 100%;
     padding: 120px 0;
     background-color: var(--color-bg);
-    color: #fff;
+    color: var(--color-text);
     overflow: hidden;
     position: relative;
 }
@@ -36,7 +36,7 @@
 }
 
 .brandName {
-    color: #fff;
+    color: var(--color-text);
     display: block;
     margin-bottom: 20px;
 }

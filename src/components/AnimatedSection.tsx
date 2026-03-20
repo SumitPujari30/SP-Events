@@ -13,6 +13,7 @@ interface Props {
     className?: string;
     once?: boolean;
     amount?: number;
+    style?: React.CSSProperties;
 }
 
 const variants: Record<Variant, Variants> = {
@@ -50,6 +51,7 @@ export default function AnimatedSection({
     className,
     once = true,
     amount = 0.2,
+    style,
 }: Props) {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once, amount });
@@ -66,6 +68,7 @@ export default function AnimatedSection({
                 ease: [0.22, 1, 0.36, 1],
             }}
             className={className}
+            style={style}
         >
             {children}
         </motion.div>

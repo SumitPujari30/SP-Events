@@ -32,10 +32,10 @@
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.05);
     will-change: transform, opacity, filter;
     /* Optional outline to enhance edge separation */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .image {
@@ -55,7 +55,7 @@
     border-radius: 50%;
     background: rgba(12, 12, 12, 0.5);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     color: var(--color-white);
     display: flex;
     align-items: center;

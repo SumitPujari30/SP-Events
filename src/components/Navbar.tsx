@@ -56,7 +56,7 @@ export default function Navbar() {
                         <Image
                             src="/assets/GOLD N ORANGE.png"
                             alt="SP Events"
-                            width={200}
+                            width={500}
                             height={68}
                             className={styles.logoImage}
                             priority
@@ -120,19 +120,11 @@ export default function Navbar() {
                                                     onClick={() => setIsOpen(false)}
                                                 >
                                                     <motion.span
-                                                        whileHover={{ x: 15 }}
-                                                        animate={{ 
-                                                            y: [0, -5, 0] 
-                                                        }}
+                                                        whileHover={{ x: -2, scale: 1.05, color: '#d4af37' }}
                                                         transition={{ 
-                                                            y: {
-                                                                repeat: Infinity,
-                                                                duration: 2 + i * 0.2,
-                                                                ease: "easeInOut"
-                                                            },
                                                             type: "spring", 
-                                                            stiffness: 300, 
-                                                            damping: 20 
+                                                            stiffness: 400, 
+                                                            damping: 30 
                                                         }}
                                                         style={{ display: 'inline-block' }}
                                                     >

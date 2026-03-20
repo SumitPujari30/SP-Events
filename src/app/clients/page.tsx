@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { HiArrowRight, HiX } from 'react-icons/hi';
 import styles from './clients.module.css';
 import ClientGrid from '@/components/ClientGrid';
+import CounterAnimation from '@/components/CounterAnimation';
 
 /* ——— DATA ——— */
 const clients = [
@@ -570,42 +571,54 @@ function TestimonialsSection() {
    ============================================= */
 function AnimatedStats() {
     return (
-        <section>
-            
+        <section className={styles.statsSection}>
+            <div className={styles.statsInner}>
+                <div className={styles.statsHeader}>
+                    <motion.span
+                        className={styles.sectionLabel}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        By the Numbers
+                    </motion.span>
+                    <motion.h2
+                        className={styles.statsTitle}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                    >
+                        Measured in Impact
+                    </motion.h2>
+                    <motion.p
+                        className={styles.statsSubtitle}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        Behind every unforgettable event lies a foundation of meticulous planning, execution, and industry experience.
+                    </motion.p>
+                </div>
+                
+                <div className={styles.statsGrid}>
+                    {stats.map((stat, i) => (
+                        <motion.div
+                            key={i}
+                            className={styles.statItem}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.65, delay: i * 0.14, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                            <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
+                            <div className={styles.statLabel}>{stat.label}</div>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
         </section>
-    );
-}
-
-function StatCounter({ stat, index }: { stat: typeof stats[0]; index: number }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: '-80px' });
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        if (!isInView) return;
-        let current = 0;
-        const target = stat.value;
-        const step = target / (1800 / 16);
-        const timer = setInterval(() => {
-            current += step;
-            if (current >= target) { setCount(target); clearInterval(timer); }
-            else setCount(Math.floor(current));
-        }, 16);
-        return () => clearInterval(timer);
-    }, [isInView, stat.value]);
-
-    return (
-        <motion.div
-            ref={ref}
-            className={styles.statItem}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }}
-        >
-            <div className={styles.statNumber}>{count.toLocaleString()}{stat.suffix}</div>
-            <div className={styles.statLabel}>{stat.label}</div>
-        </motion.div>
     );
 }
 
@@ -621,7 +634,7 @@ function ImmersiveCTA() {
     }));
 
     return (
-        <section  className={styles.statsSection}>
+        <section  className={styles.ctaSection}>
             <div className={styles.ctaParticles}>
                 {particles.map((p, i) => (
                     <div

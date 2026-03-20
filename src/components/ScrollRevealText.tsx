@@ -54,7 +54,7 @@ export default function ScrollRevealText({
     style,
     as: Tag = 'p',
     color = '#ffffff',
-    dimColor = 'rgba(255,255,255,0.18)',
+    dimColor = 'rgba(0, 0, 0,0.18)',
 }: Props) {
     const ref = useRef<HTMLDivElement>(null);
 

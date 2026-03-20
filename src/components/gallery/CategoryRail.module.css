@@ -2,7 +2,7 @@
 
 .railWrapper {
     width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     background: rgba(17, 0, 28, 0.6);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -42,12 +42,12 @@
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.5);
     transition: color var(--transition-base);
 }
 
 .categoryBtn:hover .label {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
 }
 
 .categoryBtn.active .label {

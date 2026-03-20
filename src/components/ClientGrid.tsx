@@ -231,7 +231,8 @@ export default function ClientGrid() {
                 </div>
             </div>
 
-            <AnimatePresence mode="wait">
+            <div className={styles.gridContainer}>
+                <AnimatePresence mode="wait">
                 {slotsRef.current.length > 0 && (
                     <motion.div
                         key={activeCategory}
@@ -265,6 +266,7 @@ export default function ClientGrid() {
                     </motion.div>
                 )}
             </AnimatePresence>
+            </div>
         </section>
     );
 }

@@ -1,42 +1,49 @@
 'use client';
+
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import {
-    HiOutlineHeart,
-    HiOutlineLightningBolt,
-    HiOutlineEye,
-    HiOutlineShieldCheck,
-    HiOutlineSparkles,
-    HiOutlinePuzzle,
-} from 'react-icons/hi';
 import AnimatedSection from '@/components/AnimatedSection';
-import TextReveal from '@/components/TextReveal';
-import CounterAnimation from '@/components/CounterAnimation';
 import styles from './about.module.css';
 
-const values = [
-    { icon: HiOutlineHeart, title: 'Passion', desc: 'Every event is a labor of love, driven by our unwavering passion for creating extraordinary moments.' },
-    { icon: HiOutlineLightningBolt, title: 'Innovation', desc: 'We push boundaries and embrace new ideas to deliver cutting-edge experiences.' },
-    { icon: HiOutlineEye, title: 'Vision', desc: 'We see the bigger picture and craft events that align with your strategic goals.' },
-    { icon: HiOutlineShieldCheck, title: 'Integrity', desc: 'Trust and transparency form the foundation of every client relationship we build.' },
-    { icon: HiOutlineSparkles, title: 'Excellence', desc: 'We pursue perfection in every detail, from concept to execution and beyond.' },
-    { icon: HiOutlinePuzzle, title: 'Teamwork', desc: 'Our diverse team collaborates seamlessly to deliver cohesive, stunning results.' },
+const teamMembers = [
+    {
+        name: 'Rohahn Vardhan',
+        role: 'Director & Chief Digital Officer',
+        img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=800&q=80',
+    },
+    {
+        name: 'Raoul Vardhan',
+        role: 'Director',
+        img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=800&q=80',
+    },
+    {
+        name: 'K.T. Majeed',
+        role: 'Director & Chief Financial Officer',
+        img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=800&q=80',
+    },
+    {
+        name: 'Sunil Mathew',
+        role: 'Director & Vice President',
+        img: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=400&h=800&q=80',
+    },
+    {
+        name: 'Harisha Prabhu',
+        role: 'Director & Vice President',
+        img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=800&q=80',
+    }
 ];
 
-const milestones = [
-    { year: '2010', title: 'The Beginning', desc: 'Founded with a vision to revolutionize event management in India.' },
-    { year: '2013', title: 'Major Milestone', desc: 'Crossed 500 events and expanded our team to 30+ professionals.' },
-    { year: '2016', title: 'National Expansion', desc: 'Extended operations across 15+ cities with government and corporate clients.' },
-    { year: '2019', title: 'Innovation Leap', desc: 'Launched our virtual events platform, pioneering hybrid event solutions.' },
-    { year: '2022', title: 'Sustainability Focus', desc: 'Became a certified sustainable event management company with ESG commitment.' },
-    { year: '2025', title: 'Industry Leader', desc: 'Delivered 6,000+ events, recognized among top event companies nationwide.' },
-];
-
-const processSteps = [
-    { num: '01', title: 'Brief', desc: 'We listen deeply to understand your vision, audience, and goals.' },
-    { num: '02', title: 'Concept', desc: 'Our creative team architects a unique experience around your brand.' },
-    { num: '03', title: 'Execution', desc: 'Flawless on-ground delivery by our 100+ dedicated professionals.' },
-    { num: '04', title: 'Legacy', desc: 'Crafting moments that your audience remembers for years to come.' },
+const locations = [
+    {
+        city: 'Bengaluru',
+        img: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1200&q=80',
+        address: '#4, 2nd Floor, 1st Cross\nHAL 2nd Stage, Indiranagar\nBengaluru - 560 038\nTel: +91 80 4115 3154'
+    },
+    {
+        city: 'Hubli',
+        img: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80',
+        address: 'The SP Events \n 1st floor, Marvel Arteza \nVidya Nagar\nHubli 580029, India\nTel: +91 836 225 1234'
+    }
 ];
 
 const grassrootsImages = [
@@ -48,75 +55,46 @@ const grassrootsImages = [
     { url: 'https://images.unsplash.com/photo-1459749411177-042180ce673c?w=800&q=80', artist: 'Concert Hall' },
 ];
 
-const destinations = [
-    { name: 'BENGALURU', url: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1200&q=80', size: 'large' },
-    { name: 'MUMBAI', url: 'https://images.unsplash.com/photo-1566552881560-0be862a7c445?w=1200&q=80', size: 'large' },
-    { name: 'KOLKATA', url: 'https://images.unsplash.com/photo-1558431382-7f28df621a00?w=600&q=80', size: 'small' },
-    { name: 'HYDERABAD', url: 'https://images.unsplash.com/photo-1572445271230-a78b5944a659?w=600&q=80', size: 'small' },
-    { name: 'DELHI', url: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80', size: 'small' },
-    { name: 'DUBAI', url: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80', size: 'small' },
-    { name: 'CAPE TOWN', url: 'https://images.unsplash.com/photo-1580619305218-85e23b49e894?w=600&q=80', size: 'small' },
-];
-
 export default function AboutPage() {
-    const heroRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: heroRef,
-        offset: ["start start", "end start"]
-    });
-
-    const yTitle = useTransform(scrollYProgress, [0, 1], [0, 150]);
-    const ySubtitle = useTransform(scrollYProgress, [0, 1], [0, 80]);
-    const opacityHero = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-    const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
-
     return (
-        <>
-            {/* Hero */}
-            <section ref={heroRef} className={styles.heroSection}>
-                <motion.div 
-                    className={styles.heroBg}
-                    style={{ 
-                        scale: bgScale,
-                        backgroundImage: 'url(https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1920&q=80)'
-                    }}
-                />
+        <main className={styles.pageWrap}>
+            {/* HERO */}
+            <section className={styles.heroSection}>
+                <div className={styles.heroBg} style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1540039155732-d6928e469557?w=1920&q=80)' }} />
                 <div className={styles.heroOverlay} />
-                
-                <motion.div 
-                    className={styles.heroContent}
-                    style={{ opacity: opacityHero }}
-                >
-                    <motion.span
-                        className="section-label"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                    >
-                        About Us
-                    </motion.span>
-                    <motion.h1
+                <div className={styles.heroContent}>
+                    <motion.h1 
                         className={styles.heroTitle}
-                        style={{ y: yTitle }}
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 0.7 }}
+                        transition={{ duration: 0.8 }}
                     >
-                        Our <span className="text-gold">Story</span>
+                        About <span className="text-gold">Us</span>
                     </motion.h1>
-                    <motion.p
-                        className={styles.heroSubtitle}
-                        style={{ y: ySubtitle }}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.7 }}
-                    >
-                        A journey of creativity, resilience, and relentless pursuit of excellence in event management.
-                    </motion.p>
-                </motion.div>
+                </div>
             </section>
 
-            {/* Grassroots Slider Section */}
+            {/* PIONEERING TEXT */}
+            <section className={styles.pioneeringSection}>
+                <div className="container">
+                    <AnimatedSection>
+                        <h2 className={styles.pioneeringTitle}>Pioneering Global Event Experiences</h2>
+                    </AnimatedSection>
+                    
+                    <AnimatedSection delay={0.2}>
+                        <div className={styles.pioneeringTextBlocks}>
+                            <p>
+                                We began our journey with a vision to lay the foundation for the live events industry by bringing international acts and incredible luxury experiences to India. Our vision to introduce global experiences and passion for perfection led to the birth of SP Events – a pioneering force in the live events industry.
+                            </p>
+                            <p>
+                                Under our leadership, SP Events thrives on core values such as reliability, consistent quality delivery, equality, respect, and teamwork. These values have not only earned us a strong market reputation but also fostered close relationships with key players in the industry.
+                            </p>
+                        </div>
+                    </AnimatedSection>
+                </div>
+            </section>
+
+            {/* GRASSROOTS SLIDER */}
             <section className={styles.grassrootsSection}>
                 <motion.div 
                     className={styles.grassrootsHeader}
@@ -157,158 +135,61 @@ export default function AboutPage() {
                 </motion.div>
             </section>
 
-            {/* Values — Moved to item 3 */}
-            <section className="section bg-dark-alt">
-                <div className="container">
+            {/* MINDS THAT MATTER (DNA Networks Style) */}
+            <section className={styles.mindsSection}>
+                <div className="container" style={{ padding: '0 40px' }}>
                     <AnimatedSection>
-                        <div className="section-header">
-                            <span className="section-label">03. Our Values</span>
-                            <h2 className="section-title">The Foundation of <span className="text-gold">Excellence</span></h2>
-                        </div>
+                        <h2 className={styles.mindsTitle}>MINDS THAT MATTER</h2>
                     </AnimatedSection>
 
-                    <div className={styles.valuesGrid}>
-                        {values.map((v, i) => (
-                            <AnimatedSection key={i} delay={i * 0.08}>
-                                <div className={styles.valueCard}>
-                                    <div className={styles.valueIcon}>
-                                        <v.icon size={26} />
-                                    </div>
-                                    <div className={styles.valueCardContent}>
-                                        <h4>{v.title}</h4>
-                                        <p>{v.desc}</p>
-                                    </div>
-                                    <div className={styles.valueCardEdge} />
+                    <div className={styles.teamContainer}>
+                        {teamMembers.map((member, i) => (
+                            <AnimatedSection key={i} delay={i * 0.1} className={styles.dnaTeamCard}>
+                                <div className={styles.dnaCardImageBox}>
+                                    <img src={member.img} alt={member.name} className={styles.dnaTeamImg} />
                                 </div>
+                                <div className={styles.dnaCardContent}>
+                                    <h3 className={styles.dnaTeamName}>{member.name}</h3>
+                                    <p className={styles.dnaTeamRole}>{member.role}</p>
+                                </div>
+                                <div className={styles.dnaTeamLine}></div>
                             </AnimatedSection>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Destinations — Where You Can Find Us */}
-            <section className={styles.destinationsSection}>
-                <div className="container">
+            {/* WHERE YOU CAN FIND US (DNA Networks Style) */}
+            <section className={styles.locationsSection}>
+                <div className="container" style={{ padding: '0 40px' }}>
                     <AnimatedSection>
-                        <div className="section-header center mb-0">
-                            <h2 className={styles.destTitle}>WHERE YOU CAN<br />FIND US</h2>
-                            <p className={styles.destSubtitle}>
-                                Our expertise and services extended to these destinations for your convenience.
-                            </p>
-                        </div>
-                    </AnimatedSection>
-                </div>
-
-                <div className={styles.destGrid}>
-                    <div className={styles.destLargeRow}>
-                        {destinations.filter(d => d.size === 'large').map((dest, i) => (
-                            <AnimatedSection key={i} variant={i === 0 ? 'fadeLeft' : 'fadeRight'} className={styles.destCardLarge}>
-                                <div className={styles.destCard}>
-                                    <img src={dest.url} alt={dest.name} className={styles.destImage} />
-                                    <div className={styles.destOverlay}>
-                                        <span className={styles.destCity}>{dest.name}</span>
-                                    </div>
-                                </div>
-                            </AnimatedSection>
-                        ))}
-                    </div>
-                    <div className={styles.destSmallRow}>
-                        {destinations.filter(d => d.size === 'small').map((dest, i) => (
-                            <AnimatedSection key={i} variant="fadeUp" delay={0.1 * i} className={styles.destCardSmall}>
-                                <div className={styles.destCard}>
-                                    <img src={dest.url} alt={dest.name} className={styles.destImage} />
-                                    <div className={styles.destOverlay}>
-                                        <span className={styles.destCitySmall}>{dest.name}</span>
-                                    </div>
-                                </div>
-                            </AnimatedSection>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Process Section */}
-            <ProcessSection />
-
-            {/* Milestones */}
-            <section className="section section-violet">
-                {/* <div className="container">
-                    <AnimatedSection>
-                        <div className="section-header center">
-                            <span className="section-label">Our Journey</span>
-                            <h2 className="section-title">Milestones of Excellence</h2>
-                        </div>
+                        <h2 className={styles.locationsTitle}>Where You Can Find Us</h2>
                     </AnimatedSection>
 
-                    <div className={styles.timeline}>
-                        {milestones.map((m, i) => (
-                            <AnimatedSection key={i} variant={i % 2 === 0 ? 'fadeLeft' : 'fadeRight'} delay={i * 0.1}>
-                                <div className={`${styles.timelineItem} ${i % 2 !== 0 ? styles.timelineRight : ''}`}>
-                                    <div className={styles.timelineYear}>{m.year}</div>
-                                    <div className={styles.timelineCard}>
-                                        <h4>{m.title}</h4>
-                                        <p>{m.desc}</p>
+                    <div className={styles.dnaLocGrid}>
+                        {locations.map((loc, i) => (
+                            <AnimatedSection key={i} delay={i * 0.15} style={{ height: '100%' }}>
+                                <figure className={styles.dnaLocFigure}>
+                                    <img src={loc.img} alt={loc.city} className={styles.dnaLocImage} />
+                                    <div className={styles.dnaLocOverlay}></div>
+                                    
+                                    <div className={styles.dnaLocContent}>
+                                        <h2 className={styles.dnaLocCityName}>{loc.city}</h2>
+                                        
+                                        <div className={styles.dnaLocAddressWrap}>
+                                            <p className={styles.dnaLocAddress}>{loc.address}</p>
+                                        </div>
+
+                                        <a href="#" className={styles.dnaLocBtn}>
+                                            View Location <span style={{ marginLeft: '16px', fontSize: '1.25rem' }}>→</span>
+                                        </a>
                                     </div>
-                                </div>
-                            </AnimatedSection>
-                        ))}
-                        <div className={styles.timelineLine} />
-                    </div>
-                </div> */}
-            </section>
-
-            {/* Stats */}
-            <section className="section-sm">
-                <div className="container">
-                    <div className={styles.aboutStats}>
-                        {[
-                            { value: 4, suffix: '+', label: 'Years of Excellence' },
-                            { value: 300, suffix: '+', label: 'Happy Clients' },
-                            { value: 1500, suffix: '+', label: 'Magic Experiences' },
-                            { value: 30, suffix: '+', label: 'Professionals' },
-                        ].map((stat, i) => (
-                            <AnimatedSection key={i} delay={i * 0.1}>
-                                <div className={styles.aboutStatItem}>
-                                    <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.aboutStatValue} />
-                                    <span className={styles.aboutStatLabel}>{stat.label}</span>
-                                </div>
+                                </figure>
                             </AnimatedSection>
                         ))}
                     </div>
                 </div>
             </section>
-        </>
-    );
-}
-
-/* ——— Process Section Component ——— */
-function ProcessSection() {
-    return (
-        <section className={styles.processSection}>
-            <div className="container">
-                <AnimatedSection>
-                    <div className="section-header center">
-                        <span className="section-label">How We Work</span>
-                        <h2 className="section-title">Our Process</h2>
-                        <p className="section-subtitle">
-                            Every great event starts with a conversation. Here&apos;s how we
-                            bring your vision to life — with precision and passion.
-                        </p>
-                    </div>
-                </AnimatedSection>
-
-                <div className={styles.processGrid}>
-                    {processSteps.map((step, i) => (
-                        <AnimatedSection key={i} variant="fadeUp" delay={i * 0.12}>
-                            <div className={styles.processStep}>
-                                <div className={styles.processNum}>{step.num}</div>
-                                <h3 className={styles.processStepTitle}>{step.title}</h3>
-                                <p className={styles.processStepDesc}>{step.desc}</p>
-                            </div>
-                        </AnimatedSection>
-                    ))}
-                </div>
-            </div>
-        </section>
+        </main>
     );
 }
