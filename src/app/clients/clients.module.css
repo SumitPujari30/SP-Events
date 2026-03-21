@@ -809,7 +809,7 @@
 .testiHeaderSubtitle {
     font-family: var(--font-body);
     font-size: 1rem;
-    color: rgba(0, 0, 0, 0.45);
+    color: rgb(252, 247, 247);
     max-width: 360px;
     line-height: 1.75;
     flex-shrink: 0;
@@ -891,7 +891,7 @@
     font-size: clamp(1.3rem, 2.2vw, 1.8rem);
     font-weight: 400;
     line-height: 1.65;
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba(246, 235, 235, 0.9);
     font-style: italic;
     flex-grow: 1;
     margin-bottom: 52px;
@@ -931,7 +931,7 @@
 
 .testiFeaturedRole {
     font-size: 0.82rem;
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(246, 237, 237, 0.918);
     line-height: 1.4;
 }
 
@@ -1017,7 +1017,7 @@
     font-family: var(--font-heading);
     font-size: 0.9rem;
     font-weight: 700;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(236, 230, 230, 0.925);
     margin-bottom: 4px;
     transition: color 0.35s ease;
     white-space: nowrap;

@@ -54,7 +54,7 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link href="/" className={styles.logoLink} aria-label="SP Events Home">
                         <Image
-                            src="/assets/GOLD N ORANGE.png"
+                            src="/assets/sp_logo.png"
                             alt="SP Events"
                             width={500}
                             height={68}
