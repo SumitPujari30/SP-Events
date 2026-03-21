@@ -121,7 +121,7 @@ export default function Navbar() {
                                                     onClick={() => setIsOpen(false)}
                                                 >
                                                     <motion.span
-                                                        whileHover={{ x: -2, scale: 1.05, color: '#d4af37' }}
+                                                        whileHover={{ x: -4, color: '#d4af37' }}
                                                         transition={{ 
                                                             type: "spring", 
                                                             stiffness: 400, 

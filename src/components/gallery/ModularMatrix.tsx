@@ -10,19 +10,34 @@ interface ModularMatrixProps {
     onEventClick: (event: GalleryEvent) => void;
 }
 
-// 8 event cycle pattern to create a curated, non-repetitive editorial layout
+/*
+ * 12-card cycle – every row adds up to exactly 12 columns.
+ * Row 1:  7 + 5          = 12
+ * Row 2:  4 + 4 + 4      = 12
+ * Row 3:  5 + 7          = 12
+ * Row 4:  3 + 3 + 3 + 3  = 12
+ * Total:  48 cols = 4 clean rows, then repeat.
+ */
 const getPattern = (index: number) => {
-    const cycle = index % 8;
+    const cycle = index % 12;
     switch (cycle) {
-        case 0: return { type: 'event', size: 'L', span: 6 };
-        case 1: return { type: 'event', size: 'M', span: 6 };
-        case 2: return { type: 'event', size: 'XS', span: 3 };
-        case 3: return { type: 'event', size: 'XS', span: 3 };
-        case 4: return { type: 'event', size: 'M', span: 6 };
-        case 5: return { type: 'event', size: 'S', span: 4 };
-        case 6: return { type: 'event', size: 'S', span: 4 };
-        case 7: return { type: 'event', size: 'S', span: 4 };
-        default: return { type: 'event', size: 'M', span: 6 };
+        /* Row 1 */
+        case 0:  return { type: 'event', size: 'L',  span: 7 };
+        case 1:  return { type: 'event', size: 'M',  span: 5 };
+        /* Row 2 */
+        case 2:  return { type: 'event', size: 'S',  span: 4 };
+        case 3:  return { type: 'event', size: 'S',  span: 4 };
+        case 4:  return { type: 'event', size: 'S',  span: 4 };
+        /* Row 3 */
+        case 5:  return { type: 'event', size: 'M',  span: 5 };
+        case 6:  return { type: 'event', size: 'L',  span: 7 };
+        /* Row 4 */
+        case 7:  return { type: 'event', size: 'XS', span: 3 };
+        case 8:  return { type: 'event', size: 'XS', span: 3 };
+        case 9:  return { type: 'event', size: 'XS', span: 3 };
+        case 10: return { type: 'event', size: 'XS', span: 3 };
+        /* fallback (case 11 is never reached but keeps TS happy) */
+        default: return { type: 'event', size: 'M',  span: 6 };
     }
 };
 

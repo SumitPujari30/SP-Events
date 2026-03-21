@@ -41,7 +41,7 @@
 .menuOverlay {
   position: fixed;
   inset: 0;
-  background-color: #000;
+  background-color: var(--color-bg-dark);
   z-index: 9999;
   overflow: hidden;
 }
@@ -63,7 +63,7 @@
 
 .closeBtn {
   position: absolute;
-  top: 40px;
+  top: 50px;
   right: 60px;
   background: none;
   border: none;
@@ -101,8 +101,8 @@
 .navLinks {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 60px;
+  gap: 5px;
+  margin-bottom: 20px;
 }
 
 .linkContainer {
@@ -111,13 +111,13 @@
 }
 
 .link {
-  font-family: inherit;
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 4.5vw, 3.5rem);
-  font-weight: 700;
-  color: var(--color-text);
+  font-weight: 600;
+  color: var(--color-white);
   text-decoration: none;
-  letter-spacing: 1.5px;
-  transition: color 0.4s ease;
+  letter-spacing: 4px;
+  transition: all 0.4s ease;
   display: inline-block;
   line-height: 1.1;
   text-transform: uppercase;
@@ -126,6 +126,7 @@
 
 .link:hover {
   color: var(--color-accent-gold, #d4af37);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
 }
 
 .socialIcons {

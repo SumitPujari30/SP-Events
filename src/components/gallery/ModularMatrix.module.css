@@ -18,12 +18,16 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 32px;
     grid-auto-flow: row dense;
+    justify-content: center;
+    align-items: stretch;
 }
 
 /* Grid Spans */
 .span3 { grid-column: span 3; }
 .span4 { grid-column: span 4; }
+.span5 { grid-column: span 5; }
 .span6 { grid-column: span 6; }
+.span7 { grid-column: span 7; }
 .span12 { grid-column: span 12; }
 
 @media (max-width: 1200px) {
@@ -31,16 +35,18 @@
 }
 
 @media (max-width: 1024px) {
-    /* Collapse down to fewer columns on tablet */
+    /* Collapse down to 6 columns on tablet */
     .grid { grid-template-columns: repeat(6, 1fr); }
-    .span3 { grid-column: span 3; } /* Still 50% width on a 6-col grid */
-    .span4 { grid-column: span 6; } /* 100% width on tablet to preserve space */
+    .span3 { grid-column: span 3; }
+    .span4 { grid-column: span 3; }
+    .span5 { grid-column: span 3; }
     .span6 { grid-column: span 6; }
+    .span7 { grid-column: span 6; }
     .span12 { grid-column: span 6; }
 }
 
 @media (max-width: 768px) {
     .matrixWrap { padding: 40px 20px; }
     /* Stack everything on mobile */
-    .grid { display: flex; flex-direction: column; gap: 24px; }
+    .grid { display: flex; flex-direction: column; gap: 24px; align-items: center; }
 }

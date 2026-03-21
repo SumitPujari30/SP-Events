@@ -45,7 +45,7 @@
     color: var(--color-accent-gold);
 }
 
-/* RIGHT SIDE: VERTICAL MARQUEE */
+/* ─── RIGHT SIDE: VERTICAL MARQUEE ─── */
 .logoSide {
     flex: 1.2;
     height: 650px;
@@ -62,57 +62,80 @@
     height: 100%;
 }
 
+/*
+ * The static viewport for each column.
+ * Overflow hidden so only the visible window shows.
+ * Hover pauses the animation via the child selector.
+ */
 .carouselLogosWrap {
     flex: 1;
     overflow: hidden;
     position: relative;
-    display: flex;
-    flex-direction: column;
 }
 
-/* The parent column now just holds the animation and no gap, to allow child groups to dictate size perfectly */
-.carouselLogosCol {
+/* Pause the entire track when the column is hovered */
+.carouselLogosWrap:hover .marqueeTrack {
+    animation-play-state: paused;
+}
+
+/*
+ * The conveyor belt containing 3 identical marqueeGroups.
+ *
+ * IMPORTANT: We animate by exactly `var(--group-h)` pixels,
+ * NOT a percentage. This guarantees the shift distance matches
+ * one group's true rendered height — eliminating any jump.
+ *
+ * The value of --group-h is measured at runtime via ResizeObserver
+ * and injected as an inline style from React.
+ */
+.marqueeTrack {
     display: flex;
     flex-direction: column;
     will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
-/* 
- * A single group contains exactly N items + N gaps.
- * By using padding-bottom for the gap after the last item,
- * the group's exact offsetHeight perfectly equals the shift distance.
- * This guarantees a mathematically perfect loop without tricky calcs.
+/*
+ * Each group holds the full logo list.
+ * gap + matching padding-bottom ensures consistent spacing
+ * between the last item of one group and the first of the next.
  */
 .marqueeGroup {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding-bottom: 30px; 
+    padding-bottom: 30px;
+    flex-shrink: 0;
 }
 
-.carouselLogosCol:hover {
-    animation-play-state: paused;
-}
-
+/* ─── SCROLL DIRECTIONS (pixel-based) ─── */
 .up {
-    animation: marqueeUp linear infinite;
+    animation: marqueeUp var(--marquee-duration, 45s) linear infinite;
 }
 
 .down {
-    animation: marqueeDown linear infinite;
+    animation: marqueeDown var(--marquee-duration, 55s) linear infinite;
 }
 
-/* -50% shifts by exactly one group since there are exactly 2 identical groups */
+/*
+ * Translate by exactly one group's pixel height.
+ * Since the track contains 3 identical groups:
+ *   Position 0px  → shows groups 1+2
+ *   Position -Hpx → shows groups 2+3  (group 3 is a clone of group 1)
+ * At 100% the animation resets to 0% — visually identical, zero jump.
+ */
 @keyframes marqueeUp {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(calc(var(--group-h, 3000px) * -1)); }
 }
 
 @keyframes marqueeDown {
-    0% { transform: translateY(-50%); }
+    0%   { transform: translateY(calc(var(--group-h, 3000px) * -1)); }
     100% { transform: translateY(0); }
 }
 
+/* ─── LOGO ITEMS ─── */
 .logoItem {
     width: 100%;
     height: 100px;
@@ -133,6 +156,23 @@
     transform: scale(1.12);
 }
 
+.logoFallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+/* ─── RESPONSIVE ─── */
 @media (max-width: 1200px) {
     .content { gap: 60px; }
     .mainTitle { font-size: clamp(2rem, 5vw, 3.5rem); }

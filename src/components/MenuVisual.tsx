@@ -94,7 +94,7 @@ export default function MenuVisual() {
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
             <Canvas>
                 <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
-                <color attach="background" args={['#000000']} />
+                <color attach="background" args={['#070012']} />
                 <Scene />
             </Canvas>
         </div>

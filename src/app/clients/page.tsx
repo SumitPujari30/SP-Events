@@ -103,8 +103,8 @@ function SplitTextHero() {
         offset: ['start start', 'end start'],
     });
 
-    const line1 = 'OUR';
-    const line2 = 'CLIENTS';
+    const line1 = 'Our';
+    const line2 = 'Clients';
     const subtitleOpacity = useTransform(scrollYProgress, [0.5, 0.72], [0, 1]);
 
     return (
@@ -626,11 +626,11 @@ function AnimatedStats() {
    SECTION 5: IMMERSIVE CTA
    ============================================= */
 function ImmersiveCTA() {
-    const particles = Array.from({ length: 24 }, (_, i) => ({
-        left: `${5 + (i * 4.17) % 90}%`,
-        animationDelay: `${(i * 0.37) % 8}s`,
-        animationDuration: `${7 + (i * 0.5) % 5}s`,
-        size: 3 + (i % 4),
+    const particles = Array.from({ length: 80 }, (_, i) => ({
+        left: `${1 + (i * 7.31) % 98}%`,
+        animationDelay: `${(i * 0.23) % 12}s`,
+        animationDuration: `${5 + (i * 0.4) % 8}s`,
+        size: 2 + (i % 5),
     }));
 
     return (
@@ -681,8 +681,11 @@ export default function ClientsPage() {
         <main className={styles.pageWrap}>
             <SplitTextHero />
             <MarqueeStrip />
-            <ClientGrid />
-            <TestimonialsSection />
+            {/* We now pass the TestimonialsSection correctly as children inside the ClientGrid
+                so it stays aligned centrally between the two client card halves. */}
+            <ClientGrid>
+                <TestimonialsSection />
+            </ClientGrid>
             <AnimatedStats />
             <ImmersiveCTA />
         </main>
