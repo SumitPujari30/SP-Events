@@ -61,14 +61,14 @@
 @media (min-width: 900px) {
   .cardLink {
     flex-direction: row;
-    height: 500px;
+    height: 380px; /* Reduced for a more horizontal look */
   }
 }
 
 /* ─── LEFT SIDE CONTENT ─── */
 .content {
-  flex: 0.8; /* Make text side slightly narrower */
-  padding: 60px 40px;
+  flex: 0.8; 
+  padding: 40px 60px; /* Reduced vertical padding */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,16 +78,16 @@
 
 @media (min-width: 1024px) {
   .content {
-    padding: 100px;
+    padding: 60px 80px;
   }
 }
 
 .title {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-size: clamp(2.5rem, 5vw, 3.8rem); /* Slightly smaller to fit better */
   font-weight: 800;
   color: #ffffff;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   line-height: 0.9;
   letter-spacing: -2px;
 }
@@ -100,10 +100,10 @@
 
 .text {
   font-family: var(--font-body);
-  font-size: 1.15rem;
-  line-height: 1.6;
+  font-size: 1.05rem; /* Slightly smaller for compactness */
+  line-height: 1.5;
   color: #a0a0a0;
-  margin-bottom: 50px;
+  margin-bottom: 30px; /* Reduced margin */
   max-width: 420px;
 }
 
@@ -114,7 +114,7 @@
 .button {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -126,8 +126,8 @@
 }
 
 .arrowIcon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -137,7 +137,7 @@
 
 /* ─── RIGHT SIDE IMAGE SECTION ─── */
 .imageSection {
-  flex: 1.2; /* Increased width as requested */
+  flex: 1.2; 
   background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
@@ -146,13 +146,13 @@
 }
 
 .imageLabelWrap {
-  padding: 40px 50px;
+  padding: 30px 50px; /* Reduced vertical padding */
   z-index: 4;
 }
 
 .imageLabel {
   font-family: var(--font-heading);
-  font-size: 1.7rem;
+  font-size: 1.4rem; /* Slightly smaller */
   font-weight: 700;
   color: #000000;
   letter-spacing: -0.5px;
@@ -166,7 +166,7 @@
 
 .image {
   object-fit: contain;
-  padding: 0 50px 50px 50px;
+  padding: 0 50px 30px 50px; /* Adjusted bottom padding */
   z-index: 2;
 }
 
