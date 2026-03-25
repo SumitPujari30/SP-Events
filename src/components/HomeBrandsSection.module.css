@@ -1,159 +1,116 @@
 .section {
     width: 100%;
-    padding: 120px 0;
+    padding: 100px 0;
     background-color: var(--color-bg);
-    color: var(--color-text);
     overflow: hidden;
     position: relative;
 }
 
 .container {
-    max-width: 1440px;
+    width: 100%;
+    max-width: 100vw;
     margin: 0 auto;
-    padding: 0 40px;
 }
 
-.content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 100px;
-}
-
-/* LEFT SIDE: TYPOGRAPHY */
-.textSide {
-    flex: 1;
-    max-width: 600px;
-}
-
-.mainTitle {
+.sectionTitle {
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 800;
-    line-height: 0.95;
+    text-align: center;
     text-transform: uppercase;
-    letter-spacing: -2px;
-}
-
-.brandName {
     color: var(--color-text);
-    display: block;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
+    letter-spacing: -1px;
 }
 
-.highlight {
-    color: var(--color-accent-gold);
-}
-
-/* ─── RIGHT SIDE: VERTICAL MARQUEE ─── */
-.logoSide {
-    flex: 1.2;
-    height: 650px;
-    position: relative;
-    overflow: hidden;
-    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-}
-
+/* ─── HORIZONTAL MARQUEE CONTAINER ─── */
 .marqueeContainer {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    height: 100%;
-}
-
-/*
- * The static viewport for each column.
- * Overflow hidden so only the visible window shows.
- * Hover pauses the animation via the child selector.
- */
-.carouselLogosWrap {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Pause the entire track when the column is hovered */
-.carouselLogosWrap:hover .marqueeTrack {
-    animation-play-state: paused;
-}
-
-/*
- * The conveyor belt containing 3 identical marqueeGroups.
- *
- * IMPORTANT: We animate by exactly `var(--group-h)` pixels,
- * NOT a percentage. This guarantees the shift distance matches
- * one group's true rendered height — eliminating any jump.
- *
- * The value of --group-h is measured at runtime via ResizeObserver
- * and injected as an inline style from React.
- */
-.marqueeTrack {
-    display: flex;
-    flex-direction: column;
-    will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-/*
- * Each group holds the full logo list.
- * gap + matching padding-bottom ensures consistent spacing
- * between the last item of one group and the first of the next.
- */
-.marqueeGroup {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding-bottom: 30px;
-    flex-shrink: 0;
-}
-
-/* ─── SCROLL DIRECTIONS (pixel-based) ─── */
-.up {
-    animation: marqueeUp var(--marquee-duration, 45s) linear infinite;
-}
-
-.down {
-    animation: marqueeDown var(--marquee-duration, 55s) linear infinite;
-}
-
-/*
- * Translate by exactly one group's pixel height.
- * Since the track contains 3 identical groups:
- *   Position 0px  → shows groups 1+2
- *   Position -Hpx → shows groups 2+3  (group 3 is a clone of group 1)
- * At 100% the animation resets to 0% — visually identical, zero jump.
- */
-@keyframes marqueeUp {
-    0%   { transform: translateY(0); }
-    100% { transform: translateY(calc(var(--group-h, 3000px) * -1)); }
-}
-
-@keyframes marqueeDown {
-    0%   { transform: translateY(calc(var(--group-h, 3000px) * -1)); }
-    100% { transform: translateY(0); }
-}
-
-/* ─── LOGO ITEMS ─── */
-.logoItem {
     width: 100%;
-    height: 100px;
+    /* Fade out edges for cinematic look */
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marqueeRowWrap {
+    width: 100%;
+    overflow: hidden;
     position: relative;
+}
+
+/* Pause on hover */
+.marqueeRowWrap:hover .marqueeTrack {
+    animation-play-state: paused;
+}
+
+.marqueeTrack {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+}
+
+.marqueeGroup {
+    display: flex;
+    gap: 30px;
+    padding-right: 30px; /* spacing between clones */
+}
+
+/* directions */
+.left {
+    animation: scrollLeft var(--marquee-duration, 30s) linear infinite;
+}
+
+.right {
+    animation: scrollRight var(--marquee-duration, 30s) linear infinite;
+}
+
+@keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.3333%); }
+}
+
+@keyframes scrollRight {
+    0% { transform: translateX(-33.3333%); }
+    100% { transform: translateX(0); }
+}
+
+/* ─── LOGO ITEM: WHITE CARD ─── */
+.logoItem {
+    width: 260px; /* Slightly wider cards for the wide layout image */
+    height: 130px;
+    background-color: #ffffff;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 0; /* Remove internal padding so image can fill edges */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
     flex-shrink: 0;
+    overflow: hidden; /* Ensure image doesn't spill out of corners */
+}
+
+.logoItem:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-accent-gold);
 }
 
 .logoImage {
-    object-fit: contain;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    object-fit: cover; /* Fill the whole card while keeping aspect ratio */
+    inset: 0 !important;
+    filter: none;
+    opacity: 1;
+    transition: all 0.4s ease;
 }
 
 .logoItem:hover .logoImage {
-    transform: scale(1.12);
+    filter: grayscale(0);
+    opacity: 1;
 }
 
 .logoFallback {
@@ -162,48 +119,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
     font-weight: 700;
-    color: var(--color-text);
+    color: #333;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.8;
+    letter-spacing: 0.5px;
 }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 1200px) {
-    .content { gap: 60px; }
-    .mainTitle { font-size: clamp(2rem, 5vw, 3.5rem); }
-}
-
-@media (max-width: 992px) {
-    .content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .textSide {
-        max-width: 100%;
-        margin-bottom: 40px;
-    }
-    .logoSide {
-        width: 100%;
-        height: 450px;
-    }
-}
-
-@media (max-width: 600px) {
-    .section {
-        padding: 80px 0;
-    }
-    .container {
-        padding: 0 20px;
-    }
-    .logoSide {
-        height: 350px;
-    }
+@media (max-width: 768px) {
+    .section { padding: 60px 0; }
+    .sectionTitle { margin-bottom: 40px; }
     .logoItem {
-        height: 80px;
+        width: 180px;
+        height: 90px;
+        padding: 15px;
     }
+    .marqueeContainer { gap: 15px; }
+    .marqueeGroup { gap: 15px; padding-right: 15px; }
 }

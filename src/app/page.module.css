@@ -28,7 +28,7 @@
   z-index: 0;
 }
 
-.videoBgEl {
+.heroImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -98,9 +98,13 @@
 ════════════════════════════════════════════════════════════ */
 .experiencesSection {
   position: relative;
-  padding: 180px 0 160px;
-  background: var(--color-bg-dark); /* #070012 deep purple-black */
+  width: 100%;
+  height: 100vh;
+  min-height: 750px;
+  background: var(--color-bg-dark);
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 /* Atmospheric glowing orbs */
@@ -128,9 +132,11 @@
 
 .expContainer {
   display: flex;
-  gap: 80px;
-  align-items: center;
-  max-width: 1400px;
+  gap: 100px;
+  align-items: flex-start;
+  max-width: 1600px;
+  width: 90%;
+  margin: 0 auto;
   position: relative;
   z-index: 2;
 }
@@ -163,11 +169,12 @@
 
 .expTitle {
   font-family: var(--font-heading);
-  font-size: clamp(3.2rem, 6vw, 5.5rem);
+  font-size: clamp(3.2rem, 7.5vw, 5.8rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
   color: var(--color-text);
+  margin-top: 15px;
 }
 
 .expUniqueLine {
@@ -222,20 +229,24 @@
 /* Right - Story and CTA */
 .expRight {
   flex: 0.9;
-  padding-left: 40px;
-  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  padding-left: 80px;
+  border-left: 1px solid rgba(212, 175, 55, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .expStoryBlock {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .expText {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.5;
   font-weight: 300;
   margin-bottom: 0;
+  letter-spacing: -0.01em;
 }
 
 .expTextHighlight {
@@ -247,12 +258,12 @@
   width: 60px;
   height: 2px;
   background: linear-gradient(to right, var(--color-accent-gold), transparent);
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .expTextSecondary {
   font-size: 1.05rem;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.8;
 }
 
@@ -321,77 +332,129 @@
 ════════════════════════════════════════════════════════════ */
 .categoriesSection {
   position: relative;
-  padding: 120px 0 130px;
-  background: var(--color-bg);
+  width: 100%;
+  background: var(--color-bg-dark);
   overflow: hidden;
 }
 
-.categoriesSection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.15), transparent);
+.catStickyWrapper {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
 }
 
 /* ── Section Header ── */
 .catHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 72px;
+  margin-bottom: 60px;
 }
 
 .catTitle {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
   font-weight: 800;
   color: var(--color-text);
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  margin-top: 14px;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin-top: 10px;
 }
 
-/* ── Grid ── */
-.catGridWrapper {
+.catTitleGold {
+  color: var(--color-accent-gold);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.catBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  opacity: 0.8;
+}
+
+.catBadgeDiamond {
+  font-size: 0.9rem;
+}
+
+/* ── Slider ── */
+.catSliderWrapper {
+  position: relative;
   width: 100%;
-  padding: 0 3vw;
-  max-width: 1920px; /* Limit on extremely ultrawide monitors */
-  margin: 0 auto;
+  overflow: visible;
+  padding-left: 5vw;
 }
 
 .catGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: max-content;
+  padding-right: 5vw; /* Symmetrical padding at the end */
+  will-change: transform;
 }
 
 /* ── Card ── */
 .catCard {
   position: relative;
-  aspect-ratio: 16 / 9; /* Wider cinematic feel */
-  height: auto;
-  border-radius: 4px;
-  overflow: hidden;
-  cursor: pointer;
-  /* subtle lift on hover */
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  width: 450px;
+  background: transparent;
+  transition: transform 0.4s ease;
 }
 
 .catCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  z-index: 10;
+  transform: translateY(-8px);
 }
 
-/* Background image */
-.catCardBg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+.catCardInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
+
+.catCardImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px; /* subtle softening, can be removed if strictly sharp */
+}
+
+.catCardTitleWrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 24px; 
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.85); /* Light backdrop */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  border-radius: 30px; /* Modern pill shape */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow to lift it off the image */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.catCardTitle {
+  font-family: var(--font-body);
+  font-size: 1.15rem; 
+  font-weight: 800; 
+  color: #000; /* Dark text */
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: none; /* Removed glow, pill handles visibility */
+}
+
 
 .catCard:hover .catCardBg {
   transform: scale(1.04);
@@ -418,27 +481,6 @@
   opacity: 1;
 }
 
-.catCardContent {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 30px 32px;
-  z-index: 2;
-}
-
-.catCardTitle {
-  font-family: var(--font-body);
-  font-size: clamp(1.2rem, 1.5vw, 1.6rem); /* Scales with screen */
-  font-weight: 700;
-  color: var(--color-text);
-  line-height: 1.3;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-
 /* ════════════════════════════════════════════════════════════
    4. CREATING WOW EXPERIENCES — Image Banner
 ════════════════════════════════════════════════════════════ */
@@ -460,33 +502,71 @@
   max-width: 1400px;
   display: flex;
   justify-content: center;
+  position: relative; /* Added for absolute text positioning */
 }
 
 .wowImage {
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  pointer-events: none; /* No interaction needed */
-  will-change: transform, clip-path, opacity;
+  height: 350px; /* Force to roughly the same height as the previous banner */
+  object-fit: cover; /* Fills the wide banner area just like the old image */
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+.magicTextWrapper {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  padding: 12px 24px; 
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(10px); 
+  border-radius: 30px; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.magicText {
+  font-family: var(--font-body);
+  font-size: 1.15rem; 
+  font-weight: 800; 
+  color: #000; 
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* ════════════════════════════════════════════════════════════
-   5. STATS SECTION — Premium Metrics
-   Glassmorphism + Gold Accents
+   5. STATS SECTION — Premium Metrics with 3D Background
+   Glassmorphism + Futuristic Dark Gradient
 ════════════════════════════════════════════════════════════ */
 .statsSection {
-  padding: 80px 0 120px;
-  background: var(--color-bg); /* #04000a */
+  padding: 100px 0 140px;
   position: relative;
   z-index: 5;
+  background: linear-gradient(135deg, #020008 0%, #0a0120 50%, #020008 100%);
+  overflow: hidden;
 }
 
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 
 .statItem {
@@ -496,11 +576,12 @@
 .statGlass {
   position: relative;
   height: 100%;
-  padding: 50px 30px;
-  background: rgba(0, 0, 0, 0.02);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 20px;
+  padding: 60px 40px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* crisp glass edge */
+  border-radius: 24px;
   text-align: center;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
@@ -508,6 +589,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 0 40px rgba(255, 255, 255, 0.02);
 }
 
 .statGlass::before {
@@ -516,43 +598,34 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-accent-gold), transparent);
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 
+/* Hover effects (scaling/Y translation handled by Framer Motion, lighting handled here) */
 .statGlass:hover {
-  background: rgba(0, 0, 0, 0.04);
-  transform: translateY(-10px);
-  border-color: rgba(212, 175, 55, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.statGlass:hover::before {
-  opacity: 1;
+  background: rgba(255, 255, 255, 0.06); 
+  border: 1px solid rgba(139, 92, 246, 0.4); /* purple edge glow */
+  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.15), inset 0 0 60px rgba(255, 255, 255, 0.03);
 }
 
 .statNumber {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  font-size: clamp(3rem, 4vw, 4.5rem);
   font-weight: 800;
-  color: var(--color-text);
-  line-height: 1;
+  color: #ffffff;
   margin-bottom: 15px;
-  background: linear-gradient(135deg, #fff 0%, #d4af37 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3); /* soft inner glow */
 }
 
 .statLabel {
-  font-size: 0.9rem;
-  letter-spacing: 2px;
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
-  font-weight: 600;
-  line-height: 1.4;
 }
 
 
@@ -673,10 +746,11 @@
 @media (max-width: 1024px) {
   .catGrid { grid-template-columns: repeat(2, 1fr); }
   .statsGrid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .expContainer { flex-direction: column; gap: 60px; }
-  .expLeft { max-width: 100%; padding-right: 0; }
-  .expRight { padding-left: 0; border-left: none; max-width: 100%; border-top: 1px solid rgba(0, 0, 0, 0.08); padding-top: 40px; }
+  .expContainer { flex-direction: column; gap: 60px; align-items: stretch; width: 95%; }
+  .expLeft { max-width: 100%; padding-right: 0; position: static; }
+  .expRight { padding-left: 0; border-left: none; max-width: 100%; border-top: 1px solid rgba(212, 175, 55, 0.15); padding-top: 40px; }
   .catTitle { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+  .expTitle { font-size: clamp(3rem, 10vw, 5rem); }
 }
 
 @media (max-width: 768px) {

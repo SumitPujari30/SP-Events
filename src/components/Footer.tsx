@@ -14,7 +14,6 @@ const quickLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Us' },
     { href: '/services', label: 'Services' },
-    { href: '/gallery', label: 'Gallery' },
     { href: '/careers', label: 'Careers' },
     { href: '/clients', label: 'Client' },
     { href: '/contact', label: 'Connect' },
@@ -60,7 +59,9 @@ export default function Footer() {
                             className={styles.bgVideo}
                             onEnded={(e) => {
                                 e.currentTarget.currentTime = 21.5;
-                                e.currentTarget.play();
+                                e.currentTarget.play().catch(error => {
+                                    console.log("Video play interrupted or failed:", error);
+                                });
                             }}
                         >
                             <source src="/assets/The SP Events office --footer.mp4#t=21.5" type="video/mp4" />

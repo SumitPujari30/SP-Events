@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -14,7 +14,6 @@ const navLinks = [
     { href: '/', label: 'HOME' },
     { href: '/about', label: 'ABOUT' },
     { href: '/services', label: 'SERVICES' },
-    { href: '/gallery', label: 'GALLERY' },
     { href: '/careers', label: 'CAREERS' },
     { href: '/clients', label: 'CLIENT' },
     { href: '/contact', label: 'CONNECT' },
@@ -25,12 +24,36 @@ const menuImage = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const lastScrollY = useRef(0);
     const pathname = usePathname();
 
     useEffect(() => {
+        if (typeof window !== 'undefined') {
+            lastScrollY.current = window.scrollY;
+        }
+
         const onScroll = () => {
-            setScrolled(window.scrollY > 30);
+            const currentScrollY = window.scrollY;
+            
+            // Set scrolled style threshold
+            setScrolled(currentScrollY > 30);
+
+            // Auto-hide logic based on direction
+            if (currentScrollY <= 50) {
+                // Always show at the very top
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY.current) {
+                // Scrolling down
+                setIsVisible(false);
+            } else if (currentScrollY < lastScrollY.current) {
+                // Scrolling up
+                setIsVisible(true);
+            }
+            
+            lastScrollY.current = currentScrollY;
         };
+
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
@@ -47,8 +70,8 @@ export default function Navbar() {
             <motion.header
                 className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}
                 initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ type: 'spring', stiffness: 260, damping: 30 }}
+                animate={{ y: isVisible ? 0 : '-100%' }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
                 <div className={styles.inner}>
                     {/* Logo */}

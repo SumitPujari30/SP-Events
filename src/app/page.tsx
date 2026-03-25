@@ -8,6 +8,8 @@ import styles from './page.module.css';
 import HomeBrandsSection from '@/components/HomeBrandsSection';
 import JoinUsSection from '@/components/JoinUsSection';
 import CounterAnimation from '@/components/CounterAnimation';
+import Stats3DBackground from '@/components/Stats3DBackground';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,50 +17,38 @@ gsap.registerPlugin(ScrollTrigger);
 const eventCategories = [
   {
     id: 'corporate',
-    label: 'Corporate',
     title: 'Corporate Events',
-    desc: 'Boardroom-precision meets experiential design. Conferences, leadership conclaves, AGMs, and team summits that command authority.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+    image: '/assets/Layout_page.png',
     color: '#d4af37',
   },
   {
-    id: 'musical',
-    label: 'Music',
-    title: 'Musical Events',
-    desc: 'Concert production, artist management, and stage design that transforms venues into electric arenas. Pure energy, flawlessly staged.',
-    image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80',
-    color: '#a855f7',
-  },
-  {
-    id: 'sports',
-    label: 'Sports',
-    title: 'Sports Events',
-    desc: 'From marathons to tournaments — we handle on-ground logistics, branding, spectator experience, and broadcast coordination.',
-    image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80',
-    color: '#22c55e',
-  },
-  {
     id: 'launches',
-    label: 'Launch',
     title: 'Launch Events',
-    desc: 'Day-one buzz engineered from the ground up. Product reveals, brand launches, and store openings that become cultural moments.',
-    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80',
+    image: '/assets/Layout_page.png',
     color: '#3b82f6',
   },
   {
     id: 'special',
-    label: 'Special',
     title: 'Special Events',
-    desc: 'Award nights, gala dinners, anniversary celebrations, and milestone events designed to leave every guest breathless.',
-    image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80',
+    image: '/assets/Layout_page.png',
     color: '#f97316',
   },
   {
+    id: 'musical',
+    title: 'Musical Events',
+    image: '/assets/Layout_page.png',
+    color: '#a855f7',
+  },
+  {
+    id: 'sports',
+    title: 'Sports Events',
+    image: '/assets/Layout_page.png',
+    color: '#22c55e',
+  },
+  {
     id: 'weddings',
-    label: 'Weddings',
     title: 'Weddings',
-    desc: 'Luxury wedding experiences crafted with meticulous attention to every detail — from venue transformation to live entertainment.',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+    image: '/assets/Layout_page.png',
     color: '#ec4899',
   },
 ];
@@ -78,8 +68,10 @@ const rhymeWords = ["Unforgettable", "Indelible", "Incredible", "Exceptional", "
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const heroImageRef = useRef<HTMLImageElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
@@ -92,9 +84,9 @@ export default function HomePage() {
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      // ── Hero video fade in ───────────────────────────────────
+      // ── Hero image fade in ───────────────────────────────────
       gsap.fromTo(
-        videoRef.current,
+        heroImageRef.current,
         { opacity: 0, scale: 1.05 },
         { opacity: 1, scale: 1, duration: 2.2, ease: 'power2.out', delay: 0.2 }
       );
@@ -135,15 +127,39 @@ export default function HomePage() {
         }
       );
 
-      // ── Category cards ───────────────────────────────────────
+      // ── Category Header Arrival ──────────────────────────────
       gsap.fromTo(
-        `.${styles.catCard}`,
-        { opacity: 0, y: 70 },
+        [`.${styles.catBadge}`, `.${styles.catTitle}`],
+        { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, duration: 0.75, stagger: 0.1, ease: 'power3.out',
-          scrollTrigger: { trigger: `.${styles.catGrid}`, start: 'top 82%' },
+          opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out',
+          scrollTrigger: { trigger: `.${styles.catHeader}`, start: 'top 85%' },
         }
       );
+
+      // ── Horizontal Scroll Pinning ──────────────────────────────
+      if (sliderRef.current && sectionRef.current) {
+        const getScrollAmount = () => {
+          if (!sliderRef.current) return 0;
+          const sliderWidth = sliderRef.current.scrollWidth;
+          const paddingLeft = window.innerWidth * 0.05; // Matches 5vw padding-left of wrapper
+          return -(sliderWidth + paddingLeft - window.innerWidth);
+        };
+
+        const horizontalTween = gsap.to(sliderRef.current, {
+          x: getScrollAmount,
+          ease: 'none',
+          id: 'horizontalScrollAnimation',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            pin: true,
+            scrub: 1, // Smooth dampening
+            start: 'top top',
+            end: () => `+=${sliderRef.current?.scrollWidth || window.innerWidth}`, 
+            invalidateOnRefresh: true,
+          },
+        });
+      }
 
       // ── Divider banner image arrival ─────────────────────────
       gsap.fromTo(
@@ -155,12 +171,23 @@ export default function HomePage() {
         }
       );
 
+      // Magic Text arrival
+      gsap.fromTo(
+        `.${styles.magicTextWrapper}`,
+        { opacity: 0, x: -30 },
+        {
+          opacity: 1, x: 0, duration: 1, delay: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: `.${styles.dividerBanner}`, start: 'top 85%' },
+        }
+      );
+
       // ── Stats Section ─────────────────────────────────────────
       gsap.fromTo(
         `.${styles.statItem}`,
-        { opacity: 0, y: 50, scale: 0.9 },
+        { opacity: 0, y: 80, scale: 0.8, rotationX: 15 },
         {
-          opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.15, ease: 'back.out(1.7)',
+          opacity: 1, y: 0, scale: 1, rotationX: 0, 
+          duration: 1.2, stagger: 0.15, ease: 'back.out(1.4)',
           scrollTrigger: { trigger: `.${styles.statsGrid}`, start: 'top 85%' },
         }
       );
@@ -178,14 +205,11 @@ export default function HomePage() {
       <section className={styles.heroSection}>
 
         <div className={styles.videoBg}>
-          <video
-            ref={videoRef}
-            src="https://www.tantraa.net/wp-content/uploads/2024/05/video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className={styles.videoBgEl}
+          <img
+            ref={heroImageRef}
+            src="/assets/Layout_page.png"
+            alt="The SP Events Hero"
+            className={styles.heroImage}
           />
           <div className={styles.videoOverlayBase} />
           <div className={styles.videoOverlayGradient} />
@@ -205,7 +229,7 @@ export default function HomePage() {
           2. EXPERIENCES — Custom SP Events Design
       ════════════════════════════════════════════════════════ */}
       <section className={styles.experiencesSection}>
-        {/* Soft glowing orb for brand identity */}
+        {/* Soft glowing orbs for brand identity */}
         <div className={styles.expOrbGold} />
         <div className={styles.expOrbPurple} />
         
@@ -245,7 +269,7 @@ export default function HomePage() {
               <div className={`${styles.expDivider} ${styles.expTextFade}`} />
               
               <p className={`${styles.expTextSecondary} ${styles.expTextFade}`}>
-                Born from over 4+ years of industry mastery, our founding team recognized a profound need for a truly professional, innovation-driven event management partner. We don't just plan events; we engineer environments that resonate.
+                Born from over 4+ years of industry mastery, our founding team recognized a profound need for a truly professional, innovation-driven event management partner. We don&apos;t just plan events; we engineer environments that resonate.
               </p>
             </div>
             
@@ -262,44 +286,42 @@ export default function HomePage() {
 
 
       {/* ═══════════════════════════════════════════════════════
-          3. EVENT CATEGORIES — image cards grid
+          3. OUR SERVICES — Horizontal Scroll
       ════════════════════════════════════════════════════════ */}
-      <section className={styles.categoriesSection}>
-        <div className="container">
-
-          {/* Section heading */}
-          <div className={styles.catHeader}>
-            <span className="section-label">We specialise in</span>
-            <h2 className={styles.catTitle}>
-              Corporate Event<br />
-              <span className="gradient-text">Management</span>
-            </h2>
-          </div>
-        </div>
-
-        {/* Image cards grid — Full width to cover screen */}
-        <div className={styles.catGridWrapper}>
-          <div className={styles.catGrid}>
-            {eventCategories.map(cat => (
-              <div
-                key={cat.id}
-                className={styles.catCard}
-                style={{ '--cat-color': cat.color } as React.CSSProperties}
-              >
-                {/* Full bleed background image */}
-                <div
-                  className={styles.catCardBg}
-                  style={{ backgroundImage: `url(${cat.image})` }}
-                />
-                {/* Simple dark gradient at bottom for text readability */}
-                <div className={styles.catCardGradient} />
-
-                {/* Content */}
-                <div className={styles.catCardContent}>
-                  <h3 className={styles.catCardTitle}>{cat.title}</h3>
-                </div>
+      <section className={styles.categoriesSection} ref={sectionRef}>
+        <div className={styles.catStickyWrapper}>
+          <div className="container">
+            {/* Section heading */}
+            <div className={styles.catHeader}>
+              <div className={styles.catBadge}>
+                <span className={styles.catBadgeDiamond}>✧</span>
+                OUR EXPERTISE
               </div>
-            ))}
+              <h2 className={styles.catTitle}>
+                Our <span className={styles.catTitleGold}>Service</span>
+              </h2>
+            </div>
+          </div>
+
+          {/* Horizontal Slider */}
+          <div className={styles.catSliderWrapper}>
+            <div className={styles.catGrid} ref={sliderRef}>
+              {eventCategories.map(cat => (
+                <div
+                  key={cat.id}
+                  className={styles.catCard}
+                  style={{ '--cat-color': cat.color } as React.CSSProperties}
+                >
+                  {/* Full bleed background image or main card content */}
+                  <div className={styles.catCardInner}>
+                    <img src={cat.image} alt={cat.title} className={styles.catCardImg} />
+                    <div className={styles.catCardTitleWrapper}>
+                      <span className={styles.catCardTitle}>{cat.title}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -311,10 +333,13 @@ export default function HomePage() {
       <div className={styles.dividerBanner}>
         <div className={styles.dividerBannerInner}>
           <img 
-            src="https://www.tantraa.net/wp-content/uploads/2024/05/cwe-1-2048x438.png" 
-            alt="Creating Wow Experiences"
+            src="/assets/Layout_page.png" 
+            alt="Creating Magic Layout"
             className={styles.wowImage}
           />
+          <div className={styles.magicTextWrapper}>
+            <span className={styles.magicText}>Creating Magic Layout</span>
+          </div>
         </div>
       </div>
 
@@ -323,15 +348,21 @@ export default function HomePage() {
           5. STATS SECTION — Premium Metrics
       ════════════════════════════════════════════════════════ */}
       <section className={styles.statsSection}>
-        <div className="container">
+        <Stats3DBackground />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className={styles.statsGrid}>
             {stats.map((stat, i) => (
-              <div key={i} className={styles.statItem}>
+              <motion.div 
+                key={i} 
+                className={styles.statItem}
+                whileHover={{ y: -10, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              >
                 <div className={styles.statGlass}>
                   <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
                   <div className={styles.statLabel}>{stat.label}</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
