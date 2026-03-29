@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, CheckCircle, Award, Users, Handshake, Star } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+import { motion } from 'framer-motion';
 import AnimatedSection from '@/components/AnimatedSection';
+import CounterAnimation from '@/components/CounterAnimation';
+import Stats3DBackground from '@/components/Stats3DBackground';
 import styles from './about.module.css';
 
 const grassrootsImages = [
@@ -18,31 +20,37 @@ const grassrootsImages = [
     { url: '/assets/Layout_page.png', artist: 'Party Lights' },
 ];
 
-const valuesList = [
-    { id: '01', title: 'Reliability', icon: CheckCircle, desc: 'We deliver consistent performance under all conditions.' },
-    { id: '02', title: 'Consistent Quality', icon: Award, desc: 'We maintain high standards across every product and event.' },
-    { id: '03', title: 'Equality', icon: Users, desc: 'We ensure fairness, respect, and equal opportunity for all.' },
-    { id: '04', title: 'Respect', icon: Handshake, desc: 'We genuinely value every individual and their contributions.' },
-    { id: '05', title: 'Teamwork', icon: Star, desc: 'We achieve significantly more through collaboration.' },
-];
-
 const locations = [
     {
-        city: 'Hubli',
-        img: 'https://images.unsplash.com/photo-1514222134-b57cdd8ce073?w=800&q=80',
-        address: 'The SP Events \n 1st floor, Marvel Arteza \nVidya Nagar\nHubli 580029, India\nTel: +91 836 225 1234',
-        mapLink: 'https://www.google.com/maps/search/?api=1&query=SP+Events+Marvel+Arteza+Hubli'
+        city: 'HUBLI',
+        type: 'HEAD QUARTERS',
+        img: '/assets/Layout_page.png',
+        address: '"Marvel Artiza" , CTS No. 4A/2, First Floor - 133, Jayanagara, Vidyanagar, Opposite KIMS, Hubli-580021, Karnataka, India.',
+        mapLink: 'https://www.google.com/maps/search/?api=1&query=Marvel+Artiza+Hubli'
     },
     {
-        city: 'Bengaluru',
-        img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f7415e?auto=format&fit=crop&q=80',
-        address: '#4, 2nd Floor, 1st Cross\nHAL 2nd Stage, Indiranagar\nBengaluru - 560 038\nTel: +91 80 4115 3154',
-        mapLink: 'https://www.google.com/maps/search/?api=1&query=SP+Events+HAL+2nd+Stage+Indiranagar+Bengaluru'
+        city: 'BANGLORE',
+        type: 'CORPORATE OFFICE',
+        img: '/assets/Layout_page.png',
+        address: '“The SP Events” , ITPL Main Road, Opp Capitol Towers, Kadugodi, Whitefield, Bengaluru - 560 066, Karnataka, India.',
+        mapLink: 'https://www.google.com/maps/search/?api=1&query=The+SP+Events+Whitefield+Bangalore'
     }
 ];
 
 export default function AboutPage() {
-    const [activeValue, setActiveValue] = useState<number | null>(null);
+    const [particles, setParticles] = useState<any[]>([]);
+
+    useEffect(() => {
+        const generated = [...Array(15)].map(() => ({
+            cx: 100 + Math.random() * 400,
+            cy: 200 + Math.random() * 200,
+            r: 1 + Math.random() * 3,
+            moveX: Math.random() * 40 - 20,
+            moveY: Math.random() * 40 - 20,
+            duration: 4 + Math.random() * 6
+        }));
+        setParticles(generated);
+    }, []);
 
     return (
         <main className={styles.pageWrap}>
@@ -157,82 +165,151 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* OUR VALUES SECTION - Pure CSS Hub Diagram */}
+            {/* OUR VALUES SECTION - Elegant Radial Vector Layout */}
             <section className={styles.valuesSection}>
-                <div className="container" style={{ padding: '0 40px' }}>
-                    <div className={styles.valuesHubWrapper}>
-                        {/* Central Hub */}
-                        <motion.div 
-                            className={styles.hubCentral}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                        >
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={activeValue === null ? 'default' : activeValue}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    {activeValue !== null ? (
-                                        <span style={{ fontSize: '1.4rem', fontWeight: 900 }}>{valuesList[activeValue].title}</span>
-                                    ) : (
-                                        <>OUR<br/>VALUES</>
-                                    )}
-                                </motion.div>
-                            </AnimatePresence>
-                        </motion.div>
+                <div className={styles.valuesOverlay} />
+                <div className="container" style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
+                    
+                    <div className={styles.valuesLayoutWrapper}>
+                        {/* Unified Liquid Electric SVG Layout */}
+                        <div className={styles.valuesLinesContainer}>
+                            <svg width="100%" height="100%" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
+                                <defs>
+                                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="rgba(255,255,255,0.05)" />
+                                        <stop offset="50%" stopColor="rgba(255,255,255,0.3)" />
+                                        <stop offset="100%" stopColor="rgba(255,255,255,0.6)" />
+                                    </linearGradient>
+                                    
+                                    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="transparent" />
+                                        <stop offset="50%" stopColor="rgba(255,255,255,0.9)" />
+                                        <stop offset="100%" stopColor="transparent" />
+                                    </linearGradient>
+                                    
+                                    <linearGradient id="textShimmer" x1="-100%" y1="0%" x2="0%" y2="0%">
+                                        <stop offset="0%" stopColor="white" />
+                                        <stop offset="50%" stopColor="#89f7fe" />
+                                        <stop offset="100%" stopColor="white" />
+                                        <animate attributeName="x1" from="-100%" to="100%" dur="4s" repeatCount="indefinite" />
+                                        <animate attributeName="x2" from="0%" to="200%" dur="4s" repeatCount="indefinite" />
+                                    </linearGradient>
 
-                        {/* CSS Arc Background */}
-                        <div className={styles.hubArcBackground} />
+                                    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto">
+                                      <polygon points="0 0, 12 6, 0 12" fill="rgba(255,255,255,0.8)" />
+                                    </marker>
+                                    
+                                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                                        <feGaussianBlur stdDeviation="6" result="blur" />
+                                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                    </filter>
+                                </defs>
 
-                        {/* Right Side Cards */}
-                        <div className={styles.hubNodesList}>
-                            {valuesList.map((val, i) => (
-                                <motion.div
-                                    key={i}
-                                    className={`${styles.valueHubCard} ${activeValue === i ? styles.valueHubCardActive : ''}`}
-                                    initial={{ opacity: 0, x: 50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
+                                {/* Nebula Particles - Memoized to prevent Hydration errors */}
+                                {particles.map((p: any, i: number) => (
+                                    <motion.circle
+                                        key={`particle-${i}`}
+                                        cx={p.cx}
+                                        cy={p.cy}
+                                        r={p.r}
+                                        fill="white"
+                                        initial={{ opacity: 0.1 }}
+                                        animate={{ 
+                                            opacity: [0.1, 0.5, 0.1],
+                                            scale: [1, 2, 1],
+                                            x: [0, p.moveX, 0],
+                                            y: [0, p.moveY, 0]
+                                        }}
+                                        transition={{ duration: p.duration, repeat: Infinity }}
+                                    />
+                                ))}
+                                                               {/* Organic Curved Paths (Quadratic Bezier) - Compacted for 600px height */}
+                                {[
+                                    { id: 'vp1', d: "M 200 300 Q 600 20 1550 10", delay: 0 },
+                                    { id: 'vp2', d: "M 200 300 Q 750 150 1550 160", delay: 0.2 },
+                                    { id: 'vp3', d: "M 200 300 Q 800 300 1550 300.1", delay: 0.4 },
+                                    { id: 'vp4', d: "M 200 300 Q 750 450 1550 440", delay: 0.6 },
+                                    { id: 'vp5', d: "M 200 300 Q 600 580 1550 590", delay: 0.8 }
+                                ].map((path, idx) => (
+                                    <g key={path.id}>
+                                        {/* Base Organic Path */}
+                                        <motion.path 
+                                            id={path.id} d={path.d} 
+                                            stroke="url(#lineGrad)" strokeWidth="2" fill="none"
+                                            initial={{ pathLength: 0, opacity: 0 }} 
+                                            whileInView={{ pathLength: 1, opacity: 1 }} 
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 1.5, delay: path.delay }}
+                                        />
+                                        
+                                        {/* Electric Flow Animation Layer */}
+                                        <motion.path 
+                                            d={path.d} 
+                                            stroke="rgba(255,255,255,0.6)" strokeWidth="2" fill="none"
+                                            strokeDasharray="60 180"
+                                            animate={{ strokeDashoffset: [0, -1000] }}
+                                            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                                        />
+                                        
+                                        {/* Traveling Energy Pulse Ping */}
+                                        <motion.circle r="5" fill="white" filter="url(#glow)">
+                                            <animateMotion 
+                                                path={path.d} 
+                                                dur={`${5 + idx}s`} 
+                                                repeatCount="indefinite" 
+                                                rotate="auto"
+                                                begin={`${idx * 1.2}s`}
+                                            />
+                                        </motion.circle>
+                                        
+                                        {/* Arrowhead at the end of each curved path */}
+                                        <use href={`#${path.id}`} stroke="none" markerEnd="url(#arrowhead)" />
+                                    </g>
+                                ))}
+
+                                {/* Curved Value Labels - Pushed out even further for BIG circle (Offset 55-60%) */}
+                                <g style={{ pointerEvents: 'none' }}>
+                                    {[
+                                        { id: 'vp1', text: '01 RELIABILITY', offset: '55%' },
+                                        { id: 'vp2', text: '02 CONSISTENT QUALITY', offset: '58%' },
+                                        { id: 'vp3', text: '03 EQUALITY', offset: '62%' },
+                                        { id: 'vp4', text: '04 RESPECT', offset: '58%' },
+                                        { id: 'vp5', text: '05 TEAMWORK', offset: '55%' }
+                                    ].map((item, i) => (
+                                        <motion.text key={i} fill="url(#textShimmer)" fontSize="36" fontWeight="950" 
+                                            initial={{ opacity: 0, scale: 0.8 }} 
+                                            whileInView={{ opacity: 1, scale: 1 }} 
+                                            transition={{ duration: 0.8, delay: 1.5 + (i * 0.2) }}
+                                        >
+                                            <textPath href={`#${item.id}`} startOffset={item.offset} textAnchor="start" dy="-30">{item.text}</textPath>
+                                        </motion.text>
+                                    ))}
+                                </g>
+
+                                {/* Central BIG Hub - Compacted Center */}
+                                <motion.g
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    transition={{ duration: 1.2, type: "spring", damping: 10 }}
                                     viewport={{ once: true }}
-                                    transition={{ delay: 0.4 + (i * 0.1) }}
-                                    onClick={() => setActiveValue(activeValue === i ? null : i)}
                                 >
-                                    {/* Pure CSS Connector Line and Dot */}
-                                    <motion.div 
-                                        className={styles.hubConnector}
-                                        initial={{ width: 0 }}
-                                        whileInView={{ width: 'auto' }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.8 + (i * 0.1), duration: 0.6 }}
-                                    >
-                                        <div className={styles.hubConnectorDot} />
-                                    </motion.div>
-
-                                    <div className={styles.hubIconCircle}>
-                                        <val.icon size={28} />
-                                    </div>
-                                    <div className={styles.hubCardBody}>
-                                        <div className={styles.hubTitle}>{val.title}</div>
-                                        <AnimatePresence>
-                                            {activeValue === i && (
-                                                <motion.div
-                                                    className={styles.hubDescText}
-                                                    initial={{ height: 0, opacity: 0 }}
-                                                    animate={{ height: 'auto', opacity: 1 }}
-                                                    exit={{ height: 0, opacity: 0 }}
-                                                    transition={{ duration: 0.3 }}
-                                                >
-                                                    {val.desc}
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </div>
-                                    <div className={styles.hubBadge}>{val.id}</div>
-                                </motion.div>
-                            ))}
+                                    {/* Breathing Outer Ring - LARGER SCALE */}
+                                    <motion.circle 
+                                        cx="200" cy="300" r="220" 
+                                        fill="none" stroke="white" strokeWidth="2" 
+                                        animate={{ r: [220, 240, 220], opacity: [0.5, 0, 0.5] }}
+                                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                    />
+                                    <circle cx="200" cy="300" r="220" fill="rgba(8,8,8,0.9)" stroke="white" strokeWidth="8" filter="url(#glow)" />
+                                    
+                                    <text x="200" y="275" fill="white" fontSize="74" fontWeight="950" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: '3px' }}>
+                                        OUR
+                                    </text>
+                                    <text x="200" y="365" fill="white" fontSize="74" fontWeight="950" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: '3px' }}>
+                                        VALUES
+                                    </text>
+                                </motion.g>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -249,11 +326,11 @@ export default function AboutPage() {
                         {locations.map((loc, i) => (
                             <AnimatedSection key={i} delay={i * 0.15}>
                                 <div className={styles.locationCard}>
-                                    <h3 className={styles.locationCardTitle}>Layout</h3>
+                                    <h3 className={styles.locationType}>{loc.type}</h3>
                                     <div className={styles.locationCardImgWrap}>
                                          <img src={loc.img} alt={loc.city} className={styles.locationCardImg} />
+                                         <h2 className={styles.locationCity}>{loc.city}</h2>
                                     </div>
-                                    <h2 className={styles.locationCity}>{loc.city}</h2>
                                     <div className={styles.locationDetails}>
                                         <p>{loc.address}</p>
                                     </div>
@@ -264,29 +341,55 @@ export default function AboutPage() {
                             </AnimatedSection>
                         ))}
                     </div>
+
+                    {/* HORIZONTAL QUICK CONNECT SECTION */}
+                    <AnimatedSection delay={0.4}>
+                        <div className={styles.quickConnectHorizontalBox}>
+                            <h2 className={styles.quickConnectTitle}>QUICK CONNECT</h2>
+                            <div className={styles.quickConnectRow}>
+                                <div className={styles.quickConnectItem}>
+                                    <strong>Call :</strong> <span>+91 74118 63227, +91 93530 63227</span>
+                                </div>
+                                <div className={styles.quickConnectItem}>
+                                    <strong>Website :</strong> <a href="http://www.thespevents.com" target="_blank" rel="noopener noreferrer">www.thespevents.com</a>
+                                </div>
+                                <div className={styles.quickConnectItem}>
+                                    <strong>Email :</strong> <a href="mailto:thespevents@gmail.com">thespevents@gmail.com</a>
+                                </div>
+                                <div className={styles.quickConnectItem}>
+                                    <strong>Whatsapp :</strong> <span>+91 74118 63227</span>
+                                </div>
+                            </div>
+                        </div>
+                    </AnimatedSection>
                 </div>
             </section>
 
-            {/* STATS FOOTER SECTION */}
+            {/* ═══════════════════════════════════════════════════════
+                STATISTICS SECTION — CINEMATIC METRICS
+            ════════════════════════════════════════════════════════ */}
             <section className={styles.statsSection}>
-                <div className="container" style={{ padding: '0 40px' }}>
+                <Stats3DBackground />
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                     <div className={styles.statsGrid}>
-                        <AnimatedSection delay={0.1} className={styles.statBox}>
-                            <h4>4+</h4>
-                            <p>Years of Excellence</p>
-                        </AnimatedSection>
-                        <AnimatedSection delay={0.2} className={styles.statBox}>
-                            <h4>300+</h4>
-                            <p>Happy Clients</p>
-                        </AnimatedSection>
-                        <AnimatedSection delay={0.3} className={styles.statBox}>
-                            <h4>1,500+</h4>
-                            <p>Magic Experiences</p>
-                        </AnimatedSection>
-                        <AnimatedSection delay={0.4} className={styles.statBox}>
-                            <h4>30+</h4>
-                            <p>Professionals</p>
-                        </AnimatedSection>
+                        {[
+                            { value: 4, suffix: "+", label: "Years of Excellence" },
+                            { value: 300, suffix: "+", label: "Happy Clients" },
+                            { value: 1500, suffix: "+", label: "Magic Experiences" },
+                            { value: 30, suffix: "+", label: "Professionals" }
+                        ].map((stat, i) => (
+                            <motion.div 
+                                key={i} 
+                                className={styles.statItem}
+                                whileHover={{ y: -10, scale: 1.02 }}
+                                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                            >
+                                <div className={styles.statGlass}>
+                                    <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
+                                    <div className={styles.statLabel}>{stat.label}</div>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>

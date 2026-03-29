@@ -20,7 +20,7 @@
     grid-template-columns: 35% 1fr;
     gap: 40px;
     align-items: center;
-    min-height: 500px;
+    min-height: 600px;
 }
 
 .heroImageBox {
@@ -193,250 +193,59 @@
     color: rgba(255,255,255,0.8);
 }
 
-/* OUR VALUES SECTION - Pure CSS Hub Diagram (No SVG) */
+/* OUR VALUES SECTION - Elegant Radial Vector Layout */
 .valuesSection {
     padding: 120px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background: radial-gradient(circle at 10% 50%, rgba(212, 175, 55, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
+    background-image: url('/assets/Layout_page.png');
+    background-size: cover;
+    background-position: center;
     position: relative;
     overflow: hidden;
 }
 
-.valuesHubWrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    min-height: 700px;
-    gap: 0;
-}
-
-/* The Large Central Hub Circle */
-.hubCentral {
-    flex: 0 0 220px;
-    height: 220px;
-    width: 220px;
-    background: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #000;
-    font-size: 1.6rem;
-    font-weight: 900;
-    line-height: 1.1;
-    box-shadow: 0 0 60px rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    z-index: 20;
-}
-
-.hubCentral::after {
-    content: '';
+.valuesOverlay {
     position: absolute;
-    top: -15px; left: -15px; right: -15px; bottom: -15px;
-    border-radius: 50%;
-    border: 1px dashed rgba(255, 255, 255, 0.3);
-    animation: spin 40s linear infinite;
-}
-
-/* THE CSS ARC - Repositioned to nest within the concave card list */
-.hubArcBackground {
-    position: absolute;
-    top: 50%;
-    left: 110px; /* Exact center of hubCentral (220/2) */
-    width: 440px;
-    height: 440px;
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transform: translateY(-50%) translateX(-50%);
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.75); /* Darken bg image so white lines pop */
     z-index: 1;
-    pointer-events: none;
 }
 
-/* The List of Value Nodes/Cards - Now Bowed */
-.hubNodesList {
-    flex: 0 0 800px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 25px;
-    padding-left: 20px; /* Reduced to accommodate bowing */
-    position: relative;
-    z-index: 10;
-}
-
-/* 'Circular Hug' - Cards wrap around the hub mathematically */
-.valueHubCard:nth-child(1),
-.valueHubCard:nth-child(5) {
-    transform: translateX(85px); /* Furthest away at the poles */
-}
-
-.valueHubCard:nth-child(2),
-.valueHubCard:nth-child(4) {
-    transform: translateX(35px); /* Nearing the center */
-}
-
-.valueHubCard:nth-child(3) {
-    transform: translateX(0px); /* Closest to the Hub equator */
-}
-
-.valueHubCard {
+.valuesLayoutWrapper {
     width: 100%;
-    max-width: 500px;
+    height: 800px; /* Increased to match 800-unit SVG and prevent clipping */
     position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* The CSS Connector Line - Fixed length creates the circular alignment */
-.hubConnector {
-    position: absolute;
-    left: auto;
-    right: 100%;
-    width: 80px;
-    height: 2.5px;
-    background: rgba(255, 255, 255, 0.3);
-    z-index: 1;
-    margin-right: 32px;
-}
-
-.valueHubCardActive .hubConnector {
-    background: var(--color-accent-gold);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-    height: 3px;
-}
-
-.hubConnectorDot {
+.valuesLinesContainer {
     position: absolute;
     left: 0;
-    top: 50%;
-    width: 10px; /* Slightly larger for visibility */
-    height: 10px;
-    background: #fff;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-}
-
-.valueHubCardActive .hubConnector {
-    background: var(--color-accent-gold);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-}
-
-.valueHubCardActive .hubConnectorDot {
-    background: var(--color-accent-gold);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
-}
-
-/* The white circular icon container (UI element) */
-.hubIconCircle {
-    width: 65px;
-    height: 65px;
-    background: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    z-index: 15;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0;
-    position: relative;
-    border: 4px solid var(--color-bg-dark);
-}
-
-/* The Arrow Card Body */
-.hubCardBody {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-left: 0;
-    padding: 15px 40px 15px 50px;
+    top: 0;
     width: 100%;
-    min-height: 70px;
-    /* Specific Arrow Shape: Pointed on the Right */
-    clip-path: polygon(0% 0%, calc(100% - 30px) 0%, 100% 50%, calc(100% - 30px) 100%, 0% 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.valueHubCardActive .hubCardBody {
-    background: linear-gradient(90deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
-    border-color: rgba(212, 175, 55, 0.4);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
-
-/* Number badge on the Top Right of the card */
-.hubBadge {
-    position: absolute;
-    top: -5px;
-    right: 40px;
-    width: 30px;
-    height: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 800;
-    z-index: 4;
-    transition: all 0.3s ease;
-}
-
-.valueHubCardActive .hubBadge {
-    background: var(--color-accent-gold);
-    color: #000;
-    border-color: var(--color-accent-gold);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-}
-
-.hubTitle {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0;
-    letter-spacing: 0.05rem;
-    text-transform: uppercase;
-}
-
-.valueHubCardActive .hubTitle {
-    color: #fff;
-}
-
-.hubDescText {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 10px;
-    overflow: hidden;
-    max-width: 400px;
+    height: 100%;
+    z-index: 10;
 }
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-    .valuesGrid {
-        grid-template-columns: 1fr;
+    .valuesLayoutWrapper {
+        height: 600px;
+        flex-direction: column;
         gap: 40px;
+        padding-top: 40px;
     }
-
-    .valuesHeader {
-        position: relative;
-        top: 0;
+    
+    .valuesCircle {
+        width: 260px;
+        height: 260px;
+        font-size: 2.5rem;
+        margin-left: 0;
     }
-
-    .cardContent {
-        padding-left: 0;
-        margin-top: 20px;
+    
+    .valuesLinesContainer {
+        display: none; /* Hide SVG lines on mobile */
     }
 }
 
@@ -451,6 +260,28 @@
     text-align: left;
     margin-bottom: 60px;
     text-transform: uppercase;
+}
+
+.locationCity {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8), 0 0 5px var(--color-accent-gold, #d4af37);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    transition: transform 0.4s ease, letter-spacing 0.4s ease;
+    pointer-events: none;
+    text-align: center;
+}
+
+.locationCard:hover .locationCity {
+    transform: translateY(-10px);
+    letter-spacing: 8px;
 }
 
 .locationCardsGrid {
@@ -479,41 +310,99 @@
 
 .locationCardImgWrap {
     width: 100%;
-    height: 250px;
+    height: 450px;
     margin-bottom: 30px;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* Dark cinematic overlay that fades on hover */
+.locationCardImgWrap::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8));
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+}
+
+.locationCard:hover .locationCardImgWrap::after {
+    opacity: 0.3;
 }
 
 .locationCardImg {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(30%);
-    transition: filter 0.4s, transform 0.6s ease;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s ease;
 }
 
 .locationCard:hover .locationCardImg {
-    filter: grayscale(0%);
-    transform: scale(1.05);
+    transform: scale(1.1);
+    filter: brightness(1.1);
 }
 
-.locationCity {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 15px;
+.locationType {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-accent-gold, #d4af37);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
     text-transform: uppercase;
 }
 
-.locationDetails p {
-    color: rgba(255,255,255,0.7);
-    line-height: 1.6;
+.quickConnectHorizontalBox {
+    margin-top: 60px;
+    padding: 40px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 4px;
+}
+
+.quickConnectTitle {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-accent-gold, #d4af37);
+    letter-spacing: 3px;
+    text-transform: uppercase;
     margin-bottom: 30px;
-    white-space: pre-line;
+    text-align: center;
+}
+
+.quickConnectRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px 60px;
+}
+
+.quickConnectItem {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.9);
+}
+
+.quickConnectItem strong {
+    color: var(--color-accent-gold, #d4af37);
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.quickConnectItem a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s;
+}
+
+.quickConnectItem a:hover {
+    border-color: #fff;
 }
 
 .locationBtn {
+    margin-top: 45px;
     padding: 12px 30px;
     border: 1px solid var(--color-white);
     color: var(--color-white);
@@ -522,6 +411,7 @@
     font-size: 0.9rem;
     transition: all 0.3s;
     text-decoration: none;
+    display: inline-block;
 }
 
 .locationBtn:hover {
@@ -529,39 +419,82 @@
     color: var(--color-bg-dark);
 }
 
-/* STATS FOOTER */
+/* ════════════════════════════════════════════════════════════
+   STATS SECTION — Premium Metrics with 3D Background
+   Glassmorphism + Futuristic Dark Gradient
+════════════════════════════════════════════════════════════ */
 .statsSection {
-    padding: 0 0 100px 0;
+  padding: 100px 0 140px;
+  position: relative;
+  z-index: 5;
+  background: linear-gradient(135deg, #020008 0%, #0a0120 50%, #020008 100%);
+  overflow: hidden;
 }
 
 .statsGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.statBox {
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 40px 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: rgba(255,255,255,0.02);
+.statItem {
+  height: 100%;
 }
 
-.statBox h4 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--color-white);
-    margin-bottom: 10px;
+.statGlass {
+  position: relative;
+  height: 100%;
+  padding: 60px 40px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* crisp glass edge */
+  border-radius: 24px;
+  text-align: center;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 0 40px rgba(255, 255, 255, 0.02);
 }
 
-.statBox p {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: rgba(255,255,255,0.6);
+.statGlass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.statGlass:hover {
+  background: rgba(255, 255, 255, 0.06); 
+  border: 1px solid rgba(139, 92, 246, 0.4); /* purple edge glow */
+  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.15), inset 0 0 60px rgba(255, 255, 255, 0.03);
+}
+
+.statNumber {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 15px;
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3); /* soft inner glow */
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* RESPONSIVE LAYOUTS */
