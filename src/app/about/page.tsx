@@ -1,195 +1,296 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sun, CheckCircle, Award, Users, Handshake, Star } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 import styles from './about.module.css';
 
-const teamMembers = [
-    {
-        name: 'Rohahn Vardhan',
-        role: 'Director & Chief Digital Officer',
-        img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=800&q=80',
-    },
-    {
-        name: 'Raoul Vardhan',
-        role: 'Director',
-        img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=800&q=80',
-    },
-    {
-        name: 'K.T. Majeed',
-        role: 'Director & Chief Financial Officer',
-        img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=800&q=80',
-    },
-    {
-        name: 'Sunil Mathew',
-        role: 'Director & Vice President',
-        img: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=400&h=800&q=80',
-    },
-    {
-        name: 'Harisha Prabhu',
-        role: 'Director & Vice President',
-        img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=800&q=80',
-    }
+const grassrootsImages = [
+    { url: '/assets/Layout_page.png', artist: 'Event Vibes' },
+    { url: '/assets/Layout_page.png', artist: 'Musical Night' },
+    { url: '/assets/Layout_page.png', artist: 'Corporate Gala' },
+    { url: '/assets/Layout_page.png', artist: 'DJ Performance' },
+    { url: '/assets/Layout_page.png', artist: 'Celebration' },
+    { url: '/assets/Layout_page.png', artist: 'Concert Hall' },
+    { url: '/assets/Layout_page.png', artist: 'Festival' },
+    { url: '/assets/Layout_page.png', artist: 'Crowd Concert' },
+    { url: '/assets/Layout_page.png', artist: 'Party Lights' },
+];
+
+const valuesList = [
+    { id: '01', title: 'Reliability', icon: CheckCircle, desc: 'We deliver consistent performance under all conditions.' },
+    { id: '02', title: 'Consistent Quality', icon: Award, desc: 'We maintain high standards across every product and event.' },
+    { id: '03', title: 'Equality', icon: Users, desc: 'We ensure fairness, respect, and equal opportunity for all.' },
+    { id: '04', title: 'Respect', icon: Handshake, desc: 'We genuinely value every individual and their contributions.' },
+    { id: '05', title: 'Teamwork', icon: Star, desc: 'We achieve significantly more through collaboration.' },
 ];
 
 const locations = [
     {
-        city: 'Bengaluru',
-        img: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1200&q=80',
-        address: '#4, 2nd Floor, 1st Cross\nHAL 2nd Stage, Indiranagar\nBengaluru - 560 038\nTel: +91 80 4115 3154'
+        city: 'Hubli',
+        img: 'https://images.unsplash.com/photo-1514222134-b57cdd8ce073?w=800&q=80',
+        address: 'The SP Events \n 1st floor, Marvel Arteza \nVidya Nagar\nHubli 580029, India\nTel: +91 836 225 1234',
+        mapLink: 'https://www.google.com/maps/search/?api=1&query=SP+Events+Marvel+Arteza+Hubli'
     },
     {
-        city: 'Hubli',
-        img: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80',
-        address: 'The SP Events \n 1st floor, Marvel Arteza \nVidya Nagar\nHubli 580029, India\nTel: +91 836 225 1234'
+        city: 'Bengaluru',
+        img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f7415e?auto=format&fit=crop&q=80',
+        address: '#4, 2nd Floor, 1st Cross\nHAL 2nd Stage, Indiranagar\nBengaluru - 560 038\nTel: +91 80 4115 3154',
+        mapLink: 'https://www.google.com/maps/search/?api=1&query=SP+Events+HAL+2nd+Stage+Indiranagar+Bengaluru'
     }
 ];
 
-const grassrootsImages = [
-    { url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80', artist: 'Event Vibes' },
-    { url: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80', artist: 'Musical Night' },
-    { url: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80', artist: 'Corporate Gala' },
-    { url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80', artist: 'DJ Performance' },
-    { url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80', artist: 'Celebration' },
-    { url: 'https://images.unsplash.com/photo-1459749411177-042180ce673c?w=800&q=80', artist: 'Concert Hall' },
-];
-
 export default function AboutPage() {
+    const [activeValue, setActiveValue] = useState<number | null>(null);
+
     return (
         <main className={styles.pageWrap}>
-            {/* HERO */}
+            {/* HERO SECTION */}
             <section className={styles.heroSection}>
-                <div className={styles.heroBg} style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1540039155732-d6928e469557?w=1920&q=80)' }} />
-                <div className={styles.heroOverlay} />
-                <div className={styles.heroContent}>
-                    <motion.h1 
-                        className={styles.heroTitle}
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        About <span className="text-gold">Us</span>
-                    </motion.h1>
-                </div>
-            </section>
+                <div style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto' }}>
+                    <div className={styles.heroOuterBox}>
+                        
+                        {/* Left Image Box */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: -60 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1, ease: 'easeOut' }}
+                            className={styles.heroImageBox}
+                        >
+                            <img 
+                                src="/assets/Layout_page.png" 
+                                alt="Layout Page" 
+                                className={styles.heroImage}
+                            />
+                        </motion.div>
 
-            {/* PIONEERING TEXT */}
-            <section className={styles.pioneeringSection}>
-                <div className="container">
-                    <AnimatedSection>
-                        <h2 className={styles.pioneeringTitle}>Pioneering Global Event Experiences</h2>
-                    </AnimatedSection>
-                    
-                    <AnimatedSection delay={0.2}>
-                        <div className={styles.pioneeringTextBlocks}>
-                            <p>
-                                We began our journey with a vision to lay the foundation for the live events industry by bringing international acts and incredible luxury experiences to India. Our vision to introduce global experiences and passion for perfection led to the birth of SP Events – a pioneering force in the live events industry.
-                            </p>
-                            <p>
-                                Under our leadership, SP Events thrives on core values such as reliability, consistent quality delivery, equality, respect, and teamwork. These values have not only earned us a strong market reputation but also fostered close relationships with key players in the industry.
-                            </p>
-                        </div>
-                    </AnimatedSection>
-                </div>
-            </section>
-
-            {/* GRASSROOTS SLIDER */}
-            <section className={styles.grassrootsSection}>
-                <motion.div 
-                    className={styles.grassrootsHeader}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: 'easeOut' }}
-                >
-                    <h2 className={styles.grassrootsTitle}>GRASSROOTS</h2>
-                </motion.div>
-
-                <div className={styles.sliderContainer}>
-                    <motion.div 
-                        className={styles.sliderTrack}
-                        drag="x"
-                        dragConstraints={{ left: -1200, right: 0 }}
-                        whileTap={{ cursor: 'grabbing' }}
-                    >
-                        {grassrootsImages.map((img, i) => (
-                            <div key={i} className={styles.sliderItem}>
-                                <img src={img.url} alt={img.artist} className={styles.sliderImage} />
-                                <div className={styles.sliderOverlay}>
-                                    <span className={styles.sliderArtist}>{img.artist}</span>
-                                </div>
+                        {/* Overlapping Main Title */}
+                        <motion.h1 
+                            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            transition={{ duration: 0.9, delay: 0.3, ease: 'easeOut' }}
+                            className={styles.heroOverlayTitle}
+                        >
+                            ABOUT US
+                        </motion.h1>
+                        
+                        {/* Right Content Block */}
+                        <AnimatedSection delay={0.2} className={styles.heroRightContent}>
+                            <h2 className={styles.pioneeringTitle}>A method to the madness that is <span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>CREATING MAGIC</span></h2>
+                            <div className={styles.pioneeringTextBlocks}>
+                                <p>
+                                    SP Events is a premier event management company, built on the solid pillars of enterprise, excellence, and innovation. Driven by the vision of our dynamic founder, Mr. Samarth U Patangi, we have rapidly established ourselves as a pioneering force since our humble beginnings in 2020.
+                                </p>
+                                <p>
+                                    By crafting unforgettable live entertainment, high-profile sports events, tailored corporate experiences, and luxury weddings, we have consistently broken new ground. Today, SP Events proudly stands as one of the most dependable and sought-after event organizers across North Karnataka.
+                                </p>
                             </div>
-                        ))}
-                    </motion.div>
-                </div>
+                        </AnimatedSection>
 
-                <motion.div 
-                    className={styles.grassrootsFooter}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                >
-                    <p className={styles.grassrootsSubtitle}>PIONEERING MAGICAL EVENT EXPERIENCES</p>
-                </motion.div>
-            </section>
-
-            {/* MINDS THAT MATTER (DNA Networks Style) */}
-            <section className={styles.mindsSection}>
-                <div className="container" style={{ padding: '0 40px' }}>
-                    <AnimatedSection>
-                        <h2 className={styles.mindsTitle}>MINDS THAT MATTER</h2>
-                    </AnimatedSection>
-
-                    <div className={styles.teamContainer}>
-                        {teamMembers.map((member, i) => (
-                            <AnimatedSection key={i} delay={i * 0.1} className={styles.dnaTeamCard}>
-                                <div className={styles.dnaCardImageBox}>
-                                    <img src={member.img} alt={member.name} className={styles.dnaTeamImg} />
-                                </div>
-                                <div className={styles.dnaCardContent}>
-                                    <h3 className={styles.dnaTeamName}>{member.name}</h3>
-                                    <p className={styles.dnaTeamRole}>{member.role}</p>
-                                </div>
-                                <div className={styles.dnaTeamLine}></div>
-                            </AnimatedSection>
-                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* WHERE YOU CAN FIND US (DNA Networks Style) */}
+            {/* GRASSROOTS SECTION */}
+            <section className={styles.grassrootsSection}>
+                <div style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto' }}>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-10%" }}
+                        transition={{ duration: 0.8 }}
+                        className={styles.grassrootsOuterBox}
+                    >
+                        
+                        <h2 className={styles.grassrootsTopTitle}>GRASSROOTS</h2>
+
+                        <div className={styles.grassrootsFlex}>
+                            {/* Column 1 */}
+                            <div className={styles.grassrootsCol}>
+                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[0].url} alt={grassrootsImages[0].artist} /></motion.div>
+                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[1].url} alt={grassrootsImages[1].artist} /></motion.div>
+                            </div>
+                            
+                            {/* Column 2 */}
+                            <div className={styles.grassrootsColCenter}>
+                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }} className={styles.grassrootsBox}><img src={grassrootsImages[2].url} alt={grassrootsImages[2].artist} /></motion.div>
+                            </div>
+
+                            {/* Column 3 */}
+                            <div className={styles.grassrootsColTop}>
+                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.25 }} className={styles.grassrootsBox}><img src={grassrootsImages[3].url} alt={grassrootsImages[3].artist} /></motion.div>
+                            </div>
+
+                            {/* Column 4 - Wide Middle */}
+                            <div className={`${styles.grassrootsColCenter} ${styles.grassrootsMiddleWide}`}>
+                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }} className={`${styles.grassrootsBox} ${styles.grassrootsBoxWide}`}><img src={grassrootsImages[4].url} alt={grassrootsImages[4].artist} /></motion.div>
+                            </div>
+
+                            {/* Column 5 */}
+                            <div className={styles.grassrootsColTop}>
+                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.25 }} className={styles.grassrootsBox}><img src={grassrootsImages[5].url} alt={grassrootsImages[5].artist} /></motion.div>
+                            </div>
+
+                            {/* Column 6 */}
+                            <div className={styles.grassrootsColCenter}>
+                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }} className={styles.grassrootsBox}><img src={grassrootsImages[6].url} alt={grassrootsImages[6].artist} /></motion.div>
+                            </div>
+
+                            {/* Column 7 */}
+                            <div className={styles.grassrootsCol}>
+                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[7].url} alt={grassrootsImages[7].artist} /></motion.div>
+                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[8].url} alt={grassrootsImages[8].artist} /></motion.div>
+                            </div>
+                        </div>
+
+                        <div className={styles.grassrootsFooterText}>
+                            <div className={styles.grassrootsFooterLine}>
+                                <h3 className={styles.grassrootsSubHeading}><span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>Pioneering GlobalMusic Experiences</span></h3>
+                            </div>
+                            <p className={styles.grassrootsDesc}>
+                                In 1986, Dr. T Venkat Vardhan began his journey by securing the rights to air MTV's top 20 music videos in india. Obtaining these rights inspired his goal to lay the foundation for our live music industry by bringing international music acts to India. His vision to introduce global experiences and passion for music led to the birth of DNA Networks – a pioneering force in the live music and events industry in India.
+                            </p>
+                        </div>
+
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* OUR VALUES SECTION - Pure CSS Hub Diagram */}
+            <section className={styles.valuesSection}>
+                <div className="container" style={{ padding: '0 40px' }}>
+                    <div className={styles.valuesHubWrapper}>
+                        {/* Central Hub */}
+                        <motion.div 
+                            className={styles.hubCentral}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                        >
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={activeValue === null ? 'default' : activeValue}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    {activeValue !== null ? (
+                                        <span style={{ fontSize: '1.4rem', fontWeight: 900 }}>{valuesList[activeValue].title}</span>
+                                    ) : (
+                                        <>OUR<br/>VALUES</>
+                                    )}
+                                </motion.div>
+                            </AnimatePresence>
+                        </motion.div>
+
+                        {/* CSS Arc Background */}
+                        <div className={styles.hubArcBackground} />
+
+                        {/* Right Side Cards */}
+                        <div className={styles.hubNodesList}>
+                            {valuesList.map((val, i) => (
+                                <motion.div
+                                    key={i}
+                                    className={`${styles.valueHubCard} ${activeValue === i ? styles.valueHubCardActive : ''}`}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.4 + (i * 0.1) }}
+                                    onClick={() => setActiveValue(activeValue === i ? null : i)}
+                                >
+                                    {/* Pure CSS Connector Line and Dot */}
+                                    <motion.div 
+                                        className={styles.hubConnector}
+                                        initial={{ width: 0 }}
+                                        whileInView={{ width: 'auto' }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.8 + (i * 0.1), duration: 0.6 }}
+                                    >
+                                        <div className={styles.hubConnectorDot} />
+                                    </motion.div>
+
+                                    <div className={styles.hubIconCircle}>
+                                        <val.icon size={28} />
+                                    </div>
+                                    <div className={styles.hubCardBody}>
+                                        <div className={styles.hubTitle}>{val.title}</div>
+                                        <AnimatePresence>
+                                            {activeValue === i && (
+                                                <motion.div
+                                                    className={styles.hubDescText}
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: 'auto', opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.3 }}
+                                                >
+                                                    {val.desc}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+                                    <div className={styles.hubBadge}>{val.id}</div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* LOCATIONS SECTION */}
             <section className={styles.locationsSection}>
                 <div className="container" style={{ padding: '0 40px' }}>
                     <AnimatedSection>
                         <h2 className={styles.locationsTitle}>Where You Can Find Us</h2>
                     </AnimatedSection>
 
-                    <div className={styles.dnaLocGrid}>
+                    <div className={styles.locationCardsGrid}>
                         {locations.map((loc, i) => (
-                            <AnimatedSection key={i} delay={i * 0.15} style={{ height: '100%' }}>
-                                <figure className={styles.dnaLocFigure}>
-                                    <img src={loc.img} alt={loc.city} className={styles.dnaLocImage} />
-                                    <div className={styles.dnaLocOverlay}></div>
-                                    
-                                    <div className={styles.dnaLocContent}>
-                                        <h2 className={styles.dnaLocCityName}>{loc.city}</h2>
-                                        
-                                        <div className={styles.dnaLocAddressWrap}>
-                                            <p className={styles.dnaLocAddress}>{loc.address}</p>
-                                        </div>
-
-                                        <a href="#" className={styles.dnaLocBtn}>
-                                            View Location <span style={{ marginLeft: '16px', fontSize: '1.25rem' }}>→</span>
-                                        </a>
+                            <AnimatedSection key={i} delay={i * 0.15}>
+                                <div className={styles.locationCard}>
+                                    <h3 className={styles.locationCardTitle}>Layout</h3>
+                                    <div className={styles.locationCardImgWrap}>
+                                         <img src={loc.img} alt={loc.city} className={styles.locationCardImg} />
                                     </div>
-                                </figure>
+                                    <h2 className={styles.locationCity}>{loc.city}</h2>
+                                    <div className={styles.locationDetails}>
+                                        <p>{loc.address}</p>
+                                    </div>
+                                    <a href={loc.mapLink} target="_blank" rel="noopener noreferrer" className={styles.locationBtn}>
+                                        View Location
+                                    </a>
+                                </div>
                             </AnimatedSection>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* STATS FOOTER SECTION */}
+            <section className={styles.statsSection}>
+                <div className="container" style={{ padding: '0 40px' }}>
+                    <div className={styles.statsGrid}>
+                        <AnimatedSection delay={0.1} className={styles.statBox}>
+                            <h4>4+</h4>
+                            <p>Years of Excellence</p>
+                        </AnimatedSection>
+                        <AnimatedSection delay={0.2} className={styles.statBox}>
+                            <h4>300+</h4>
+                            <p>Happy Clients</p>
+                        </AnimatedSection>
+                        <AnimatedSection delay={0.3} className={styles.statBox}>
+                            <h4>1,500+</h4>
+                            <p>Magic Experiences</p>
+                        </AnimatedSection>
+                        <AnimatedSection delay={0.4} className={styles.statBox}>
+                            <h4>30+</h4>
+                            <p>Professionals</p>
+                        </AnimatedSection>
                     </div>
                 </div>
             </section>
         </main>
     );
 }
+
