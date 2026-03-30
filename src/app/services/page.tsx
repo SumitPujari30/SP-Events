@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiArrowRight, HiArrowLeft, HiX, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import gsap from 'gsap';
@@ -26,6 +27,7 @@ interface ServiceCategory {
     title: string;
     tagline: string;
     desc: string;
+    bgImage: string;
     events: SubEvent[];
 }
 
@@ -34,6 +36,7 @@ const services: ServiceCategory[] = [
         id: 'corporate', num: '01', title: 'Corporate',
         tagline: 'Strategy meets spectacle',
         desc: 'We elevate corporate gatherings into powerful brand moments. Annual conferences, conclaves, town halls, leadership summits — every element is crafted to reinforce your brand identity, engage your audience, and deliver measurable results.',
+        bgImage: '/assets/services/corporate_bg.png',
         events: [
             { id: 'corp-1', title: 'Annual Conference', image: LAYOUT_IMG },
             { id: 'corp-2', title: 'Leadership Summit', image: LAYOUT_IMG },
@@ -47,6 +50,7 @@ const services: ServiceCategory[] = [
         id: 'special', num: '02', title: 'Special',
         tagline: 'Moments that become memories',
         desc: 'Life\'s most meaningful occasions deserve flawless execution. Whether it\'s a grand gala, a cultural celebration, a charity ball, or a milestone anniversary — we design experiences tailored to the emotion and significance of the moment.',
+        bgImage: '/assets/services/special_bg.png',
         events: [
             { id: 'spl-1', title: 'Gala Night', image: LAYOUT_IMG },
             { id: 'spl-2', title: 'Cultural Festival', image: LAYOUT_IMG },
@@ -60,6 +64,7 @@ const services: ServiceCategory[] = [
         id: 'launch', num: '03', title: 'Launch',
         tagline: 'First impressions, perfected',
         desc: 'A product launch is your brand\'s most critical moment. We craft immersive reveal experiences — from intimate media previews to large-scale public launches — that generate buzz, drive coverage, and leave your audience wanting more.',
+        bgImage: '/assets/services/launch_bg.png',
         events: [
             { id: 'lnch-1', title: 'Product Unveiling', image: LAYOUT_IMG },
             { id: 'lnch-2', title: 'Store Opening', image: LAYOUT_IMG },
@@ -73,6 +78,7 @@ const services: ServiceCategory[] = [
         id: 'music', num: '04', title: 'Music',
         tagline: 'Sonic experiences that move crowds',
         desc: 'From intimate acoustic evenings to stadium-filling concerts, we design and execute music events that resonate. Our team handles artist management, stage production, sound engineering, crowd flow, and everything in between.',
+        bgImage: '/assets/services/music_bg.png',
         events: [
             { id: 'mus-1', title: 'Live Concert', image: LAYOUT_IMG },
             { id: 'mus-2', title: 'Music Festival', image: LAYOUT_IMG },
@@ -86,6 +92,7 @@ const services: ServiceCategory[] = [
         id: 'sports', num: '05', title: 'Sports',
         tagline: 'Where champions are celebrated',
         desc: 'We bring the energy of sport to life — from corporate sports days and marathons to championship award ceremonies and league launches. Precision logistics, broadcast-ready production, and electrifying atmospheres are our standard.',
+        bgImage: '/assets/services/sports_bg.png',
         events: [
             { id: 'spt-1', title: 'Cricket Tournament', image: LAYOUT_IMG },
             { id: 'spt-2', title: 'Marathon Event', image: LAYOUT_IMG },
@@ -99,6 +106,7 @@ const services: ServiceCategory[] = [
         id: 'wedding', num: '06', title: 'Wedding',
         tagline: 'Love stories brought to life',
         desc: 'Every love story is unique — and your wedding should be too. Our wedding specialists craft each detail from florals and décor to catering, entertainment, and guest experience, creating celebrations that reflect your story.',
+        bgImage: '/assets/services/wedding_bg.png',
         events: [
             { id: 'wed-1', title: 'Destination Wedding', image: LAYOUT_IMG },
             { id: 'wed-2', title: 'Grand Reception', image: LAYOUT_IMG },
@@ -151,12 +159,12 @@ function getStateFromHash(): { view: 'categories' | 'events' | 'gallery'; catInd
     return { view, catIndex, eventId };
 }
 
-function setHash(view: string, catIndex: number, eventId?: string | null) {
+function setHash(router: any, view: string, catIndex: number, eventId?: string | null) {
     const params = new URLSearchParams();
     params.set('v', view);
     params.set('c', String(catIndex));
     if (eventId) params.set('e', eventId);
-    window.location.hash = params.toString();
+    router.replace(`#${params.toString()}`, { scroll: false });
 }
 
 /* ────────────────────────────────────────────
@@ -199,44 +207,44 @@ export default function ServicesPage() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const activeCategory = services[activeIndex];
+    const activeCategory = services[activeIndex] || services[0];
+
+    const router = useRouter();
 
     /* ── Navigation handlers (all update URL hash) ── */
     const handleViewEvents = useCallback(() => {
         setView('events');
-        setHash('events', activeIndex);
+        setHash(router, 'events', activeIndex);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, [activeIndex]);
+    }, [activeIndex, router]);
 
     const handleSelectEvent = useCallback((ev: SubEvent) => {
         setSelectedEvent(ev);
         setView('gallery');
-        setHash('gallery', activeIndex, ev.id);
+        setHash(router, 'gallery', activeIndex, ev.id);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, [activeIndex]);
+    }, [activeIndex, router]);
 
     const handleBackToCategories = useCallback(() => {
         setView('categories');
         setSelectedEvent(null);
-        setHash('categories', activeIndex);
-    }, [activeIndex]);
+        setHash(router, 'categories', activeIndex);
+    }, [activeIndex, router]);
 
     const handleBackToEvents = useCallback(() => {
         setView('events');
         setSelectedEvent(null);
-        setHash('events', activeIndex);
-    }, [activeIndex]);
+        setHash(router, 'events', activeIndex);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [activeIndex, router]);
 
     const handleCategoryClick = useCallback((i: number) => {
         setActiveIndex(i);
-        if (view !== 'categories') {
-            setView('events');
-            setSelectedEvent(null);
-            setHash('events', i);
-        } else {
-            setHash('categories', i);
-        }
-    }, [view]);
+        setView('events');
+        setSelectedEvent(null);
+        setHash(router, 'events', i);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [router]);
 
     /* Lightbox handlers */
     const openLightbox = useCallback((index: number) => {
@@ -266,50 +274,7 @@ export default function ServicesPage() {
         return () => window.removeEventListener('keydown', handleKey);
     }, [lightboxOpen, closeLightbox, lightboxPrev, lightboxNext]);
 
-    /* ── GSAP ScrollTrigger: horizontal scroll gallery ── */
-    useEffect(() => {
-        if (view !== 'gallery' || !mounted) return;
-
-        // Wait for DOM to render
-        const raf = requestAnimationFrame(() => {
-            const track = galleryTrackRef.current;
-            const section = gallerySectionRef.current;
-            if (!track || !section) return;
-
-            // Kill any existing ScrollTrigger instances in this context
-            ScrollTrigger.getAll().forEach(st => {
-                if (st.vars.trigger === section) st.kill();
-            });
-
-            const totalScroll = track.scrollWidth - window.innerWidth;
-
-            const tween = gsap.to(track, {
-                x: -totalScroll,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: section,
-                    pin: true,
-                    scrub: 1,
-                    start: 'top top',
-                    end: () => `+=${totalScroll}`,
-                    invalidateOnRefresh: true,
-                },
-            });
-
-            // Store cleanup
-            return () => {
-                tween.kill();
-                ScrollTrigger.getAll().forEach(st => {
-                    if (st.vars.trigger === section) st.kill();
-                });
-            };
-        });
-
-        return () => {
-            cancelAnimationFrame(raf);
-            ScrollTrigger.getAll().forEach(st => st.kill());
-        };
-    }, [view, selectedEvent, mounted]);
+    /* ── No longer using GSAP horizontal scroll ── */
 
     /* Don't render until hash state is restored */
     if (!mounted) return null;
@@ -323,6 +288,23 @@ export default function ServicesPage() {
                 {/* ═══════ LEVEL 1: Categories (sidebar + glass card) ═══════ */}
                 {view === 'categories' && (
                     <motion.div key="level-categories" {...pageVariants} className={styles.categoriesLayout}>
+                        {/* Dynamic Background */}
+                        <div className={styles.categoryBgWrapper}>
+                            <AnimatePresence mode="wait">
+                                <motion.img
+                                    key={activeCategory.bgImage}
+                                    src={activeCategory.bgImage}
+                                    alt={activeCategory.title}
+                                    className={styles.categoryBgImage}
+                                    initial={{ opacity: 0, scale: 1.1 }}
+                                    animate={{ opacity: 0.45, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 1.05 }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                                />
+                            </AnimatePresence>
+                            <div className={styles.categoryBgOverlay} />
+                        </div>
+
                         <aside className={styles.sidebar}>
                             <p className={styles.navLabel}>Our Expertise</p>
                             <nav className={styles.navList}>
@@ -330,7 +312,7 @@ export default function ServicesPage() {
                                     <button
                                         key={s.id}
                                         className={`${styles.navItem} ${i === activeIndex ? styles.navItemActive : ''}`}
-                                        onMouseEnter={() => { if (!isMobile) setActiveIndex(i); }}
+                                        onMouseEnter={() => { if (!isMobile && view === 'categories') setActiveIndex(i); }}
                                         onClick={() => handleCategoryClick(i)}
                                     >
                                         <span className={styles.navNum}>{s.num}</span>
@@ -344,10 +326,10 @@ export default function ServicesPage() {
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={activeIndex}
-                                    initial={{ opacity: 0, x: 20 }}
+                                    initial={{ opacity: 0, x: 40 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -20 }}
-                                    transition={{ duration: 0.45, ease: easeOut }}
+                                    exit={{ opacity: 0, x: -40 }}
+                                    transition={{ duration: 0.5, ease: easeOut }}
                                     className={styles.glassCard}
                                 >
                                     <span className={styles.cardNum}>{activeCategory.num}.</span>
@@ -405,24 +387,24 @@ export default function ServicesPage() {
 
             </AnimatePresence>
 
-            {/* ═══════ LEVEL 3: Gallery (GSAP pinned horizontal scroll) ═══════
-                Rendered OUTSIDE AnimatePresence so GSAP pin is not disrupted */}
             {view === 'gallery' && selectedEvent && (
-                <section className={styles.gallerySection} ref={gallerySectionRef}>
-                    <div className={styles.galleryStickyWrap}>
+                <section className={styles.galleryPage}>
+                    <div className={styles.galleryContainer}>
                         <div className={styles.galleryHeader}>
                             <button className={styles.backBtn} onClick={handleBackToEvents}>
                                 <HiArrowLeft /> Back to {activeCategory.title} Events
                             </button>
-                            <h2 className={styles.galleryTitle}>{selectedEvent.title}</h2>
-                            <p className={styles.galleryHint}>Scroll down to browse photos →</p>
+                            <div className={styles.galleryTitles}>
+                                <h2 className={styles.galleryTitle}>{selectedEvent.title}</h2>
+                                <p className={styles.gallerySubtitle}>SCROLL DOWN TO BROWSE PHOTOS →</p>
+                            </div>
                         </div>
 
-                        <div className={styles.galleryTrack} ref={galleryTrackRef}>
+                        <div className={styles.galleryMasonry}>
                             {galleryImages.map((img, idx) => (
                                 <div
                                     key={img.id}
-                                    className={styles.galleryItem}
+                                    className={styles.galleryMasonryItem}
                                     onClick={() => openLightbox(idx)}
                                 >
                                     <img src={img.src} alt={img.alt} className={styles.galleryImg} draggable={false} />

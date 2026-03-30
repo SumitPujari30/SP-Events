@@ -14,19 +14,18 @@ const quickLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Us' },
     { href: '/services', label: 'Services' },
-    { href: '/careers', label: 'Careers' },
-    { href: '/clients', label: 'Client' },
+    { href: '/our-work', label: 'Our Work' },
+    { href: '/clients', label: 'Clients' },
     { href: '/contact', label: 'Connect' },
 ];
 
-const services = [
+const servicesList = [
     'Corporate Events',
-    'Exhibitions & Activations',
-    'Award Ceremonies',
+    'Music Festivals',
+    'Luxury Weddings',
+    'Sports Events',
     'Product Launches',
-    'Virtual Events',
-    'Summits & Conclaves',
-    'Brand Marketing',
+    'Award Ceremonies',
 ];
 
 const socials = [
@@ -78,12 +77,12 @@ export default function Footer() {
                             <div className={styles.logoWrap}>
                                 <span className={styles.logoIcon}>SP</span>
                                 <div>
-                                    <h3 className={styles.logoTitle}>The SP Events</h3>
-                                    <p className={styles.logoSub}>Creating WOW Experiences</p>
+                                    <h3 className={styles.logoTitle}>The SP Events &trade;</h3>
+                                    <p className={styles.logoSub}>CREATING MAGIC &bull; EST. 2020</p>
                                 </div>
                             </div>
                             <p className={styles.brandDesc}>
-                                We are a premier event management company specializing in creating
+                                A premier event management company specialising in creating
                                 unforgettable brand experiences through creativity, innovation, and
                                 flawless execution.
                             </p>
@@ -121,7 +120,7 @@ export default function Footer() {
                         <div className={styles.column}>
                             <h4 className={styles.columnTitle}>Services</h4>
                             <ul className={styles.linkList}>
-                                {services.map((s) => (
+                                {servicesList.map((s) => (
                                     <li key={s}>
                                         <span className={styles.footerLink}>{s}</span>
                                     </li>
@@ -135,15 +134,15 @@ export default function Footer() {
                             <ul className={styles.contactList}>
                                 <li className={styles.contactItem}>
                                     <HiLocationMarker className={styles.contactIcon} />
-                                    <span>Mumbai, Maharashtra, India</span>
+                                    <span>Marvel Artiza, Vidya Nagar<br/>Hubli &mdash; 580029, Karnataka</span>
                                 </li>
                                 <li className={styles.contactItem}>
                                     <HiPhone className={styles.contactIcon} />
-                                    <span>+91 98765 43210</span>
+                                    <span>+91 74118 63227</span>
                                 </li>
                                 <li className={styles.contactItem}>
                                     <HiMail className={styles.contactIcon} />
-                                    <span>hello@thespevents.com</span>
+                                    <span>thespevents@gmail.com</span>
                                 </li>
                             </ul>
                         </div>
