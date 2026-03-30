@@ -53,7 +53,6 @@ const eventCategories = [
   },
 ];
 
-import { clientsData } from '@/lib/clientData';
 
 // ─── Stats Data ──────────────────────────────────────────────
 const stats = [
@@ -372,9 +371,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           6. TRUSTED BY — PREMIUM GRID
       ════════════════════════════════════════════════════════ */}
-      <HomeBrandsSection 
-         brands={clientsData} 
-      />
+      <HomeBrandsSection />
 
       {/* ═══════════════════════════════════════════════════════
           7. JOIN US

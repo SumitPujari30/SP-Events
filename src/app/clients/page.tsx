@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'fra
 import Link from 'next/link';
 import { HiArrowRight, HiX } from 'react-icons/hi';
 import styles from './clients.module.css';
-import ClientGrid from '@/components/ClientGrid';
 import CounterAnimation from '@/components/CounterAnimation';
 
 /* ——— DATA ——— */
@@ -113,7 +112,7 @@ function SplitTextHero() {
                 {/* Background image */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                    src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1800&q=85"
+                    src="/assets/Layout_page.png"
                     alt="Event background"
                     className={styles.heroBgImage}
                 />
@@ -157,14 +156,12 @@ function SplitTextHero() {
                     </p>
                 </motion.div>
 
-                {/* Scroll hint */}
-                <motion.div
-                    className={styles.heroScrollHint}
-                    style={{ opacity: useTransform(scrollYProgress, [0, 0.15], [1, 0]) }}
-                >
-                    <div className={styles.scrollDot} />
-                    <span>Scroll</span>
-                </motion.div>
+                {/* Scroll hint omitted for blueprint look */}
+
+                {/* Marquee moved inside hero sticky to be visible on same screen */}
+                <div className={styles.heroMarqueeWrap}>
+                    <MarqueeStrip />
+                </div>
             </div>
         </section>
     );
@@ -244,17 +241,6 @@ const itemVariants = {
 
 function ClientMatrix() {
     const [selectedClient, setSelectedClient] = useState<ClientRecord | null>(null);
-    const [activeCategory, setActiveCategory] = useState<string>('All');
-
-    const categories = ['All', 'Corporate', 'Government', 'Education', 'Startup', 'Foundation', 'Other'];
-
-    const filteredClients = activeCategory === 'All' 
-        ? clientsData 
-        : clientsData.filter(c => c.category === activeCategory);
-
-    const halfwayIndex = Math.ceil(filteredClients.length / 2);
-    const firstHalf = filteredClients.slice(0, halfwayIndex);
-    const secondHalf = filteredClients.slice(halfwayIndex);
 
     return (
         <section className={styles.matrixSection} id="roster">
@@ -265,34 +251,21 @@ function ClientMatrix() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className={styles.matrixTitle}>Clientele</h2>
-                        <p className={styles.matrixSubtitle}>Elevating Partnerships</p>
+                        <span className={styles.matrixLabel}>Trusted Partnerships</span>
+                        <h2 className={styles.matrixTitle}>Our Clientele</h2>
+                        <p className={styles.matrixSubtitle}>Brands that trust us to architect their most important moments</p>
                     </motion.div>
-
-                    {/* Category Filters */}
-                    <div className={styles.filterContainer}>
-                        {categories.map(cat => (
-                            <button
-                                key={cat}
-                                className={`${styles.filterBtn} ${activeCategory === cat ? styles.activeFilter : ''}`}
-                                onClick={() => setActiveCategory(cat)}
-                            >
-                                {cat}
-                            </button>
-                        ))}
-                    </div>
                 </div>
 
                 <div className={styles.matrixWrapper}>
                     <motion.div 
-                        key={`${activeCategory}-1`} // Force re-animation on filter change
                         className={styles.clientsGrid}
                         variants={containerVariants}
                         initial="hidden"
                         animate="show"
                         viewport={{ once: true, margin: "-50px" }}
                     >
-                        {firstHalf.map((client, i) => (
+                        {clientsData.slice(0, 24).map((client, i) => (
                             <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
                                 <LogoCard client={client} onClick={() => setSelectedClient(client)} />
                             </motion.div>
@@ -301,29 +274,7 @@ function ClientMatrix() {
                 </div>
             </div>
 
-            {/* Testimonials inserted perfectly in the middle */}
-            <TestimonialsSection />
-
-            <div className={styles.sectionContainer} style={{ paddingTop: '20px', paddingBottom: '60px' }}>
-                <div className={styles.matrixWrapper}>
-                    <motion.div 
-                        key={`${activeCategory}-2`} // Force re-animation on filter change
-                        className={styles.clientsGrid}
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                        viewport={{ once: true, margin: "-50px" }}
-                    >
-                        {secondHalf.map((client, i) => (
-                            <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
-                                <LogoCard client={client} onClick={() => setSelectedClient(client)} />
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </div>
-
-            {/* Client Detail Overlay */}
+                {/* Client Detail Overlay */}
             <AnimatePresence>
                 {selectedClient && (
                     <motion.div
@@ -394,14 +345,6 @@ function ClientMatrix() {
 }
 
 function LogoCard({ client, onClick }: { client: ClientRecord; onClick: () => void }) {
-    const [logoError, setLogoError] = useState(false);
-    const initials = client.name.substring(0, 2).toUpperCase();
-    const logoSrc = client.logo
-        ? `/assets/clientLogos/${client.logo}`
-        : client.domain
-            ? `https://logo.clearbit.com/${client.domain}`
-            : null;
-
     return (
         <div 
             className={styles.logoCard} 
@@ -415,21 +358,15 @@ function LogoCard({ client, onClick }: { client: ClientRecord; onClick: () => vo
                 }
             }}
         >
-            {!logoError && logoSrc ? (
-                // eslint-disable-next-line @next/next/no-img-element
+            <div className={styles.logoPlaceholder}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                    src={logoSrc}
-                    alt={client.name}
+                    src="/assets/Layout_page.png"
+                    alt="Client placeholder"
                     className={styles.logoCardImg}
-                    onError={() => setLogoError(true)}
                     loading="lazy"
                 />
-            ) : (
-                <div className={styles.logoCardFallback}>
-                    <span>{initials}</span>
-                </div>
-            )}
-            <span className={styles.logoCardName}>{client.name}</span>
+            </div>
         </div>
     );
 }
@@ -680,12 +617,8 @@ export default function ClientsPage() {
     return (
         <main className={styles.pageWrap}>
             <SplitTextHero />
-            <MarqueeStrip />
-            {/* We now pass the TestimonialsSection correctly as children inside the ClientGrid
-                so it stays aligned centrally between the two client card halves. */}
-            <ClientGrid>
-                <TestimonialsSection />
-            </ClientGrid>
+            <ClientMatrix />
+            <TestimonialsSection />
             <AnimatedStats />
             <ImmersiveCTA />
         </main>

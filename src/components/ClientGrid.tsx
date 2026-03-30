@@ -9,7 +9,6 @@ import styles from './ClientGrid.module.css';
 /* ── Only show clients that have a logo file ── */
 const clientsWithLogos = clientsData.filter((c) => c.logo);
 
-const categories = ['All', 'Corporate', 'Government', 'Education', 'Startup', 'Foundation', 'Other'] as const;
 
 /* ── Grid animation variants ── */
 const containerVariants = {
@@ -106,17 +105,14 @@ function LogoFace({ client }: { client: ClientRecord | null }) {
 
 /* ── Component ── */
 export default function ClientGrid({ children }: { children?: React.ReactNode }) {
-    const [activeCategory, setActiveCategory] = useState<string>('All');
     const [, setRenderTrigger] = useState(0);
 
     const slotsRef = useRef<SlotData[]>([]);
     const hiddenPoolRef = useRef<ClientRecord[]>([]);
 
     useEffect(() => {
-        const pool =
-            activeCategory === 'All'
-                ? clientsWithLogos
-                : clientsWithLogos.filter((c) => c.category === activeCategory);
+        // Use all clients with logos, no filtering
+        const pool = clientsWithLogos;
 
         // Shuffle the pool for a unique grid every time
         const shuffledPool = [...pool].sort(() => Math.random() - 0.5);
@@ -130,7 +126,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
 
         hiddenPoolRef.current = shuffledPool.slice(numSlots);
         setRenderTrigger((prev) => prev + 1);
-    }, [activeCategory]);
+    }, []);
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
@@ -195,7 +191,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
         scheduleNextFlip();
 
         return () => clearTimeout(timeoutId);
-    }, [activeCategory]);
+    }, []);
 
     return (
         <section className={styles.section} id="client-grid">
@@ -234,7 +230,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                 <AnimatePresence mode="wait">
                 {slotsRef.current.length > 0 && (
                     <motion.div
-                        key={activeCategory + "-1"}
+                        key="grid-1"
                         className={styles.grid}
                         variants={containerVariants}
                         initial="hidden"
@@ -264,7 +260,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                 <AnimatePresence mode="wait">
                 {slotsRef.current.length > 15 && (
                     <motion.div
-                        key={activeCategory + "-2"}
+                        key="grid-2"
                         className={styles.grid}
                         variants={containerVariants}
                         initial="hidden"

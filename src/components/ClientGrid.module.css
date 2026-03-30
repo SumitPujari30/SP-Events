@@ -64,43 +64,6 @@
     font-style: italic;
 }
 
-/* ── Category Filters ── */
-.filterContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 36px;
-}
-
-.filterBtn {
-    font-family: var(--font-heading);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 10px 24px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: transparent;
-    color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.filterBtn:hover {
-    color: var(--color-white);
-    border-color: rgba(201, 168, 76, 0.4);
-    background: rgba(201, 168, 76, 0.08);
-}
-
-.filterBtnActive {
-    color: var(--color-bg-dark);
-    background: var(--color-accent-gold);
-    border-color: var(--color-accent-gold);
-    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
-}
-
 /* ── Responsive Grid ── */
 .gridContainer {
     max-width: 1400px;
