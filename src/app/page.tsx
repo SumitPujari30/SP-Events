@@ -10,6 +10,7 @@ import JoinUsSection from '@/components/JoinUsSection';
 import CounterAnimation from '@/components/CounterAnimation';
 import Stats3DBackground from '@/components/Stats3DBackground';
 import { motion } from 'framer-motion';
+import { clientsData } from '@/lib/clientData';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -371,7 +372,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           6. TRUSTED BY — PREMIUM GRID
       ════════════════════════════════════════════════════════ */}
-      <HomeBrandsSection />
+      <HomeBrandsSection brands={clientsData} />
 
       {/* ═══════════════════════════════════════════════════════
           7. JOIN US

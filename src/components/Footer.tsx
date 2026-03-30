@@ -51,20 +51,15 @@ export default function Footer() {
                 <footer className={styles.footer}>
                     {/* Background Video */}
                     <div className={styles.videoContainer}>
-                        <video
-                            autoPlay
-                            muted
-                            playsInline
+                        <iframe
                             className={styles.bgVideo}
-                            onEnded={(e) => {
-                                e.currentTarget.currentTime = 21.5;
-                                e.currentTarget.play().catch(error => {
-                                    console.log("Video play interrupted or failed:", error);
-                                });
-                            }}
-                        >
-                            <source src="/assets/The SP Events office --footer.mp4#t=21.5" type="video/mp4" />
-                        </video>
+                            src="https://www.youtube.com/embed/cKyYZZRQG0Q?autoplay=1&mute=1&loop=1&playlist=cKyYZZRQG0Q&controls=0&showinfo=0&rel=0&iv_load_policy=3&disablekb=1"
+                            title="YouTube background video"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                        ></iframe>
                         <div className={styles.videoOverlay} />
                     </div>
 

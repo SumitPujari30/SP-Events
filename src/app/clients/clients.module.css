@@ -21,7 +21,8 @@
 .heroSection {
     height: 100vh;
     position: relative;
-    background: var(--color-bg-dark);
+    display: flex;
+    flex-direction: column;
 }
 
 .heroSection::before {
@@ -53,9 +54,9 @@
 }
 
 .heroSticky {
-    position: sticky;
+    position: relative;
     top: 0;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -85,17 +86,17 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.55;
-    filter: saturate(0.7) brightness(1.1);
+    opacity: 0.70;
+    filter: saturate(0.5) brightness(0.8);
 }
 
 .heroBgOverlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg,
-            rgba(17, 0, 28, 0.2) 0%,
-            rgba(17, 0, 28, 0.4) 50%,
-            rgba(17, 0, 28, 0.8) 100%);
+            rgba(17, 0, 28, 0.4) 0%,
+            rgba(17, 0, 28, 0.6) 50%,
+            rgba(17, 0, 28, 0.9) 100%);
     z-index: 1;
 }
 
@@ -117,29 +118,21 @@
 }
 
 .heroLetter {
-    font-family: 'Caveat', cursive;
-    font-size: clamp(8rem, 18vw, 16rem); /* Caveat runs small, bumping size */
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: clamp(5rem, 12vw, 10rem);
+    font-weight: 800;
     color: var(--color-white);
     line-height: 0.8;
-    text-transform: none;
+    text-transform: uppercase;
     display: inline-block;
     will-change: transform, opacity;
-    letter-spacing: -1px;
+    letter-spacing: -0.01em;
     text-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
 }
 
 .heroLetter.gold {
     color: var(--color-gold);
     text-shadow: 0 10px 40px rgba(201, 168, 76, 0.3);
-}
-
-.heroMarqueeWrap {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
 }
 
 /* Scroll hint */
@@ -149,7 +142,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
-    display: flex;
+    display: none; /* Hide scroll hint since it is no longer a sticky scroll section */
     flex-direction: column;
     align-items: center;
     gap: 12px;
@@ -188,7 +181,7 @@
 /* Subtitle revealed after scroll */
 .heroSubtitle {
     position: absolute;
-    bottom: 18vh;
+    bottom: 6vh;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
@@ -230,8 +223,10 @@
     overflow: hidden;
     border-top: 1px solid rgba(201, 168, 76, 0.15);
     border-bottom: 1px solid rgba(201, 168, 76, 0.15);
-    /* Connects flush to the hero above — no gap */
-    margin-top: 0;
+    /* Tight overlap onto the hero letters */
+    margin-top: -6vh;
+    position: relative;
+    z-index: 10;
 }
 
 .marqueeTrack {
@@ -251,7 +246,7 @@
     font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--color-white);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .marqueeDot {
@@ -260,7 +255,7 @@
     height: 4px;
     border-radius: 50%;
     background: var(--color-gold);
-    opacity: 0.85;
+    opacity: 0.6;
     margin-left: 48px;
 }
 
@@ -401,30 +396,22 @@
     margin-bottom: 60px;
 }
 
-.matrixLabel {
-    display: inline-block;
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--color-white);
-    margin-bottom: 20px;
-}
-
 .matrixTitle {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 700;
     color: var(--color-white);
     letter-spacing: -1px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .matrixSubtitle {
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.45);
-    max-width: 800px;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.45);
+    max-width: 600px;
     margin: 0 auto 40px;
+    font-style: italic;
 }
 
 /* --- Category Filter Buttons --- */
@@ -506,14 +493,14 @@
 .logoCard {
     flex-shrink: 0;
     width: 100%;
-    height: 180px; /* Taller boxes like blueprint */
+    height: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 16px;
     padding: 24px;
-    background: #ffffff; /* White blocks like blueprint */
+    background: var(--color-bg-dark); /* Solid flush blocks against the hairline gaps */
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
     position: relative;
@@ -521,49 +508,21 @@
 }
 
 .logoCard:hover {
-    background: #f8f8f8;
+    background: rgba(0, 0, 0, 0.03); /* Subtle light up on hover */
 }
 
 .logoCardImg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.15; /* Subdued placeholder */
+    max-width: 80%;
+    max-height: 60px;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.35); /* Elegant monochromatic sleep state */
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.logoPlaceholder {
     position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.logoText {
-    position: relative;
-    z-index: 2;
-    font-family: var(--font-display);
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--color-black);
-    opacity: 0.8;
-    transition: all 0.4s ease;
+    z-index: 1;
 }
 
 .logoCard:hover .logoCardImg {
-    opacity: 0.3;
-    scale: 1.05;
-}
-
-.logoCard:hover .logoText {
-    opacity: 1;
-    color: var(--color-white);
+    filter: grayscale(0%) opacity(1) scale(1.08); /* Bloom into full color */
 }
 
 .logoCardFallback {
@@ -590,7 +549,7 @@
 .logoCardName {
     font-family: var(--font-body);
     font-size: 0.65rem;
-    color: rgba(0, 0, 0, 0.4); /* Darker for legibility on white */
+    color: rgba(0, 0, 0, 0.25);
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -605,7 +564,7 @@
 }
 
 .logoCard:hover .logoCardName {
-    color: var(--color-black);
+    color: var(--color-white);
 }
 
 /* --- Client Detail Overlay --- */
@@ -798,7 +757,7 @@
    ============================================= */
 .testiSection {
     padding: 40px 0 60px;
-    background: var(--color-surface-dark);
+    background: var(--color-bg-dark);
     position: relative;
     overflow: hidden;
 }
@@ -808,7 +767,7 @@
     position: absolute;
     width: 70vw;
     height: 70vw;
-    background: radial-gradient(ellipse, rgba(58, 1, 92, 0.35) 0%, transparent 65%);
+    background: radial-gradient(ellipse, rgba(28, 25, 53, 0.5) 0%, transparent 65%);
     top: -20%;
     right: -25%;
     filter: blur(130px);
@@ -1247,127 +1206,206 @@
 }
 
 /* =============================================
-   SECTION 5: IMMERSIVE CTA
+   SECTION 5: CONTACT CTA (NEW DESIGN)
    ============================================= */
-.ctaSection {
-    padding: 200px 48px;
-    background: var(--gradient-hero);
+.contactSection {
+    background: var(--color-bg-dark);
+    padding: 120px 48px 80px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.ctaSection::before {
+.contactSection::before {
     content: '';
     position: absolute;
-    width: 80vw;
-    height: 80vw;
-    background: radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, transparent 60%);
-    top: -20%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     border-radius: 50%;
-    filter: blur(100px);
-    pointer-events: none;
-}
-
-.ctaSection::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    pointer-events: none;
-}
-
-.ctaParticles {
-    position: absolute;
-    inset: 0;
+    filter: blur(80px);
     pointer-events: none;
     z-index: 0;
 }
 
-.ctaParticle {
-    position: absolute;
-    border-radius: 50%;
-    background: var(--color-gold);
-    opacity: 0;
-    animation: floatUp 8s ease-in-out infinite;
-}
-
-@keyframes floatUp {
-    0% {
-        opacity: 0;
-        transform: translateY(60px) scale(0.5);
-    }
-
-    20% {
-        opacity: 0.5;
-    }
-
-    80% {
-        opacity: 0.4;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(-150px) scale(1);
-    }
-}
-
-.ctaContent {
+.contactInner {
     position: relative;
     z-index: 2;
-    max-width: 780px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-.ctaTitle {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 6.5vw, 5.5rem);
-    font-weight: 800;
-    color: var(--color-white);
-    line-height: 1.05;
+/* TOP LABEL */
+.contactHeaderWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
     margin-bottom: 32px;
-    letter-spacing: -2px;
 }
 
-.ctaTitle em {
+.contactLine {
+    height: 1px;
+    width: 40px;
+    background: rgba(201, 168, 76, 0.4);
+}
+
+.contactLabel {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* MAIN TITLE */
+.contactTitle {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    color: var(--color-white);
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+}
+
+.contactTitle em {
     font-style: italic;
     color: var(--color-gold);
+    font-weight: 400;
 }
 
-.ctaSubtitle {
+/* SUBTITLE */
+.contactSubtitle {
     font-family: var(--font-body);
-    font-size: 1.15rem;
-    color: rgba(0, 0, 0, 0.55);
-    max-width: 480px;
-    margin: 0 auto 56px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 580px;
+    margin: 0 auto 60px;
     line-height: 1.8;
 }
 
-.ctaBtn {
-    display: inline-flex;
+/* BUTTON ROW */
+.contactActionRow {
+    display: flex;
     align-items: center;
-    gap: 14px;
-    background: var(--color-gold);
-    color: var(--color-bg-light);
-    padding: 22px 60px;
-    border-radius: 100px;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-weight: 800;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 0 60px rgba(201, 168, 76, 0.25);
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 100px;
+    flex-wrap: wrap;
 }
 
-.ctaBtn:hover {
-    transform: scale(1.06) translateY(-5px);
-    box-shadow: 0 0 100px rgba(201, 168, 76, 0.45);
-    background: var(--color-white);
+.contactBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-gold);
     color: var(--color-bg-dark);
+    padding: 18px 36px;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.2);
+}
+
+.contactBtn:hover {
+    background: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201, 168, 76, 0.4);
+}
+
+.contactPhoneWrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.contactPhone {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-white);
+    letter-spacing: 3px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contactPhone:hover {
+    color: var(--color-gold);
+}
+
+.contactPhoneLine {
+    width: 30px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* FOOTER INFO GROUPS */
+.contactFooterGrid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contactFooterCol {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.contactFooterCol:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.contactColHead {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.contactColText {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.contactColText a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contactColText a:hover {
+    color: var(--color-white);
 }
 
 /* =============================================
@@ -1474,17 +1512,26 @@
         gap: 20px;
     }
 
-    .ctaSection {
-        padding: 140px 24px;
+    .contactSection {
+        padding: 80px 24px;
     }
 
-    .ctaBtn {
-        padding: 18px 40px;
-        font-size: 0.8rem;
+    .contactFooterGrid {
+        flex-direction: column;
+        gap: 32px;
+    }
+    
+    .contactFooterCol:not(:last-child)::after {
+        display: none;
+    }
+
+    .contactActionRow {
+        flex-direction: column;
+        gap: 16px;
     }
 
     .heroLetter {
-        font-size: clamp(3.5rem, 14vw, 8rem);
+        font-size: clamp(3rem, 10vw, 6rem);
         letter-spacing: -1px;
     }
 }

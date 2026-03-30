@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { clientsData, ClientRecord } from '@/lib/clientData';
 import styles from './ClientGrid.module.css';
 
-/* ── Only show clients that have a logo file ── */
-const clientsWithLogos = clientsData.filter((c) => c.logo);
+/* ── Use all clients since we are showing placeholder logos ── */
+const clientsWithLogos = clientsData;
 
 
 /* ── Grid animation variants ── */
@@ -52,11 +52,10 @@ function getLogoSrc(logo: string): string {
 }
 
 function LogoFace({ client }: { client: ClientRecord | null }) {
-    const [imgError, setImgError] = useState(false);
     if (!client) return null;
 
-    const initials = getInitials(client.name);
-    const src = client.logo ? getLogoSrc(client.logo) : null;
+    const brandName = "Client Brand";
+    const src = "/assets/Layout_page.png";
 
     return (
         <div className={styles.logoWrap}>
@@ -70,7 +69,7 @@ function LogoFace({ client }: { client: ClientRecord | null }) {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                 >
-                    {client.name}
+                    {brandName}
                 </motion.div>
 
                 {/* Flip the logo */}
@@ -82,21 +81,14 @@ function LogoFace({ client }: { client: ClientRecord | null }) {
                     exit={{ opacity: 0, rotateY: 90 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
-                    {src && !imgError ? (
-                        <Image
-                            src={src}
-                            alt={client.name === 'Govt of Karnataka' ? 'GOK' : client.name}
-                            fill
-                            sizes="(max-width: 480px) 45vw, (max-width: 768px) 30vw, (max-width: 992px) 22vw, 16vw"
-                            className={styles.logoImage}
-                            onError={() => setImgError(true)}
-                            loading="lazy"
-                        />
-                    ) : (
-                        <div className={styles.backInitials} style={{ width: 56, height: 56, fontSize: '1.3rem' }}>
-                            {initials}
-                        </div>
-                    )}
+                    <Image
+                        src={src}
+                        alt={brandName}
+                        fill
+                        sizes="(max-width: 480px) 45vw, (max-width: 768px) 30vw, (max-width: 992px) 22vw, 16vw"
+                        className={styles.logoImage}
+                        loading="lazy"
+                    />
                 </motion.div>
             </AnimatePresence>
         </div>

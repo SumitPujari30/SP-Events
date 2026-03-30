@@ -3,8 +3,9 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { HiArrowRight, HiX } from 'react-icons/hi';
+import { HiX } from 'react-icons/hi';
 import styles from './clients.module.css';
+import ClientGrid from '@/components/ClientGrid';
 import CounterAnimation from '@/components/CounterAnimation';
 
 /* ——— DATA ——— */
@@ -149,19 +150,21 @@ function SplitTextHero() {
                 {/* Subtitle revealed after scroll */}
                 <motion.div className={styles.heroSubtitle} style={{ opacity: subtitleOpacity }}>
                     <h2>
-                        Clientele
+                        
                     </h2>
                     <p className={styles.heroSubtitleText}>
                         Elevating Partnerships
                     </p>
                 </motion.div>
 
-                {/* Scroll hint omitted for blueprint look */}
-
-                {/* Marquee moved inside hero sticky to be visible on same screen */}
-                <div className={styles.heroMarqueeWrap}>
-                    <MarqueeStrip />
-                </div>
+                {/* Scroll hint */}
+                <motion.div
+                    className={styles.heroScrollHint}
+                    style={{ opacity: useTransform(scrollYProgress, [0, 0.15], [1, 0]) }}
+                >
+                    <div className={styles.scrollDot} />
+                    <span>Scroll</span>
+                </motion.div>
             </div>
         </section>
     );
@@ -241,6 +244,17 @@ const itemVariants = {
 
 function ClientMatrix() {
     const [selectedClient, setSelectedClient] = useState<ClientRecord | null>(null);
+    const [activeCategory, setActiveCategory] = useState<string>('All');
+
+    const categories = ['All', 'Corporate', 'Government', 'Education', 'Startup', 'Foundation', 'Other'];
+
+    const filteredClients = activeCategory === 'All' 
+        ? clientsData 
+        : clientsData.filter(c => c.category === activeCategory);
+
+    const halfwayIndex = Math.ceil(filteredClients.length / 2);
+    const firstHalf = filteredClients.slice(0, halfwayIndex);
+    const secondHalf = filteredClients.slice(halfwayIndex);
 
     return (
         <section className={styles.matrixSection} id="roster">
@@ -251,21 +265,34 @@ function ClientMatrix() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <span className={styles.matrixLabel}>Trusted Partnerships</span>
-                        <h2 className={styles.matrixTitle}>Our Clientele</h2>
-                        <p className={styles.matrixSubtitle}>Brands that trust us to architect their most important moments</p>
+                        <h2 className={styles.matrixTitle}>Clientele</h2>
+                        <p className={styles.matrixSubtitle}>Elevating Partnerships</p>
                     </motion.div>
+
+                    {/* Category Filters */}
+                    <div className={styles.filterContainer}>
+                        {categories.map(cat => (
+                            <button
+                                key={cat}
+                                className={`${styles.filterBtn} ${activeCategory === cat ? styles.activeFilter : ''}`}
+                                onClick={() => setActiveCategory(cat)}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 <div className={styles.matrixWrapper}>
                     <motion.div 
+                        key={`${activeCategory}-1`} // Force re-animation on filter change
                         className={styles.clientsGrid}
                         variants={containerVariants}
                         initial="hidden"
                         animate="show"
                         viewport={{ once: true, margin: "-50px" }}
                     >
-                        {clientsData.slice(0, 24).map((client, i) => (
+                        {firstHalf.map((client, i) => (
                             <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
                                 <LogoCard client={client} onClick={() => setSelectedClient(client)} />
                             </motion.div>
@@ -274,7 +301,29 @@ function ClientMatrix() {
                 </div>
             </div>
 
-                {/* Client Detail Overlay */}
+            {/* Testimonials inserted perfectly in the middle */}
+            <TestimonialsSection />
+
+            <div className={styles.sectionContainer} style={{ paddingTop: '20px', paddingBottom: '60px' }}>
+                <div className={styles.matrixWrapper}>
+                    <motion.div 
+                        key={`${activeCategory}-2`} // Force re-animation on filter change
+                        className={styles.clientsGrid}
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="show"
+                        viewport={{ once: true, margin: "-50px" }}
+                    >
+                        {secondHalf.map((client, i) => (
+                            <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
+                                <LogoCard client={client} onClick={() => setSelectedClient(client)} />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* Client Detail Overlay */}
             <AnimatePresence>
                 {selectedClient && (
                     <motion.div
@@ -345,6 +394,14 @@ function ClientMatrix() {
 }
 
 function LogoCard({ client, onClick }: { client: ClientRecord; onClick: () => void }) {
+    const [logoError, setLogoError] = useState(false);
+    const initials = client.name.substring(0, 2).toUpperCase();
+    const logoSrc = client.logo
+        ? `/assets/clientLogos/${client.logo}`
+        : client.domain
+            ? `https://logo.clearbit.com/${client.domain}`
+            : null;
+
     return (
         <div 
             className={styles.logoCard} 
@@ -358,15 +415,21 @@ function LogoCard({ client, onClick }: { client: ClientRecord; onClick: () => vo
                 }
             }}
         >
-            <div className={styles.logoPlaceholder}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+            {!logoError && logoSrc ? (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img
-                    src="/assets/Layout_page.png"
-                    alt="Client placeholder"
+                    src={logoSrc}
+                    alt={client.name}
                     className={styles.logoCardImg}
+                    onError={() => setLogoError(true)}
                     loading="lazy"
                 />
-            </div>
+            ) : (
+                <div className={styles.logoCardFallback}>
+                    <span>{initials}</span>
+                </div>
+            )}
+            <span className={styles.logoCardName}>{client.name}</span>
         </div>
     );
 }
@@ -508,103 +571,75 @@ function TestimonialsSection() {
    ============================================= */
 function AnimatedStats() {
     return (
-        <section className={styles.statsSection}>
-            <div className={styles.statsInner}>
-                <div className={styles.statsHeader}>
-                    <motion.span
-                        className={styles.sectionLabel}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        By the Numbers
-                    </motion.span>
-                    <motion.h2
-                        className={styles.statsTitle}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                    >
-                        Measured in Impact
-                    </motion.h2>
-                    <motion.p
-                        className={styles.statsSubtitle}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        Behind every unforgettable event lies a foundation of meticulous planning, execution, and industry experience.
-                    </motion.p>
-                </div>
-                
-                <div className={styles.statsGrid}>
-                    {stats.map((stat, i) => (
-                        <motion.div
-                            key={i}
-                            className={styles.statItem}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.65, delay: i * 0.14, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
-                            <div className={styles.statLabel}>{stat.label}</div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
+        <></>
     );
 }
 
 /* =============================================
-   SECTION 5: IMMERSIVE CTA
+   SECTION 5: CONTACT CTA
    ============================================= */
-function ImmersiveCTA() {
-    const particles = Array.from({ length: 80 }, (_, i) => ({
-        left: `${1 + (i * 7.31) % 98}%`,
-        animationDelay: `${(i * 0.23) % 12}s`,
-        animationDuration: `${5 + (i * 0.4) % 8}s`,
-        size: 2 + (i % 5),
-    }));
-
+function ContactCTA() {
     return (
-        <section  className={styles.ctaSection}>
-            <div className={styles.ctaParticles}>
-                {particles.map((p, i) => (
-                    <div
-                        key={i}
-                        className={styles.ctaParticle}
-                        style={{
-                            left: p.left,
-                            bottom: '-20px',
-                            width: p.size,
-                            height: p.size,
-                            animationDelay: p.animationDelay,
-                            animationDuration: p.animationDuration,
-                        }}
-                    />
-                ))}
-            </div>
-
+        <section className={styles.contactSection}>
             <motion.div
-                className={styles.ctaContent}
-                initial={{ opacity: 0, y: 60 }}
+                className={styles.contactInner}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-                <h2 className={styles.ctaTitle}>
-                    Ready to join<br />the <em>constellation?</em>
+                {/* Top Label */}
+                <div className={styles.contactHeaderWrap}>
+                    <div className={styles.contactLine} />
+                    <span className={styles.contactLabel}>Let&apos;s Connect</span>
+                    <div className={styles.contactLine} />
+                </div>
+
+                {/* Main Title */}
+                <h2 className={styles.contactTitle}>
+                    Let&apos;s create<br />
+                    something <em>epic</em><br />
+                    together.
                 </h2>
-                <p className={styles.ctaSubtitle}>
-                    Let&apos;s craft something extraordinary together. Your brand deserves nothing less than perfection.
+
+                {/* Subtitle */}
+                <p className={styles.contactSubtitle}>
+                    Whether you&apos;re a brand seeking to break through the noise or a visionary who wants to partner on groundbreaking ideas — this is your moment.
                 </p>
-                <Link href="/contact" className={styles.ctaBtn}>
-                    Start a Conversation <HiArrowRight />
-                </Link>
+
+                {/* Button Row */}
+                <div className={styles.contactActionRow}>
+                    <Link href="/contact" className={styles.contactBtn}>
+                        Start a Conversation
+                    </Link>
+                    <div className={styles.contactPhoneWrap}>
+                        <a href="tel:+917411863227" className={styles.contactPhone}>+91 74118 63227</a>
+                        <div className={styles.contactPhoneLine} />
+                    </div>
+                </div>
+
+                {/* Footer Columns */}
+                <div className={styles.contactFooterGrid}>
+                    <div className={styles.contactFooterCol}>
+                        <span className={styles.contactColHead}>Address</span>
+                        <span className={styles.contactColText}>
+                            Marvel Artiza, Vidya Nagar<br />
+                            Hubli — 580029, Karnataka
+                        </span>
+                    </div>
+                    <div className={styles.contactFooterCol}>
+                        <span className={styles.contactColHead}>Email</span>
+                        <span className={styles.contactColText}>
+                            <a href="mailto:thespevents@gmail.com">thespevents@gmail.com</a>
+                        </span>
+                    </div>
+                    <div className={styles.contactFooterCol}>
+                        <span className={styles.contactColHead}>Website</span>
+                        <span className={styles.contactColText}>
+                            <a href="https://www.thespevents.com" target="_blank" rel="noopener noreferrer">www.thespevents.com</a>
+                        </span>
+                    </div>
+                </div>
             </motion.div>
         </section>
     );
@@ -617,10 +652,14 @@ export default function ClientsPage() {
     return (
         <main className={styles.pageWrap}>
             <SplitTextHero />
-            <ClientMatrix />
-            <TestimonialsSection />
+            <MarqueeStrip />
+            {/* We now pass the TestimonialsSection correctly as children inside the ClientGrid
+                so it stays aligned centrally between the two client card halves. */}
+            <ClientGrid>
+                <TestimonialsSection />
+            </ClientGrid>
             <AnimatedStats />
-            <ImmersiveCTA />
+            <ContactCTA />
         </main>
     );
 }
