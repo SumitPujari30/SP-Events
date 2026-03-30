@@ -6,7 +6,7 @@ import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "The SP Events | Creating WOW Experiences",
+  title: "The SP Events | Creating Magical Experiences",
   description:
     "The SP Events is a premier event management company specializing in creating unforgettable brand experiences through creativity, innovation, and flawless execution.",
   keywords: [

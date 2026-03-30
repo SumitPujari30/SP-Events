@@ -298,7 +298,7 @@ export default function HomePage() {
                 OUR EXPERTISE
               </div>
               <h2 className={styles.catTitle}>
-                Our <span className={styles.catTitleGold}>Service</span>
+                Our <span className={styles.catTitleGold}>Services</span>
               </h2>
             </div>
           </div>

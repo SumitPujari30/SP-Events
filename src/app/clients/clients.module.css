@@ -28,7 +28,7 @@
     position: absolute;
     width: 60vw;
     height: 60vw;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.15) 0%, transparent 60%);
     top: -10%;
     left: -20%;
     border-radius: 50%;
@@ -436,15 +436,15 @@
 
 .filterBtn:hover {
     color: var(--color-white);
-    border-color: rgba(212, 175, 55, 0.4);
-    background: rgba(212, 175, 55, 0.08);
+    border-color: rgba(201, 168, 76, 0.4);
+    background: rgba(201, 168, 76, 0.08);
 }
 
 .filterBtn.activeFilter {
     color: var(--color-bg-dark);
     background: var(--color-gold);
     border-color: var(--color-gold);
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
 }
 
 /* --- Clients Grid Architectural Edge --- */

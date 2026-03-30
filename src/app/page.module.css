@@ -69,13 +69,13 @@
 .scrollLine {
   width: 1px;
   height: 52px;
-  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.65));
+  background: linear-gradient(to bottom, transparent, rgba(201, 168, 76, 0.65));
 }
 
 .scrollText {
   font-size: 0.62rem;
   letter-spacing: 4px;
-  color: rgba(212, 175, 55, 0.55);
+  color: rgba(201, 168, 76, 0.55);
   text-transform: uppercase;
   font-weight: 600;
   font-family: var(--font-heading);
@@ -115,7 +115,7 @@
   width: 800px;
   height: 800px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -230,7 +230,7 @@
 .expRight {
   flex: 0.9;
   padding-left: 80px;
-  border-left: 1px solid rgba(212, 175, 55, 0.2);
+  border-left: 1px solid rgba(201, 168, 76, 0.2);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -273,7 +273,7 @@
   gap: 16px;
   padding: 16px 32px;
   background: transparent;
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  border: 1px solid rgba(201, 168, 76, 0.4);
   border-radius: 30px;
   color: var(--color-text);
   font-size: 0.95rem;
@@ -302,7 +302,7 @@
 
 .expButton:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 12px 30px rgba(201, 168, 76, 0.25);
   border-color: var(--color-accent-gold);
 }
 
@@ -701,9 +701,9 @@
 
 .logoCard:hover {
   background: rgba(0, 0, 0, 0.1);
-  border-color: rgba(212, 175, 55, 0.4);
+  border-color: rgba(201, 168, 76, 0.4);
   transform: translateY(-6px) scale(1.08);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(201, 168, 76, 0.2);
   z-index: 10;
 }
 
@@ -748,7 +748,7 @@
   .statsGrid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .expContainer { flex-direction: column; gap: 60px; align-items: stretch; width: 95%; }
   .expLeft { max-width: 100%; padding-right: 0; position: static; }
-  .expRight { padding-left: 0; border-left: none; max-width: 100%; border-top: 1px solid rgba(212, 175, 55, 0.15); padding-top: 40px; }
+  .expRight { padding-left: 0; border-left: none; max-width: 100%; border-top: 1px solid rgba(201, 168, 76, 0.15); padding-top: 40px; }
   .catTitle { font-size: clamp(2.4rem, 6vw, 4.5rem); }
   .expTitle { font-size: clamp(3rem, 10vw, 5rem); }
 }

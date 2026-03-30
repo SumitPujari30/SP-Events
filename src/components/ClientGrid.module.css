@@ -90,15 +90,15 @@
 
 .filterBtn:hover {
     color: var(--color-white);
-    border-color: rgba(212, 175, 55, 0.4);
-    background: rgba(212, 175, 55, 0.08);
+    border-color: rgba(201, 168, 76, 0.4);
+    background: rgba(201, 168, 76, 0.08);
 }
 
 .filterBtnActive {
     color: var(--color-bg-dark);
     background: var(--color-accent-gold);
     border-color: var(--color-accent-gold);
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
 }
 
 /* ── Responsive Grid ── */
@@ -141,9 +141,9 @@
 }
 
 .flipCard:hover {
-    border-color: rgba(212, 175, 55, 0.5);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(212, 175, 55, 0.08) 100%);
-    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15);
+    border-color: rgba(201, 168, 76, 0.5);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(201, 168, 76, 0.08) 100%);
+    box-shadow: 0 10px 40px rgba(201, 168, 76, 0.15);
 }
 
 /* Logo Wrapping & Interaction */
@@ -214,8 +214,8 @@
     width: 48px;
     height: 48px;
     border-radius: 14px;
-    background: rgba(212, 175, 55, 0.12);
-    border: 1px solid rgba(212, 175, 55, 0.25);
+    background: rgba(201, 168, 76, 0.12);
+    border: 1px solid rgba(201, 168, 76, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
