@@ -3,13 +3,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 0px 60px; /* Brought down from top */
+  padding: 8px 60px; /* Reduced from 15px */
   z-index: 1000;
   transition: background 0.3s ease, padding 0.3s ease;
 }
 
 .scrolled {
-  padding: 24px 60px; /* Thinner when scrolled */
+  padding: 5px 60px; /* Thinner when scrolled */
 }
 
 .inner {
@@ -22,8 +22,8 @@
 
 .logoImage {
   height: auto;
-  width: 260px; /* Made the logo much bigger */
-  max-width: 260px;
+  width: 200px; /* Reduced from 180px */
+  max-width: 220px;
 }
 
 .menuBtn {

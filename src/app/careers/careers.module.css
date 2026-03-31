@@ -98,6 +98,7 @@
   letter-spacing: -2px;
   color: rgba(0, 0, 0, 0.06);
   text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .stageHeroTitleLit {
@@ -108,6 +109,7 @@
   letter-spacing: -2px;
   color: var(--color-white);
   text-transform: uppercase;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .textGold {
@@ -128,8 +130,8 @@
   mask-image: radial-gradient(circle 1000px at center, black 15%, rgba(0,0,0,0.8) 45%, transparent 100%);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-size: 2000px 2000px;
-  mask-size: 2000px 2000px;
+  -webkit-mask-size: 3000px 3000px;
+  mask-size: 3000px 3000px;
 }
 
 .stageHeroGridLit {

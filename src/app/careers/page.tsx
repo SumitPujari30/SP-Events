@@ -16,9 +16,9 @@ function StageLightHero() {
 
     const handlePointerMove = (e: React.PointerEvent) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        // 1000 is half of the 2000px mask size
-        mouseX.set(e.clientX - rect.left - 700);
-        mouseY.set(e.clientY - rect.bottom - 700);
+        // offset is half of the 2000px mask size so the spotlight is centered on the cursor
+        mouseX.set(e.clientX - rect.left - 1500);
+        mouseY.set(e.clientY - rect.top - 1500);
     };
 
     return (

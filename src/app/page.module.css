@@ -171,16 +171,17 @@
   font-family: var(--font-heading);
   font-size: clamp(3.2rem, 7.5vw, 5.8rem);
   font-weight: 800;
-  line-height: 0.95;
+  line-height: 1.10; /* Increased from 0.95 to ensure descenders have room */
   letter-spacing: -0.04em;
   color: var(--color-text);
   margin-top: 15px;
 }
 
 .expUniqueLine {
-  overflow: hidden;
-  padding-bottom: 8px;
-  margin-bottom: -8px;
+  /* Removed overflow: hidden to prevent clipping of descenders like 'g' */
+  overflow: visible;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
 }
 
 .expUniqueLineInner {
@@ -203,10 +204,10 @@
 /* ── Interactive word cycle hover ── */
 .rhymeHoverWrapper {
   display: inline-block;
-  overflow: hidden; /* Hide the word as it comes from below */
-  vertical-align: top; /* Keep it aligned with surrounding text */
-  padding: 0 8px;
-  margin: 0 -8px;
+  overflow: visible; /* Changed to visible to let 'g' descenders show */
+  vertical-align: baseline; /* Align with text baseline */
+  padding: 0 10px 15px; /* Added 15px bottom padding */
+  margin: 0 -10px -15px; /* Adjusted margin to offset padding */
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
