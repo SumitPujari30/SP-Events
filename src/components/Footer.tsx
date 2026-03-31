@@ -22,16 +22,16 @@ const quickLinks = [
 const servicesList = [
     'Corporate Events',
     'Music Festivals',
-    'Luxury Weddings',
-    'Sports Events',
+    'Cultural Programs',
     'Product Launches',
     'Award Ceremonies',
+    'Sports Events',
 ];
 
 const socials = [
+    { icon: FaInstagram, href: 'https://www.instagram.com/thespevents/', label: 'Instagram' },
     { icon: FaFacebookF, href: '#', label: 'Facebook' },
-    { icon: FaInstagram, href: '#', label: 'Instagram' },
-    { icon: FaTwitter, href: '#', label: 'Twitter' },
+    { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
     { icon: FaYoutube, href: '#', label: 'YouTube' },
 ];
 
@@ -77,9 +77,7 @@ export default function Footer() {
                                 </div>
                             </div>
                             <p className={styles.brandDesc}>
-                                A premier event management company specialising in creating
-                                unforgettable brand experiences through creativity, innovation, and
-                                flawless execution.
+                                SP Events is a premier event management company based in Hubli, Karnataka. We specialise in creating unforgettable spectacles — from intimate luxury experiences to massive live productions.
                             </p>
                             <div className={styles.socials}>
                                 {socials.map((s) => (

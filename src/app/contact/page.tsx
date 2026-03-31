@@ -10,17 +10,17 @@ const contactInfo = [
     {
         icon: HiOutlineLocationMarker,
         title: 'Visit Us',
-        lines: ['The SP Events HQ', 'Marvel Arteza , Vidya Nagar, Hubli', 'Karnataka 580029, India'],
+        lines: ['The SP Events HQ', 'Marvel Artiza, Vidya Nagar, Hubli', 'Karnataka 580029, India'],
     },
     {
         icon: HiOutlinePhone,
         title: 'Call Us',
-        lines: ['+91 98765 43210', '+91 22 4567 8900', 'Mon – Sat, 10 AM – 7 PM'],
+        lines: ['+91 74118 63227', 'Mon – Sat, 10 AM – 7 PM'],
     },
     {
         icon: HiOutlineMail,
         title: 'Email Us',
-        lines: ['thespevents@gmail.com', 'careers@thespevents.com', 'press@thespevents.com'],
+        lines: ['thespevents@gmail.com', 'careers@thespevents.com'],
     },
 ];
 
@@ -55,7 +55,7 @@ export default function ContactPage() {
                         Let&apos;s <span className="text-gold">Connect</span>
                     </motion.h1>
                     <motion.p className="page-hero-subtitle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
-                        Have an event in mind? We&apos;d love to hear about it. Reach out and let&apos;s create something extraordinary together.
+                        Have a spectacle in mind? We'd love to hear about it. Reach out and let's craft something extraordinary together — from concept to curtain call.
                     </motion.p>
                 </div>
             </section>
@@ -66,8 +66,8 @@ export default function ContactPage() {
                         {/* Form */}
                         <AnimatedSection variant="fadeLeft">
                             <div className={styles.formCard}>
-                                <h2 className={styles.formTitle}>Send Us a Message</h2>
-                                <p className={styles.formSubtitle}>Fill in the details and we&apos;ll get back to you within 24 hours.</p>
+                                <h2 className={styles.formTitle}>Start a Conversation</h2>
+                                <p className={styles.formSubtitle}>Drop us your details and we'll connect within 24 hours to discuss your vision.</p>
 
                                 {submitted ? (
                                     <motion.div
@@ -121,31 +121,24 @@ export default function ContactPage() {
                                                 />
                                             </div>
                                             <div className="form-group">
-                                                <label className="form-label">Event Type</label>
-                                                <select
+                                                <label className="form-label">Portfolio / LinkedIn URL</label>
+                                                <input
                                                     className="form-input"
+                                                    type="url"
                                                     name="eventType"
+                                                    placeholder="https://"
                                                     value={formData.eventType}
                                                     onChange={handleChange}
-                                                >
-                                                    <option value="">Select event type</option>
-                                                    <option value="corporate">Corporate Event</option>
-                                                    <option value="exhibition">Exhibition</option>
-                                                    <option value="launch">Product Launch</option>
-                                                    <option value="awards">Award Ceremony</option>
-                                                    <option value="summit">Summit / Conference</option>
-                                                    <option value="virtual">Virtual Event</option>
-                                                    <option value="other">Other</option>
-                                                </select>
+                                                />
                                             </div>
                                         </div>
 
                                         <div className="form-group">
-                                            <label className="form-label">Your Message *</label>
+                                            <label className="form-label">Why SP Events? *</label>
                                             <textarea
                                                 className="form-textarea"
                                                 name="message"
-                                                placeholder="Tell us about your event vision..."
+                                                placeholder="Tell us why you want to connect with us..."
                                                 value={formData.message}
                                                 onChange={handleChange}
                                                 required
@@ -183,7 +176,7 @@ export default function ContactPage() {
                                         <HiOutlineLocationMarker size={40} />
                                         <p>Hubli, Karnataka , India</p>
                                         <a
-                                            href="https://maps.google.com/?q=Andheri+West+Mumbai"
+                                            href="https://maps.google.com/?q=Vidya+Nagar+Hubli+Karnataka"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="btn btn-glass"

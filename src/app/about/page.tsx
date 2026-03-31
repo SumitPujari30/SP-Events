@@ -24,15 +24,15 @@ const locations = [
     {
         city: 'HUBLI',
         type: 'HEAD QUARTERS',
-        img: '/assets/Layout_page.png',
+        img: '/assets/hubli_city.png',
         address: '"Marvel Artiza" , CTS No. 4A/2, First Floor - 133, Jayanagara, Vidyanagar, Opposite KIMS, Hubli-580021, Karnataka, India.',
         mapLink: 'https://www.google.com/maps/search/?api=1&query=Marvel+Artiza+Hubli'
     },
     {
-        city: 'BANGLORE',
+        city: 'BANGALORE',
         type: 'CORPORATE OFFICE',
-        img: '/assets/Layout_page.png',
-        address: '“The SP Events” , ITPL Main Road, Opp Capitol Towers, Kadugodi, Whitefield, Bengaluru - 560 066, Karnataka, India.',
+        img: '/assets/bangaluru.jpeg',
+        address: '"The SP Events" , ITPL Main Road, Opp Capitol Towers, Kadugodi, Whitefield, Bengaluru - 560 066, Karnataka, India.',
         mapLink: 'https://www.google.com/maps/search/?api=1&query=The+SP+Events+Whitefield+Bangalore'
     }
 ];

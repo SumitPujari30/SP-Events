@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from 'framer-motion';
 import styles from './careers.module.css';
 
 /* =============================================
@@ -16,9 +16,9 @@ function StageLightHero() {
 
     const handlePointerMove = (e: React.PointerEvent) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        // 450 is half of the 900px mask size to center it on cursor
-        mouseX.set(e.clientX - rect.left - 450);
-        mouseY.set(e.clientY - rect.top - 450);
+        // 1000 is half of the 2000px mask size
+        mouseX.set(e.clientX - rect.left - 700);
+        mouseY.set(e.clientY - rect.bottom - 700);
     };
 
     return (
@@ -27,7 +27,6 @@ function StageLightHero() {
             <div className={styles.stageHeroBase}>
                 <div className={styles.stageHeroGridDark} />
                 <div className={styles.stageHeroContent}>
-                    <p className={styles.heroPre}>Hover to illuminate</p>
                     <h1 className={styles.stageHeroTitleDark}>
                         SHAPE THE<br />SPECTACLE.
                     </h1>
@@ -56,35 +55,161 @@ function StageLightHero() {
 }
 
 /* =============================================
-   SECTION 2: EXPERIENCE SECTION (Replacing Parallax)
+   SECTION 2: BUILT DIFFERENT
    ============================================= */
-function ExperienceSection() {
+function BuiltDifferentSection() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const glowX = useSpring(mouseX, { damping: 25, stiffness: 120 });
+    const glowY = useSpring(mouseY, { damping: 25, stiffness: 120 });
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        mouseX.set(e.clientX - rect.left);
+        mouseY.set(e.clientY - rect.top);
+    };
+
+    const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+    const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+
+    const items = [
+        {
+            label: 'Relentless Collaboration',
+            body: "We don't just plan events; we architect experiences. From massive stadium builds to intimate luxury galas, bold ideas live here.",
+            sub: "We foster an environment where your wildest concepts are funded, prototyped, and perfectly executed alongside master technicians, designers, and logistics experts.",
+        },
+        {
+            label: 'Crafting the Extraordinary',
+            body: "Every role here carries consequence. Every decision shapes something thousands of people will witness and remember for years to come.",
+            sub: "You won't find ordinary ambitions at SP Events. You'll find a relentless drive to outdo the last spectacle and architect the next one.",
+        },
+    ];
+
     return (
-        <section className="section" style={{ background: 'var(--color-bg-dark)', position: 'relative', zIndex: 1 }}>
-            <div className="container">
+        <section
+            ref={sectionRef}
+            className={styles.builtSection}
+            onMouseMove={handleMouseMove}
+        >
+            {/* Parallax background image */}
+            <motion.div className={styles.builtBg} style={{ y: bgY }}>
+                <img
+                    src="https://images.unsplash.com/photo-1540039155732-d6928e469557?w=1800&q=85"
+                    alt="Event spectacle"
+                />
+                <div className={styles.builtBgOverlay} />
+            </motion.div>
+
+            {/* Mouse-tracking gold glow */}
+            <motion.div
+                className={styles.builtGlow}
+                style={{ x: glowX, y: glowY }}
+            />
+
+            {/* Floating glass editorial plate */}
+            <div className={styles.builtPlate}>
+                <span className={styles.builtLabel}>Built Different</span>
+                <h2 className={styles.builtTitle}>
+                    Where Bold Ideas<br />
+                    <em>Find Their Stage</em>
+                </h2>
+                <div className={styles.builtDivider} />
+                {items.map((item, i) => (
+                    <motion.div
+                        key={i}
+                        className={styles.builtItem}
+                        initial={{ opacity: 0, x: -24 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: '-60px' }}
+                        transition={{ duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        <h3 className={styles.builtItemTitle}>{item.label}</h3>
+                        <p className={styles.builtItemBody}>{item.body}</p>
+                        <p className={styles.builtItemSub}>{item.sub}</p>
+                    </motion.div>
+                ))}
+                <motion.a
+                    href="#apply-form"
+                    className={styles.joinBtn}
+                    style={{ marginTop: '32px', alignSelf: 'flex-start' }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.97 }}
+                >
+                    Join the Crew
+                    <span style={{ marginLeft: '10px', display: 'inline-block', transition: 'transform 0.3s' }}>→</span>
+                </motion.a>
+            </div>
+
+            {/* Center image */}
+            <div className={styles.builtCenterImg}>
+                <img src="/assets/Layout_page.png" alt="SP Events Experience" />
+            </div>
+
+            {/* Right side: floating stat cards */}
+            <div className={styles.builtRight}>
+                {[
+                    { value: '200+', label: 'Events Orchestrated' },
+                    { value: '40+', label: 'Cities Worldwide' },
+                    { value: '98%', label: 'Client Satisfaction' },
+                ].map((stat, i) => (
+                    <motion.div
+                        key={i}
+                        className={styles.builtStat}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-40px' }}
+                        transition={{ duration: 0.7, delay: 0.2 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        <span className={styles.builtStatValue}>{stat.value}</span>
+                        <span className={styles.builtStatLabel}>{stat.label}</span>
+                    </motion.div>
+                ))}
+            </div>
+        </section>
+    );
+}
+
+/* =============================================
+   SECTION 3: TEAM PHOTOS
+   ============================================= */
+function TeamPhotosSection() {
+    const photos = [
+        "/assets/Layout_page.png",
+        "/assets/Layout_page.png",
+        "/assets/Layout_page.png",
+        "/assets/Layout_page.png",
+        "/assets/Layout_page.png",
+        "/assets/Layout_page.png"
+    ];
+
+    return (
+        <section className="section" style={{ background: 'var(--color-bg-dark)', overflow: 'hidden' }}>
+            <div className="container" style={{ marginBottom: '60px' }}>
                 <div className="section-header center">
-                    <span className="section-label">Our DNA</span>
-                    <h2 className="section-title">Crafting the <span className="text-gold">Extraordinary</span></h2>
+                    <span className="section-label">Behind The Scenes</span>
+                    <h2 className="section-title">The <span className="text-gold">Crew</span></h2>
+                    <p className="section-subtitle">Meet the visionaries, the technicians, and the dreamers.</p>
                 </div>
-                
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
-                    <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-                        <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', marginBottom: '20px', color: 'var(--color-white)' }}>Relentless Collaboration</h3>
-                        <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.8, fontSize: '1.1rem', marginBottom: '24px' }}>
-                            We don&apos;t just plan events; we architect experiences. From massive stadium builds to intimate luxury galas, bold ideas live here.
-                        </p>
-                        <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.8, fontSize: '1.1rem' }}>
-                            We foster an environment where your wildest concepts are funded, prototyped, and perfectly executed alongside master technicians, designers, and logistics experts.
-                        </p>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-                        <img 
-                            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" 
-                            alt="Event setup" 
-                            style={{ width: '100%', borderRadius: '24px', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', border: '1px solid rgba(0, 0, 0,0.05)' }}
-                        />
-                    </motion.div>
-                </div>
+            </div>
+
+            <div className={styles.marqueeWrap}>
+                <motion.div
+                    className={styles.marqueeTrack}
+                    animate={{ x: [0, -2580] }}
+                    transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
+                >
+                    {[...photos, ...photos].map((src, i) => (
+                        <div key={i} className={styles.marqueeItem}>
+                            <img src={src} alt={`Team photo ${i}`} />
+                        </div>
+                    ))}
+                </motion.div>
             </div>
         </section>
     );
@@ -96,53 +221,7 @@ function ExperienceSection() {
    SECTION 4: CURTAIN REVEAL CTA
    ============================================= */
 function CurtainCTA() {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ['start end', 'end end'],
-    });
-
-    // The curtain lifts up (translateY from 0 to -100%) as you scroll to the end
-    const curtainY = useTransform(scrollYProgress, [0.4, 1], ['0%', '-100%']);
-
-    return (
-        <section ref={sectionRef} className={styles.curtainSection}>
-            <img
-                src="https://images.unsplash.com/photo-1540039155732-d6928e469557?w=1600&q=80"
-                alt="Crowd cheering"
-                className={styles.curtainBgVideo}
-            />
-
-            <div className={styles.curtainContent}>
-                <motion.h2
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                >
-                    Ready to hear<br />the roar?
-                </motion.h2>
-                <motion.a
-                    href="mailto:careers@thespevents.com"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    style={{
-                        display: 'inline-block', padding: '20px 40px', background: 'var(--color-white)', color: '#000',
-                        fontFamily: 'var(--font-heading)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px',
-                        borderRadius: '40px', textDecoration: 'none', fontSize: '1.2rem'
-                    }}
-                >
-                    Pitch Us
-                </motion.a>
-            </div>
-
-            <motion.div className={styles.curtainDrop} style={{ y: curtainY }}>
-                <span className={styles.curtainLabel}>END OF SHOW</span>
-            </motion.div>
-        </section>
-    );
+    return null;
 }
 
 function AmbientBackground() {
@@ -154,42 +233,53 @@ function AmbientBackground() {
     );
 }
 
+import { Lightbulb, Users, TrendingUp, Globe } from 'lucide-react';
+
 /* =============================================
    SECTION 3: OUR CULTURE
    ============================================= */
 function CultureSection() {
     const culture = [
-        { icon: '🚀', title: 'Moonshot Thinking', desc: 'We don\'t just iterate; we leap. We encourage ideas that seem impossible until we make them happen.' },
-        { icon: '🤝', title: 'Radical Collaboration', desc: 'Break the silos. Designers, engineers, and producers work as one single creative organism.' },
-        { icon: '💎', title: 'Obsessive Quality', desc: 'We care about the pixels you\'ll never see and the logistics you\'ll never feel. Excellence is our only baseline.' },
+        { num: '01', Icon: Lightbulb, title: 'Innovation', desc: 'We don\'t follow trends; we create them. Every project is an opportunity to push creative and technical boundaries.' },
+        { num: '02', Icon: Users, title: 'Collaboration', desc: 'No silos. Designers, engineers, and producers work as one seamless creative organism.' },
+        { num: '03', Icon: TrendingUp, title: 'Growth', desc: 'We invest heavily in our crew. Continuous learning and fast-tracked mentorship are part of our DNA.' },
+        { num: '04', Icon: Globe, title: 'Flexibility', desc: 'Remote-first protocols for global talent, paired with high-impact, in-person deep work sessions.' },
     ];
+
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
         <section className="section section-violet">
             <div className="container">
-                <div className="section-header center">
+                <div className="section-header center" style={{ marginBottom: '60px' }}>
                     <span className="section-label">Life at SP Events</span>
                     <h2 className="section-title">A Culture of <span className="text-gold">Spectacle</span></h2>
                     <p className="section-subtitle">
-                        We are a collective of dreamers, builders, and perfectionists. Here, your work isn&apos;t just a job — it&apos;s a contribution to a legacy of wonder.
+                        We are a collective of dreamers, builders, and perfectionists.
                     </p>
                 </div>
                 
-                <div className={styles.cultureGrid}>
-                    {culture.map((item, i) => (
-                        <motion.div 
-                            key={i} 
-                            className={styles.cultureCard}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.1 }}
-                            viewport={{ once: true }}
-                        >
-                            <span className={styles.cultureIcon}>{item.icon}</span>
-                            <h3>{item.title}</h3>
-                            <p>{item.desc}</p>
-                        </motion.div>
-                    ))}
+                <div 
+                    className={styles.cultureAccordionWrap}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                >
+                    {culture.map((item, i) => {
+                        const isHovered = hoveredIndex === i;
+                        return (
+                            <div 
+                                key={i} 
+                                className={`${styles.cultureAccordionCard} ${isHovered ? styles.activeCard : ''}`}
+                                onMouseEnter={() => setHoveredIndex(i)}
+                            >
+                                <div className={styles.accNumber}>{item.num}</div>
+                                <div className={styles.accContent}>
+                                    <item.Icon className={styles.hoverIcon} strokeWidth={1.5} />
+                                    <h3>{item.title}</h3>
+                                    <p>{item.desc}</p>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
@@ -218,9 +308,9 @@ function ApplicationFormSection() {
                 <div className={styles.formWrap}>
                     {submitted ? (
                         <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-                            <div style={{ 
-                                width: '68px', height: '68px', borderRadius: '50%', background: 'var(--gradient-gold)', 
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', 
+                            <div style={{
+                                width: '68px', height: '68px', borderRadius: '50%', background: 'var(--gradient-gold)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem',
                                 color: 'black', margin: '0 auto 16px', boxShadow: 'var(--shadow-gold)'
                             }}>
                                 ✓
@@ -248,20 +338,9 @@ function ApplicationFormSection() {
                                     <input className="form-input" type="tel" placeholder="+91 98765 43210" suppressHydrationWarning />
                                 </div>
                                 <div className="form-group">
-                                    <label className="form-label">Role of Interest *</label>
-                                    <select className="form-input" required suppressHydrationWarning>
-                                        <option value="">Select a role</option>
-                                        <option value="producer">Senior Event Producer</option>
-                                        <option value="designer">Immersive Experience Designer</option>
-                                        <option value="tech">Technical Production Lead</option>
-                                        <option value="strategy">Brand Strategy Consultant</option>
-                                        <option value="other">Other / Open Pitch</option>
-                                    </select>
+                                    <label className="form-label">Portfolio / LinkedIn URL</label>
+                                    <input className="form-input" type="url" placeholder="https://" suppressHydrationWarning />
                                 </div>
-                            </div>
-                            <div className="form-group" style={{ marginBottom: '24px' }}>
-                                <label className="form-label">Portfolio / LinkedIn URL</label>
-                                <input className="form-input" type="url" placeholder="https://" suppressHydrationWarning />
                             </div>
                             <div className="form-group" style={{ marginBottom: '24px' }}>
                                 <label className="form-label">Why SP Events? *</label>
@@ -283,7 +362,8 @@ export default function CareersPage() {
         <main className={styles.pageWrap}>
             <AmbientBackground />
             <StageLightHero />
-            <ExperienceSection />
+            <BuiltDifferentSection />
+            <TeamPhotosSection />
             <CultureSection />
             <ApplicationFormSection />
             <CurtainCTA />
