@@ -54,64 +54,75 @@ export default function AboutPage() {
 
     return (
         <main className={styles.pageWrap}>
-            {/* HERO SECTION */}
+            {/* ═══════════════════════════════════════════════════════
+                1. HERO — pure video/image, matching homepage
+            ════════════════════════════════════════════════════════ */}
             <section className={styles.heroSection}>
-                <div style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto' }}>
-                    <div className={styles.heroOuterBox}>
-                        
-                        {/* Left Image Box */}
-                        <motion.div 
-                            initial={{ opacity: 0, x: -60 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1, ease: 'easeOut' }}
-                            className={styles.heroImageBox}
-                        >
-                            <img 
-                                src="/assets/Layout_page.png" 
-                                alt="Layout Page" 
-                                className={styles.heroImage}
-                            />
-                        </motion.div>
-
-                        {/* Overlapping Main Title */}
-                        <motion.h1 
-                            initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            transition={{ duration: 0.9, delay: 0.3, ease: 'easeOut' }}
-                            className={styles.heroOverlayTitle}
-                        >
-                            ABOUT US
-                        </motion.h1>
-                        
-                        {/* Right Content Block */}
-                        <AnimatedSection delay={0.2} className={styles.heroRightContent}>
-                            <h2 className={styles.pioneeringTitle}>A method to the madness that is <span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>CREATING MAGIC</span></h2>
-                            <div className={styles.pioneeringTextBlocks}>
-                                <p>
-                                    SP Events is a premier event management company, built on the solid pillars of enterprise, excellence, and innovation. Driven by the vision of our dynamic founder, Mr. Samarth U Patangi, we have rapidly established ourselves as a pioneering force since our humble beginnings in 2020.
-                                </p>
-                                <p>
-                                    By crafting unforgettable live entertainment, high-profile sports events, tailored corporate experiences, and luxury weddings, we have consistently broken new ground. Today, SP Events proudly stands as one of the most dependable and sought-after event organizers across North Karnataka.
-                                </p>
-                            </div>
-                        </AnimatedSection>
-
-                    </div>
+                <div className={styles.videoBg}>
+                    <img
+                        src="/assets/Layout_page.png"
+                        alt="About SP Events Hero"
+                        className={styles.heroImage}
+                    />
+                    <div className={styles.videoOverlayBase} />
+                    <div className={styles.videoOverlayGradient} />
                 </div>
+
+                {/* Scroll indicator only */}
+                <div className={styles.scrollIndicator}>
+                    <div className={styles.scrollLine} />
+                    <span className={styles.scrollText}>SCROLL</span>
+                </div>
+            </section>
+
+            {/* INTRO TEXT SECTION */}
+            <section className={styles.introSection}>
+                <AnimatedSection delay={0.2}>
+                    <h2 className={styles.pioneeringTitle}>A method to the madness that is <span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>CREATING MAGIC</span></h2>
+                    <div className={styles.pioneeringTextBlocks}>
+                        <p>
+                            SP Events is a premier event management company, built on the solid pillars of enterprise, excellence, and innovation. Driven by the vision of our dynamic founder, Mr. Samarth U Patangi, we have rapidly established ourselves as a pioneering force since our humble beginnings in 2020.
+                        </p>
+                        <p>
+                            By crafting unforgettable live entertainment, high-profile sports events, tailored corporate experiences, and luxury weddings, we have consistently broken new ground. Today, SP Events proudly stands as one of the most dependable and sought-after event organizers across North Karnataka.
+                        </p>
+                    </div>
+                </AnimatedSection>
             </section>
 
             {/* GRASSROOTS SECTION */}
             <section className={styles.grassrootsSection}>
                 <div style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto' }}>
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-10%" }}
                         transition={{ duration: 0.8 }}
                         className={styles.grassrootsOuterBox}
                     >
-                        
+
                         <h2 className={styles.grassrootsTopTitle}>GRASSROOTS</h2>
+
+                        {/* FOUNDER'S WORDS CARD */}
+                        <motion.div 
+                            className={styles.founderCard}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                        >
+                            <div className={styles.founderPhotoWrap}>
+                                <img src="/assets/Layout_page.png" alt="Founder" className={styles.founderPhoto} />
+                            </div>
+                            <div className={styles.founderContent}>
+                                <div className={styles.founderEyebrow}>Founder&apos;s Words</div>
+                                <div className={styles.founderQuote}>
+                                    We aim to create experiences that transcend the ordinary. Every event is a canvas where we paint unforgettable memories for our clients.
+                                </div>
+                                <div className={styles.founderName}>Samarth U Patangi</div>
+                                <div className={styles.founderRole}>Founder & Visionary</div>
+                            </div>
+                        </motion.div>
 
                         <div className={styles.grassrootsFlex}>
                             {/* Column 1 */}
@@ -119,7 +130,7 @@ export default function AboutPage() {
                                 <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[0].url} alt={grassrootsImages[0].artist} /></motion.div>
                                 <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[1].url} alt={grassrootsImages[1].artist} /></motion.div>
                             </div>
-                            
+
                             {/* Column 2 */}
                             <div className={styles.grassrootsColCenter}>
                                 <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }} className={styles.grassrootsBox}><img src={grassrootsImages[2].url} alt={grassrootsImages[2].artist} /></motion.div>
@@ -152,13 +163,20 @@ export default function AboutPage() {
                             </div>
                         </div>
 
-                        <div className={styles.grassrootsFooterText}>
-                            <div className={styles.grassrootsFooterLine}>
-                                <h3 className={styles.grassrootsSubHeading}><span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>Pioneering GlobalMusic Experiences</span></h3>
-                            </div>
-                            <p className={styles.grassrootsDesc}>
-                                In 1986, Dr. T Venkat Vardhan began his journey by securing the rights to air MTV's top 20 music videos in india. Obtaining these rights inspired his goal to lay the foundation for our live music industry by bringing international music acts to India. His vision to introduce global experiences and passion for music led to the birth of DNA Networks – a pioneering force in the live music and events industry in India.
-                            </p>
+                        {/* HORIZONTAL SCROLL IMAGE MARQUEE */}
+                        <div className={styles.marqueeSection}>
+                            <motion.div 
+                                className={styles.marqueeTrack}
+                                animate={{ x: [0, -2000] }}
+                                transition={{ repeat: Infinity, ease: 'linear', duration: 30 }}
+                            >
+                                {/* Double array for seamless loop */}
+                                {[...grassrootsImages, ...grassrootsImages].map((img, i) => (
+                                    <div key={i} className={styles.marqueeItem}>
+                                        <img src={img.url} alt={`Gallery ${i}`} />
+                                    </div>
+                                ))}
+                            </motion.div>
                         </div>
 
                     </motion.div>
@@ -169,7 +187,7 @@ export default function AboutPage() {
             <section className={styles.valuesSection}>
                 <div className={styles.valuesOverlay} />
                 <div className="container" style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-                    
+
                     <div className={styles.valuesLayoutWrapper}>
                         {/* Unified Liquid Electric SVG Layout */}
                         <div className={styles.valuesLinesContainer}>
@@ -180,13 +198,13 @@ export default function AboutPage() {
                                         <stop offset="50%" stopColor="rgba(255,255,255,0.3)" />
                                         <stop offset="100%" stopColor="rgba(255,255,255,0.6)" />
                                     </linearGradient>
-                                    
+
                                     <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                                         <stop offset="0%" stopColor="transparent" />
                                         <stop offset="50%" stopColor="rgba(255,255,255,0.9)" />
                                         <stop offset="100%" stopColor="transparent" />
                                     </linearGradient>
-                                    
+
                                     <linearGradient id="textShimmer" x1="-100%" y1="0%" x2="0%" y2="0%">
                                         <stop offset="0%" stopColor="white" />
                                         <stop offset="50%" stopColor="#89f7fe" />
@@ -196,9 +214,9 @@ export default function AboutPage() {
                                     </linearGradient>
 
                                     <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto">
-                                      <polygon points="0 0, 12 6, 0 12" fill="rgba(255,255,255,0.8)" />
+                                        <polygon points="0 0, 12 6, 0 12" fill="rgba(255,255,255,0.8)" />
                                     </marker>
-                                    
+
                                     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
                                         <feGaussianBlur stdDeviation="6" result="blur" />
                                         <feComposite in="SourceGraphic" in2="blur" operator="over" />
@@ -214,7 +232,7 @@ export default function AboutPage() {
                                         r={p.r}
                                         fill="white"
                                         initial={{ opacity: 0.1 }}
-                                        animate={{ 
+                                        animate={{
                                             opacity: [0.1, 0.5, 0.1],
                                             scale: [1, 2, 1],
                                             x: [0, p.moveX, 0],
@@ -223,7 +241,7 @@ export default function AboutPage() {
                                         transition={{ duration: p.duration, repeat: Infinity }}
                                     />
                                 ))}
-                                                               {/* Organic Curved Paths (Quadratic Bezier) - Compacted for 600px height */}
+                                {/* Organic Curved Paths (Quadratic Bezier) - Compacted for 600px height */}
                                 {[
                                     { id: 'vp1', d: "M 200 300 Q 600 20 1550 10", delay: 0 },
                                     { id: 'vp2', d: "M 200 300 Q 750 150 1550 160", delay: 0.2 },
@@ -233,35 +251,35 @@ export default function AboutPage() {
                                 ].map((path, idx) => (
                                     <g key={path.id}>
                                         {/* Base Organic Path */}
-                                        <motion.path 
-                                            id={path.id} d={path.d} 
+                                        <motion.path
+                                            id={path.id} d={path.d}
                                             stroke="url(#lineGrad)" strokeWidth="2" fill="none"
-                                            initial={{ pathLength: 0, opacity: 0 }} 
-                                            whileInView={{ pathLength: 1, opacity: 1 }} 
+                                            initial={{ pathLength: 0, opacity: 0 }}
+                                            whileInView={{ pathLength: 1, opacity: 1 }}
                                             viewport={{ once: true }}
                                             transition={{ duration: 1.5, delay: path.delay }}
                                         />
-                                        
+
                                         {/* Electric Flow Animation Layer */}
-                                        <motion.path 
-                                            d={path.d} 
+                                        <motion.path
+                                            d={path.d}
                                             stroke="rgba(255,255,255,0.6)" strokeWidth="2" fill="none"
                                             strokeDasharray="60 180"
                                             animate={{ strokeDashoffset: [0, -1000] }}
                                             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                                         />
-                                        
+
                                         {/* Traveling Energy Pulse Ping */}
                                         <motion.circle r="5" fill="white" filter="url(#glow)">
-                                            <animateMotion 
-                                                path={path.d} 
-                                                dur={`${5 + idx}s`} 
-                                                repeatCount="indefinite" 
+                                            <animateMotion
+                                                path={path.d}
+                                                dur={`${5 + idx}s`}
+                                                repeatCount="indefinite"
                                                 rotate="auto"
                                                 begin={`${idx * 1.2}s`}
                                             />
                                         </motion.circle>
-                                        
+
                                         {/* Arrowhead at the end of each curved path */}
                                         <use href={`#${path.id}`} stroke="none" markerEnd="url(#arrowhead)" />
                                     </g>
@@ -276,9 +294,9 @@ export default function AboutPage() {
                                         { id: 'vp4', text: '04 RESPECT', offset: '58%' },
                                         { id: 'vp5', text: '05 TEAMWORK', offset: '55%' }
                                     ].map((item, i) => (
-                                        <motion.text key={i} fill="url(#textShimmer)" fontSize="36" fontWeight="950" 
-                                            initial={{ opacity: 0, scale: 0.8 }} 
-                                            whileInView={{ opacity: 1, scale: 1 }} 
+                                        <motion.text key={i} fill="url(#textShimmer)" fontSize="36" fontWeight="950"
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
                                             transition={{ duration: 0.8, delay: 1.5 + (i * 0.2) }}
                                         >
                                             <textPath href={`#${item.id}`} startOffset={item.offset} textAnchor="start" dy="-30">{item.text}</textPath>
@@ -294,14 +312,14 @@ export default function AboutPage() {
                                     viewport={{ once: true }}
                                 >
                                     {/* Breathing Outer Ring - LARGER SCALE */}
-                                    <motion.circle 
-                                        cx="200" cy="300" r="220" 
-                                        fill="none" stroke="white" strokeWidth="2" 
+                                    <motion.circle
+                                        cx="200" cy="300" r="220"
+                                        fill="none" stroke="white" strokeWidth="2"
                                         animate={{ r: [220, 240, 220], opacity: [0.5, 0, 0.5] }}
                                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                     />
                                     <circle cx="200" cy="300" r="220" fill="rgba(8,8,8,0.9)" stroke="white" strokeWidth="8" filter="url(#glow)" />
-                                    
+
                                     <text x="200" y="275" fill="white" fontSize="74" fontWeight="950" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: '3px' }}>
                                         OUR
                                     </text>
@@ -328,8 +346,8 @@ export default function AboutPage() {
                                 <div className={styles.locationCard}>
                                     <h3 className={styles.locationType}>{loc.type}</h3>
                                     <div className={styles.locationCardImgWrap}>
-                                         <img src={loc.img} alt={loc.city} className={styles.locationCardImg} />
-                                         <h2 className={styles.locationCity}>{loc.city}</h2>
+                                        <img src={loc.img} alt={loc.city} className={styles.locationCardImg} />
+                                        <h2 className={styles.locationCity}>{loc.city}</h2>
                                     </div>
                                     <div className={styles.locationDetails}>
                                         <p>{loc.address}</p>
@@ -341,27 +359,6 @@ export default function AboutPage() {
                             </AnimatedSection>
                         ))}
                     </div>
-
-                    {/* HORIZONTAL QUICK CONNECT SECTION */}
-                    <AnimatedSection delay={0.4}>
-                        <div className={styles.quickConnectHorizontalBox}>
-                            <h2 className={styles.quickConnectTitle}>QUICK CONNECT</h2>
-                            <div className={styles.quickConnectRow}>
-                                <div className={styles.quickConnectItem}>
-                                    <strong>Call :</strong> <span>+91 74118 63227, +91 93530 63227</span>
-                                </div>
-                                <div className={styles.quickConnectItem}>
-                                    <strong>Website :</strong> <a href="http://www.thespevents.com" target="_blank" rel="noopener noreferrer">www.thespevents.com</a>
-                                </div>
-                                <div className={styles.quickConnectItem}>
-                                    <strong>Email :</strong> <a href="mailto:thespevents@gmail.com">thespevents@gmail.com</a>
-                                </div>
-                                <div className={styles.quickConnectItem}>
-                                    <strong>Whatsapp :</strong> <span>+91 74118 63227</span>
-                                </div>
-                            </div>
-                        </div>
-                    </AnimatedSection>
                 </div>
             </section>
 
@@ -370,27 +367,26 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════════ */}
             <section className={styles.statsSection}>
                 <Stats3DBackground />
-                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                    <div className={styles.statsGrid}>
-                        {[
-                            { value: 4, suffix: "+", label: "Years of Excellence" },
-                            { value: 300, suffix: "+", label: "Happy Clients" },
-                            { value: 1500, suffix: "+", label: "Magic Experiences" },
-                            { value: 30, suffix: "+", label: "Professionals" }
-                        ].map((stat, i) => (
-                            <motion.div 
-                                key={i} 
-                                className={styles.statItem}
-                                whileHover={{ y: -10, scale: 1.02 }}
-                                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                            >
-                                <div className={styles.statGlass}>
-                                    <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
-                                    <div className={styles.statLabel}>{stat.label}</div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                <div className={styles.statsGrid} style={{ position: 'relative', zIndex: 1 }}>
+                    {[
+                        { value: 3, suffix: "+", label: "Years of Excellence" },
+                        { value: 300, suffix: "+", label: "Happy Clients" },
+                        { value: 1500, suffix: "+", label: "Magic Experiences" },
+                        { value: 30, suffix: "+", label: "Professionals" },
+                        { value: 150, suffix: "+", label: "Events Per Year" },
+                    ].map((stat, i) => (
+                        <motion.div
+                            key={i}
+                            className={styles.statItem}
+                            whileHover={{ y: -10, scale: 1.02 }}
+                            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                        >
+                            <div className={styles.statGlass}>
+                                <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
+                                <div className={styles.statLabel}>{stat.label}</div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
         </main>

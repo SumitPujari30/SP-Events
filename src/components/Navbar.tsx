@@ -14,9 +14,9 @@ const navLinks = [
     { href: '/', label: 'HOME' },
     { href: '/about', label: 'ABOUT' },
     { href: '/services', label: 'SERVICES' },
-    { href: '/careers', label: 'CAREERS' },
     { href: '/clients', label: 'CLIENT' },
     { href: '/contact', label: 'CONNECT' },
+    { href: '/careers', label: 'CAREERS' },
 ];
 
 const menuImage = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80";

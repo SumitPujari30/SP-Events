@@ -575,75 +575,75 @@ function AnimatedStats() {
     );
 }
 
-/* =============================================
-   SECTION 5: CONTACT CTA
-   ============================================= */
-function ContactCTA() {
-    return (
-        <section className={styles.contactSection}>
-            <motion.div
-                className={styles.contactInner}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-                {/* Top Label */}
-                <div className={styles.contactHeaderWrap}>
-                    <div className={styles.contactLine} />
-                    <span className={styles.contactLabel}>Let&apos;s Connect</span>
-                    <div className={styles.contactLine} />
-                </div>
+// /* =============================================
+//    SECTION 5: CONTACT CTA
+//    ============================================= */
+// function ContactCTA() {
+//     return (
+//         <section className={styles.contactSection}>
+//             <motion.div
+//                 className={styles.contactInner}
+//                 initial={{ opacity: 0, y: 40 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 viewport={{ once: true, margin: "-50px" }}
+//                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+//             >
+//                 {/* Top Label */}
+//                 <div className={styles.contactHeaderWrap}>
+//                     <div className={styles.contactLine} />
+//                     <span className={styles.contactLabel}>Let&apos;s Connect</span>
+//                     <div className={styles.contactLine} />
+//                 </div>
 
-                {/* Main Title */}
-                <h2 className={styles.contactTitle}>
-                    Let&apos;s create<br />
-                    something <em>epic</em><br />
-                    together.
-                </h2>
+//                 {/* Main Title */}
+//                 <h2 className={styles.contactTitle}>
+//                     Let&apos;s create<br />
+//                     something <em>epic</em><br />
+//                     together.
+//                 </h2>
 
-                {/* Subtitle */}
-                <p className={styles.contactSubtitle}>
-                    Whether you&apos;re a brand seeking to break through the noise or a visionary who wants to partner on groundbreaking ideas — this is your moment.
-                </p>
+//                 {/* Subtitle */}
+//                 <p className={styles.contactSubtitle}>
+//                     Whether you&apos;re a brand seeking to break through the noise or a visionary who wants to partner on groundbreaking ideas — this is your moment.
+//                 </p>
 
-                {/* Button Row */}
-                <div className={styles.contactActionRow}>
-                    <Link href="/contact" className={styles.contactBtn}>
-                        Start a Conversation
-                    </Link>
-                    <div className={styles.contactPhoneWrap}>
-                        <a href="tel:+917411863227" className={styles.contactPhone}>+91 74118 63227</a>
-                        <div className={styles.contactPhoneLine} />
-                    </div>
-                </div>
+//                 {/* Button Row */}
+//                 <div className={styles.contactActionRow}>
+//                     <Link href="/contact" className={styles.contactBtn}>
+//                         Start a Conversation
+//                     </Link>
+//                     <div className={styles.contactPhoneWrap}>
+//                         <a href="tel:+917411863227" className={styles.contactPhone}>+91 74118 63227</a>
+//                         <div className={styles.contactPhoneLine} />
+//                     </div>
+//                 </div>
 
-                {/* Footer Columns */}
-                <div className={styles.contactFooterGrid}>
-                    <div className={styles.contactFooterCol}>
-                        <span className={styles.contactColHead}>Address</span>
-                        <span className={styles.contactColText}>
-                            Marvel Artiza, Vidya Nagar<br />
-                            Hubli — 580029, Karnataka
-                        </span>
-                    </div>
-                    <div className={styles.contactFooterCol}>
-                        <span className={styles.contactColHead}>Email</span>
-                        <span className={styles.contactColText}>
-                            <a href="mailto:thespevents@gmail.com">thespevents@gmail.com</a>
-                        </span>
-                    </div>
-                    <div className={styles.contactFooterCol}>
-                        <span className={styles.contactColHead}>Website</span>
-                        <span className={styles.contactColText}>
-                            <a href="https://www.thespevents.com" target="_blank" rel="noopener noreferrer">www.thespevents.com</a>
-                        </span>
-                    </div>
-                </div>
-            </motion.div>
-        </section>
-    );
-}
+//                 {/* Footer Columns */}
+//                 <div className={styles.contactFooterGrid}>
+//                     <div className={styles.contactFooterCol}>
+//                         <span className={styles.contactColHead}>Address</span>
+//                         <span className={styles.contactColText}>
+//                             Marvel Artiza, Vidya Nagar<br />
+//                             Hubli — 580029, Karnataka
+//                         </span>
+//                     </div>
+//                     <div className={styles.contactFooterCol}>
+//                         <span className={styles.contactColHead}>Email</span>
+//                         <span className={styles.contactColText}>
+//                             <a href="mailto:thespevents@gmail.com">thespevents@gmail.com</a>
+//                         </span>
+//                     </div>
+//                     <div className={styles.contactFooterCol}>
+//                         <span className={styles.contactColHead}>Website</span>
+//                         <span className={styles.contactColText}>
+//                             <a href="https://www.thespevents.com" target="_blank" rel="noopener noreferrer">www.thespevents.com</a>
+//                         </span>
+//                     </div>
+//                 </div>
+//             </motion.div>
+//         </section>
+//     );
+// }
 
 /* =============================================
    MAIN PAGE
@@ -659,7 +659,7 @@ export default function ClientsPage() {
                 <TestimonialsSection />
             </ClientGrid>
             <AnimatedStats />
-            <ContactCTA />
+            {/* <ContactCTA /> */}
         </main>
     );
 }

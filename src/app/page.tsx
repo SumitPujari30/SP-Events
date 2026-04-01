@@ -10,8 +10,9 @@ import JoinUsSection from '@/components/JoinUsSection';
 import CounterAnimation from '@/components/CounterAnimation';
 import Stats3DBackground from '@/components/Stats3DBackground';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { clientsData } from '@/lib/clientData';
-
+import ServicesGrid from '@/components/ServicesGrid';
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── Event Categories ────────────────────────────────────────
@@ -20,47 +21,41 @@ const eventCategories = [
     id: 'corporate',
     title: 'Corporate Events',
     image: '/assets/Layout_page.png',
-    color: '#d4af37',
   },
   {
     id: 'launches',
     title: 'Launch Events',
     image: '/assets/Layout_page.png',
-    color: '#3b82f6',
+  },
+  {
+    id: 'musical',
+    title: 'Music Events',
+    image: '/assets/Layout_page.png',
   },
   {
     id: 'special',
     title: 'Special Events',
     image: '/assets/Layout_page.png',
-    color: '#f97316',
-  },
-  {
-    id: 'musical',
-    title: 'Musical Events',
-    image: '/assets/Layout_page.png',
-    color: '#a855f7',
   },
   {
     id: 'sports',
     title: 'Sports Events',
     image: '/assets/Layout_page.png',
-    color: '#22c55e',
   },
   {
     id: 'weddings',
     title: 'Weddings',
     image: '/assets/Layout_page.png',
-    color: '#ec4899',
   },
 ];
 
-
 // ─── Stats Data ──────────────────────────────────────────────
 const stats = [
-  { value: 4, suffix: "+", label: "Years of Excellence" },
+  { value: 3, suffix: "+", label: "Years of Excellence" },
   { value: 300, suffix: "+", label: "Happy Clients" },
   { value: 1500, suffix: "+", label: "Magic Experiences" },
   { value: 30, suffix: "+", label: "Professionals" },
+  { value: 150, suffix: "+", label: "Events Per Year" },
 ];
 
 // ─── Component ───────────────────────────────────────────────
@@ -70,8 +65,7 @@ export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroImageRef = useRef<HTMLImageElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
@@ -137,29 +131,6 @@ export default function HomePage() {
         }
       );
 
-      // ── Horizontal Scroll Pinning ──────────────────────────────
-      if (sliderRef.current && sectionRef.current) {
-        const getScrollAmount = () => {
-          if (!sliderRef.current) return 0;
-          const sliderWidth = sliderRef.current.scrollWidth;
-          const paddingLeft = window.innerWidth * 0.05; // Matches 5vw padding-left of wrapper
-          return -(sliderWidth + paddingLeft - window.innerWidth);
-        };
-
-        const horizontalTween = gsap.to(sliderRef.current, {
-          x: getScrollAmount,
-          ease: 'none',
-          id: 'horizontalScrollAnimation',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            pin: true,
-            scrub: 1, // Smooth dampening
-            start: 'top top',
-            end: () => `+=${sliderRef.current?.scrollWidth || window.innerWidth}`, 
-            invalidateOnRefresh: true,
-          },
-        });
-      }
 
       // ── Divider banner image arrival ─────────────────────────
       gsap.fromTo(
@@ -186,7 +157,7 @@ export default function HomePage() {
         `.${styles.statItem}`,
         { opacity: 0, y: 80, scale: 0.8, rotationX: 15 },
         {
-          opacity: 1, y: 0, scale: 1, rotationX: 0, 
+          opacity: 1, y: 0, scale: 1, rotationX: 0,
           duration: 1.2, stagger: 0.15, ease: 'back.out(1.4)',
           scrollTrigger: { trigger: `.${styles.statsGrid}`, start: 'top 85%' },
         }
@@ -232,16 +203,16 @@ export default function HomePage() {
         {/* Soft glowing orbs for brand identity */}
         <div className={styles.expOrbGold} />
         <div className={styles.expOrbPurple} />
-        
+
         <div className={`container ${styles.expContainer}`}>
-          
+
           {/* Left Column - Unique Staggered Title */}
           <div className={styles.expLeft}>
             <div className={styles.expBadge}>
               <span className={styles.expBadgeDiamond}>✧</span>
               Our Philosophy
             </div>
-            
+
             <h2 className={styles.expTitle}>
               <div className={styles.expUniqueLine}>
                 <span className={styles.expUniqueLineInner}>Architecting</span>
@@ -265,14 +236,14 @@ export default function HomePage() {
               <p className={`${styles.expText} ${styles.expTextFade}`}>
                 At <strong className={styles.expTextHighlight}>The SP Events</strong>, ideas transform into immersive realities. We fuse bold creativity with microscopic attention to detail and razor-sharp execution. For us, the magic lies in orchestrating the perfect balance between the grand vision and the smallest touchpoints.
               </p>
-              
+
               <div className={`${styles.expDivider} ${styles.expTextFade}`} />
-              
+
               <p className={`${styles.expTextSecondary} ${styles.expTextFade}`}>
                 Born from over 4+ years of industry mastery, our founding team recognized a profound need for a truly professional, innovation-driven event management partner. We don&apos;t just plan events; we engineer environments that resonate.
               </p>
             </div>
-            
+
             <div className={`${styles.expAction} ${styles.expTextFade}`}>
               <a href="/about" className={styles.expButton}>
                 <span className={styles.expButtonText}>Discover Our Story</span>
@@ -288,42 +259,27 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           3. OUR SERVICES — Horizontal Scroll
       ════════════════════════════════════════════════════════ */}
-      <section className={styles.categoriesSection} ref={sectionRef}>
-        <div className={styles.catStickyWrapper}>
-          <div className="container">
-            {/* Section heading */}
-            <div className={styles.catHeader}>
-              <div className={styles.catBadge}>
-                <span className={styles.catBadgeDiamond}>✧</span>
-                OUR EXPERTISE
-              </div>
-              <h2 className={styles.catTitle}>
-                Our <span className={styles.catTitleGold}>Services</span>
-              </h2>
+      {/* ═══════════════════════════════════════════════════════
+          3. OUR SERVICES — 3x2 Grid View
+      ════════════════════════════════════════════════════════ */}
+      <section className={styles.categoriesSection}>
+        <div className="container" style={{ paddingBottom: '40px' }}>
+          {/* Section heading */}
+          <div className={styles.catHeader}>
+            <div className={styles.catBadge}>
+              <span className={styles.catBadgeDiamond}>✧</span>
+              OUR EXPERTISE
             </div>
-          </div>
-
-          {/* Horizontal Slider */}
-          <div className={styles.catSliderWrapper}>
-            <div className={styles.catGrid} ref={sliderRef}>
-              {eventCategories.map(cat => (
-                <div
-                  key={cat.id}
-                  className={styles.catCard}
-                  style={{ '--cat-color': cat.color } as React.CSSProperties}
-                >
-                  {/* Full bleed background image or main card content */}
-                  <div className={styles.catCardInner}>
-                    <img src={cat.image} alt={cat.title} className={styles.catCardImg} />
-                    <div className={styles.catCardTitleWrapper}>
-                      <span className={styles.catCardTitle}>{cat.title}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h2 className={styles.catTitle}>
+              Our <span className={styles.catTitleGold}>Services</span>
+            </h2>
           </div>
         </div>
+
+        <ServicesGrid 
+          categories={eventCategories} 
+          onCategoryClick={(index) => router.push(`/services#v=events&c=${index}`)} 
+        />
       </section>
 
 
@@ -332,8 +288,8 @@ export default function HomePage() {
       ════════════════════════════════════════════════════════ */}
       <div className={styles.dividerBanner}>
         <div className={styles.dividerBannerInner}>
-          <img 
-            src="/assets/Layout_page.png" 
+          <img
+            src="/assets/Layout_page.png"
             alt="Creating Magic Layout"
             className={styles.wowImage}
           />
@@ -349,22 +305,20 @@ export default function HomePage() {
       ════════════════════════════════════════════════════════ */}
       <section className={styles.statsSection}>
         <Stats3DBackground />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div className={styles.statsGrid}>
-            {stats.map((stat, i) => (
-              <motion.div 
-                key={i} 
-                className={styles.statItem}
-                whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              >
-                <div className={styles.statGlass}>
-                  <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
-                  <div className={styles.statLabel}>{stat.label}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className={styles.statsGrid} style={{ position: 'relative', zIndex: 1 }}>
+          {stats.map((stat, i) => (
+            <motion.div
+              key={i}
+              className={styles.statItem}
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+            >
+              <div className={styles.statGlass}>
+                <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
+                <div className={styles.statLabel}>{stat.label}</div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -377,7 +331,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           7. JOIN US
       ════════════════════════════════════════════════════════ */}
-      <JoinUsSection />
+
 
     </div>
   );

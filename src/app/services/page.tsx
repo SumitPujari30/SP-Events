@@ -7,6 +7,7 @@ import { HiArrowRight, HiArrowLeft, HiX, HiChevronLeft, HiChevronRight } from 'r
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './services.module.css';
+import ServicesGrid from '@/components/ServicesGrid';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -287,61 +288,20 @@ export default function ServicesPage() {
 
                 {/* ═══════ LEVEL 1: Categories (sidebar + glass card) ═══════ */}
                 {view === 'categories' && (
-                    <motion.div key="level-categories" {...pageVariants} className={styles.categoriesLayout}>
-                        {/* Dynamic Background */}
-                        <div className={styles.categoryBgWrapper}>
-                            <AnimatePresence mode="wait">
-                                <motion.img
-                                    key={activeCategory.bgImage}
-                                    src={activeCategory.bgImage}
-                                    alt={activeCategory.title}
-                                    className={styles.categoryBgImage}
-                                    initial={{ opacity: 0, scale: 1.1 }}
-                                    animate={{ opacity: 0.45, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 1.05 }}
-                                    transition={{ duration: 0.8, ease: "easeOut" }}
-                                />
-                            </AnimatePresence>
-                            <div className={styles.categoryBgOverlay} />
+                    <motion.div key="level-categories" {...pageVariants} className={styles.gridPageLayout}>
+                        <div className={styles.gridPageHeader}>
+                            <h1 className={styles.gridPageTitle}>Our <span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>Expertise</span></h1>
+                            <p className={styles.gridPageSubtitle}>Discover the diverse range of events we meticulously craft to perfection.</p>
                         </div>
-
-                        <aside className={styles.sidebar}>
-                            <p className={styles.navLabel}>Our Expertise</p>
-                            <nav className={styles.navList}>
-                                {services.map((s, i) => (
-                                    <button
-                                        key={s.id}
-                                        className={`${styles.navItem} ${i === activeIndex ? styles.navItemActive : ''}`}
-                                        onMouseEnter={() => { if (!isMobile && view === 'categories') setActiveIndex(i); }}
-                                        onClick={() => handleCategoryClick(i)}
-                                    >
-                                        <span className={styles.navNum}>{s.num}</span>
-                                        <span className={styles.navText}>{s.title}</span>
-                                    </button>
-                                ))}
-                            </nav>
-                        </aside>
-
-                        <div className={styles.detailCol}>
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={activeIndex}
-                                    initial={{ opacity: 0, x: 40 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -40 }}
-                                    transition={{ duration: 0.5, ease: easeOut }}
-                                    className={styles.glassCard}
-                                >
-                                    <span className={styles.cardNum}>{activeCategory.num}.</span>
-                                    <h2 className={styles.cardTitle}>{activeCategory.title} Events</h2>
-                                    <p className={styles.cardTagline}>{activeCategory.tagline}</p>
-                                    <div className={styles.cardDivider} />
-                                    <p className={styles.cardDesc}>{activeCategory.desc}</p>
-                                    <button className={styles.ctaBtn} onClick={handleViewEvents}>
-                                        View Events <HiArrowRight />
-                                    </button>
-                                </motion.div>
-                            </AnimatePresence>
+                        <div className={styles.gridWrapper}>
+                            <ServicesGrid 
+                                categories={services.map(s => ({
+                                    id: s.id,
+                                    title: `${s.title} Events`,
+                                    image: s.bgImage
+                                }))}
+                                onCategoryClick={handleCategoryClick}
+                            />
                         </div>
                     </motion.div>
                 )}
