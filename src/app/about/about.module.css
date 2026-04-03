@@ -92,52 +92,47 @@
 }
 
 .pioneeringTitle {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800;
+    font-family: var(--font-heading, serif);
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-weight: 400;
     margin-bottom: 40px;
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
 .pioneeringTextBlocks {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 @media (max-width: 768px) {
     .pioneeringTextBlocks {
-        grid-template-columns: 1fr;
+        font-size: 1rem;
+        text-align: left;
     }
 }
 
 
 
 
-/* GRASSROOTS SECTION */
 .grassrootsSection {
     padding: 100px 0;
 }
 
-.grassrootsOuterBox {
-    position: relative;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 80px 40px 60px 40px;
-    margin-top: 40px; /* Space for the overlapping title */
-}
-
 .grassrootsTopTitle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%); /* overlap top border */
-    background: var(--color-bg-dark, #0a0a0a); /* Match page bg to cut the border line */
-    padding: 0 25px;
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 700;
     color: var(--color-white, #fff);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 60px;
 }
 
 .grassrootsFlex {
@@ -223,13 +218,13 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(0.5);
+    filter: grayscale(0);
     transition: filter 0.5s ease;
 }
 
-.founderCard:hover .founderPhoto {
+/* .founderCard:hover .founderPhoto {
     filter: grayscale(0);
-}
+} */
 
 .founderContent {
     display: flex;
@@ -284,40 +279,99 @@
     letter-spacing: 2px;
 }
 
-/* HORIZONTAL SCROLL MARQUEE */
-.marqueeSection {
+/* IMAGE SLIDER SECTION */
+.sliderSection {
     margin-top: 80px;
-    overflow: hidden;
+    position: relative;
     width: 100%;
-    position: relative;
-    padding: 20px 0;
-}
-
-.marqueeTrack {
-    display: flex;
-    width: max-content;
-    gap: 30px;
-}
-
-.marqueeItem {
-    width: 400px;
-    aspect-ratio: 16/9;
-    border-radius: 6px;
     overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.marqueeItem img {
+.sliderTrack {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 12px;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sliderTrack::-webkit-scrollbar {
+    display: none;
+}
+
+.sliderItem {
+    width: 33.333%; /* Show 3 images at a time on desktop */
+    aspect-ratio: 4/3;
+    flex-shrink: 0;
+    position: relative;
+    /* No gap or border */
+}
+
+@media (max-width: 900px) {
+    .sliderItem {
+        width: 50%; /* Show 2 images on tablet */
+    }
+}
+
+@media (max-width: 600px) {
+    .sliderItem {
+        width: 100%; /* Show 1 image on mobile */
+    }
+}
+
+.sliderItem img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    display: block;
 }
 
-.marqueeItem:hover img {
-    transform: scale(1.05);
+.sliderNavBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f5f5f5; /* Off-white */
+    color: #000000; /* Dark icon */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.sliderNavBtn:hover:not(.disabled) {
+    transform: translateY(-50%) scale(1.1);
+    background: #ffffff;
+    border-color: var(--color-accent-gold, #d4af37);
+}
+
+.sliderNavBtn.disabled {
+    opacity: 0.7;
+    cursor: default;
+    pointer-events: none;
+}
+
+.sliderNavBtnLeft {
+    left: 20px;
+}
+
+.sliderNavBtnRight {
+    right: 20px;
+}
+
+.sliderNavBtn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
 }
 
 /* OUR VALUES SECTION - Elegant Radial Vector Layout */

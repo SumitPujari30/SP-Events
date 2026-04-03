@@ -264,14 +264,14 @@ export default function HomePage() {
       ════════════════════════════════════════════════════════ */}
       <section className={styles.categoriesSection}>
         <div className="container" style={{ paddingBottom: '40px' }}>
-          {/* Section heading */}
+          {/* Main heading */}
           <div className={styles.catHeader}>
             <div className={styles.catBadge}>
               <span className={styles.catBadgeDiamond}>✧</span>
               OUR EXPERTISE
             </div>
-            <h2 className={styles.catTitle}>
-              Our <span className={styles.catTitleGold}>Services</span>
+            <h2 className={styles.catTitle} style={{ fontSize: 'clamp(1.5rem, 4.3vw, 5.5rem)', lineHeight: '1.2', letterSpacing: '-0.01em' }}>
+              Corporate Event Management <span className={styles.catTitleGold}>Company in India</span>
             </h2>
           </div>
         </div>
@@ -319,6 +319,30 @@ export default function HomePage() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+
+      {/* ═══════════════════════════════════════════════════════
+          5.5 FOUNDER SECTION
+      ════════════════════════════════════════════════════════ */}
+      <section className={styles.founderSection}>
+        <div className={styles.founderCard}>
+          <div className={styles.founderImageWrapper}>
+            <img src="/assets/samarth.png" alt="Samarth U Patangi" className={styles.founderImage} />
+          </div>
+          <div className={styles.founderContent}>
+            <h2 className={styles.founderQuote}>
+              "Perfection isn&apos;t optional — it&apos;s the standard."
+            </h2>
+            <div className={styles.founderNameBlock}>
+              <h3 className={styles.founderName}>SAMARTH U PATANGI</h3>
+              <p className={styles.founderTitle}>FOUNDER & MANAGING DIRECTOR</p>
+            </div>
+            <p className={styles.founderText}>
+              Mr. Samarth U Patangi is the visionary Founder and Managing Director of THE SP EVENTS, a growing event management and experiential production company known for delivering impactful and professionally executed events. An engineer by education and an entrepreneur by passion, he built the company with a clear vision to transform ideas into unforgettable experiences.
+            </p>
+          </div>
         </div>
       </section>
 

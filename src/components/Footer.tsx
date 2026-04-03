@@ -71,14 +71,8 @@ export default function Footer() {
                         <div className={styles.brand}>
                             <div className={styles.logoWrap}>
                                 <span className={styles.logoIcon}>SP</span>
-                                <div>
-                                    <h3 className={styles.logoTitle}>The SP Events &trade;</h3>
-                                    <p className={styles.logoSub}>CREATING MAGIC &bull; EST. 2020</p>
-                                </div>
+                               
                             </div>
-                            <p className={styles.brandDesc}>
-                                SP Events is a premier event management company based in Hubli, Karnataka. We specialise in creating unforgettable spectacles — from intimate luxury experiences to massive live productions.
-                            </p>
                             <div className={styles.socials}>
                                 {socials.map((s) => (
                                     <motion.a

@@ -31,8 +31,22 @@ const clients = [
 ];
 
 const marqueeItems = [
-    'Corporate Summits', 'Product Launches', 'Awards Galas', 'Global Conventions',
-    'Brand Activations', 'Luxury Events', 'Tech Conferences', 'Sports Events',
+  'Corporate Events',
+  'Political Campaigns',
+  'Conferences & Summits',
+  'AV Solutions',
+  'Luxury Weddings',
+  'Music Festivals',
+  'Photography & Videography',
+  'Private Celebrations',
+  'Artist Management',
+  'Sports Events',
+  'Exhibitions',
+  'Brand Launches',
+  'Community Events',
+  'Event Production',
+  'Roadshows',
+  'Hospitality Management'
 ];
 
 const testimonials = [
@@ -211,7 +225,7 @@ function MarqueeStrip() {
             <motion.div
                 className={styles.marqueeTrack}
                 animate={{ x: ['0%', '-50%'] }}
-                transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+                transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
             >
                 {items.map((item, i) => (
                     <span key={i} className={styles.marqueeItem}>

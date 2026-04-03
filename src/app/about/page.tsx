@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { motion } from 'framer-motion';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -39,6 +39,45 @@ const locations = [
 
 export default function AboutPage() {
     const [particles, setParticles] = useState<any[]>([]);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(true);
+    const sliderRef = useRef<HTMLDivElement>(null);
+
+    const checkScroll = () => {
+        if (sliderRef.current) {
+            const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+            setCanScrollLeft(scrollLeft > 5); // 5px buffer
+            setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
+        }
+    };
+
+    const scrollLeft = () => {
+        if (sliderRef.current) {
+            sliderRef.current.scrollBy({ left: -(window.innerWidth / 3), behavior: 'smooth' });
+            // scrollBy is async, checkScroll will be called by the scroll event listener
+        }
+    };
+
+    const scrollRight = () => {
+        if (sliderRef.current) {
+            sliderRef.current.scrollBy({ left: window.innerWidth / 3, behavior: 'smooth' });
+        }
+    };
+
+    useEffect(() => {
+        const slider = sliderRef.current;
+        if (slider) {
+            checkScroll(); // initial check
+            slider.addEventListener('scroll', checkScroll);
+            window.addEventListener('resize', checkScroll);
+        }
+        return () => {
+            if (slider) {
+                slider.removeEventListener('scroll', checkScroll);
+                window.removeEventListener('resize', checkScroll);
+            }
+        };
+    }, []);
 
     useEffect(() => {
         const generated = [...Array(15)].map(() => ({
@@ -78,13 +117,13 @@ export default function AboutPage() {
             {/* INTRO TEXT SECTION */}
             <section className={styles.introSection}>
                 <AnimatedSection delay={0.2}>
-                    <h2 className={styles.pioneeringTitle}>A method to the madness that is <span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>CREATING MAGIC</span></h2>
+                    <h2 className={styles.pioneeringTitle}>A Method to the Madness That is <span style={{ color: 'var(--color-accent-gold, #d4af37)', fontStyle: 'italic' }}>Creating Magic</span></h2>
                     <div className={styles.pioneeringTextBlocks}>
                         <p>
-                            SP Events is a premier event management company, built on the solid pillars of enterprise, excellence, and innovation. Driven by the vision of our dynamic founder, Mr. Samarth U Patangi, we have rapidly established ourselves as a pioneering force since our humble beginnings in 2020.
+                            At THE SP EVENTS, we design luxury, innovative, and impact-driven experiences that leave a lasting impression. Blending creativity with strategic thinking and flawless execution, we transform ideas into extraordinary events. Every detail is approached with precision and originality, ensuring each experience—whether intimate or large-scale—is delivered with elegance, seamless coordination, and a commitment to excellence.
                         </p>
                         <p>
-                            By crafting unforgettable live entertainment, high-profile sports events, tailored corporate experiences, and luxury weddings, we have consistently broken new ground. Today, SP Events proudly stands as one of the most dependable and sought-after event organizers across North Karnataka.
+                            Founded in 2022, THE SP EVENTS was created to redefine event management through a more professional, reliable, and innovation-led approach. With a growing foundation of experience and a passion for high-quality execution, we continue to evolve as a trusted partner, crafting memorable events that resonate long after they are experienced.
                         </p>
                     </div>
                 </AnimatedSection>
@@ -92,16 +131,21 @@ export default function AboutPage() {
 
             {/* GRASSROOTS SECTION */}
             <section className={styles.grassrootsSection}>
+                <motion.h2 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className={styles.grassrootsTopTitle}>
+                    GRASSROOTS
+                </motion.h2>
+
                 <div style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-10%" }}
                         transition={{ duration: 0.8 }}
-                        className={styles.grassrootsOuterBox}
                     >
-
-                        <h2 className={styles.grassrootsTopTitle}>GRASSROOTS</h2>
 
                         {/* FOUNDER'S WORDS CARD */}
                         <motion.div 
@@ -112,7 +156,7 @@ export default function AboutPage() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
                             <div className={styles.founderPhotoWrap}>
-                                <img src="/assets/Layout_page.png" alt="Founder" className={styles.founderPhoto} />
+                                <img src="/assets/samarth.png" alt="Founder" className={styles.founderPhoto} />
                             </div>
                             <div className={styles.founderContent}>
                                 <div className={styles.founderEyebrow}>Founder&apos;s Words</div>
@@ -123,63 +167,35 @@ export default function AboutPage() {
                                 <div className={styles.founderRole}>Founder & Visionary</div>
                             </div>
                         </motion.div>
-
-                        <div className={styles.grassrootsFlex}>
-                            {/* Column 1 */}
-                            <div className={styles.grassrootsCol}>
-                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[0].url} alt={grassrootsImages[0].artist} /></motion.div>
-                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[1].url} alt={grassrootsImages[1].artist} /></motion.div>
-                            </div>
-
-                            {/* Column 2 */}
-                            <div className={styles.grassrootsColCenter}>
-                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }} className={styles.grassrootsBox}><img src={grassrootsImages[2].url} alt={grassrootsImages[2].artist} /></motion.div>
-                            </div>
-
-                            {/* Column 3 */}
-                            <div className={styles.grassrootsColTop}>
-                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.25 }} className={styles.grassrootsBox}><img src={grassrootsImages[3].url} alt={grassrootsImages[3].artist} /></motion.div>
-                            </div>
-
-                            {/* Column 4 - Wide Middle */}
-                            <div className={`${styles.grassrootsColCenter} ${styles.grassrootsMiddleWide}`}>
-                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }} className={`${styles.grassrootsBox} ${styles.grassrootsBoxWide}`}><img src={grassrootsImages[4].url} alt={grassrootsImages[4].artist} /></motion.div>
-                            </div>
-
-                            {/* Column 5 */}
-                            <div className={styles.grassrootsColTop}>
-                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.25 }} className={styles.grassrootsBox}><img src={grassrootsImages[5].url} alt={grassrootsImages[5].artist} /></motion.div>
-                            </div>
-
-                            {/* Column 6 */}
-                            <div className={styles.grassrootsColCenter}>
-                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }} className={styles.grassrootsBox}><img src={grassrootsImages[6].url} alt={grassrootsImages[6].artist} /></motion.div>
-                            </div>
-
-                            {/* Column 7 */}
-                            <div className={styles.grassrootsCol}>
-                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[7].url} alt={grassrootsImages[7].artist} /></motion.div>
-                                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.55 }} className={styles.grassrootsBox}><img src={grassrootsImages[8].url} alt={grassrootsImages[8].artist} /></motion.div>
-                            </div>
-                        </div>
-
-                        {/* HORIZONTAL SCROLL IMAGE MARQUEE */}
-                        <div className={styles.marqueeSection}>
-                            <motion.div 
-                                className={styles.marqueeTrack}
-                                animate={{ x: [0, -2000] }}
-                                transition={{ repeat: Infinity, ease: 'linear', duration: 30 }}
-                            >
-                                {/* Double array for seamless loop */}
-                                {[...grassrootsImages, ...grassrootsImages].map((img, i) => (
-                                    <div key={i} className={styles.marqueeItem}>
-                                        <img src={img.url} alt={`Gallery ${i}`} />
-                                    </div>
-                                ))}
-                            </motion.div>
-                        </div>
-
                     </motion.div>
+                </div>
+
+                {/* IMAGE SLIDER SECTION */}
+                <div className={styles.sliderSection}>
+                    <button 
+                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnLeft} ${!canScrollLeft ? styles.disabled : ''}`} 
+                        onClick={scrollLeft} 
+                        disabled={!canScrollLeft}
+                        aria-label="Scroll Left"
+                    >
+                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                    </button>
+                    <div className={styles.sliderTrack} ref={sliderRef}>
+                        {/* Double array for seamless feel or single, since we have arrows single is fine */}
+                        {grassrootsImages.map((img, i) => (
+                            <div key={i} className={styles.sliderItem}>
+                                <img src={img.url} alt={`Gallery ${i}`} />
+                            </div>
+                        ))}
+                    </div>
+                    <button 
+                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnRight} ${!canScrollRight ? styles.disabled : ''}`} 
+                        onClick={scrollRight} 
+                        disabled={!canScrollRight}
+                        aria-label="Scroll Right"
+                    >
+                        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                    </button>
                 </div>
             </section>
 
@@ -362,33 +378,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* ═══════════════════════════════════════════════════════
-                STATISTICS SECTION — CINEMATIC METRICS
-            ════════════════════════════════════════════════════════ */}
-            <section className={styles.statsSection}>
-                <Stats3DBackground />
-                <div className={styles.statsGrid} style={{ position: 'relative', zIndex: 1 }}>
-                    {[
-                        { value: 3, suffix: "+", label: "Years of Excellence" },
-                        { value: 300, suffix: "+", label: "Happy Clients" },
-                        { value: 1500, suffix: "+", label: "Magic Experiences" },
-                        { value: 30, suffix: "+", label: "Professionals" },
-                        { value: 150, suffix: "+", label: "Events Per Year" },
-                    ].map((stat, i) => (
-                        <motion.div
-                            key={i}
-                            className={styles.statItem}
-                            whileHover={{ y: -10, scale: 1.02 }}
-                            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                        >
-                            <div className={styles.statGlass}>
-                                <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
-                                <div className={styles.statLabel}>{stat.label}</div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
+       
         </main>
     );
 }
