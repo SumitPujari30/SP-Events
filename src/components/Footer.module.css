@@ -39,7 +39,7 @@
     position: relative;
     background: var(--color-bg-dark);
     color: var(--color-text-on-dark);
-    padding: 100px 0 0;
+    padding: 140px 0 60px;
     overflow: hidden;
 }
 
@@ -86,52 +86,39 @@
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-    gap: 48px;
-    padding-bottom: 64px;
-    border-bottom: 1px solid var(--color-border-dark);
+    grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+    gap: 64px;
+    padding-bottom: 80px;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+    align-items: start;
 }
 
 .brand {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 32px;
+    align-items: flex-start;
 }
 
 .logoWrap {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: flex-start;
+    margin-left: -70px; /* Optical alignment for the logo's internal transparent padding */
+    margin-top: -5px; /* Pull it up to align with titles in other columns */
 }
 
-.logoIcon {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-gold);
-    color: var(--color-black);
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 0.95rem;
-    border-radius: 8px;
+.footerLogo {
+    height: auto;
+    width: auto;
+    max-width: 350px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05));
+    transition: all 0.3s ease;
 }
 
-.logoTitle {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--color-text-on-dark);
-}
-
-.logoSub {
-    font-size: 0.6rem;
-    color: var(--color-gold);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-family: var(--font-heading);
+.footerLogo:hover {
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.2));
 }
 
 .brandDesc {
@@ -143,7 +130,8 @@
 
 .socials {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    margin-left: -5px; /* Subtle offset to align with logo's visual edge */
 }
 
 .socialIcon {
@@ -170,13 +158,13 @@
 }
 
 .columnTitle {
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-text-on-dark);
-    margin-bottom: 28px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    margin-bottom: 32px;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
 }
 
 .linkList {
@@ -186,37 +174,57 @@
 }
 
 .footerLink {
-    font-size: 0.9rem;
-    color: var(--color-white);
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
     font-weight: 500;
-    transition: color var(--transition-fast);
+    transition: all var(--transition-base);
     cursor: none;
+    position: relative;
+    display: inline-block;
 }
 
 .footerLink:hover {
-    color: var(--color-gold);
+    color: var(--color-gold-light);
+    transform: translateX(5px);
+}
+
+.footerLink::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gradient-gold);
+    transition: width 0.3s ease;
+}
+
+.footerLink:hover::after {
+    width: 100%;
 }
 
 .contactList {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 24px;
 }
 
 .contactItem {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    font-size: 0.9rem;
-    color: var(--color-white);
+    gap: 16px;
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
     font-weight: 500;
+    line-height: 1.5;
 }
 
 .contactIcon {
     color: var(--color-gold);
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     flex-shrink: 0;
     margin-top: 2px;
+    filter: drop-shadow(0 0 5px rgba(201, 168, 76, 0.3));
 }
 
 .bottom {
@@ -225,30 +233,31 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 28px 0;
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .copyright {
-    font-size: 0.85rem;
-    color: var(--color-white);
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
     font-weight: 500;
 }
 
 .bottomLinks {
     display: flex;
-    gap: 24px;
-    font-size: 0.85rem;
-    color: var(--color-white);
+    gap: 32px;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
     font-weight: 500;
 }
 
 .bottomLinks span {
     cursor: none;
-    transition: color var(--transition-fast);
+    transition: all var(--transition-fast);
 }
 
 .bottomLinks span:hover {
-    color: var(--color-gold);
+    color: var(--color-gold-light);
 }
 
 @media (max-width: 900px) {
@@ -266,6 +275,10 @@
     .grid {
         grid-template-columns: 1fr;
         gap: 36px;
+    }
+
+    .footerLogo {
+        max-width: 240px;
     }
 
     .bottom {

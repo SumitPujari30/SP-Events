@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
     FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube
@@ -11,28 +12,27 @@ import styles from './Footer.module.css';
 import AnimatedSection from './AnimatedSection';
 
 const quickLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About Us' },
-    { href: '/services', label: 'Services' },
-    { href: '/our-work', label: 'Our Work' },
-    { href: '/clients', label: 'Clients' },
-    { href: '/contact', label: 'Connect' },
+    { href: '/', label: 'HOME' },
+    { href: '/about', label: 'ABOUT' },
+    { href: '/services', label: 'SERVICES' },
+    { href: '/clients', label: 'CLIENT' },
+    { href: '/contact', label: 'CONNECT' },
+    { href: '/careers', label: 'CAREERS' },
 ];
 
 const servicesList = [
     'Corporate Events',
-    'Music Festivals',
-    'Cultural Programs',
-    'Product Launches',
-    'Award Ceremonies',
+    'Special Events',
+    'Launch Events',
+    'Music Events',
     'Sports Events',
+    'Wedding Events',
 ];
 
 const socials = [
-    { icon: FaInstagram, href: 'https://www.instagram.com/thespevents/', label: 'Instagram' },
-    { icon: FaFacebookF, href: '#', label: 'Facebook' },
-    { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-    { icon: FaYoutube, href: '#', label: 'YouTube' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/the_sp_events/', label: 'Instagram' },
+    { icon: FaLinkedinIn, href: 'https://www.linkedin.com/company/the-sp-events/', label: 'LinkedIn' },
+    { icon: FaYoutube, href: 'https://www.youtube.com/@TheSPEvents', label: 'YouTube' },
 ];
 
 export default function Footer() {
@@ -68,18 +68,39 @@ export default function Footer() {
                 <AnimatedSection>
                     <div className={styles.grid}>
                         {/* Brand Column */}
-                        <div className={styles.brand}>
+                        <motion.div 
+                            className={styles.brand}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                        >
                             <div className={styles.logoWrap}>
-                                <span className={styles.logoIcon}>SP</span>
-                               
+                                <motion.div 
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                >
+                                    <Image 
+                                        src="/assets/sp_logo.png" 
+                                        alt="SP Events Logo" 
+                                        width={350} 
+                                        height={150} 
+                                        className={styles.footerLogo}
+                                        priority
+                                    />
+                                </motion.div>
                             </div>
                             <div className={styles.socials}>
-                                {socials.map((s) => (
+                                {socials.map((s, i) => (
                                     <motion.a
                                         key={s.label}
                                         href={s.href}
                                         className={styles.socialIcon}
                                         aria-label={s.label}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.2 + i * 0.1 }}
                                         whileHover={{ y: -3, scale: 1.1 }}
                                         whileTap={{ scale: 0.95 }}
                                     >
@@ -87,52 +108,100 @@ export default function Footer() {
                                     </motion.a>
                                 ))}
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Quick Links */}
-                        <div className={styles.column}>
+                        <motion.div 
+                            className={styles.column}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }}
+                        >
                             <h4 className={styles.columnTitle}>Quick Links</h4>
                             <ul className={styles.linkList}>
-                                {quickLinks.map((link) => (
-                                    <li key={link.href}>
+                                {quickLinks.map((link, i) => (
+                                    <motion.li 
+                                        key={link.href}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.3 + i * 0.1 }}
+                                    >
                                         <Link href={link.href} className={styles.footerLink}>
                                             {link.label}
                                         </Link>
-                                    </li>
+                                    </motion.li>
                                 ))}
                             </ul>
-                        </div>
+                        </motion.div>
 
                         {/* Services */}
-                        <div className={styles.column}>
+                        <motion.div 
+                            className={styles.column}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
+                        >
                             <h4 className={styles.columnTitle}>Services</h4>
                             <ul className={styles.linkList}>
-                                {servicesList.map((s) => (
-                                    <li key={s}>
+                                {servicesList.map((s, i) => (
+                                    <motion.li 
+                                        key={s}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.4 + i * 0.1 }}
+                                    >
                                         <span className={styles.footerLink}>{s}</span>
-                                    </li>
+                                    </motion.li>
                                 ))}
                             </ul>
-                        </div>
+                        </motion.div>
 
                         {/* Contact */}
-                        <div className={styles.column}>
+                        <motion.div 
+                            className={styles.column}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
+                        >
                             <h4 className={styles.columnTitle}>Get In Touch</h4>
                             <ul className={styles.contactList}>
-                                <li className={styles.contactItem}>
+                                <motion.li 
+                                    className={styles.contactItem}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.6 }}
+                                >
                                     <HiLocationMarker className={styles.contactIcon} />
                                     <span>Marvel Artiza, Vidya Nagar<br/>Hubli &mdash; 580029, Karnataka</span>
-                                </li>
-                                <li className={styles.contactItem}>
+                                </motion.li>
+                                <motion.li 
+                                    className={styles.contactItem}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.7 }}
+                                >
                                     <HiPhone className={styles.contactIcon} />
                                     <span>+91 74118 63227</span>
-                                </li>
-                                <li className={styles.contactItem}>
+                                </motion.li>
+                                <motion.li 
+                                    className={styles.contactItem}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.8 }}
+                                >
                                     <HiMail className={styles.contactIcon} />
                                     <span>thespevents@gmail.com</span>
-                                </li>
+                                </motion.li>
                             </ul>
-                        </div>
+                        </motion.div>
                     </div>
                 </AnimatedSection>
 
@@ -141,10 +210,7 @@ export default function Footer() {
                     <p className={styles.copyright}>
                         &copy; {new Date().getFullYear()} The SP Events. All rights reserved.
                     </p>
-                    <div className={styles.bottomLinks}>
-                        <span>Privacy Policy</span>
-                        <span>Terms of Service</span>
-                    </div>
+
                 </div>
             </div>
         </footer>

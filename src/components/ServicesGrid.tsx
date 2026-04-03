@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './ServicesGrid.module.css';
 
@@ -27,7 +28,13 @@ export default function ServicesGrid({ categories, onCategoryClick }: ServicesGr
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     onClick={() => onCategoryClick && onCategoryClick(index)}
                 >
-                    <img src={category.image} alt={category.title} className={styles.gridImage} />
+                    <Image 
+                        src={category.image} 
+                        alt={category.title} 
+                        width={400} 
+                        height={500} 
+                        className={styles.gridImage} 
+                    />
                     <div className={styles.overlayTextContainer}>
                         <h3 className={styles.overlayTitle}>{category.title}</h3>
                     </div>

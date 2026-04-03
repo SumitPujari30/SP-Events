@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiArrowRight, HiArrowLeft, HiX, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './services.module.css';
@@ -332,7 +333,14 @@ export default function ServicesPage() {
                                     onClick={() => handleSelectEvent(ev)}
                                 >
                                     <div className={styles.eventCardImgWrap}>
-                                        <img src={ev.image} alt={ev.title} className={styles.eventCardImg} />
+                                        <Image
+                                            src={ev.image}
+                                            alt={ev.title}
+                                            width={600}
+                                            height={450}
+                                            className={styles.eventCardImg}
+                                            loading="lazy"
+                                        />
                                         <div className={styles.eventCardOverlay} />
                                     </div>
                                     <div className={styles.eventCardInfo}>
@@ -367,7 +375,16 @@ export default function ServicesPage() {
                                     className={styles.galleryMasonryItem}
                                     onClick={() => openLightbox(idx)}
                                 >
-                                    <img src={img.src} alt={img.alt} className={styles.galleryImg} draggable={false} />
+                                    <Image
+                                        src={img.src}
+                                        alt={img.alt}
+                                        width={500}
+                                        height={500}
+                                        className={styles.galleryImg}
+                                        draggable={false}
+                                        loading="lazy"
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                    />
                                     <div className={styles.galleryImgOverlay} />
                                     <div className={styles.galleryZoomIcon}>🔍</div>
                                 </div>
@@ -405,11 +422,15 @@ export default function ServicesPage() {
                             exit={{ opacity: 0, scale: 0.9 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <img
+                            <Image
                                 src={galleryImages[lightboxIndex].src}
                                 alt={galleryImages[lightboxIndex].alt}
+                                fill
                                 className={styles.lightboxImg}
                                 draggable={false}
+                                priority
+                                sizes="85vw"
+                                style={{ objectFit: 'contain' }}
                             />
                         </motion.div>
 
