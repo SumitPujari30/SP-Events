@@ -53,13 +53,13 @@ const testimonials = [
     {
         name: 'Vikram B Khot',
         role: 'Director, B N Khot International School',
-        text: 'I\'ve had the opportunity to work with THE SP EVENTS and Samarth U Patangi on multiple occasions, and every experience has been exceptional. Their professionalism, planning, and flawless execution truly set them apart. Their dedication and commitment to delivering high-quality experiences make THE SP EVENTS a highly reliable event management partner.',
+        text: 'I\'ve had the opportunity to work with THE SP EVENTS and Samarth U Patangi on multiple occasions, and every experience has been exceptional. Their professionalism, planning, and flawless execution truly set them apart. Samarth and his team pay great attention to detail and ensure that every event runs smoothly. Their dedication and commitment to delivering high-quality experiences make THE SP EVENTS a highly reliable event management partner.',
         category: 'Education',
     },
     {
         name: 'Rajesh',
         role: 'Marketing Manager, Volvo',
-        text: 'One of the best event organisers I have come across in Hubli region. Best Event Company to rely on in and around Hubli region. Their coordination and response time was good. They made sure the event was well executed in a short notice. Satisfied by the way the team presented themselves. Definitely looking forward for further projects.',
+        text: 'Dear Team SP Events A Very Big Shout Out to all of you!!! One of the best event organisers I have come across in Hubli region. Best Event Company to rely on in and around Hubli region. Their coordination and response time was good. They made sure the event was well executed in a short notice. Satisfied by the way the team presented themselves. Definitely looking forward for further projects.',
         category: 'Corporate',
     },
     {
@@ -71,32 +71,56 @@ const testimonials = [
     {
         name: 'Abdul Riyaz',
         role: 'Director, Sulthan Diamonds & Gold',
-        text: 'Samarth and the SP Events team have delivered an outstanding experience. His professionalism, creativity, and attention to detail make every inaugural event vibrant, grand, and perfectly organized. The way his team transforms a vision into a memorable celebration is truly remarkable.',
+        text: 'Samarth and the SP Events team have delivered an outstanding experience. His professionalism, creativity, and attention to detail make every inaugural event vibrant, grand, and perfectly organized. The way his team transforms a vision into a memorable celebration is truly remarkable. Thank you, Samarth and SP Events, for consistently making our inaugurations elegant and unforgettable.',
         category: 'Retail',
     },
     {
         name: 'Radhika Naikar',
         role: 'Marketing Head, Shri Durga Developers & Promoters',
-        text: 'We had a wonderful experience working with THE SP EVENTS. Samarth Sir and his team manage every event with great professionalism, punctuality, and attention to detail. Once the requirements are shared, everything is handled smoothly and stress-free. Their dedication truly stands out.',
+        text: 'We had a wonderful experience working with THE SP EVENTS. Samarth Sir and his team manage every event with great professionalism, punctuality, and attention to detail. Once the requirements are shared, everything is handled smoothly and stress-free. Their dedication and commitment to delivering perfectly organized events truly stand out.',
         category: 'Real Estate',
     },
     {
         name: 'Satya Srinivasan',
         role: 'Producer, Kannada Film Industry',
-        text: 'The SP Events came highly recommended by the hotel where my event was hosted, and from the very first interaction, Samarth made an excellent impression. He delivered exactly what was promised and even went above and beyond. What truly sets him apart is his personal involvement — he remained onsite until the very end.',
+        text: 'The SP Events came highly recommended by the hotel where my event was hosted, and from the very first interaction, Samarth made an excellent impression. His professionalism, positive attitude, and commitment to excellence were evident right from the start. He delivered exactly what was promised and even went above and beyond to ensure the entire event was seamless and memorable. What truly sets him apart is his personal involvement — he remained onsite until the very end to ensure everything ran smoothly.',
         category: 'Entertainment',
     },
     {
         name: 'Rakesh Ballary',
         role: 'Co-Managing Director, Shri Rajeshwari Properties',
-        text: 'We would like to thank Team The SP Events for the grand launch event. The team executed the entire event with great professionalism. The 40-feet curved LED wall, stage design, and lighting were handled flawlessly. Everything was smooth and highly appreciated by our guests. Highly recommended.',
+        text: 'We would like to thank Team The SP Events for the grand launch of Rajeshwari Orion Park Launch event successfully and the experience was excellent. The team executed the entire event with great professionalism. The 40-feet curved LED wall, stage design, and lighting were handled flawlessly. Everything was smooth and highly appreciated by our guests. Highly recommended for quality event management.',
         category: 'Real Estate',
     },
     {
         name: 'Rakshit Kalyani',
         role: 'COO, dhaRti Foundation, IIT Dharwad',
-        text: 'We had an outstanding experience working with SP Events for the inauguration of dhaRti BioNEST at IIT Dharwad, attended by senior government dignitaries including Hon\'ble Ministers. The team demonstrated exceptional professionalism, meticulous planning, and a strong understanding of protocol requirements. Their ability to manage a high-profile institutional event smoothly was truly commendable.',
+        text: 'We had an outstanding experience working with SP Events for the inauguration of dhaRti BioNEST at IIT Dharwad, a significant event attended by senior government dignitaries including Hon\'ble Ministers. The team demonstrated exceptional professionalism, meticulous planning, and a strong understanding of protocol requirements. Their ability to manage a high-profile institutional event smoothly was truly commendable.',
         category: 'Institutional',
+    },
+    {
+        name: 'Prof. B C Goudar',
+        role: 'Founder Trustee & Director, Adarsh PU Science College',
+        text: '" The SP EVENTS " is highly professional, reliable and well organised. Beautifully manages events. They have great customizable planning, smooth coordination and very friendly team allowing clients to relax. HIGHLY RECOMMEND.',
+        category: 'Education',
+    },
+    {
+        name: 'Siddu Kadakol',
+        role: 'Principal, KLE\'s BCA HUBLI',
+        text: 'A BIG shoutout to the SP Events team for Amazing work of LED stage setup, lighting, and sound system arranged for ACUMEN 2025 national level IT Fest at our college were absolutely outstanding. The entire setup was flawless and enriched the overall experience. You truly elevated the entire event experience.',
+        category: 'Institutional',
+    },
+    {
+        name: 'Smitha Mahesh',
+        role: 'Co-Conveyor, Inner Wheel Club Of Hubli West',
+        text: 'We were very impressed with the professionalism and creativity of THE SP EVENTS. Samarth and his team handled everything with great attention to detail and made the entire event stress-free for us. Truly a dependable and talented event management team.',
+        category: 'Non-Profit',
+    },
+    {
+        name: 'Mahesh Vastrad',
+        role: 'Founder & MD, Agamya Cyber Tech',
+        text: 'The Agamya team had the opportunity to collaborate with SP Events for our recent tech summit, and the experience was exceptional. Their professionalism and attention to detail were evident across all aspects of the event setup. SP Events demonstrated excellent coordination, timely execution, and a clear understanding of event requirements, making them one of the best service providers we have worked with.',
+        category: 'Technology',
     },
 ];
 
@@ -126,11 +150,11 @@ function SplitTextHero() {
             <div className={styles.heroSticky}>
                 {/* Background image */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="/assets/Layout_page.png"
-                    alt="Event background"
-                    className={styles.heroBgImage}
-                />
+                    <img
+                        src="/assets/hero_clients.png"
+                        alt="Event background"
+                        className={styles.heroBgImage}
+                    />
                 <div className={styles.heroBgOverlay} />
 
                 {/* Split text letters */}
@@ -195,15 +219,14 @@ function SplitLetter({
 }) {
     const center = (total - 1) / 2;
     const offset = index - center;
-    const spreadX = offset * 170;
-    // stable but varied vertical spread based on index
-    const spreadY = ((index % 3) - 1) * 140;
-    const rotation = offset * 12;
+    const spreadX = offset * 60; // Reduced for subtle drift
+    const spreadY = ((index % 3) - 1) * 30; // Reduced for elite feel
+    const rotation = offset * 8;
 
     const x = useTransform(scrollYProgress, [0.08, 0.55], [0, spreadX]);
     const y = useTransform(scrollYProgress, [0.08, 0.55], [0, spreadY]);
     const rotate = useTransform(scrollYProgress, [0.08, 0.55], [0, rotation]);
-    const opacity = useTransform(scrollYProgress, [0.35, 0.62], [1, 0]);
+    const opacity = useTransform(scrollYProgress, [0.4, 0.65], [1, 0]);
 
     return (
         <motion.span
@@ -251,212 +274,33 @@ const containerVariants = {
     }
 };
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } as any }
-};
-
-function ClientMatrix() {
-    const [selectedClient, setSelectedClient] = useState<ClientRecord | null>(null);
-    const [activeCategory, setActiveCategory] = useState<string>('All');
-
-    const categories = ['All', 'Corporate', 'Government', 'Education', 'Startup', 'Foundation', 'Other'];
-
-    const filteredClients = activeCategory === 'All' 
-        ? clientsData 
-        : clientsData.filter(c => c.category === activeCategory);
-
-    const halfwayIndex = Math.ceil(filteredClients.length / 2);
-    const firstHalf = filteredClients.slice(0, halfwayIndex);
-    const secondHalf = filteredClients.slice(halfwayIndex);
-
-    return (
-        <section className={styles.matrixSection} id="roster">
-            <div className={styles.sectionContainer} style={{ paddingBottom: '20px' }}>
-                <div className={styles.matrixHeader}>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className={styles.matrixTitle}>Clientele</h2>
-                        <p className={styles.matrixSubtitle}>Elevating Partnerships</p>
-                    </motion.div>
-
-                    {/* Category Filters */}
-                    <div className={styles.filterContainer}>
-                        {categories.map(cat => (
-                            <button
-                                key={cat}
-                                className={`${styles.filterBtn} ${activeCategory === cat ? styles.activeFilter : ''}`}
-                                onClick={() => setActiveCategory(cat)}
-                            >
-                                {cat}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                <div className={styles.matrixWrapper}>
-                    <motion.div 
-                        key={`${activeCategory}-1`} // Force re-animation on filter change
-                        className={styles.clientsGrid}
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                        viewport={{ once: true, margin: "-50px" }}
-                    >
-                        {firstHalf.map((client, i) => (
-                            <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
-                                <LogoCard client={client} onClick={() => setSelectedClient(client)} />
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </div>
-
-            {/* Testimonials inserted perfectly in the middle */}
-            <TestimonialsSection />
-
-            <div className={styles.sectionContainer} style={{ paddingTop: '20px', paddingBottom: '60px' }}>
-                <div className={styles.matrixWrapper}>
-                    <motion.div 
-                        key={`${activeCategory}-2`} // Force re-animation on filter change
-                        className={styles.clientsGrid}
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                        viewport={{ once: true, margin: "-50px" }}
-                    >
-                        {secondHalf.map((client, i) => (
-                            <motion.div key={client.name + i} variants={itemVariants} className={styles.gridItemWrapper}>
-                                <LogoCard client={client} onClick={() => setSelectedClient(client)} />
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </div>
-
-            {/* Client Detail Overlay */}
-            <AnimatePresence>
-                {selectedClient && (
-                    <motion.div
-                        className={styles.detailOverlay}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        <div
-                            className={styles.detailBackdrop}
-                            onClick={() => setSelectedClient(null)}
-                        />
-                        <motion.div
-                            className={styles.detailCard}
-                            initial={{ y: 40, opacity: 0, scale: 0.95 }}
-                            animate={{ y: 0, opacity: 1, scale: 1 }}
-                            exit={{ y: 20, opacity: 0, scale: 0.95 }}
-                            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                        >
-                            <button
-                                className={styles.detailClose}
-                                onClick={() => setSelectedClient(null)}
-                            >
-                                <HiX />
-                            </button>
-                            <div className={styles.detailLogoWrap}>
-                                {selectedClient.logo ? (
-                                    /* eslint-disable-next-line @next/next/no-img-element */
-                                    <img src={`/assets/clientLogos/${selectedClient.logo}`} alt={selectedClient.name} />
-                                ) : selectedClient.domain ? (
-                                    /* eslint-disable-next-line @next/next/no-img-element */
-                                    <img src={`https://logo.clearbit.com/${selectedClient.domain}`} alt={selectedClient.name} />
-                                ) : (
-                                    <div className={styles.detailInitials}>
-                                        {selectedClient.name.substring(0, 2).toUpperCase()}
-                                    </div>
-                                )}
-                            </div>
-                            <h3 className={styles.detailName}>{selectedClient.name}</h3>
-                            <div className={styles.detailMeta}>
-                                <span className={styles.detailIndustry}>
-                                    {/* @ts-ignore - industry may not exist on all clients */}
-                                    {selectedClient.industry || 'Client Partner'}
-                                </span>
-                                {/* {selectedClient.domain && (
-                                    <a
-                                        href={`https://${selectedClient.domain}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={styles.detailDomain}
-                                    >
-                                        Visit Website
-                                    </a>
-                                )} */}
-                            </div>
-                            <div className={styles.detailDesc}>
-                                <p>
-                                    {/* @ts-ignore - description may not exist on all clients */}
-                                    {selectedClient.description || `A valued partner of SP Events. We are proud to have collaborated with ${selectedClient.name} to engineer extraordinary experiences.`}
-                                </p>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </section>
-    );
-}
-
-function LogoCard({ client, onClick }: { client: ClientRecord; onClick: () => void }) {
-    const [logoError, setLogoError] = useState(false);
-    const initials = client.name.substring(0, 2).toUpperCase();
-    const logoSrc = client.logo
-        ? `/assets/clientLogos/${client.logo}`
-        : client.domain
-            ? `https://logo.clearbit.com/${client.domain}`
-            : null;
-
-    return (
-        <div 
-            className={styles.logoCard} 
-            onClick={onClick}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onClick();
-                }
-            }}
-        >
-            {!logoError && logoSrc ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                    src={logoSrc}
-                    alt={client.name}
-                    className={styles.logoCardImg}
-                    onError={() => setLogoError(true)}
-                    loading="lazy"
-                />
-            ) : (
-                <div className={styles.logoCardFallback}>
-                    <span>{initials}</span>
-                </div>
-            )}
-            <span className={styles.logoCardName}>{client.name}</span>
-        </div>
-    );
-}
-
 
 /* =============================================
-   SECTION 3: TESTIMONIALS — INTERACTIVE SPLIT PANEL
+   SECTION 3: TESTIMONIALS 
    ============================================= */
 function TestimonialsSection() {
     const [active, setActive] = useState(0);
+    const [testiPage, setTestiPage] = useState(0);
+    const itemsPerPage = 5;
+
+    const totalPages = Math.ceil(testimonials.length / itemsPerPage);
+    const startIndex = testiPage * itemsPerPage;
+    const testimonialsToDisplay = testimonials.slice(startIndex, startIndex + itemsPerPage);
+
+    const handleNext = () => {
+        const nextPage = (testiPage + 1) % totalPages;
+        setTestiPage(nextPage);
+        setActive(nextPage * itemsPerPage);
+    };
+
+    const handlePrev = () => {
+        const prevPage = (testiPage - 1 + totalPages) % totalPages;
+        setTestiPage(prevPage);
+        setActive(prevPage * itemsPerPage);
+    };
 
     const t = testimonials[active];
-    const progress = ((active + 1) / testimonials.length) * 100;
+    const overallProgress = ((active + 1) / testimonials.length) * 100;
 
     return (
         <section className={styles.testiSection}>
@@ -500,8 +344,24 @@ function TestimonialsSection() {
                     </motion.p>
                 </div>
 
-                {/* Split panel */}
-                <div className={styles.testiSplitPanel}>
+                <div className={styles.testiPanelWrapper}>
+                    {/* Fixed side navigation buttons */}
+                    <button 
+                        onClick={handlePrev} 
+                        className={`${styles.testiSideBtn} ${styles.left}`}
+                        aria-label="Previous testimonials"
+                    >
+                        ‹
+                    </button>
+                    <button 
+                        onClick={handleNext} 
+                        className={`${styles.testiSideBtn} ${styles.right}`}
+                        aria-label="Next testimonials"
+                    >
+                        ›
+                    </button>
+
+                    <div className={styles.testiSplitPanel}>
 
                     {/* LEFT: Animated featured quote */}
                     <div className={styles.testiFeatured}>
@@ -542,32 +402,45 @@ function TestimonialsSection() {
 
                     {/* RIGHT: Author selector list */}
                     <div className={styles.testiList}>
-                        {testimonials.map((item, i) => (
-                            <div
-                                key={i}
-                                className={`${styles.testiListItem} ${active === i ? styles.activeItem : ''}`}
-                                onMouseEnter={() => setActive(i)}
-                                onClick={() => setActive(i)}
-                            >
-                                <div className={styles.testiListInitial}>
-                                    {item.name.charAt(0)}
-                                </div>
-                                <div className={styles.testiListInfo}>
-                                    <div className={styles.testiListName}>{item.name}</div>
-                                    <div className={styles.testiListRole}>{item.role}</div>
-                                </div>
-                                <div className={styles.testiListArrow}>›</div>
-                            </div>
-                        ))}
+                        <div className={styles.testiListScrollArea}>
+                            {testimonialsToDisplay.map((item, i) => {
+                                const globalIndex = startIndex + i;
+                                return (
+                                    <div
+                                        key={globalIndex}
+                                        className={`${styles.testiListItem} ${active === globalIndex ? styles.activeItem : ''}`}
+                                        onMouseEnter={() => setActive(globalIndex)}
+                                        onClick={() => setActive(globalIndex)}
+                                    >
+                                        <div className={styles.testiListInitial}>
+                                            {item.name.charAt(0)}
+                                        </div>
+                                        <div className={styles.testiListInfo}>
+                                            <div className={styles.testiListName}>{item.name}</div>
+                                            <div className={styles.testiListRole}>{item.role}</div>
+                                        </div>
+                                        <div className={styles.testiListArrow}>›</div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {/* Page Indicator (Arrows moved to sides) */}
+                        <div className={styles.testiListFooter}>
+                            <span className={styles.testiPageIndicator}>
+                                {testiPage + 1} / {totalPages}
+                            </span>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                {/* Progress indicator */}
+            {/* Progress indicator */}
                 <div className={styles.testiProgress}>
                     <div className={styles.testiProgressBar}>
                         <div
                             className={styles.testiProgressFill}
-                            style={{ width: `${progress}%` }}
+                            style={{ width: `${overallProgress}%` }}
                         />
                     </div>
                     <span className={styles.testiProgressCount}>

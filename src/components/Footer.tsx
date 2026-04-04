@@ -21,12 +21,12 @@ const quickLinks = [
 ];
 
 const servicesList = [
-    'Corporate Events',
-    'Special Events',
-    'Launch Events',
-    'Music Events',
-    'Sports Events',
-    'Wedding Events',
+    { label: 'Corporate Events', href: '/services#v=events&c=0' },
+    { label: 'Special Events', href: '/services#v=events&c=1' },
+    { label: 'Launch Events', href: '/services#v=events&c=2' },
+    { label: 'Music Events', href: '/services#v=events&c=3' },
+    { label: 'Sports Events', href: '/services#v=events&c=4' },
+    { label: 'Wedding Events', href: '/services#v=events&c=5' },
 ];
 
 const socials = [
@@ -83,12 +83,18 @@ export default function Footer() {
                                     <Image 
                                         src="/assets/sp_logo.png" 
                                         alt="SP Events Logo" 
-                                        width={350} 
-                                        height={150} 
+                                        width={250} 
+                                        height={110} 
                                         className={styles.footerLogo}
                                         priority
                                     />
                                 </motion.div>
+                            </div>
+                            <div className={styles.divider} />
+                            <div className={styles.tagline}>
+                                How we create experiences<br />
+                                Is how we build trust<br />
+                                With <span>precision, passion & perfection</span>
                             </div>
                             <div className={styles.socials}>
                                 {socials.map((s, i) => (
@@ -148,13 +154,15 @@ export default function Footer() {
                             <ul className={styles.linkList}>
                                 {servicesList.map((s, i) => (
                                     <motion.li 
-                                        key={s}
+                                        key={s.href}
                                         initial={{ opacity: 0, x: -10 }}
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.4 + i * 0.1 }}
                                     >
-                                        <span className={styles.footerLink}>{s}</span>
+                                        <Link href={s.href} className={styles.footerLink}>
+                                            {s.label}
+                                        </Link>
                                     </motion.li>
                                 ))}
                             </ul>
@@ -168,7 +176,11 @@ export default function Footer() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
                         >
-                            <h4 className={styles.columnTitle}>Get In Touch</h4>
+                            <h4 className={styles.columnTitle}>
+                                <Link href="/contact" className={styles.headerLink}>
+                                    Get In Touch
+                                </Link>
+                            </h4>
                             <ul className={styles.contactList}>
                                 <motion.li 
                                     className={styles.contactItem}
@@ -178,7 +190,14 @@ export default function Footer() {
                                     transition={{ delay: 0.6 }}
                                 >
                                     <HiLocationMarker className={styles.contactIcon} />
-                                    <span>Marvel Artiza, Vidya Nagar<br/>Hubli &mdash; 580029, Karnataka</span>
+                                    <a 
+                                        href="https://maps.app.goo.gl/hp1zdTG3crNiHLLD9" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className={styles.contactLink}
+                                    >
+                                        Marvel Artiza, Vidya Nagar<br/>Hubli &mdash; 580029, Karnataka
+                                    </a>
                                 </motion.li>
                                 <motion.li 
                                     className={styles.contactItem}
@@ -188,7 +207,9 @@ export default function Footer() {
                                     transition={{ delay: 0.7 }}
                                 >
                                     <HiPhone className={styles.contactIcon} />
-                                    <span>+91 74118 63227</span>
+                                    <a href="tel:+917411863227" className={styles.contactLink}>
+                                        +91 74118 63227
+                                    </a>
                                 </motion.li>
                                 <motion.li 
                                     className={styles.contactItem}
@@ -198,7 +219,9 @@ export default function Footer() {
                                     transition={{ delay: 0.8 }}
                                 >
                                     <HiMail className={styles.contactIcon} />
-                                    <span>thespevents@gmail.com</span>
+                                    <a href="mailto:thespevents@gmail.com" className={styles.contactLink}>
+                                        thespevents@gmail.com
+                                    </a>
                                 </motion.li>
                             </ul>
                         </motion.div>

@@ -1,5 +1,5 @@
 /* =============================================
-   ClientGrid — 3D Card Showcase
+   ClientGrid — Directory Layout
    Scoped CSS Module — no global pollution
    ============================================= */
 
@@ -82,115 +82,170 @@
     padding: 0;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 16px; 
+    gap: 26px; 
     position: relative;
     z-index: 1;
 }
 
-/* ── Static Card ── */
+/* ── Directory Style Card ── */
 .flipCard {
     position: relative;
-    perspective: 1000px;
-    cursor: default;
+    perspective: 1200px;
+    cursor: pointer;
     outline: none;
-    aspect-ratio: 1 / 1.1; 
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.04) 100%);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    isolation: isolate;
+    aspect-ratio: 1 / 1.15; 
+    border-radius: 12px;
+    /* Default White Border */
+    border: 0.5px solid rgba(255, 255, 255, 0.4);
+    background: linear-gradient(165deg, #12102a 0%, #08061a 100%);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4),
+                0 0 15px rgba(255, 255, 255, 0.03); /* Subtle white glow */
+    transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    transform-style: preserve-3d;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.flipCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    border-radius: 12px;
+}
+
+.flipCard::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: 0.8s;
+}
+
+.flipCard:hover::after {
+    left: 150%;
 }
 
 .flipCard:hover {
-    border-color: rgba(201, 168, 76, 0.5);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(201, 168, 76, 0.08) 100%);
-    box-shadow: 0 10px 40px rgba(201, 168, 76, 0.15);
+    border-color: rgba(201, 168, 76, 0.7); /* Transition to Gold */
+    background: rgba(201, 168, 76, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(201, 168, 76, 0.2);
+    /* No card global transform, just the logo inside will move */
 }
 
-/* Logo Wrapping & Interaction */
-.logoWrap {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+/* Internal Card Content Structure */
+.cardContent {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
 }
 
-/* Client Name Typography (Top Left) */
+.nameSection {
+    margin-bottom: 12px;
+    text-align: center;
+}
+
 .clientName {
-    position: absolute;
-    top: 24px;
-    left: 24px;
     font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 300;
+    font-size: 1.2rem; /* Increased size */
+    font-weight: 600; /* Bolder for depth */
     letter-spacing: 0.5px;
-    text-transform: capitalize;
-    color: rgba(255, 255, 255, 0.9);
-    z-index: 10;
-    transition: all 0.4s ease;
+    color: rgba(255, 255, 255, 0.98);
+    /* Multi-layered shadow for embossed depth */
+    text-shadow: 
+        1px 1px 0px rgba(0,0,0,0.8),
+        -1px -1px 0px rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+    display: block;
+    line-height: 1.2;
 }
 
 .flipCard:hover .clientName {
     color: var(--color-accent-gold);
-    transform: translateX(4px);
+    text-shadow: 
+        2px 2px 5px rgba(0,0,0,1),
+        0 0 15px rgba(201, 168, 76, 0.4);
 }
 
-/* The actual logo container that flips */
-.logoImageContainer {
-    position: absolute;
-    inset: 0;
+.divider {
     width: 100%;
-    height: 100%;
+    height: 1px;
+    /* Default White Gradient */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.5), transparent);
+    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+}
+
+.flipCard:hover .divider {
+    /* Transition to Gold Gradient on Hover */
+    background: linear-gradient(to right, rgba(201, 168, 76, 0.9), transparent);
+    box-shadow: 0 1px 3px rgba(201, 168, 76, 0.3);
+}
+
+.logoSection {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: flex-end; /* Align logo to bottom */
+    justify-content: flex-start; /* Align logo to left */
+    min-height: 80px; 
 }
 
 .logoImage {
+    width: auto;
+    height: auto;
+    margin-top: 30px;
+    max-width: 80%;
+    max-height: 70%;
     object-fit: contain;
-    object-position: right bottom;
-    filter: brightness(110%) opacity(0.85);
-    transition: all 0.4s ease;
-    
-    /* Exactly positioned bottom right */
-    width: 50% !important; 
-    height: 40% !important;
-    left: auto !important;
-    top: auto !important;
-    right: 24px !important;
-    bottom: 24px !important;
+    object-position: left bottom;
+    opacity: 0.95;
+    /* The core 'blending' detail: soft gold drop glow */
+    filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.1));
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1), 
+                filter 0.4s ease, 
+                opacity 0.3s ease;
+    will-change: transform, filter;
 }
 
 .flipCard:hover .logoImage {
-    filter: brightness(100%) opacity(1);
-    transform: scale(1.2);
-    transform-origin: right bottom;
+    transform: scale(1.15) translate(10px, -10px);
+    filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.3)); /* Intensify glow on hover */
+    opacity: 1;
 }
 
 /* Fallback Initials */
 .backInitials {
-    position: absolute;
-    right: 24px;
-    bottom: 24px;
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: rgba(201, 168, 76, 0.12);
-    border: 1px solid rgba(201, 168, 76, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: 700;
+    color: rgba(201, 168, 76, 0.4);
+    transition: color 0.3s ease;
+}
+
+.flipCard:hover .backInitials {
     color: var(--color-accent-gold);
 }
 
 /* ── Responsive ── */
-@media (max-width: 1400px) { }
-
 @media (max-width: 1200px) {
     .grid {
         grid-template-columns: repeat(4, 1fr);
@@ -201,22 +256,12 @@
     .grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 12px;
-        padding: 0;
+    }
+    .cardContent {
+        padding: 16px;
     }
     .clientName {
-        font-size: 0.9rem;
-        top: 20px;
-        left: 20px;
-    }
-    .logoImage {
-        right: 20px !important;
-        bottom: 20px !important;
-        width: 60% !important;
-        height: 50% !important;
-    }
-    .backInitials {
-        right: 20px;
-        bottom: 20px;
+        font-size: 0.95rem;
     }
 }
 
@@ -224,33 +269,12 @@
     .grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-        padding: 0;
     }
-
     .section {
         padding: 80px 0 100px;
     }
-
     .clientName {
-        font-size: 0.8rem;
-        top: 16px;
-        left: 16px;
-    }
-
-    .logoImage {
-        right: 16px !important;
-        bottom: 16px !important;
-        width: 65% !important;
-        height: 55% !important;
-    }
-    .backInitials {
-        right: 16px;
-        bottom: 16px;
-    }
-
-    .filterBtn {
-        padding: 8px 16px;
-        font-size: 0.68rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -258,33 +282,14 @@
     .grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
-        padding: 0;
     }
-
     .section {
         padding: 60px 0 80px;
     }
-    
+    .cardContent {
+        padding: 12px;
+    }
     .clientName {
         font-size: 0.75rem;
-        top: 12px;
-        left: 12px;
-    }
-
-    .logoImage {
-        right: 12px !important;
-        bottom: 12px !important;
-        width: 70% !important;
-        height: 60% !important;
-    }
-    .backInitials {
-        right: 12px;
-        bottom: 12px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .flipCard {
-        transition: opacity 0.2s ease;
     }
 }
