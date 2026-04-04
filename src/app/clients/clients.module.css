@@ -86,8 +86,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.70;
-    filter: saturate(0.5) brightness(0.8);
+    opacity: 0.50; /* Increased for clear texture */
+    filter: saturate(0.6) brightness(0.7);
 }
 
 .heroBgOverlay {
@@ -118,21 +118,32 @@
 }
 
 .heroLetter {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: clamp(5rem, 12vw, 10rem);
-    font-weight: 800;
+    font-weight: 900;
     color: var(--color-white);
-    line-height: 0.8;
+    line-height: 0.9;
     text-transform: uppercase;
     display: inline-block;
     will-change: transform, opacity;
-    letter-spacing: -0.01em;
-    text-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
+    letter-spacing: -0.04em;
+    /* Multi-layered 3D depth + Floor shadow */
+    text-shadow: 
+        1px 1px 0px rgba(0, 0, 0, 0.8),   /* Edge shadow */
+        3px 3px 0px rgba(0, 0, 0, 0.4),   /* Depth layer 1 */
+        6px 6px 0px rgba(0, 0, 0, 0.2),   /* Depth layer 2 */
+        0 15px 30px rgba(0, 0, 0, 0.6),   /* Ambient occlusion */
+        0 30px 60px rgba(0, 0, 0, 0.3);   /* Ground / Floor shadow */
 }
 
 .heroLetter.gold {
     color: var(--color-gold);
-    text-shadow: 0 10px 40px rgba(201, 168, 76, 0.3);
+    text-shadow: 
+        1px 1px 0px rgba(0, 0, 0, 0.8),
+        3px 3px 0px rgba(132, 107, 43, 0.5), /* Gold-tinted depth */
+        6px 6px 0px rgba(0, 0, 0, 0.3),
+        0 15px 30px rgba(132, 107, 43, 0.4), /* Gold ambient bloom */
+        0 30px 60px rgba(0, 0, 0, 0.4);      /* Ground shadow */
 }
 
 /* Scroll hint */
@@ -1064,6 +1075,123 @@
 .testiListItem.activeItem .testiListArrow {
     opacity: 1;
     transform: translateX(0);
+}
+
+/* Pagination Styles */
+.testiListScrollArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 480px; /* Keep height stable for the 5 items */
+}
+
+.testiListNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.testiNavBtn {
+    background: transparent;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    color: var(--color-gold);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+    line-height: 1;
+    padding-bottom: 4px; /* Optical alignment */
+}
+
+.testiNavBtn:hover {
+    background: rgba(201, 168, 76, 0.1);
+    border-color: var(--color-gold);
+    transform: scale(1.1);
+}
+
+.testiPageIndicator {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.testiListFooter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Side Navigation Arrows */
+.testiPanelWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.testiSideBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(18, 16, 42, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-gold);
+    width: 60px; /* Enhanced size as requested */
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 2.2rem; /* Scaled icon for visibility */
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    line-height: 0;
+    padding: 0;
+    /* Optical centering adjustment for large text icons */
+    padding-bottom: 6px; 
+}
+
+.testiSideBtn:hover {
+    background: var(--color-gold);
+    color: #0c0a1d;
+    border-color: var(--color-gold);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
+}
+
+.testiSideBtn.left {
+    left: -80px;
+    padding-right: 4px; /* Optical center for ‹ */
+}
+
+.testiSideBtn.right {
+    right: -80px;
+    padding-left: 4px; /* Optical center for › */
+}
+
+@media (max-width: 1400px) {
+    .testiSideBtn.left {
+        left: -24px;
+        background: rgba(18, 16, 42, 0.9);
+    }
+    .testiSideBtn.right {
+        right: -24px;
+        background: rgba(18, 16, 42, 0.9);
+    }
 }
 
 /* Progress bar at bottom of panel */

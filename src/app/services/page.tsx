@@ -17,115 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
    ──────────────────────────────────────────── */
 const LAYOUT_IMG = '/assets/Layout_page.png';
 
-interface SubEvent {
-    id: string;
-    title: string;
-    image: string;
-}
-
-interface ServiceCategory {
-    id: string;
-    num: string;
-    title: string;
-    tagline: string;
-    desc: string;
-    bgImage: string;
-    events: SubEvent[];
-}
-
-const services: ServiceCategory[] = [
-    {
-        id: 'corporate', num: '01', title: 'Corporate',
-        tagline: 'Strategy meets spectacle',
-        desc: 'We elevate corporate gatherings into powerful brand moments. Annual conferences, conclaves, town halls, leadership summits — every element is crafted to reinforce your brand identity, engage your audience, and deliver measurable results.',
-        bgImage: '/assets/services/corporate_bg.png',
-        events: [
-            { id: 'corp-1', title: 'Annual Conference', image: LAYOUT_IMG },
-            { id: 'corp-2', title: 'Leadership Summit', image: LAYOUT_IMG },
-            { id: 'corp-3', title: 'Awards Night', image: LAYOUT_IMG },
-            { id: 'corp-4', title: 'Team Offsite', image: LAYOUT_IMG },
-            { id: 'corp-5', title: 'Product Launch Party', image: LAYOUT_IMG },
-            { id: 'corp-6', title: 'Gala Dinner', image: LAYOUT_IMG },
-        ],
-    },
-    {
-        id: 'special', num: '02', title: 'Special',
-        tagline: 'Moments that become memories',
-        desc: 'Life\'s most meaningful occasions deserve flawless execution. Whether it\'s a grand gala, a cultural celebration, a charity ball, or a milestone anniversary — we design experiences tailored to the emotion and significance of the moment.',
-        bgImage: '/assets/services/special_bg.png',
-        events: [
-            { id: 'spl-1', title: 'Gala Night', image: LAYOUT_IMG },
-            { id: 'spl-2', title: 'Cultural Festival', image: LAYOUT_IMG },
-            { id: 'spl-3', title: 'Charity Ball', image: LAYOUT_IMG },
-            { id: 'spl-4', title: 'Anniversary Celebration', image: LAYOUT_IMG },
-            { id: 'spl-5', title: 'Theme Party', image: LAYOUT_IMG },
-            { id: 'spl-6', title: 'VIP Reception', image: LAYOUT_IMG },
-        ],
-    },
-    {
-        id: 'launch', num: '03', title: 'Launch',
-        tagline: 'First impressions, perfected',
-        desc: 'A product launch is your brand\'s most critical moment. We craft immersive reveal experiences — from intimate media previews to large-scale public launches — that generate buzz, drive coverage, and leave your audience wanting more.',
-        bgImage: '/assets/services/launch_bg.png',
-        events: [
-            { id: 'lnch-1', title: 'Product Unveiling', image: LAYOUT_IMG },
-            { id: 'lnch-2', title: 'Store Opening', image: LAYOUT_IMG },
-            { id: 'lnch-3', title: 'Press Conference', image: LAYOUT_IMG },
-            { id: 'lnch-4', title: 'Brand Activation', image: LAYOUT_IMG },
-            { id: 'lnch-5', title: 'Pop-Up Experience', image: LAYOUT_IMG },
-            { id: 'lnch-6', title: 'Digital Launch Event', image: LAYOUT_IMG },
-        ],
-    },
-    {
-        id: 'music', num: '04', title: 'Music',
-        tagline: 'Sonic experiences that move crowds',
-        desc: 'From intimate acoustic evenings to stadium-filling concerts, we design and execute music events that resonate. Our team handles artist management, stage production, sound engineering, crowd flow, and everything in between.',
-        bgImage: '/assets/services/music_bg.png',
-        events: [
-            { id: 'mus-1', title: 'Live Concert', image: LAYOUT_IMG },
-            { id: 'mus-2', title: 'Music Festival', image: LAYOUT_IMG },
-            { id: 'mus-3', title: 'Acoustic Night', image: LAYOUT_IMG },
-            { id: 'mus-4', title: 'DJ Night', image: LAYOUT_IMG },
-            { id: 'mus-5', title: 'Album Launch', image: LAYOUT_IMG },
-            { id: 'mus-6', title: 'Band Performance', image: LAYOUT_IMG },
-        ],
-    },
-    {
-        id: 'sports', num: '05', title: 'Sports',
-        tagline: 'Where champions are celebrated',
-        desc: 'We bring the energy of sport to life — from corporate sports days and marathons to championship award ceremonies and league launches. Precision logistics, broadcast-ready production, and electrifying atmospheres are our standard.',
-        bgImage: '/assets/services/sports_bg.png',
-        events: [
-            { id: 'spt-1', title: 'Cricket Tournament', image: LAYOUT_IMG },
-            { id: 'spt-2', title: 'Marathon Event', image: LAYOUT_IMG },
-            { id: 'spt-3', title: 'Sports Day', image: LAYOUT_IMG },
-            { id: 'spt-4', title: 'Award Ceremony', image: LAYOUT_IMG },
-            { id: 'spt-5', title: 'League Launch', image: LAYOUT_IMG },
-            { id: 'spt-6', title: 'Fitness Challenge', image: LAYOUT_IMG },
-        ],
-    },
-    {
-        id: 'wedding', num: '06', title: 'Wedding',
-        tagline: 'Love stories brought to life',
-        desc: 'Every love story is unique — and your wedding should be too. Our wedding specialists craft each detail from florals and décor to catering, entertainment, and guest experience, creating celebrations that reflect your story.',
-        bgImage: '/assets/services/wedding_bg.png',
-        events: [
-            { id: 'wed-1', title: 'Destination Wedding', image: LAYOUT_IMG },
-            { id: 'wed-2', title: 'Grand Reception', image: LAYOUT_IMG },
-            { id: 'wed-3', title: 'Sangeet Night', image: LAYOUT_IMG },
-            { id: 'wed-4', title: 'Haldi Ceremony', image: LAYOUT_IMG },
-            { id: 'wed-5', title: 'Engagement Party', image: LAYOUT_IMG },
-            { id: 'wed-6', title: 'Intimate Ceremony', image: LAYOUT_IMG },
-        ],
-    },
-];
-
-/* Gallery images — 12 placeholders */
-const galleryImages = Array.from({ length: 12 }, (_, i) => ({
-    id: `gal-${i}`,
-    src: LAYOUT_IMG,
-    alt: `Event photo ${i + 1}`,
-}));
+import { services, type SubEvent, type ServiceCategory } from '@/data/servicesData';
 
 /* ────────────────────────────────────────────
    ANIMATION VARIANTS
@@ -210,6 +102,7 @@ export default function ServicesPage() {
     }, []);
 
     const activeCategory = services[activeIndex] || services[0];
+    const categoryImages = selectedEvent?.allImages || [];
 
     const router = useRouter();
 
@@ -257,12 +150,12 @@ export default function ServicesPage() {
     const closeLightbox = useCallback(() => setLightboxOpen(false), []);
 
     const lightboxPrev = useCallback(() => {
-        setLightboxIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
-    }, []);
+        setLightboxIndex((prev) => (prev - 1 + categoryImages.length) % categoryImages.length);
+    }, [categoryImages.length]);
 
     const lightboxNext = useCallback(() => {
-        setLightboxIndex((prev) => (prev + 1) % galleryImages.length);
-    }, []);
+        setLightboxIndex((prev) => (prev + 1) % categoryImages.length);
+    }, [categoryImages.length]);
 
     /* Keyboard navigation for lightbox */
     useEffect(() => {
@@ -369,15 +262,15 @@ export default function ServicesPage() {
                         </div>
 
                         <div className={styles.galleryMasonry}>
-                            {galleryImages.map((img, idx) => (
+                            {selectedEvent.allImages.map((src, idx) => (
                                 <div
-                                    key={img.id}
+                                    key={`${selectedEvent.id}-img-${idx}`}
                                     className={styles.galleryMasonryItem}
                                     onClick={() => openLightbox(idx)}
                                 >
                                     <Image
-                                        src={img.src}
-                                        alt={img.alt}
+                                        src={src}
+                                        alt={`${selectedEvent.title} photo ${idx + 1}`}
                                         width={500}
                                         height={500}
                                         className={styles.galleryImg}
@@ -423,8 +316,8 @@ export default function ServicesPage() {
                             transition={{ duration: 0.3 }}
                         >
                             <Image
-                                src={galleryImages[lightboxIndex].src}
-                                alt={galleryImages[lightboxIndex].alt}
+                                src={categoryImages[lightboxIndex]}
+                                alt={`${selectedEvent?.title} peak`}
                                 fill
                                 className={styles.lightboxImg}
                                 draggable={false}
@@ -439,7 +332,7 @@ export default function ServicesPage() {
                         </button>
 
                         <div className={styles.lightboxCounter}>
-                            {lightboxIndex + 1} / {galleryImages.length}
+                            {lightboxIndex + 1} / {categoryImages.length}
                         </div>
                     </motion.div>
                 )}

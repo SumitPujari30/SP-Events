@@ -1,38 +1,44 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { clientsData, ClientRecord } from '@/lib/clientData';
 import styles from './ClientGrid.module.css';
 
-/* ── Use all clients since we are showing placeholder logos ── */
-const clientsWithLogos = clientsData;
+/* ── Constants ── */
+const NUM_SLOTS = 30;
 
-
-/* ── Grid animation variants ── */
+/* ── Animation variants ── */
 const containerVariants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
-        transition: { staggerChildren: 0.04 },
+        transition: { staggerChildren: 0.02 },
     },
 };
 
 const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    hidden: { opacity: 0, scale: 0.98 },
     show: {
         opacity: 1,
-        y: 0,
         scale: 1,
-        transition: { type: 'spring' as const, stiffness: 300, damping: 24 },
+        transition: { type: 'spring' as const, stiffness: 400, damping: 30 },
     },
+};
+
+/* ── Flip Variants ── */
+const flipVariants = {
+    initial: { rotateY: -90, opacity: 0 },
+    animate: { rotateY: 0, opacity: 1 },
+    exit: { rotateY: 90, opacity: 0 },
 };
 
 /* ── Types ── */
 type SlotData = {
     id: number;
     currentLogo: ClientRecord;
+    isFlippable: boolean;
 };
 
 /* ── Helpers ── */
@@ -46,79 +52,86 @@ function getInitials(name: string): string {
         .toUpperCase();
 }
 
-function getLogoSrc(logo: string): string {
-    if (logo.startsWith('http') || logo.startsWith('/')) return logo;
-    return `/assets/clientLogos/${logo}`;
+function getLogoSrc(logo?: string): string {
+    if (!logo) return '/assets/Layout_page.png';
+    return `/assets/webp_client/${encodeURIComponent(logo)}`;
 }
 
-function LogoFace({ client }: { client: ClientRecord | null }) {
+function LogoFace({ client, index }: { client: ClientRecord | null, index: number }) {
+    const [imgError, setImgError] = useState(false);
+    
+    useEffect(() => {
+        setImgError(false);
+    }, [client]);
+
     if (!client) return null;
 
-    const brandName = "Client Brand";
-    const src = "/assets/Layout_page.png";
+    const brandName = client.name;
+    const src = getLogoSrc(client.logo);
+    const initials = getInitials(client.name);
+    const isPriority = index < 15;
 
     return (
-        <div className={styles.logoWrap}>
-            <AnimatePresence mode="wait">
-                {/* Fade the text */}
-                <motion.div
-                    key={client.name + "-text"}
-                    className={styles.clientName}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    {brandName}
-                </motion.div>
-
-                {/* Flip the logo */}
-                <motion.div
-                    key={client.name + "-logo"}
-                    className={styles.logoImageContainer}
-                    initial={{ opacity: 0, rotateY: -90 }}
-                    animate={{ opacity: 1, rotateY: 0 }}
-                    exit={{ opacity: 0, rotateY: 90 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                >
-                    <Image
-                        src={src}
-                        alt={brandName}
-                        fill
-                        sizes="(max-width: 480px) 45vw, (max-width: 768px) 30vw, (max-width: 992px) 22vw, 16vw"
-                        className={styles.logoImage}
-                        loading="lazy"
-                    />
-                </motion.div>
-            </AnimatePresence>
+        <div className={styles.cardContent}>
+            <div className={styles.nameSection}>
+                <span className={styles.clientName}>{brandName}</span>
+            </div>
+            <div className={styles.divider} />
+            <div className={styles.logoSection}>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={client.name}
+                        variants={flipVariants}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                        style={{ width: '100%', height: '100%', position: 'relative' }}
+                    >
+                        {client.logo && !imgError ? (
+                            <Image
+                                src={src}
+                                alt={brandName}
+                                fill
+                                sizes="140px"
+                                className={styles.logoImage}
+                                priority={isPriority}
+                                style={{ objectFit: 'contain', objectPosition: 'left bottom' }}
+                                onError={() => setImgError(true)}
+                            />
+                        ) : (
+                            <div className={styles.backInitials}>{initials}</div>
+                        )}
+                    </motion.div>
+                </AnimatePresence>
+            </div>
         </div>
     );
 }
 
 /* ── Component ── */
 export default function ClientGrid({ children }: { children?: React.ReactNode }) {
-    const [, setRenderTrigger] = useState(0);
+    const [, setFlipTrigger] = useState(0);
 
-    const slotsRef = useRef<SlotData[]>([]);
-    const hiddenPoolRef = useRef<ClientRecord[]>([]);
-
-    useEffect(() => {
-        // Use all clients with logos, no filtering
-        const pool = clientsWithLogos;
-
-        // Shuffle the pool for a unique grid every time
-        const shuffledPool = [...pool].sort(() => Math.random() - 0.5);
-
-        const numSlots = Math.min(shuffledPool.length, 30); // max 30 slots shown
-
-        slotsRef.current = shuffledPool.slice(0, numSlots).map((record, i) => ({
+    const initialData = useMemo(() => {
+        const pool = [...clientsData];
+        const initialShown = pool.slice(0, NUM_SLOTS);
+        const remainingPool = pool.slice(NUM_SLOTS);
+        
+        const bottomIndices = Array.from({ length: 15 }, (_, i) => i + 15);
+        const flippableBottomIndices = bottomIndices.slice(0, 10);
+        
+        const slots: SlotData[] = initialShown.map((record, i) => ({
             id: i,
             currentLogo: record,
+            isFlippable: i < 15 || flippableBottomIndices.includes(i)
         }));
 
-        hiddenPoolRef.current = shuffledPool.slice(numSlots);
-        setRenderTrigger((prev) => prev + 1);
+        return { slots, remainingPool };
     }, []);
+
+    const slotsRef = useRef<SlotData[]>(initialData.slots);
+    const hiddenPoolRef = useRef<ClientRecord[]>(initialData.remainingPool);
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
@@ -129,8 +142,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                 return;
             }
 
-            // Flip less frequently (e.g. 3, 6, 9 seconds)
-            const delays = [2000, 4000, 6000];
+            const delays = [5000, 7000, 9000];
             const nextDelay = delays[Math.floor(Math.random() * delays.length)];
 
             timeoutId = setTimeout(() => {
@@ -145,19 +157,21 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
 
             if (currentHidden.length === 0) return;
 
-            // Pick 1 to 2 random slots to flip at once for calmer animation
+            const flippableIndices = currentSlots
+                .map((slot, i) => (slot.isFlippable ? i : -1))
+                .filter(idx => idx !== -1);
+
             const numFlips = Math.floor(Math.random() * 2) + 1;
-            const availableIndices = currentSlots.map((_, i) => i);
-            const indicesToFlip: number[] = [];
+            const chosenIndices: number[] = [];
 
             for (let i = 0; i < numFlips; i++) {
-                if (availableIndices.length === 0) break;
-                const randIdx = Math.floor(Math.random() * availableIndices.length);
-                indicesToFlip.push(availableIndices[randIdx]);
-                availableIndices.splice(randIdx, 1);
+                if (flippableIndices.length === 0) break;
+                const randIdx = Math.floor(Math.random() * flippableIndices.length);
+                chosenIndices.push(flippableIndices[randIdx]);
+                flippableIndices.splice(randIdx, 1);
             }
 
-            indicesToFlip.forEach((idx) => {
+            chosenIndices.forEach((idx) => {
                 if (currentHidden.length === 0) return;
 
                 const slot = currentSlots[idx];
@@ -165,9 +179,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                 const newlySelectedLogo = currentHidden[hiddenIdx];
 
                 currentHidden.splice(hiddenIdx, 1);
-
-                const oldLogo = slot.currentLogo;
-                if (oldLogo) currentHidden.push(oldLogo);
+                currentHidden.push(slot.currentLogo);
 
                 currentSlots[idx] = {
                     ...slot,
@@ -177,11 +189,10 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
 
             slotsRef.current = currentSlots;
             hiddenPoolRef.current = currentHidden;
-            setRenderTrigger((prev) => prev + 1);
+            setFlipTrigger(prev => prev + 1);
         };
 
         scheduleNextFlip();
-
         return () => clearTimeout(timeoutId);
     }, []);
 
@@ -203,7 +214,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                     viewport={{ once: true }}
                     transition={{ delay: 0.05 }}
                 >
-                    Our Clientele
+                    Trusted <span style={{color: "var(--color-gold)"}}>By</span>
                 </motion.h2>
                 <motion.p
                     className={styles.subtitle}
@@ -214,66 +225,50 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                 >
                     Brands that trust us to architect their most important moments
                 </motion.p>
-
-                {/* Filter buttons removed as requested */}
             </div>
 
             <div className={styles.gridContainer}>
-                <AnimatePresence mode="wait">
-                {slotsRef.current.length > 0 && (
-                    <motion.div
-                        key="grid-1"
-                        className={styles.grid}
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                        exit="hidden"
-                    >
-                        {slotsRef.current.slice(0, 15).map((slot) => (
-                            <motion.div
-                                key={slot.id}
-                                className={styles.flipCard}
-                                variants={cardVariants}
-                                whileHover={{ y: -6, scale: 1.015 }}
-                                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                                tabIndex={0}
-                            >
-                                <LogoFace client={slot.currentLogo} />
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                )}
-                </AnimatePresence>
+                <motion.div
+                    className={styles.grid}
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-50px" }}
+                >
+                    {slotsRef.current.slice(0, 15).map((slot, index) => (
+                        <motion.div
+                            key={slot.id}
+                            className={styles.flipCard}
+                            variants={cardVariants}
+                            tabIndex={0}
+                        >
+                            <LogoFace client={slot.currentLogo} index={index} />
+                        </motion.div>
+                    ))}
+                </motion.div>
             </div>
 
             {children && <div className={styles.breakSection}>{children}</div>}
 
             <div className={styles.gridContainer}>
-                <AnimatePresence mode="wait">
-                {slotsRef.current.length > 15 && (
-                    <motion.div
-                        key="grid-2"
-                        className={styles.grid}
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                        exit="hidden"
-                    >
-                        {slotsRef.current.slice(15, 30).map((slot) => (
-                            <motion.div
-                                key={slot.id}
-                                className={styles.flipCard}
-                                variants={cardVariants}
-                                whileHover={{ y: -6, scale: 1.015 }}
-                                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                                tabIndex={0}
-                            >
-                                <LogoFace client={slot.currentLogo} />
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                )}
-                </AnimatePresence>
+                <motion.div
+                    className={styles.grid}
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-50px" }}
+                >
+                    {slotsRef.current.slice(15, 30).map((slot, index) => (
+                        <motion.div
+                            key={slot.id}
+                            className={styles.flipCard}
+                            variants={cardVariants}
+                            tabIndex={0}
+                        >
+                            <LogoFace client={slot.currentLogo} index={index + 15} />
+                        </motion.div>
+                    ))}
+                </motion.div>
             </div>
         </section>
     );
