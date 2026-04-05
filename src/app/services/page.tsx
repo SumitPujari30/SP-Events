@@ -11,7 +11,7 @@ import styles from './services.module.css';
 import ServicesGrid from '@/components/ServicesGrid';
 
 gsap.registerPlugin(ScrollTrigger);
-
+//changes
 
 const LAYOUT_IMG = '/assets/Layout_page.png';
 
