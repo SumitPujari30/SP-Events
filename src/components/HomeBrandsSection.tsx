@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import styles from './HomeBrandsSection.module.css';
 
@@ -14,91 +14,97 @@ interface Props {
 }
 
 /**
- * Renders a single logo card.
+ * Vertical Marquee column.
  */
-function LogoCard({ brand, getImgSrc }: { brand: Brand; getImgSrc: (l?: string) => string }) {
-    return (
-        <div className={styles.logoItem}>
-            <Image
-                src={getImgSrc(brand.logo)}
-                alt={brand.name}
-                fill
-                className={styles.logoImage}
-            />
-        </div>
-    );
-}
-
-/**
- * Single horizontal marquee row.
- */
-function MarqueeRow({
-    list,
-    direction,
-    duration,
-    getImgSrc,
-}: {
-    list: Brand[];
-    direction: 'left' | 'right';
-    duration: number;
+function VerticalMarqueeColumn({ 
+    list, 
+    duration, 
+    reverse, 
+    getImgSrc 
+}: { 
+    list: Brand[]; 
+    duration: number; 
+    reverse?: boolean;
     getImgSrc: (l?: string) => string;
 }) {
-    const cards = list.map((brand, i) => (
-        <LogoCard key={i} brand={brand} getImgSrc={getImgSrc} />
-    ));
+    // Double the list for seamless vertical looping
+    const doubleList = useMemo(() => [...list, ...list], [list]);
 
     return (
-        <div className={styles.marqueeRowWrap}>
-            <div
-                className={`${styles.marqueeTrack} ${styles[direction]}`}
-                style={{
-                    '--marquee-duration': `${duration}s`,
-                } as React.CSSProperties}
+        <div className={styles.marqueeColumn}>
+            <div 
+                className={`${styles.marqueeTrack} ${reverse ? styles.reverse : ''}`}
+                style={{ '--duration': `${duration}s` } as React.CSSProperties}
             >
-                {/* Original set */}
-                <div className={styles.marqueeGroup}>
-                    {cards}
-                </div>
-                {/* Clone for seamless loop */}
-                <div className={styles.marqueeGroup} aria-hidden="true">
-                    {cards}
-                </div>
-                {/* Second clone for wider screens if needed */}
-                <div className={styles.marqueeGroup} aria-hidden="true">
-                    {cards}
-                </div>
+                {doubleList.map((brand, i) => (
+                    <div key={i} className={styles.logoItem}>
+                        <Image
+                            src={getImgSrc(brand.logo)}
+                            alt={brand.name}
+                            width={180} // Increased from 140 for larger impact
+                            height={120} // Increased from 80 for larger impact
+                            className={styles.logoImage}
+                            priority={i < 15}
+                        />
+                    </div>
+                ))}
             </div>
         </div>
     );
 }
 
 export default function HomeBrandsSection({ brands }: Props) {
-    // Use the first 22 brands to match the "22 logo layout" instruction exactly
-    const selectedBrands = React.useMemo(() => brands.slice(0, 22), [brands]);
-    
-    const rows = React.useMemo(() => [
-        selectedBrands.slice(0, 5),      // Row 1: 5 items
-        selectedBrands.slice(5, 11),     // Row 2: 6 items
-        selectedBrands.slice(11, 17),    // Row 3: 6 items
-        selectedBrands.slice(17, 22),    // Row 4: 5 items
-    ], [selectedBrands]);
+    // Divide brands into 3 columns for vertical marquee
+    const columns = useMemo(() => {
+        const brandsPerCol = Math.ceil(brands.length / 3);
+        return [
+            brands.slice(0, brandsPerCol),
+            brands.slice(brandsPerCol, brandsPerCol * 2),
+            brands.slice(brandsPerCol * 2),
+        ];
+    }, [brands]);
 
     const getImgSrc = useCallback((logo: string | undefined) => {
-        // User requested to use Layout_page.png for all logos
-        return '/assets/Layout_page.png';
+        if (!logo) return '/assets/Layout_page.png';
+        return `/assets/webp_client/${logo}`;
     }, []);
 
     return (
         <section className={styles.section}>
             <div className={styles.container}>
-                <h2 className={styles.sectionTitle}>Trusted By</h2>
                 
-                <div className={styles.marqueeContainer}>
-                    <MarqueeRow list={rows[0]} direction="left"  duration={30} getImgSrc={getImgSrc} />
-                    <MarqueeRow list={rows[1]} direction="right" duration={35} getImgSrc={getImgSrc} />
-                    <MarqueeRow list={rows[2]} direction="left"  duration={32} getImgSrc={getImgSrc} />
-                    <MarqueeRow list={rows[3]} direction="right" duration={38} getImgSrc={getImgSrc} />
+                {/* ▬▬▬ LEFT: BOLD TITLE (Refined for uniqueness) ▬▬▬ */}
+                <div className={styles.titleSide}>
+                    <h2 className={styles.mainTitle}>
+                        <span className={styles.titleWhite}>OUR PARTNERS IN</span>
+                        <span className={styles.titleAccent}>EXCELLENCE:</span>
+                        <span className={styles.titleWhite}>TRANSCENDING</span>
+                        <span className={styles.titleWhite}>BOUNDARIES TO</span>
+                        <span className={styles.titleAccent}>DELIVER MAGICAL</span>
+                        <span className={styles.titleWhite}>EXPERIENCES.</span>
+                    </h2>
                 </div>
+
+                {/* ▬▬▬ RIGHT: MULTI-COLUMN VERTICAL MARQUEE ▬▬▬ */}
+                <div className={styles.marqueeSide}>
+                    <VerticalMarqueeColumn 
+                        list={columns[0]} 
+                        duration={35} // Slightly faster given higher volume
+                        getImgSrc={getImgSrc} 
+                    />
+                    <VerticalMarqueeColumn 
+                        list={columns[1]} 
+                        duration={50} 
+                        reverse 
+                        getImgSrc={getImgSrc} 
+                    />
+                    <VerticalMarqueeColumn 
+                        list={columns[2]} 
+                        duration={45} 
+                        getImgSrc={getImgSrc} 
+                    />
+                </div>
+
             </div>
         </section>
     );

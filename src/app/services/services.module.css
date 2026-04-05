@@ -369,8 +369,8 @@
 .lightboxContent {
     position: relative;
     z-index: 2;
-    max-width: 85vw;
-    max-height: 85vh;
+    width: 80vw;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;

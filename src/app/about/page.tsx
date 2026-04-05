@@ -9,15 +9,30 @@ import Stats3DBackground from '@/components/Stats3DBackground';
 import styles from './about.module.css';
 
 const grassrootsImages = [
-    { url: '/assets/Layout_page.png', artist: 'Event Vibes' },
-    { url: '/assets/Layout_page.png', artist: 'Musical Night' },
-    { url: '/assets/Layout_page.png', artist: 'Corporate Gala' },
-    { url: '/assets/Layout_page.png', artist: 'DJ Performance' },
-    { url: '/assets/Layout_page.png', artist: 'Celebration' },
-    { url: '/assets/Layout_page.png', artist: 'Concert Hall' },
-    { url: '/assets/Layout_page.png', artist: 'Festival' },
-    { url: '/assets/Layout_page.png', artist: 'Crowd Concert' },
-    { url: '/assets/Layout_page.png', artist: 'Party Lights' },
+    { url: '/assets/grassroots/IMG_0350.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_0452.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_0491.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_0756.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_0968.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_1450.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_1660.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_1925.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_2033.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_2813.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_3468.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_3535.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_3970.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_4210.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_4838.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_5489.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_5560.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_6278.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_7610.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_8331.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_9034.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_9054.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_9056.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/IMG_9830.webp', artist: 'Grassroots' },
 ];
 
 const locations = [
@@ -42,6 +57,7 @@ export default function AboutPage() {
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
     const sliderRef = useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = useState(false); // only for UI styling if needed, logic is native
 
     const checkScroll = () => {
         if (sliderRef.current) {
@@ -53,29 +69,87 @@ export default function AboutPage() {
 
     const scrollLeft = () => {
         if (sliderRef.current) {
-            sliderRef.current.scrollBy({ left: -(window.innerWidth / 3), behavior: 'smooth' });
-            // scrollBy is async, checkScroll will be called by the scroll event listener
+            const { scrollLeft, scrollWidth } = sliderRef.current;
+            if (scrollLeft <= 10) {
+                // At the start, jump to the end
+                sliderRef.current.scrollTo({ left: scrollWidth, behavior: 'smooth' });
+            } else {
+                sliderRef.current.scrollBy({ left: -(window.innerWidth / 3), behavior: 'smooth' });
+            }
         }
     };
 
     const scrollRight = () => {
         if (sliderRef.current) {
-            sliderRef.current.scrollBy({ left: window.innerWidth / 3, behavior: 'smooth' });
+            const { scrollLeft, clientWidth, scrollWidth } = sliderRef.current;
+            if (scrollLeft + clientWidth >= scrollWidth - 10) {
+                sliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                sliderRef.current.scrollBy({ left: window.innerWidth / 3, behavior: 'smooth' });
+            }
         }
     };
 
     useEffect(() => {
         const slider = sliderRef.current;
-        if (slider) {
-            checkScroll(); // initial check
-            slider.addEventListener('scroll', checkScroll);
-            window.addEventListener('resize', checkScroll);
-        }
+        if (!slider) return;
+
+        let isDown = false;
+        let startPoint = 0;
+        let initialScroll = 0;
+        let rafId: number | null = null;
+
+        const handleDown = (e: MouseEvent) => {
+            isDown = true;
+            slider.classList.add(styles.grabbing);
+            startPoint = e.pageX - slider.offsetLeft;
+            initialScroll = slider.scrollLeft;
+            setIsDragging(true);
+        };
+
+        const handleUpOrLeave = () => {
+            isDown = false;
+            slider.classList.remove(styles.grabbing);
+            setIsDragging(false);
+            if (rafId) cancelAnimationFrame(rafId);
+        };
+
+        const handleMove = (e: MouseEvent) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startPoint) * 1.5; 
+            
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(() => {
+                slider.scrollLeft = initialScroll - walk;
+            });
+        };
+
+        slider.addEventListener('mousedown', handleDown);
+        slider.addEventListener('mouseleave', handleUpOrLeave);
+        slider.addEventListener('mouseup', handleUpOrLeave);
+        slider.addEventListener('mousemove', handleMove);
+
+        // Also add the scroll listener for UI updates (canScroll state)
+        const checkScroll = () => {
+            const { scrollLeft, scrollWidth, clientWidth } = slider;
+            setCanScrollLeft(scrollLeft > 5);
+            setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
+        };
+
+        slider.addEventListener('scroll', checkScroll);
+        window.addEventListener('resize', checkScroll);
+        checkScroll();
+
         return () => {
-            if (slider) {
-                slider.removeEventListener('scroll', checkScroll);
-                window.removeEventListener('resize', checkScroll);
-            }
+            slider.removeEventListener('mousedown', handleDown);
+            slider.removeEventListener('mouseleave', handleUpOrLeave);
+            slider.removeEventListener('mouseup', handleUpOrLeave);
+            slider.removeEventListener('mousemove', handleMove);
+            slider.removeEventListener('scroll', checkScroll);
+            window.removeEventListener('resize', checkScroll);
+            if (rafId) cancelAnimationFrame(rafId);
         };
     }, []);
 
@@ -99,7 +173,7 @@ export default function AboutPage() {
             <section className={styles.heroSection}>
                 <div className={styles.videoBg}>
                     <img
-                        src="/assets/Layout_page.png"
+                        src="/assets/webp_images/Corporate Events/Startup Dailogue 2024/_MAN4811.webp"
                         alt="About SP Events Hero"
                         className={styles.heroImage}
                     />
@@ -110,7 +184,7 @@ export default function AboutPage() {
                 {/* Scroll indicator only */}
                 <div className={styles.scrollIndicator}>
                     <div className={styles.scrollLine} />
-                    <span className={styles.scrollText}>SCROLL</span>
+                    <span className={styles.scrollText}></span>
                 </div>
             </section>
 
@@ -173,25 +247,26 @@ export default function AboutPage() {
                 {/* IMAGE SLIDER SECTION */}
                 <div className={styles.sliderSection}>
                     <button 
-                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnLeft} ${!canScrollLeft ? styles.disabled : ''}`} 
+                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnLeft}`} 
                         onClick={scrollLeft} 
-                        disabled={!canScrollLeft}
                         aria-label="Scroll Left"
                     >
                         <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
                     </button>
-                    <div className={styles.sliderTrack} ref={sliderRef}>
+                    <div 
+                        className={styles.sliderTrack} 
+                        ref={sliderRef}
+                    >
                         {/* Double array for seamless feel or single, since we have arrows single is fine */}
                         {grassrootsImages.map((img, i) => (
-                            <div key={i} className={styles.sliderItem}>
-                                <img src={img.url} alt={`Gallery ${i}`} />
+                            <div key={i} className={styles.sliderItem} draggable={false}>
+                                <img src={img.url} alt={`Gallery ${i}`} draggable={false} />
                             </div>
                         ))}
                     </div>
                     <button 
-                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnRight} ${!canScrollRight ? styles.disabled : ''}`} 
+                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnRight}`} 
                         onClick={scrollRight} 
-                        disabled={!canScrollRight}
                         aria-label="Scroll Right"
                     >
                         <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>

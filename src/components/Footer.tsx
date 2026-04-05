@@ -51,15 +51,14 @@ export default function Footer() {
                 <footer className={styles.footer}>
                     {/* Background Video */}
                     <div className={styles.videoContainer}>
-                        <iframe
+                        <video
                             className={styles.bgVideo}
-                            src="https://www.youtube.com/embed/cKyYZZRQG0Q?autoplay=1&mute=1&loop=1&playlist=cKyYZZRQG0Q&controls=0&showinfo=0&rel=0&iv_load_policy=3&disablekb=1"
-                            title="YouTube background video"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                        ></iframe>
+                            src="https://mnafgrlvsjuhbjenwwcg.supabase.co/storage/v1/object/public/services/VN20260405_180925.mp4"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                        />
                         <div className={styles.videoOverlay} />
                     </div>
 

@@ -296,6 +296,14 @@
     /* Hide scrollbar */
     -ms-overflow-style: none;
     scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+    will-change: scroll-position; /* GPU acceleration hint */
+}
+
+.sliderTrack.grabbing {
+    cursor: grabbing;
+    scroll-behavior: auto; /* Disable smoothing to make dragging responsive */
 }
 
 .sliderTrack::-webkit-scrollbar {
@@ -304,10 +312,17 @@
 
 .sliderItem {
     width: 33.333%; /* Show 3 images at a time on desktop */
-    aspect-ratio: 4/3;
+    aspect-ratio: 1 / 1; /* Modern square layout to prevent cutting taller subjects */
     flex-shrink: 0;
     position: relative;
     /* No gap or border */
+    pointer-events: none; /* Allows dragging through the images to the track */
+}
+
+/* Ensure common children are not draggable/selectable to prevent interference */
+.sliderItem img {
+    pointer-events: none;
+    -webkit-user-drag: none;
 }
 
 @media (max-width: 900px) {
@@ -326,6 +341,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 20%; /* Prioritize the upper part of the photo where faces are located */
     display: block;
 }
 
@@ -378,7 +394,7 @@
 .valuesSection {
     padding: 120px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background-image: url('/assets/Layout_page.png');
+    background-image: url('/assets/clean_luxury_bg.png');
     background-size: cover;
     background-position: center;
     position: relative;
