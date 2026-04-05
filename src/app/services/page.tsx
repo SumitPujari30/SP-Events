@@ -12,9 +12,7 @@ import ServicesGrid from '@/components/ServicesGrid';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ────────────────────────────────────────────
-   DATA
-   ──────────────────────────────────────────── */
+
 const LAYOUT_IMG = '/assets/Layout_page.png';
 
 import { services, type SubEvent, type ServiceCategory } from '@/data/servicesData';
