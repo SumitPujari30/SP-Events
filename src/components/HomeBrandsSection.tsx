@@ -75,14 +75,23 @@ export default function HomeBrandsSection({ brands }: Props) {
                 
                 {/* ▬▬▬ LEFT: BOLD TITLE (Refined for uniqueness) ▬▬▬ */}
                 <div className={styles.titleSide}>
+                    <div className={styles.headerGroup}>
+                        <h3 className={styles.preTitle}>Trusted By</h3>
+                        <div className={styles.underline} />
+                    </div>
+
                     <h2 className={styles.mainTitle}>
-                        <span className={styles.titleWhite}>OUR PARTNERS IN</span>
-                        <span className={styles.titleAccent}>EXCELLENCE:</span>
+                        <span className={styles.titleAccent}>OUR PARTNERS IN</span>
+                        <span className={styles.titleAccent}>EXCELLENCE <span style={{color:"white"}}>:</span></span>
                         <span className={styles.titleWhite}>TRANSCENDING</span>
                         <span className={styles.titleWhite}>BOUNDARIES TO</span>
-                        <span className={styles.titleAccent}>DELIVER MAGICAL</span>
+                        <span className={styles.titleWhite}>DELIVER MAGICAL</span>
                         <span className={styles.titleWhite}>EXPERIENCES.</span>
                     </h2>
+
+                    <div className={styles.subtextContainer}>
+                        <p className={styles.subtext}>DRIVEN BY INNOVATION · DEFINED BY EXCELLENCE</p>
+                    </div>
                 </div>
 
                 {/* ▬▬▬ RIGHT: MULTI-COLUMN VERTICAL MARQUEE ▬▬▬ */}

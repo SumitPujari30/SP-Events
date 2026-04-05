@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -37,6 +37,8 @@ const socials = [
 
 export default function Footer() {
     const sectionRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ['start end', 'end end'],
@@ -45,6 +47,15 @@ export default function Footer() {
     // The curtain stays stuck to the viewport as user scrolls, revealing the footer
     const curtainY = useTransform(scrollYProgress, [0.15, 1], ['0%', '-100%']);
 
+    // Ensure the background video autoplays on mount and after hard refresh
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.play().catch((err) => {
+                console.warn('Footer video autoplay failed:', err);
+            });
+        }
+    }, []);
+
     return (
         <div ref={sectionRef} className={styles.footerCurtainWrap}>
             <div className={styles.revealedFooterContent}>
@@ -52,12 +63,16 @@ export default function Footer() {
                     {/* Background Video */}
                     <div className={styles.videoContainer}>
                         <video
+                            ref={videoRef}
                             className={styles.bgVideo}
                             src="https://mnafgrlvsjuhbjenwwcg.supabase.co/storage/v1/object/public/services/VN20260405_180925.mp4"
                             autoPlay
                             muted
                             loop
                             playsInline
+                            preload="auto"
+                            crossOrigin="anonymous"
+                            style={{ opacity: 0.9 }}
                         />
                         <div className={styles.videoOverlay} />
                     </div>
@@ -67,13 +82,7 @@ export default function Footer() {
                 <AnimatedSection>
                     <div className={styles.grid}>
                         {/* Brand Column */}
-                        <motion.div 
-                            className={styles.brand}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                        >
+                        <motion.div className={styles.brand}>
                             <div className={styles.logoWrap}>
                                 <motion.div 
                                     whileHover={{ scale: 1.05 }}
@@ -96,16 +105,12 @@ export default function Footer() {
                                 With <span>precision, passion & perfection</span>
                             </div>
                             <div className={styles.socials}>
-                                {socials.map((s, i) => (
+                                {socials.map((s) => (
                                     <motion.a
                                         key={s.label}
                                         href={s.href}
                                         className={styles.socialIcon}
                                         aria-label={s.label}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.2 + i * 0.1 }}
                                         whileHover={{ y: -3, scale: 1.1 }}
                                         whileTap={{ scale: 0.95 }}
                                     >
@@ -116,23 +121,11 @@ export default function Footer() {
                         </motion.div>
 
                         {/* Quick Links */}
-                        <motion.div 
-                            className={styles.column}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }}
-                        >
+                        <motion.div className={styles.column}>
                             <h4 className={styles.columnTitle}>Quick Links</h4>
                             <ul className={styles.linkList}>
                                 {quickLinks.map((link, i) => (
-                                    <motion.li 
-                                        key={link.href}
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.3 + i * 0.1 }}
-                                    >
+                                    <motion.li key={link.href}>
                                         <Link href={link.href} className={styles.footerLink}>
                                             {link.label}
                                         </Link>
@@ -142,23 +135,11 @@ export default function Footer() {
                         </motion.div>
 
                         {/* Services */}
-                        <motion.div 
-                            className={styles.column}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
-                        >
+                        <motion.div className={styles.column}>
                             <h4 className={styles.columnTitle}>Services</h4>
                             <ul className={styles.linkList}>
                                 {servicesList.map((s, i) => (
-                                    <motion.li 
-                                        key={s.href}
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.4 + i * 0.1 }}
-                                    >
+                                    <motion.li key={s.href}>
                                         <Link href={s.href} className={styles.footerLink}>
                                             {s.label}
                                         </Link>
@@ -168,55 +149,31 @@ export default function Footer() {
                         </motion.div>
 
                         {/* Contact */}
-                        <motion.div 
-                            className={styles.column}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
-                        >
+                        <motion.div className={styles.column}>
                             <h4 className={styles.columnTitle}>
                                 <Link href="/contact" className={styles.headerLink}>
                                     Get In Touch
                                 </Link>
                             </h4>
                             <ul className={styles.contactList}>
-                                <motion.li 
-                                    className={styles.contactItem}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.6 }}
-                                >
+                                <motion.li className={styles.contactItem}>
                                     <HiLocationMarker className={styles.contactIcon} />
                                     <a 
                                         href="https://maps.app.goo.gl/hp1zdTG3crNiHLLD9" 
                                         target="_blank" 
-                                        rel="noopener noreferrer"
+                                rel="noopener noreferrer"
                                         className={styles.contactLink}
                                     >
                                         Marvel Artiza, Vidya Nagar<br/>Hubli &mdash; 580029, Karnataka
                                     </a>
                                 </motion.li>
-                                <motion.li 
-                                    className={styles.contactItem}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.7 }}
-                                >
+                                <motion.li className={styles.contactItem}>
                                     <HiPhone className={styles.contactIcon} />
                                     <a href="tel:+917411863227" className={styles.contactLink}>
                                         +91 74118 63227
                                     </a>
                                 </motion.li>
-                                <motion.li 
-                                    className={styles.contactItem}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.8 }}
-                                >
+                                <motion.li className={styles.contactItem}>
                                     <HiMail className={styles.contactIcon} />
                                     <a href="mailto:thespevents@gmail.com" className={styles.contactLink}>
                                         thespevents@gmail.com

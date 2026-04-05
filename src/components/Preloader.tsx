@@ -74,47 +74,80 @@ export default function Preloader() {
                 >
                     <motion.div
                         className={styles.logoWrap}
-                        // Phase 1: Fade in with a massive gold neon glow
-                        // Phase 2: Glow settles down but LEAVES a subtle gold backlight
-                        // so the black "P" does not blend into the dark background.
-                        initial={{
-                            opacity: 0,
-                            scale: 0.9,
-                            filter: 'drop-shadow(0 0 0px rgba(201, 168, 76, 0))'
-                        }}
-                        animate={{
-                            opacity: [0, 1, 1, 1],
-                            scale: [0.9, 1, 1, 1.05],
-                            filter: [
-                                // Start: Invisible
-                                'drop-shadow(0 0 0px rgba(201, 168, 76, 0))',
-                                // 1s in: Massive neon gold glow outline
-                                'drop-shadow(0 0 50px rgba(201, 168, 76, 1))',
-                                // 2.5s in: Settles down to a permanent, crisp gold backlight
-                                // This backlight ensures the Black 'P' and text is cut out from the dark purple bg
-                                'drop-shadow(0 0 12px rgba(201, 168, 76, 0.8))',
-                                // End
-                                'drop-shadow(0 0 12px rgba(201, 168, 76, 0.8))'
-                            ]
-                        }}
-                        transition={{
-                            duration: 3.5,
-                            times: [0, 0.2, 0.6, 1],
-                            ease: 'easeInOut'
-                        }}
-                        exit={{ opacity: 0, scale: 1.2 }}
+                        initial={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+                        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        {!logoError ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                                src="/assets/Sp_loaading.png"
-                                alt="SP Events"
-                                className={styles.logoImage}
-                                onError={() => setLogoError(true)}
+                        {/* 1. The Skeletal Blueprint (Subtle Outline) */}
+                        <img
+                            src="/assets/loading/empty_logo.png"
+                            alt="SP Events Outline"
+                            className={styles.emptyLogo}
+                        />
+
+                        {/* 2. The Cinematic Forge Layer */}
+                        <div className={styles.forgeContainer}>
+                            
+                            {/* Primary Ultra-Fast Sweep (Whie-Hot Energy) */}
+                            <motion.div 
+                                className={styles.lightSweepMain}
+                                initial={{ x: '-150%' }}
+                                animate={{ x: '150%' }}
+                                transition={{ 
+                                    duration: 1.4, 
+                                    ease: [0.85, 0, 0.15, 1],
+                                    delay: 0.6
+                                }}
                             />
-                        ) : (
-                            <span className={styles.fallbackText}>SP</span>
-                        )}
+
+                            {/* Secondary Metallic Glint (Pulling Back) */}
+                            <motion.div 
+                                className={styles.lightSweepGlint}
+                                initial={{ x: '150%', opacity: 0 }}
+                                animate={{ x: '-150%', opacity: [0, 1, 0] }}
+                                transition={{ 
+                                    duration: 2.5, 
+                                    ease: 'easeInOut',
+                                    delay: 1.4
+                                }}
+                            />
+
+                            {/* Razor-Sharp Golden Reveal */}
+                            <motion.div
+                                className={styles.filledLogoWrap}
+                                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                transition={{ 
+                                    duration: 1.4, 
+                                    ease: [0.85, 0, 0.15, 1],
+                                    delay: 0.6
+                                }}
+                            >
+                                <img
+                                    src="/assets/loading/filled_logo.png"
+                                    alt="SP Events Golden"
+                                    className={styles.filledLogo}
+                                />
+                            </motion.div>
+                        </div>
+
+                        {/* 3. Subtitle Fade-In (Rockstar Signature) */}
+                        <motion.div
+                            className={styles.subtitleWrap}
+                            initial={{ opacity: 0, letterSpacing: '12px' }}
+                            animate={{ opacity: 1, letterSpacing: '6px' }}
+                            transition={{ duration: 1.5, delay: 1.8, ease: 'easeOut' }}
+                        >
+                            <span className={styles.subtitleText}>CREATING MAGIC</span>
+                        </motion.div>
+
+                        {/* 4. Final 'Impact' Bloom */}
+                        <motion.div
+                            className={styles.finalImpactBloom}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: [0, 0.4, 0], scale: [0.8, 1.2, 1.5] }}
+                            transition={{ duration: 1.5, delay: 2.2 }}
+                        />
                     </motion.div>
                 </motion.div>
             )}

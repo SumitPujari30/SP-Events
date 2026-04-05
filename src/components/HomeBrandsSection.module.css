@@ -35,13 +35,13 @@
 }
 
 .mainTitle {
-    font-family: var(--font-display); /* Luxury Playfair Display */
-    font-size: clamp(2rem, 4.5vw, 4.2rem); 
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 3.5rem); /* Slightly smaller for balance */
     font-weight: 800;
     line-height: 1.1;
     text-transform: uppercase;
-    letter-spacing: -1px;
-    margin: 0;
+    letter-spacing: -2px;
+    margin: 30px 0;
 }
 
 .titleAccent {
@@ -52,6 +52,46 @@
 .titleWhite {
     color: var(--color-text);
     display: block;
+}
+
+/* ▬▬▬ NEW HEADER & UNDERLINE ▬▬▬ */
+.headerGroup {
+    margin-bottom: 20px;
+}
+
+.preTitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+    font-weight: 500;
+    color: var(--color-white);
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.underline {
+    height: 4px;
+    width: 140px;
+    background: var(--color-gold);
+    margin-top: 8px;
+    border-radius: 2px;
+}
+
+/* ▬▬▬ SUBTEXT TAGLINE ▬▬▬ */
+.subtextContainer {
+    margin-top: 50px;
+    padding: 12px 20px;
+    border-left: 2px solid var(--color-gold);
+}
+
+.subtext {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-gold);
+    margin: 0;
+    opacity: 0.9;
 }
 
 /* ▬▬▬ RIGHT SIDE: VERTICAL MARQUEE ▬▬▬ */

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
+import Preloader from "@/components/Preloader";
 
 export const metadata: Metadata = {
   title: "The SP Events | Creating Magical Experiences",
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Preloader />
         <CustomCursor />
         <SmoothScroll>
           <Navbar />

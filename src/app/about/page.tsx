@@ -99,12 +99,20 @@ export default function AboutPage() {
         let initialScroll = 0;
         let rafId: number | null = null;
 
-        const handleDown = (e: MouseEvent) => {
+        const handleDown = (e: MouseEvent | TouchEvent) => {
             isDown = true;
             slider.classList.add(styles.grabbing);
-            startPoint = e.pageX - slider.offsetLeft;
+            
+            // Handle both mouse and touch pageX
+            const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
+            startPoint = pageX - slider.offsetLeft;
             initialScroll = slider.scrollLeft;
             setIsDragging(true);
+
+            // Prevent text selection/drag starts on desktop
+            if (!('touches' in e)) {
+                // Keep default only for buttons if needed, but slider track is safe
+            }
         };
 
         const handleUpOrLeave = () => {
@@ -114,11 +122,16 @@ export default function AboutPage() {
             if (rafId) cancelAnimationFrame(rafId);
         };
 
-        const handleMove = (e: MouseEvent) => {
+        const handleMove = (e: MouseEvent | TouchEvent) => {
             if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startPoint) * 1.5; 
+            
+            // Allow vertical scrolling on touch devices while dragging horizontally? 
+            // Usually not on a horizontal slider, so we prevent default
+            if (e.cancelable) e.preventDefault();
+
+            const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
+            const x = pageX - slider.offsetLeft;
+            const walk = (x - startPoint) * 1.5; // Drag speed multiplier
             
             if (rafId) cancelAnimationFrame(rafId);
             rafId = requestAnimationFrame(() => {
@@ -126,12 +139,18 @@ export default function AboutPage() {
             });
         };
 
+        // Mouse Events
         slider.addEventListener('mousedown', handleDown);
         slider.addEventListener('mouseleave', handleUpOrLeave);
         slider.addEventListener('mouseup', handleUpOrLeave);
         slider.addEventListener('mousemove', handleMove);
 
-        // Also add the scroll listener for UI updates (canScroll state)
+        // Touch Events
+        slider.addEventListener('touchstart', handleDown, { passive: false });
+        slider.addEventListener('touchend', handleUpOrLeave);
+        slider.addEventListener('touchmove', handleMove, { passive: false });
+
+        // Scroll listener for UI state (navigation arrows)
         const checkScroll = () => {
             const { scrollLeft, scrollWidth, clientWidth } = slider;
             setCanScrollLeft(scrollLeft > 5);
@@ -147,6 +166,9 @@ export default function AboutPage() {
             slider.removeEventListener('mouseleave', handleUpOrLeave);
             slider.removeEventListener('mouseup', handleUpOrLeave);
             slider.removeEventListener('mousemove', handleMove);
+            slider.removeEventListener('touchstart', handleDown);
+            slider.removeEventListener('touchend', handleUpOrLeave);
+            slider.removeEventListener('touchmove', handleMove);
             slider.removeEventListener('scroll', checkScroll);
             window.removeEventListener('resize', checkScroll);
             if (rafId) cancelAnimationFrame(rafId);
@@ -173,7 +195,7 @@ export default function AboutPage() {
             <section className={styles.heroSection}>
                 <div className={styles.videoBg}>
                     <img
-                        src="/assets/webp_images/Corporate Events/Startup Dailogue 2024/_MAN4811.webp"
+                        src="/assets/Layout_page.png"
                         alt="About SP Events Hero"
                         className={styles.heroImage}
                     />
@@ -181,7 +203,7 @@ export default function AboutPage() {
                     <div className={styles.videoOverlayGradient} />
                 </div>
 
-                {/* Scroll indicator only */}
+                {/* Scroll indicator with simple line */}
                 <div className={styles.scrollIndicator}>
                     <div className={styles.scrollLine} />
                     <span className={styles.scrollText}></span>
@@ -193,12 +215,21 @@ export default function AboutPage() {
                 <AnimatedSection delay={0.2}>
                     <h2 className={styles.pioneeringTitle}>A Method to the Madness That is <span style={{ color: 'var(--color-accent-gold, #d4af37)', fontStyle: 'italic' }}>Creating Magic</span></h2>
                     <div className={styles.pioneeringTextBlocks}>
-                        <p>
-                            At THE SP EVENTS, we design luxury, innovative, and impact-driven experiences that leave a lasting impression. Blending creativity with strategic thinking and flawless execution, we transform ideas into extraordinary events. Every detail is approached with precision and originality, ensuring each experience—whether intimate or large-scale—is delivered with elegance, seamless coordination, and a commitment to excellence.
-                        </p>
-                        <p>
-                            Founded in 2022, THE SP EVENTS was created to redefine event management through a more professional, reliable, and innovation-led approach. With a growing foundation of experience and a passion for high-quality execution, we continue to evolve as a trusted partner, crafting memorable events that resonate long after they are experienced.
-                        </p>
+                        <div className={styles.pioneeringBlock}>
+                            <div className={styles.pioneeringLabel}>THE MAGIC</div>
+                            <p>
+                                At THE SP EVENTS, we design luxury, innovative, and impact-driven experiences that leave a lasting impression. Blending creativity with strategic thinking and flawless execution, we transform ideas into extraordinary events. Every detail is approached with precision and originality, ensuring each experience whether intimate or large scale is delivered with elegance, seamless coordination, and a commitment to excellence.
+                            </p>
+                            <div className={styles.pioneeringVerticalLine} />
+                        </div>
+                        
+                        <div className={styles.pioneeringBlock}>
+                            <div className={styles.pioneeringLabel}>THE METHOD</div>
+                            <p>
+                                Founded in 2022, THE SP EVENTS was created to redefine event management through a more professional, reliable, and innovation-led approach. With a growing foundation of experience and a passion for high-quality execution, we continue to evolve as a trusted partner, crafting memorable events that resonate long after they are experienced.
+                            </p>
+                            <div className={styles.pioneeringVerticalLine} />
+                        </div>
                     </div>
                 </AnimatedSection>
             </section>
@@ -222,30 +253,37 @@ export default function AboutPage() {
                     >
 
                         {/* FOUNDER'S WORDS CARD */}
-                        <motion.div 
-                            className={styles.founderCard}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                        >
+                        <div className={styles.grassrootsCard}>
+                        <div className={styles.founderPhotoContainer}>
+                            <div className={styles.founderHalo} />
                             <div className={styles.founderPhotoWrap}>
-                                <img src="/assets/samarth.png" alt="Founder" className={styles.founderPhoto} />
+                                <img src="/assets/samarth.png" alt="Samarth U Patangi" className={styles.founderPhoto} />
                             </div>
-                            <div className={styles.founderContent}>
-                                <div className={styles.founderEyebrow}>Founder&apos;s Words</div>
-                                <div className={styles.founderQuote}>
-                                    We aim to create experiences that transcend the ordinary. Every event is a canvas where we paint unforgettable memories for our clients.
-                                </div>
-                                <div className={styles.founderName}>Samarth U Patangi</div>
-                                <div className={styles.founderRole}>Founder & Visionary</div>
+                        </div>
+                        
+                        <div className={styles.founderContent}>
+                            <div className={styles.bgQuoteIcon}>“</div>
+                            <div className={styles.founderEyebrow}>VISIONARY PERSPECTIVE</div>
+                            <blockquote className={styles.founderQuote}>
+                                <span style={{color:"var(--color-accent-gold)", fontSize:"25px",fontFamily:"'Playfair Display', serif"}}>....</span>We aim to create experiences that transcend the ordinary. Every event is a canvas where we paint unforgettable memories for our clients."
+                            </blockquote>
+                            <div className={styles.founderInfo}>
+                                <h4 className={styles.founderName}>
+                                    Samarth U Patangi
+                                    <div className={styles.signatureUnderline} />
+                                </h4>
+                                <p className={styles.founderRole}>Founder & Visionary</p>
                             </div>
-                        </motion.div>
+                        </div>
+                    </div>
                     </motion.div>
                 </div>
 
                 {/* IMAGE SLIDER SECTION */}
                 <div className={styles.sliderSection}>
+                    <AnimatedSection delay={0.1}>
+                        <h2 className={styles.sliderTitle}>Memorable <span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>Moments</span></h2>
+                    </AnimatedSection>
                     <button 
                         className={`${styles.sliderNavBtn} ${styles.sliderNavBtnLeft}`} 
                         onClick={scrollLeft} 
@@ -285,27 +323,27 @@ export default function AboutPage() {
                             <svg width="100%" height="100%" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
                                 <defs>
                                     <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stopColor="rgba(255,255,255,0.05)" />
-                                        <stop offset="50%" stopColor="rgba(255,255,255,0.3)" />
-                                        <stop offset="100%" stopColor="rgba(255,255,255,0.6)" />
+                                        <stop offset="0%" stopColor="rgba(212, 175, 55, 0.05)" />
+                                        <stop offset="50%" stopColor="rgba(212, 175, 55, 0.3)" />
+                                        <stop offset="100%" stopColor="rgba(212, 175, 55, 0.6)" />
                                     </linearGradient>
 
                                     <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                                         <stop offset="0%" stopColor="transparent" />
-                                        <stop offset="50%" stopColor="rgba(255,255,255,0.9)" />
+                                        <stop offset="50%" stopColor="rgba(212, 175, 55, 0.95)" />
                                         <stop offset="100%" stopColor="transparent" />
                                     </linearGradient>
 
                                     <linearGradient id="textShimmer" x1="-100%" y1="0%" x2="0%" y2="0%">
                                         <stop offset="0%" stopColor="white" />
-                                        <stop offset="50%" stopColor="#89f7fe" />
+                                        <stop offset="50%" stopColor="#d4af37" />
                                         <stop offset="100%" stopColor="white" />
                                         <animate attributeName="x1" from="-100%" to="100%" dur="4s" repeatCount="indefinite" />
                                         <animate attributeName="x2" from="0%" to="200%" dur="4s" repeatCount="indefinite" />
                                     </linearGradient>
 
                                     <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto">
-                                        <polygon points="0 0, 12 6, 0 12" fill="rgba(255,255,255,0.8)" />
+                                        <polygon points="0 0, 12 6, 0 12" fill="rgba(212, 175, 55, 0.9)" />
                                     </marker>
 
                                     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -334,11 +372,11 @@ export default function AboutPage() {
                                 ))}
                                 {/* Organic Curved Paths (Quadratic Bezier) - Compacted for 600px height */}
                                 {[
-                                    { id: 'vp1', d: "M 200 300 Q 600 20 1550 10", delay: 0 },
-                                    { id: 'vp2', d: "M 200 300 Q 750 150 1550 160", delay: 0.2 },
-                                    { id: 'vp3', d: "M 200 300 Q 800 300 1550 300.1", delay: 0.4 },
-                                    { id: 'vp4', d: "M 200 300 Q 750 450 1550 440", delay: 0.6 },
-                                    { id: 'vp5', d: "M 200 300 Q 600 580 1550 590", delay: 0.8 }
+                                    { id: 'vp1', d: "M 200 300 Q 600 30 1550 20", delay: 0 },
+                                    { id: 'vp2', d: "M 200 300 Q 750 160 1550 170", delay: 0.2 },
+                                    { id: 'vp3', d: "M 200 300 Q 800 315 1550 310", delay: 0.4 },
+                                    { id: 'vp4', d: "M 200 300 Q 750 440 1550 430", delay: 0.6 },
+                                    { id: 'vp5', d: "M 200 300 Q 600 570 1550 580", delay: 0.8 }
                                 ].map((path, idx) => (
                                     <g key={path.id}>
                                         {/* Base Organic Path */}
@@ -354,14 +392,14 @@ export default function AboutPage() {
                                         {/* Electric Flow Animation Layer */}
                                         <motion.path
                                             d={path.d}
-                                            stroke="rgba(255,255,255,0.6)" strokeWidth="2" fill="none"
+                                            stroke="rgba(212, 175, 55, 0.4)" strokeWidth="2" fill="none"
                                             strokeDasharray="60 180"
                                             animate={{ strokeDashoffset: [0, -1000] }}
                                             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                                         />
 
                                         {/* Traveling Energy Pulse Ping */}
-                                        <motion.circle r="5" fill="white" filter="url(#glow)">
+                                        <motion.circle r="5" fill="#d4af37" filter="url(#glow)">
                                             <animateMotion
                                                 path={path.d}
                                                 dur={`${5 + idx}s`}
@@ -371,7 +409,7 @@ export default function AboutPage() {
                                             />
                                         </motion.circle>
 
-                                        {/* Arrowhead at the end of each curved path */}
+                                        {/* Arrowhead at the end of eac h curved path */}
                                         <use href={`#${path.id}`} stroke="none" markerEnd="url(#arrowhead)" />
                                     </g>
                                 ))}
@@ -380,8 +418,8 @@ export default function AboutPage() {
                                 <g style={{ pointerEvents: 'none' }}>
                                     {[
                                         { id: 'vp1', text: '01 RELIABILITY', offset: '55%' },
-                                        { id: 'vp2', text: '02 CONSISTENT QUALITY', offset: '58%' },
-                                        { id: 'vp3', text: '03 EQUALITY', offset: '62%' },
+                                        { id: 'vp2', text: '02 EQUALITY', offset: '58%' },
+                                        { id: 'vp3', text: '03 CONSISTENCY', offset: '62%' },
                                         { id: 'vp4', text: '04 RESPECT', offset: '58%' },
                                         { id: 'vp5', text: '05 TEAMWORK', offset: '55%' }
                                     ].map((item, i) => (
@@ -404,17 +442,17 @@ export default function AboutPage() {
                                 >
                                     {/* Breathing Outer Ring - LARGER SCALE */}
                                     <motion.circle
-                                        cx="200" cy="300" r="220"
+                                        cx="200" cy="300" r="180"
                                         fill="none" stroke="white" strokeWidth="2"
-                                        animate={{ r: [220, 240, 220], opacity: [0.5, 0, 0.5] }}
+                                        animate={{ r: [180, 200, 180], opacity: [0.5, 0, 0.5] }}
                                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                     />
-                                    <circle cx="200" cy="300" r="220" fill="rgba(8,8,8,0.9)" stroke="white" strokeWidth="8" filter="url(#glow)" />
+                                    <circle cx="200" cy="300" r="180" fill="rgba(8,8,8,0.9)" stroke="white" strokeWidth="8" filter="url(#glow)" />
 
-                                    <text x="200" y="275" fill="white" fontSize="74" fontWeight="950" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: '3px' }}>
+                                    <text x="200" y="275" fill="white" fontSize="64" fontWeight="950" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: '3px' }}>
                                         OUR
                                     </text>
-                                    <text x="200" y="365" fill="white" fontSize="74" fontWeight="950" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: '3px' }}>
+                                    <text x="200" y="350" fill="white" fontSize="64" fontWeight="950" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: '3px' }}>
                                         VALUES
                                     </text>
                                 </motion.g>
@@ -436,15 +474,24 @@ export default function AboutPage() {
                             <AnimatedSection key={i} delay={i * 0.15}>
                                 <div className={styles.locationCard}>
                                     <h3 className={styles.locationType}>{loc.type}</h3>
-                                    <div className={styles.locationCardImgWrap}>
-                                        <img src={loc.img} alt={loc.city} className={styles.locationCardImg} />
-                                        <h2 className={styles.locationCity}>{loc.city}</h2>
-                                    </div>
-                                    <div className={styles.locationDetails}>
-                                        <p>{loc.address}</p>
-                                    </div>
-                                    <a href={loc.mapLink} target="_blank" rel="noopener noreferrer" className={styles.locationBtn}>
-                                        View Location
+                                    <a 
+                                        href={loc.mapLink} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className={styles.locationLinkWrapper}
+                                    >
+                                        <div className={styles.locationCardImgWrap}>
+                                            <img src={loc.img} alt={loc.city} className={styles.locationCardImg} />
+                                            <div className={styles.locationOverlayContent}>
+                                                <h2 className={styles.locationCity}>{loc.city}</h2>
+                                                <div className={styles.locationDetails}>
+                                                    <p>{loc.address}</p>
+                                                    <div className={styles.locationBtnSmall}>
+                                                        View Location →
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </a>
                                 </div>
                             </AnimatedSection>
