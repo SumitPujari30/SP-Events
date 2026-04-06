@@ -177,6 +177,35 @@ export default function Preloader() {
         }
     }, [minTimeElapsed, pageLoaded]);
 
+    // Prevent body and smooth scroll while loading
+    useEffect(() => {
+        let pollTimer: NodeJS.Timeout;
+
+        const lockScroll = () => {
+            const lenis = (window as any).__lenis;
+            if (loading) {
+                document.body.style.overflow = 'hidden';
+                if (lenis) {
+                    lenis.stop();
+                } else {
+                    // Poll for Lenis if it's not yet initialized
+                    pollTimer = setTimeout(lockScroll, 100);
+                }
+            } else {
+                document.body.style.overflow = '';
+                lenis?.start();
+            }
+        };
+
+        lockScroll();
+
+        return () => {
+            clearTimeout(pollTimer);
+            document.body.style.overflow = '';
+            (window as any).__lenis?.start();
+        };
+    }, [loading]);
+
     return (
         <AnimatePresence>
             {loading && (
