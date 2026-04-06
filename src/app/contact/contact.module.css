@@ -1,227 +1,437 @@
-/* ===== CONTACT PAGE — Premium Dark/Gold ===== */
+/* ============================================
+   CONTACT PAGE — Premium Celestial Redesign
+   Centered Layout · Glassmorphism 2.0 · Depth
+   ============================================ */
 
-.contactGrid {
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 56px;
-  align-items: start;
+.mainWrapper {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow: hidden;
 }
 
-/* Form Card */
-.formCard {
-  background: rgba(10, 5, 20, 0.7);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 24px;
-  padding: 56px 48px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+.ambientBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* --- Hero Section --- */
+.hero {
+  position: relative;
+  padding: 160px 0 120px;
+  text-align: center;
+  z-index: 1;
+  perspective: 1000px;
+}
+
+.magicalGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: var(--radius-full);
+  color: var(--color-gold-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.magicWord {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    90deg, 
+    var(--color-gold) 0%, 
+    #FFF 25%, 
+    var(--color-gold) 50%, 
+    #FFF 75%, 
+    var(--color-gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+  text-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- Form Section (Centered) --- */
+.formSection {
+  position: relative;
+  padding: 40px 0 100px;
+  z-index: 2;
+}
+
+.centeredContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.glassContainer {
+  background: rgba(28, 25, 53, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl);
+  padding: 64px;
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: hidden;
 }
 
-.formCard::before {
+.glassContainer::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: var(--gradient-gold);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  opacity: 0.5;
 }
 
-.formTitle {
+.formHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.formHeader h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.5vw, 2rem);
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--color-white);
+  font-size: 2rem;
+  margin-bottom: 12px;
 }
 
-.formSubtitle {
+.formHeader p {
+  color: var(--color-text-muted);
   font-size: 0.95rem;
-  color: rgba(0, 0, 0, 0.5);
-  margin-bottom: 36px;
-  line-height: 1.6;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 24px;
 }
 
-.formRow {
+.inputGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 24px;
 }
 
-/* Success message */
-.successMsg {
-  text-align: center;
-  padding: 60px 20px;
+.inputGroup {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.elegantInput, .elegantSelect, .elegantTextarea {
+  width: 100%;
+  background: rgba(13, 11, 30, 0.3);
+  border: none;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 16px 0;
+  font-size: 1rem;
+  color: var(--color-text);
+  transition: all var(--transition-base);
+  outline: none;
+}
+
+.elegantSelect {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A84C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-size: 1em;
+}
+
+.elegantSelect option {
+  background: var(--color-bg-dark);
+  color: var(--color-text);
+}
+
+.elegantTextarea {
+  min-height: 120px;
+  resize: none;
+  overflow: hidden;
+}
+
+.inputFocusBlur {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-gold);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px var(--color-gold);
+}
+
+.elegantInput:focus ~ .inputFocusBlur,
+.elegantSelect:focus ~ .inputFocusBlur,
+.elegantTextarea:focus ~ .inputFocusBlur {
+  width: 100%;
+}
+
+.elegantInput:focus, .elegantSelect:focus, .elegantTextarea:focus {
+  border-bottom-color: transparent;
+}
+
+/* Submit Button */
+.submitBtn {
+  margin-top: 24px;
+  width: 100%;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-gold);
+  color: var(--color-bg-dark);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 12px;
+  transition: all var(--transition-base);
+  box-shadow: 0 10px 30px rgba(201, 168, 76, 0.2);
+}
+
+.submitBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(201, 168, 76, 0.4);
+}
+
+.submitBtn svg {
+  transition: transform var(--transition-base);
+}
+
+.submitBtn:hover svg {
+  transform: translateX(5px);
+}
+
+/* --- Success State --- */
+.successMsg {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.successRing {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.successRing::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 50%;
+  animation: pulseRotate 4s linear infinite;
+}
+
+@keyframes pulseRotate {
+  0% { transform: rotate(0) scale(1); opacity: 0.3; }
+  50% { transform: rotate(180deg) scale(1.1); opacity: 0.6; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.3; }
 }
 
 .successIcon {
-  width: 68px;
-  height: 68px;
-  border-radius: var(--radius-full);
-  background: var(--gradient-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: var(--color-black);
-  box-shadow: var(--shadow-gold);
+  font-size: 2.5rem;
+  color: var(--color-gold);
 }
 
-.successMsg h3 {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-white);
+/* --- Info Section --- */
+.infoSection {
+  padding: 80px 0;
+  background: rgba(8, 6, 26, 0.4);
 }
 
-.successMsg p {
-  font-size: 0.95rem;
-  color: rgba(0, 0, 0, 0.6);
-  max-width: 300px;
-  line-height: 1.7;
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 80px;
 }
 
-/* Info Column */
-.infoColumn {
+.contactCard {
+  background: rgba(28, 25, 53, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  position: sticky;
-  top: 120px;
-}
-
-.infoCard {
-  background: rgba(10, 5, 20, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-  padding: 24px 20px;
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  transition: all var(--transition-base);
+  align-items: center;
+  text-align: center;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  transition: background 0.4s var(--transition-base), border-color 0.4s var(--transition-base), box-shadow 0.4s var(--transition-base);
 }
 
-.infoCard::after {
-  content: '';
+.cardGlow {
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--gradient-gold);
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(201, 168, 76, 0.1), transparent 70%);
   opacity: 0;
-  transition: opacity var(--transition-base);
+  transition: opacity 0.3s;
 }
 
-.infoCard:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-.infoCard:hover::after {
+.contactCard:hover .cardGlow {
   opacity: 1;
 }
 
-.infoIcon {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--radius-md);
-  background: var(--color-gold-muted);
+.contactCard:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  background: rgba(28, 25, 53, 0.7);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+}
+
+.methodIcon {
+  width: 64px;
+  height: 64px;
+  background: rgba(201, 168, 76, 0.1);
   border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-gold);
-  flex-shrink: 0;
+  margin-bottom: 24px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s var(--transition-base), color 0.4s var(--transition-base);
+}
+
+.contactCard:hover .methodIcon {
+  background: var(--gradient-gold);
+  color: var(--color-bg-dark);
+  transform: rotateY(360deg);
+}
+
+.methodDetails h4 {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-gold-light);
+  margin-bottom: 12px;
+}
+
+.methodValue {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--color-white);
+}
+
+.methodLabel {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* --- Social Connect --- */
+.socialConnect {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 60px;
+}
+
+.socialText {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-gold-light);
+  margin-bottom: 24px;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.socialIcon {
+  font-size: 1.5rem;
+  color: var(--color-text-muted);
   transition: all var(--transition-base);
 }
 
-.infoCard:hover .infoIcon {
-  background: var(--gradient-gold);
-  color: var(--color-black);
-}
-
-.infoCard h4 {
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  margin-bottom: 8px;
-}
-
-.infoCard p {
-  font-size: 0.88rem;
-  color: rgba(250, 254, 255, 0.952);
-  line-height: 1.65;
-}
-
-/* Map Card */
-.mapCard {
-  background: rgba(10, 5, 20, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-}
-
-.mapPlaceholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 52px 24px;
-  text-align: center;
-  color: var(--color-gold);
-  gap: 10px;
-}
-
-.mapPlaceholder p {
-  font-size: 0.9rem;
-  color: rgba(244, 248, 250, 0.989);
-  line-height: 1.6;
-}
-
-/* Responsive */
+/* --- Responsive --- */
 @media (max-width: 1024px) {
-  .contactGrid {
+  .infoGrid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
-
-  .infoColumn {
-    position: relative;
-    top: 0;
-  }
-
-  .formCard {
-    padding: 40px 32px;
+  
+  .glassContainer {
+    padding: 48px 32px;
   }
 }
 
 @media (max-width: 600px) {
-  .formRow {
+  .inputGrid {
     grid-template-columns: 1fr;
-  }
-
-  .formCard {
-    padding: 32px 24px;
   }
 }
