@@ -123,7 +123,7 @@ export default function HomePage() {
 
       // ── Category Header Arrival ──────────────────────────────
       gsap.fromTo(
-        [`.${styles.catBadge}`, `.${styles.catTitle}`],
+        [`.${styles.catBadge}`, `.${styles.uniqueTitle}`],
         { opacity: 0, y: 30 },
         {
           opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out',
@@ -264,15 +264,11 @@ export default function HomePage() {
           3. OUR SERVICES — 3x2 Grid View
       ════════════════════════════════════════════════════════ */}
       <section className={styles.categoriesSection}>
-        <div className="container" style={{ paddingBottom: '40px' }}>
+        <div style={{ width: '100%', margin: '0 auto', paddingBottom: '40px' }}>
           {/* Main heading */}
           <div className={styles.catHeader}>
-            <div className={styles.catBadge}>
-              <span className={styles.catBadgeDiamond}>✧</span>
-              OUR EXPERTISE
-            </div>
-            <h2 className={styles.catTitle} style={{ fontSize: 'clamp(1.5rem, 4.3vw, 5.5rem)', lineHeight: '1.2', letterSpacing: '-0.01em' }}>
-              Corporate Event Management <span className={styles.catTitleGold}>Company in India</span>
+            <h2 className={styles.uniqueTitle}>
+              Corporate Event Management Company in India
             </h2>
           </div>
         </div>

@@ -429,6 +429,48 @@
   margin-top: 10px;
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.uniqueTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 3.7vw, 6.5rem);
+  font-weight: 900;
+  text-align: center;
+  white-space: nowrap;
+  line-height: normal;
+  letter-spacing: -0.015em;
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+  overflow: visible; /* Ensure we see it even if it slightly overflows */
+  
+  /* Premium Design: Shimmering Gradient */
+  background: linear-gradient(
+    90deg, 
+    var(--color-text) 0%, 
+    var(--color-gold-light) 25%, 
+    var(--color-text) 50%, 
+    var(--color-gold-light) 75%, 
+    var(--color-text) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+  
+  /* Depth and Elevation */
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 0 10px rgba(226, 201, 126, 0.1));
+}
+
 .catTitleGold {
   color: var(--color-accent-gold);
   font-style: italic;
