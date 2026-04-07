@@ -263,9 +263,9 @@ export default function AboutPage() {
                         
                         <div className={styles.founderContent}>
                             <div className={styles.bgQuoteIcon}>“</div>
-                            <div className={styles.founderEyebrow}>VISIONARY PERSPECTIVE</div>
+                            <div className={styles.founderEyebrow}>CLIENT PHILOSOPHY</div>
                             <blockquote className={styles.founderQuote}>
-                                <span style={{color:"var(--color-accent-gold)", fontSize:"25px",fontFamily:"'Playfair Display', serif"}}>....</span>We aim to create experiences that transcend the ordinary. Every event is a canvas where we paint unforgettable memories for our clients."
+                                We have been entrusted by renowned and prosperous companies, as well as emerging disruptors who are making waves in their industries. Our mission is to create extraordinary experiences that inspire and leave a lasting impact."
                             </blockquote>
                             <div className={styles.founderInfo}>
                                 <h4 className={styles.founderName}>
@@ -281,9 +281,6 @@ export default function AboutPage() {
 
                 {/* IMAGE SLIDER SECTION */}
                 <div className={styles.sliderSection}>
-                    <AnimatedSection delay={0.1}>
-                        <h2 className={styles.sliderTitle}>Memorable <span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>Moments</span></h2>
-                    </AnimatedSection>
                     <button 
                         className={`${styles.sliderNavBtn} ${styles.sliderNavBtnLeft}`} 
                         onClick={scrollLeft} 
@@ -417,11 +414,11 @@ export default function AboutPage() {
                                 {/* Curved Value Labels - Pushed out even further for BIG circle (Offset 55-60%) */}
                                 <g style={{ pointerEvents: 'none' }}>
                                     {[
-                                        { id: 'vp1', text: '01 RELIABILITY', offset: '55%' },
-                                        { id: 'vp2', text: '02 EQUALITY', offset: '58%' },
-                                        { id: 'vp3', text: '03 CONSISTENCY', offset: '62%' },
-                                        { id: 'vp4', text: '04 RESPECT', offset: '58%' },
-                                        { id: 'vp5', text: '05 TEAMWORK', offset: '55%' }
+                                        { id: 'vp1', text: '01 EXCELLENCE', offset: '55%' },
+                                        { id: 'vp2', text: '02 CREATIVITY', offset: '58%' },
+                                        { id: 'vp3', text: '03 PRECISION', offset: '62%' },
+                                        { id: 'vp4', text: '04 RELIABILITY', offset: '58%' },
+                                        { id: 'vp5', text: '05 COMMITMENT', offset: '55%' }
                                     ].map((item, i) => (
                                         <motion.text key={i} fill="url(#textShimmer)" fontSize="36" fontWeight="950"
                                             initial={{ opacity: 0, scale: 0.8 }}

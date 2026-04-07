@@ -52,9 +52,9 @@ const eventCategories = [
 // ─── Stats Data ──────────────────────────────────────────────
 const stats = [
   { value: 3, suffix: "+", label: "Years of Excellence" },
-  { value: 300, suffix: "+", label: "Happy Clients" },
-  { value: 1500, suffix: "+", label: "Magic Experiences" },
-  { value: 30, suffix: "+", label: "Professionals" },
+  { value: 315, suffix: "+", label: "Repeat Clients" },
+  { value: 1450, suffix: "+", label: "Magic Experiences" },
+  { value: 15, suffix: "+", label: "Professional Folks" },
   { value: 150, suffix: "+", label: "Events Per Year" },
 ];
 
@@ -234,14 +234,15 @@ export default function HomePage() {
           <div className={styles.expRight}>
             <div className={styles.expStoryBlock}>
               <p className={`${styles.expText} ${styles.expTextFade}`}>
-                At <strong className={styles.expTextHighlight}>The SP Events</strong>, ideas transform into immersive realities. We fuse bold creativity with microscopic attention to detail and razor-sharp execution. For us, the magic lies in orchestrating the perfect balance between the grand vision and the smallest touchpoints.
+                <strong className={styles.expTextHighlight}>THE SP EVENTS</strong> is an emerging event management and experiential production company known for delivering impactful and professionally executed events. Founded in 2022 by <strong className={styles.expTextHighlight}>Mr. Samarth U. Patangi</strong>, the company is built on the core pillars of enterprise, excellence, and innovation.
               </p>
 
               <div className={`${styles.expDivider} ${styles.expTextFade}`} />
 
               <p className={`${styles.expTextSecondary} ${styles.expTextFade}`}>
-                Born from over 4+ years of industry mastery, our founding team recognized a profound need for a truly professional, innovation-driven event management partner. We don&apos;t just plan events; we engineer environments that resonate.
+                Since its inception, THE SP EVENTS has built a trusted reputation across North Karnataka by delivering high-quality, creative, and seamless experiences in entertainment, sports, corporate events, and weddings.
               </p>
+              
             </div>
 
             <div className={`${styles.expAction} ${styles.expTextFade}`}>
@@ -333,14 +334,16 @@ export default function HomePage() {
           </div>
           <div className={styles.founderContent}>
             <h2 className={styles.founderQuote}>
-              "Perfection isn&apos;t optional — it&apos;s the standard."
+              "Great events are not measured by scale, but by the impact they leave behind."
             </h2>
             <div className={styles.founderNameBlock}>
-              <h3 className={styles.founderName}>SAMARTH U PATANGI</h3>
+              <h3 className={styles.founderName}>SAMARTH UDAYKUMAR PATANGI</h3>
               <p className={styles.founderTitle}>FOUNDER & MANAGING DIRECTOR</p>
             </div>
             <p className={styles.founderText}>
-              Mr. Samarth U Patangi is the visionary Founder and Managing Director of THE SP EVENTS, a growing event management and experiential production company known for delivering impactful and professionally executed events. An engineer by education and an entrepreneur by passion, he built the company with a clear vision to transform ideas into unforgettable experiences.
+              A true North Karnataka native at heart, Mr. Samarth U. Patangi is the Founder & Managing Director of THE SP EVENTS — an emerging event management and experiential production company known for delivering impactful and professionally executed events.
+              <br /><br />
+              Known for his precision, creativity, and execution excellence, he ensures every event reflects quality and purpose. Under his leadership, THE SP EVENTS is rapidly evolving into one of the fastest-growing and most trusted event companies in the region.
             </p>
           </div>
         </div>

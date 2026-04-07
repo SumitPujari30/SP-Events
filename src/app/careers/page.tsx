@@ -57,123 +57,6 @@ function StageLightHero() {
 /* =============================================
    SECTION 2: BUILT DIFFERENT
    ============================================= */
-function BuiltDifferentSection() {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const glowX = useSpring(mouseX, { damping: 25, stiffness: 120 });
-    const glowY = useSpring(mouseY, { damping: 25, stiffness: 120 });
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        mouseX.set(e.clientX - rect.left);
-        mouseY.set(e.clientY - rect.top);
-    };
-
-    const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
-    const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
-
-    const items = [
-        {
-            label: 'Relentless Collaboration',
-            body: "We don't just plan events; we architect experiences. From massive stadium builds to intimate luxury galas, bold ideas live here.",
-            sub: "We foster an environment where your wildest concepts are funded, prototyped, and perfectly executed alongside master technicians, designers, and logistics experts.",
-        },
-        {
-            label: 'Crafting the Extraordinary',
-            body: "Every role here carries consequence. Every decision shapes something thousands of people will witness and remember for years to come.",
-            sub: "You won't find ordinary ambitions at SP Events. You'll find a relentless drive to outdo the last spectacle and architect the next one.",
-        },
-    ];
-
-    return (
-        <section
-            ref={sectionRef}
-            className={styles.builtSection}
-            onMouseMove={handleMouseMove}
-        >
-            {/* Parallax background image */}
-            <motion.div className={styles.builtBg} style={{ y: bgY }}>
-                <img
-                    src="https://images.unsplash.com/photo-1540039155732-d6928e469557?w=1800&q=85"
-                    alt="Event spectacle"
-                />
-                <div className={styles.builtBgOverlay} />
-            </motion.div>
-
-            {/* Mouse-tracking gold glow */}
-            <motion.div
-                className={styles.builtGlow}
-                style={{ x: glowX, y: glowY }}
-            />
-
-            {/* Floating glass editorial plate */}
-            <div className={styles.builtPlate}>
-                <span className={styles.builtLabel}>Built Different</span>
-                <h2 className={styles.builtTitle}>
-                    Where Bold Ideas<br />
-                    <em>Find Their Stage</em>
-                </h2>
-                <div className={styles.builtDivider} />
-                {items.map((item, i) => (
-                    <motion.div
-                        key={i}
-                        className={styles.builtItem}
-                        initial={{ opacity: 0, x: -24 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: '-60px' }}
-                        transition={{ duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                        <h3 className={styles.builtItemTitle}>{item.label}</h3>
-                        <p className={styles.builtItemBody}>{item.body}</p>
-                        <p className={styles.builtItemSub}>{item.sub}</p>
-                    </motion.div>
-                ))}
-                <motion.a
-                    href="#apply-form"
-                    className={styles.joinBtn}
-                    style={{ marginTop: '32px', alignSelf: 'flex-start' }}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.97 }}
-                >
-                    Join the Crew
-                    <span style={{ marginLeft: '10px', display: 'inline-block', transition: 'transform 0.3s' }}>→</span>
-                </motion.a>
-            </div>
-
-            {/* Center image */}
-            <div className={styles.builtCenterImg}>
-                <img src="/assets/Layout_page.png" alt="SP Events Experience" />
-            </div>
-
-            {/* Right side: floating stat cards */}
-            <div className={styles.builtRight}>
-                {[
-                    { value: '200+', label: 'Events Orchestrated' },
-                    { value: '40+', label: 'Cities Worldwide' },
-                    { value: '98%', label: 'Client Satisfaction' },
-                ].map((stat, i) => (
-                    <motion.div
-                        key={i}
-                        className={styles.builtStat}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: '-40px' }}
-                        transition={{ duration: 0.7, delay: 0.2 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                        <span className={styles.builtStatValue}>{stat.value}</span>
-                        <span className={styles.builtStatLabel}>{stat.label}</span>
-                    </motion.div>
-                ))}
-            </div>
-        </section>
-    );
-}
 
 /* =============================================
    SECTION 3: TEAM PHOTOS
@@ -362,7 +245,6 @@ export default function CareersPage() {
         <main className={styles.pageWrap}>
             <AmbientBackground />
             <StageLightHero />
-            <BuiltDifferentSection />
             <TeamPhotosSection />
             <CultureSection />
             <ApplicationFormSection />

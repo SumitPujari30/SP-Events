@@ -191,7 +191,7 @@ function SplitTextHero() {
                         
                     </h2>
                     <p className={styles.heroSubtitleText}>
-                        Elevating Partnerships
+                        WHO WE WORK WITH
                     </p>
                 </motion.div>
 

@@ -279,6 +279,58 @@
   line-height: 1.8;
 }
 
+.expValuesWrapper {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+.expValuesLabel {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.expValuesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.expValueItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 40px;
+  transition: all 0.4s ease;
+}
+
+.expValueItem:hover {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: var(--color-accent-gold);
+  transform: translateY(-2px);
+}
+
+.expValueDot {
+  font-size: 0.8rem;
+  color: var(--color-accent-gold);
+}
+
+.expValueText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
 .expButton {
   display: inline-flex;
   align-items: center;

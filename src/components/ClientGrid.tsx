@@ -205,7 +205,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    Trusted Partnerships
+                    Elite Partnerships
                 </motion.span>
                 <motion.h2
                     className={styles.title}
@@ -214,7 +214,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                     viewport={{ once: true }}
                     transition={{ delay: 0.05 }}
                 >
-                    Trusted <span style={{color: "var(--color-gold)"}}>By</span>
+                    WHO WE <span style={{color: "var(--color-gold)"}}>WORK</span> WITH
                 </motion.h2>
                 <motion.p
                     className={styles.subtitle}
@@ -223,7 +223,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
                 >
-                    Brands that trust us to architect their most important moments
+                    Trusted by leading brands and organizations, we take pride in building strong partnerships and delivering experiences that consistently exceed expectations.
                 </motion.p>
             </div>
 
