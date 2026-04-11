@@ -227,7 +227,7 @@ export default function ServicesPage() {
                                         <Image
                                             src={ev.image}
                                             alt={ev.title}
-                                            width={600}
+                                            width={800}
                                             height={450}
                                             className={styles.eventCardImg}
                                             loading="lazy"

@@ -275,7 +275,7 @@ export default function Preloader() {
                                 </svg>
 
                         <div ref={subtitleRef} className={styles.subtitleWrap}>
-                            <span className={styles.subtitleText}>CREATING MAGIC</span>
+                            <span className={styles.subtitleText}>THE SP-EVENTS</span>
                         </div>
 
                         <div ref={bloomRef} className={styles.finalImpactBloom} />

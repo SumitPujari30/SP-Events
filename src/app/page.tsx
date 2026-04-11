@@ -162,6 +162,27 @@ export default function HomePage() {
           scrollTrigger: { trigger: `.${styles.statsGrid}`, start: 'top 85%' },
         }
       );
+
+      // ── Founder Section Cinematic Reveal ─────────────────────
+      gsap.fromTo(
+        `.${styles.founderCard}`,
+        { opacity: 0, y: 100, scale: 0.95, rotationX: 5 },
+        {
+          opacity: 1, y: 0, scale: 1, rotationX: 0,
+          duration: 1.8, ease: 'power4.out',
+          scrollTrigger: { trigger: `.${styles.founderSection}`, start: 'top 80%' },
+        }
+      );
+
+      gsap.fromTo(
+        [`.${styles.founderImageWrapper}`, `.${styles.founderQuote}`, `.${styles.founderNameBlock}`, `.${styles.founderText}`],
+        { opacity: 0, x: -20 },
+        {
+          opacity: 1, x: 0,
+          duration: 1.2, stagger: 0.15, delay: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: `.${styles.founderSection}`, start: 'top 80%' },
+        }
+      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -242,7 +263,7 @@ export default function HomePage() {
               <p className={`${styles.expTextSecondary} ${styles.expTextFade}`}>
                 Since its inception, THE SP EVENTS has built a trusted reputation across North Karnataka by delivering high-quality, creative, and seamless experiences in entertainment, sports, corporate events, and weddings.
               </p>
-              
+
             </div>
 
             <div className={`${styles.expAction} ${styles.expTextFade}`}>
@@ -273,9 +294,9 @@ export default function HomePage() {
           </div>
         </div>
 
-        <ServicesGrid 
-          categories={eventCategories} 
-          onCategoryClick={(index) => router.push(`/services#v=events&c=${index}`)} 
+        <ServicesGrid
+          categories={eventCategories}
+          onCategoryClick={(index) => router.push(`/services#v=events&c=${index}`)}
         />
       </section>
 
@@ -324,13 +345,16 @@ export default function HomePage() {
           5.5 FOUNDER SECTION
       ════════════════════════════════════════════════════════ */}
       <section className={styles.founderSection}>
+        <div className={styles.founderSpotlight} />
+
         <div className={styles.founderCard}>
           <div className={styles.founderImageWrapper}>
             <img src="/assets/samarth.png" alt="Samarth U Patangi" className={styles.founderImage} />
           </div>
           <div className={styles.founderContent}>
+            <div className={styles.quoteIcon}>"</div>
             <h2 className={styles.founderQuote}>
-              "Great events are not measured by scale, but by the impact they leave behind."
+              Great events are not measured by scale, but by the impact they leave behind.
             </h2>
             <div className={styles.founderNameBlock}>
               <h3 className={styles.founderName}>SAMARTH UDAYKUMAR PATANGI</h3>

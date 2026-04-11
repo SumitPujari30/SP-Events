@@ -28,9 +28,9 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-1",
                 "title": "12 Vijayavani Eductaion Expo 2024",
-                "image": "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_2133.webp",
+                "image": "/assets/corporate_cover.jpeg",
                 "allImages": [
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_2133.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3602.webp",
                     "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3602.webp",
                     "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3606.webp",
                     "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3869.webp",
@@ -52,7 +52,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-2",
                 "title": "16 Startup Gravity 2023",
-                "image": "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0837.webp",
+                "image": "/assets/corporate_cover.jpeg",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0837.webp",
                     "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0844.webp",
@@ -91,7 +91,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-3",
                 "title": "aROGYA HABBA",
-                "image": "/assets/webp_images/Corporate Events/aROGYA HABBA/01.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/aROGYA HABBA/01.webp",
                     "/assets/webp_images/Corporate Events/aROGYA HABBA/=========HAR_6332.webp",
@@ -108,7 +108,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-4",
                 "title": "BIS MANOK MAHOSTAV",
-                "image": "/assets/webp_images/Corporate Events/BIS MANOK MAHOSTAV/SDDS1864.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/BIS MANOK MAHOSTAV/SDDS1864.webp",
                     "/assets/webp_images/Corporate Events/BIS MANOK MAHOSTAV/SDDS1866.webp",
@@ -143,7 +143,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-5",
                 "title": "BIS STAKEHOLDERS CONCLAVE",
-                "image": "/assets/webp_images/Corporate Events/BIS STAKEHOLDERS CONCLAVE/SK_05336.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/BIS STAKEHOLDERS CONCLAVE/SK_05336.webp",
                     "/assets/webp_images/Corporate Events/BIS STAKEHOLDERS CONCLAVE/SK_05341.webp",
@@ -163,7 +163,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-6",
                 "title": "CORTEVA AGRISCIENCE HOSPET",
-                "image": "/assets/webp_images/Corporate Events/CORTEVA AGRISCIENCE HOSPET/IMG_9542.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/CORTEVA AGRISCIENCE HOSPET/IMG_9542.webp",
                     "/assets/webp_images/Corporate Events/CORTEVA AGRISCIENCE HOSPET/IMG_9551.webp",
@@ -186,7 +186,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-7",
                 "title": "Corteva Agriscience Sindhanur",
-                "image": "/assets/webp_images/Corporate Events/Corteva Agriscience Sindhanur/584396508_18025411097784343_6127028549881090905_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Corteva Agriscience Sindhanur/584396508_18025411097784343_6127028549881090905_n.webp",
                     "/assets/webp_images/Corporate Events/Corteva Agriscience Sindhanur/585906214_18025411952784343_4803475946939065477_n.webp",
@@ -214,7 +214,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-8",
                 "title": "Deveopment dailgue 2024",
-                "image": "/assets/webp_images/Corporate Events/Deveopment dailgue 2024/DJI_0395 copy.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Deveopment dailgue 2024/DJI_0395 copy.webp",
                     "/assets/webp_images/Corporate Events/Deveopment dailgue 2024/DSC_4079.webp",
@@ -250,7 +250,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-9",
                 "title": "Evening with legends",
-                "image": "/assets/webp_images/Corporate Events/Evening with legends/DJI_0403 copy.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Evening with legends/DJI_0403 copy.webp",
                     "/assets/webp_images/Corporate Events/Evening with legends/DJI_0405 copy.webp",
@@ -288,7 +288,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-10",
                 "title": "Hodek plant 3",
-                "image": "/assets/webp_images/Corporate Events/Hodek plant 3/517115720_18009648107784343_8689202822224037429_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Hodek plant 3/517115720_18009648107784343_8689202822224037429_n.webp",
                     "/assets/webp_images/Corporate Events/Hodek plant 3/517671843_18009648749784343_4548510873422404300_n.webp",
@@ -308,7 +308,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-11",
                 "title": "HP TELECOM SAMWAAD",
-                "image": "/assets/webp_images/Corporate Events/HP TELECOM SAMWAAD/DSC01332.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/HP TELECOM SAMWAAD/DSC01332.webp",
                     "/assets/webp_images/Corporate Events/HP TELECOM SAMWAAD/DSC01339.webp",
@@ -333,7 +333,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-12",
                 "title": "IIIT DHARWAD HR CONCLAVE",
-                "image": "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482669173_17994986414784343_7085092992373466725_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482669173_17994986414784343_7085092992373466725_n.webp",
                     "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482741738_17994985829784343_3720765909315366395_n.webp",
@@ -357,7 +357,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-13",
                 "title": "IIT Dharwad nirmala sitharaman",
-                "image": "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/589425590_18027067862784343_4392061256232260283_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/589425590_18027067862784343_4392061256232260283_n.webp",
                     "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591122213_18027067826784343_6964502594823969748_n.webp",
@@ -374,7 +374,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-14",
                 "title": "Inner wheel club hubballi conference",
-                "image": "/assets/webp_images/Corporate Events/Inner wheel club hubballi conference/SDDS0735.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Inner wheel club hubballi conference/SDDS0735.webp",
                     "/assets/webp_images/Corporate Events/Inner wheel club hubballi conference/SDDS0736.webp",
@@ -432,7 +432,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-15",
                 "title": "Kapicon doctore conference",
-                "image": "/assets/webp_images/Corporate Events/Kapicon doctore conference/503409217_18008070905784343_4776555041454837162_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Kapicon doctore conference/503409217_18008070905784343_4776555041454837162_n.webp",
                     "/assets/webp_images/Corporate Events/Kapicon doctore conference/504020152_18008070947784343_2988769216872609698_n.webp",
@@ -450,7 +450,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-16",
                 "title": "KARNATAKA STATE SPICE DEVEOPMENT",
-                "image": "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3692.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3692.webp",
                     "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3702.webp",
@@ -463,7 +463,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-17",
                 "title": "kle bba samhiti 2k25",
-                "image": "/assets/webp_images/Corporate Events/kle bba samhiti 2k25/503576164_18006295421784343_6407398025665671216_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/kle bba samhiti 2k25/503576164_18006295421784343_6407398025665671216_n.webp",
                     "/assets/webp_images/Corporate Events/kle bba samhiti 2k25/503698961_18006295211784343_686181233065744304_n.webp",
@@ -484,7 +484,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-18",
                 "title": "KLE M R SAKHARE ALUMINI MEET",
-                "image": "/assets/webp_images/Corporate Events/KLE M R SAKHARE ALUMINI MEET/SDDS0773.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/KLE M R SAKHARE ALUMINI MEET/SDDS0773.webp",
                     "/assets/webp_images/Corporate Events/KLE M R SAKHARE ALUMINI MEET/SDDS0791.webp",
@@ -520,7 +520,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-20",
                 "title": "Sriramlu Event",
-                "image": "/assets/webp_images/Corporate Events/Sriramlu Event/IMG-6859.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Sriramlu Event/IMG-6859.webp",
                     "/assets/webp_images/Corporate Events/Sriramlu Event/IMG-6860.webp",
@@ -546,7 +546,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-21",
                 "title": "Startup Dailogue 2024",
-                "image": "/assets/webp_images/Corporate Events/Startup Dailogue 2024/DSC_6613.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Startup Dailogue 2024/DSC_6613.webp",
                     "/assets/webp_images/Corporate Events/Startup Dailogue 2024/DSC_6709.webp",
@@ -567,7 +567,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-22",
                 "title": "Startup dailogue 2025",
-                "image": "/assets/webp_images/Corporate Events/Startup dailogue 2025/473920720_1877581732981080_6983658011088004937_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Startup dailogue 2025/473920720_1877581732981080_6983658011088004937_n.webp",
                     "/assets/webp_images/Corporate Events/Startup dailogue 2025/650964261_17917831068126797_5482659852724961435_n.webp",
@@ -587,7 +587,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-23",
                 "title": "Tiecon hubli 2023",
-                "image": "/assets/webp_images/Corporate Events/Tiecon hubli 2023/IMG_8796.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Tiecon hubli 2023/IMG_8796.webp",
                     "/assets/webp_images/Corporate Events/Tiecon hubli 2023/SDDS0568.webp",
@@ -618,7 +618,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-1",
                 "title": "14 H K Patil Book launch Event at KUD Dharwad 2024",
-                "image": "/assets/webp_images/Special Events/14 H K Patil Book launch Event at KUD Dharwad 2024/0J0A3567.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Special Events/14 H K Patil Book launch Event at KUD Dharwad 2024/0J0A3567.webp",
                     "/assets/webp_images/Special Events/14 H K Patil Book launch Event at KUD Dharwad 2024/0J0A3577.webp",
@@ -644,7 +644,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-2",
                 "title": "15 Stonish Paul Birthday Party (Paul's Group) 2024",
-                "image": "/assets/webp_images/Special Events/15 Stonish Paul Birthday Party (Paul's Group) 2024/0C7A5062.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Special Events/15 Stonish Paul Birthday Party (Paul's Group) 2024/0C7A5062.webp",
                     "/assets/webp_images/Special Events/15 Stonish Paul Birthday Party (Paul's Group) 2024/0C7A5065.webp",
@@ -680,7 +680,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-3",
                 "title": "CM Basavaraj Bommai Ji Event",
-                "image": "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/19b051c5-dfca-4109-89d8-5f4f724fc4b0.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/19b051c5-dfca-4109-89d8-5f4f724fc4b0.webp",
                     "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_1917.webp",
@@ -696,7 +696,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-4",
                 "title": "INORBIT MALL",
-                "image": "/assets/webp_images/Special Events/INORBIT MALL/SDDS2083.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Special Events/INORBIT MALL/SDDS2083.webp",
                     "/assets/webp_images/Special Events/INORBIT MALL/SDDS2085.webp",
@@ -758,7 +758,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-5",
                 "title": "KARNATAKA SPECTUALAR AGNIHOTRA",
-                "image": "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497126765_18002651462784343_8901075842888327536_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497126765_18002651462784343_8901075842888327536_n.webp",
                     "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497208205_18002638367784343_1894064317270576739_n.webp",
@@ -781,7 +781,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-6",
                 "title": "kle bca kalakrithi",
-                "image": "/assets/webp_images/Special Events/kle bca kalakrithi/648375374_18037161497784343_3525234589367610834_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Special Events/kle bca kalakrithi/648375374_18037161497784343_3525234589367610834_n.webp",
                     "/assets/webp_images/Special Events/kle bca kalakrithi/648391593_18037162679784343_4813549932538975276_n.webp",
@@ -800,7 +800,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-7",
                 "title": "NaMo Drone DiDi",
-                "image": "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0106.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0106.webp",
                     "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0122.webp",
@@ -821,7 +821,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-8",
                 "title": "PM NARENDRA MODI VISIT TO BAILHONGAL",
-                "image": "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/7013745e-7be6-4a95-8b04-172f8d772bda.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/7013745e-7be6-4a95-8b04-172f8d772bda.webp",
                     "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/bailhongal.webp",
@@ -837,7 +837,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-9",
                 "title": "Rajeshwary orion park",
-                "image": "/assets/webp_images/Special Events/Rajeshwary orion park/625883264_18033635882784343_178115886791441533_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Special Events/Rajeshwary orion park/625883264_18033635882784343_178115886791441533_n.webp",
                     "/assets/webp_images/Special Events/Rajeshwary orion park/625962421_18033635924784343_848150425619685241_n.webp",
@@ -868,7 +868,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-1",
                 "title": "ARROW LAUNCH EVENT",
-                "image": "/assets/webp_images/Launch Events/ARROW LAUNCH EVENT/_MAN1965.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/ARROW LAUNCH EVENT/_MAN1965.webp",
                     "/assets/webp_images/Launch Events/ARROW LAUNCH EVENT/_MAN1966.webp",
@@ -888,7 +888,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-2",
                 "title": "Corteva Agriscience LAunch Event",
-                "image": "/assets/webp_images/Launch Events/Corteva Agriscience LAunch Event/584396508_18025411097784343_6127028549881090905_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/Corteva Agriscience LAunch Event/584396508_18025411097784343_6127028549881090905_n.webp",
                     "/assets/webp_images/Launch Events/Corteva Agriscience LAunch Event/585906214_18025411952784343_4803475946939065477_n.webp",
@@ -916,7 +916,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-3",
                 "title": "CRAVE CAFE LAUNCH",
-                "image": "/assets/webp_images/Launch Events/CRAVE CAFE LAUNCH/C4018.00_00_14_12.Still002.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/CRAVE CAFE LAUNCH/C4018.00_00_14_12.Still002.webp",
                     "/assets/webp_images/Launch Events/CRAVE CAFE LAUNCH/C4018.00_00_16_00.Still005.webp",
@@ -927,7 +927,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-4",
                 "title": "Eltu Mutha Film Audio launch",
-                "image": "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/552638524_18018609950784343_661527463270855573_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/552638524_18018609950784343_661527463270855573_n.webp",
                     "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/552692095_18018611408784343_3165154730889915559_n.webp",
@@ -943,7 +943,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-5",
                 "title": "Eskay Silk N Sarees",
-                "image": "/assets/webp_images/Launch Events/Eskay Silk N Sarees/1V9A7898.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/Eskay Silk N Sarees/1V9A7898.webp",
                     "/assets/webp_images/Launch Events/Eskay Silk N Sarees/1V9A8080.webp",
@@ -962,7 +962,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-6",
                 "title": "Hodek Plant 3",
-                "image": "/assets/webp_images/Launch Events/Hodek Plant 3/517115720_18009648107784343_8689202822224037429_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/Hodek Plant 3/517115720_18009648107784343_8689202822224037429_n.webp",
                     "/assets/webp_images/Launch Events/Hodek Plant 3/517671843_18009648749784343_4548510873422404300_n.webp",
@@ -982,7 +982,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-7",
                 "title": "Rajeshwary orion park",
-                "image": "/assets/webp_images/Launch Events/Rajeshwary orion park/625883264_18033635882784343_178115886791441533_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/Rajeshwary orion park/625883264_18033635882784343_178115886791441533_n.webp",
                     "/assets/webp_images/Launch Events/Rajeshwary orion park/625962421_18033635924784343_848150425619685241_n.webp",
@@ -1003,7 +1003,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-8",
                 "title": "sulthan daimonds & gold bijapur",
-                "image": "/assets/webp_images/Launch Events/sulthan daimonds & gold bijapur/632539371_18035110157784343_7587638532988367136_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/sulthan daimonds & gold bijapur/632539371_18035110157784343_7587638532988367136_n.webp",
                     "/assets/webp_images/Launch Events/sulthan daimonds & gold bijapur/632639616_18035111186784343_2868302189071665495_n.webp",
@@ -1022,7 +1022,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-9",
                 "title": "Sulthan Daimonds & Gold hubli",
-                "image": "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508484082_18006924140784343_7177194595607986231_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508484082_18006924140784343_7177194595607986231_n.webp",
                     "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508566985_18006924158784343_8861070879208268381_n.webp",
@@ -1042,7 +1042,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-10",
                 "title": "Toyota Hillix Launch Event 2023",
-                "image": "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.54 PM (1).webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.54 PM (1).webp",
                     "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.54 PM.webp",
@@ -1057,7 +1057,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-11",
                 "title": "vOLVO C40 LAUNCH & PROMO EVENT",
-                "image": "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8088.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8088.webp",
                     "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8097.webp",
@@ -1092,7 +1092,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-1",
                 "title": "10 KLE M R Sakhare Annual Day Event",
-                "image": "/assets/webp_images/Music Events/10 KLE M R Sakhare Annual Day Event/7a561c88-6c51-491d-a4cd-4127b9fdea61.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/10 KLE M R Sakhare Annual Day Event/7a561c88-6c51-491d-a4cd-4127b9fdea61.webp",
                     "/assets/webp_images/Music Events/10 KLE M R Sakhare Annual Day Event/ddd234f3-c552-4491-a0a1-6de407757b9f.webp",
@@ -1118,7 +1118,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-2",
                 "title": "9 Sundari Udaya Utsava 2019 Event",
-                "image": "/assets/webp_images/Music Events/9 Sundari Udaya Utsava 2019 Event/1.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/9 Sundari Udaya Utsava 2019 Event/1.webp",
                     "/assets/webp_images/Music Events/9 Sundari Udaya Utsava 2019 Event/2.webp",
@@ -1141,7 +1141,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-3",
                 "title": "B N KHOT SCHOOL",
-                "image": "/assets/webp_images/Music Events/B N KHOT SCHOOL/581209668_18024906497784343_2439407105231250475_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/B N KHOT SCHOOL/581209668_18024906497784343_2439407105231250475_n.webp",
                     "/assets/webp_images/Music Events/B N KHOT SCHOOL/582847961_18024906551784343_3401178003575715727_n.webp",
@@ -1162,7 +1162,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-4",
                 "title": "BALLYS CASINO",
-                "image": "/assets/webp_images/Music Events/BALLYS CASINO/Bally's Casino.00_00_03_21.Still002.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/BALLYS CASINO/Bally's Casino.00_00_03_21.Still002.webp",
                     "/assets/webp_images/Music Events/BALLYS CASINO/Bally's Casino.00_00_06_03.Still014.webp",
@@ -1203,7 +1203,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-5",
                 "title": "Emiway Bantai Concert 2018",
-                "image": "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/1.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/1.webp",
                     "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/2.webp",
@@ -1214,7 +1214,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-6",
                 "title": "Evening with legends at Infosys 2023",
-                "image": "/assets/webp_images/Music Events/Evening with legends at Infosys 2023/1.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/Evening with legends at Infosys 2023/1.webp",
                     "/assets/webp_images/Music Events/Evening with legends at Infosys 2023/10.webp",
@@ -1232,7 +1232,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-7",
                 "title": "Global Karatagi School, Koppal 2019",
-                "image": "/assets/webp_images/Music Events/Global Karatagi School, Koppal 2019/1.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/Global Karatagi School, Koppal 2019/1.webp",
                     "/assets/webp_images/Music Events/Global Karatagi School, Koppal 2019/10.webp",
@@ -1259,7 +1259,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-8",
                 "title": "Hubballi Ugadi Utsava",
-                "image": "/assets/webp_images/Music Events/Hubballi Ugadi Utsava/1.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/Hubballi Ugadi Utsava/1.webp",
                     "/assets/webp_images/Music Events/Hubballi Ugadi Utsava/2.webp",
@@ -1277,7 +1277,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-9",
                 "title": "IIT DHARWAD SANGEET EVENT",
-                "image": "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489069303_17998951040784343_8971419316430686365_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489069303_17998951040784343_8971419316430686365_n.webp",
                     "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489415973_17998950452784343_209481492867560674_n.webp",
@@ -1298,7 +1298,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-10",
                 "title": "JAGADGURU SCHOOL ANNUAL DAY",
-                "image": "/assets/webp_images/Music Events/JAGADGURU SCHOOL ANNUAL DAY/498669911_18003346982784343_4505668101741917965_n (1).webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/JAGADGURU SCHOOL ANNUAL DAY/498669911_18003346982784343_4505668101741917965_n (1).webp",
                     "/assets/webp_images/Music Events/JAGADGURU SCHOOL ANNUAL DAY/499272764_18003346997784343_8545271943385966643_n (1).webp",
@@ -1311,7 +1311,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-11",
                 "title": "KLE BBA Equinox 2023",
-                "image": "/assets/webp_images/Music Events/KLE BBA Equinox 2023/dwq (1).webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/KLE BBA Equinox 2023/dwq (1).webp",
                     "/assets/webp_images/Music Events/KLE BBA Equinox 2023/dwq (2).webp",
@@ -1324,7 +1324,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-12",
                 "title": "KLE BBA NISHKARSH",
-                "image": "/assets/webp_images/Music Events/KLE BBA NISHKARSH/DSC01418 (1).webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/KLE BBA NISHKARSH/DSC01418 (1).webp",
                     "/assets/webp_images/Music Events/KLE BBA NISHKARSH/DSC01418.webp",
@@ -1352,7 +1352,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-13",
                 "title": "kle bba samhiti 2k25",
-                "image": "/assets/webp_images/Music Events/kle bba samhiti 2k25/503576164_18006295421784343_6407398025665671216_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/kle bba samhiti 2k25/503576164_18006295421784343_6407398025665671216_n.webp",
                     "/assets/webp_images/Music Events/kle bba samhiti 2k25/503698961_18006295211784343_686181233065744304_n.webp",
@@ -1373,7 +1373,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-14",
                 "title": "kle bca kalakrithi",
-                "image": "/assets/webp_images/Music Events/kle bca kalakrithi/648375374_18037161497784343_3525234589367610834_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/kle bca kalakrithi/648375374_18037161497784343_3525234589367610834_n.webp",
                     "/assets/webp_images/Music Events/kle bca kalakrithi/648391593_18037162679784343_4813549932538975276_n.webp",
@@ -1392,7 +1392,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-15",
                 "title": "KLE M R SAKHARE CBSE ANNUAL DAY",
-                "image": "/assets/webp_images/Music Events/KLE M R SAKHARE CBSE ANNUAL DAY/484502229_17996692535784343_7608280953142081728_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/KLE M R SAKHARE CBSE ANNUAL DAY/484502229_17996692535784343_7608280953142081728_n.webp",
                     "/assets/webp_images/Music Events/KLE M R SAKHARE CBSE ANNUAL DAY/484650531_17996692526784343_4642259144152739026_n.webp",
@@ -1414,7 +1414,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-16",
                 "title": "KLE M R SAKHARE STATE ANNUAL DAY",
-                "image": "/assets/webp_images/Music Events/KLE M R SAKHARE STATE ANNUAL DAY/472596545_1302476400948623_2385983315560729277_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/KLE M R SAKHARE STATE ANNUAL DAY/472596545_1302476400948623_2385983315560729277_n.webp",
                     "/assets/webp_images/Music Events/KLE M R SAKHARE STATE ANNUAL DAY/472930380_8633099840151135_361452368347073292_n.webp",
@@ -1434,7 +1434,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-17",
                 "title": "KLE MANJUNATH NAGAR ANNUAL DAY",
-                "image": "/assets/webp_images/Music Events/KLE MANJUNATH NAGAR ANNUAL DAY/481724437_17993970659784343_1709846766074159138_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/KLE MANJUNATH NAGAR ANNUAL DAY/481724437_17993970659784343_1709846766074159138_n.webp",
                     "/assets/webp_images/Music Events/KLE MANJUNATH NAGAR ANNUAL DAY/481787349_17993969876784343_830741201680778665_n.webp",
@@ -1453,7 +1453,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-18",
                 "title": "KLE RAYAPUR ANNUAL DAY",
-                "image": "/assets/webp_images/Music Events/KLE RAYAPUR ANNUAL DAY/476289236_17991252872784343_8535531682514857819_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/KLE RAYAPUR ANNUAL DAY/476289236_17991252872784343_8535531682514857819_n.webp",
                     "/assets/webp_images/Music Events/KLE RAYAPUR ANNUAL DAY/476301017_17991253724784343_3626719527790668471_n.webp",
@@ -1472,7 +1472,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-19",
                 "title": "Sharadha public school",
-                "image": "/assets/webp_images/Music Events/Sharadha public school/9O4A2346.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/Sharadha public school/9O4A2346.webp",
                     "/assets/webp_images/Music Events/Sharadha public school/9O4A2350.webp",
@@ -1505,7 +1505,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-20",
                 "title": "tejas international school annual day",
-                "image": "/assets/webp_images/Music Events/tejas international school annual day/627487215_18034400024784343_6661238172605805919_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Music Events/tejas international school annual day/627487215_18034400024784343_6661238172605805919_n.webp",
                     "/assets/webp_images/Music Events/tejas international school annual day/629215328_18034399976784343_8658576677711709894_n.webp",
@@ -1534,7 +1534,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-1",
                 "title": "B N KHOT SPORTS UTSAVA",
-                "image": "/assets/webp_images/Sports Events/B N KHOT SPORTS UTSAVA/490444503_17999789339784343_2487430542096566242_n.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Sports Events/B N KHOT SPORTS UTSAVA/490444503_17999789339784343_2487430542096566242_n.webp",
                     "/assets/webp_images/Sports Events/B N KHOT SPORTS UTSAVA/490716004_17999789306784343_6642336705928990780_n.webp",
@@ -1563,7 +1563,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-2",
                 "title": "BIS WALKATHON",
-                "image": "/assets/webp_images/Sports Events/BIS WALKATHON/SK_05026.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Sports Events/BIS WALKATHON/SK_05026.webp",
                     "/assets/webp_images/Sports Events/BIS WALKATHON/SK_05036.webp",
@@ -1589,7 +1589,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-3",
                 "title": "Deshpande Skilling International Yoga Day 2023",
-                "image": "/assets/webp_images/Sports Events/Deshpande Skilling International Yoga Day 2023/144A7229.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Sports Events/Deshpande Skilling International Yoga Day 2023/144A7229.webp",
                     "/assets/webp_images/Sports Events/Deshpande Skilling International Yoga Day 2023/144A7236.webp",
@@ -1603,7 +1603,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-4",
                 "title": "ITF DHARWAD",
-                "image": "/assets/webp_images/Sports Events/ITF DHARWAD/C9499T01.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Sports Events/ITF DHARWAD/C9499T01.webp",
                     "/assets/webp_images/Sports Events/ITF DHARWAD/C9505T01.webp",
@@ -1629,7 +1629,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-5",
                 "title": "KLE MR SAKHARE SPORTS EVENT",
-                "image": "/assets/webp_images/Sports Events/KLE MR SAKHARE SPORTS EVENT/IMG_8544.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Sports Events/KLE MR SAKHARE SPORTS EVENT/IMG_8544.webp",
                     "/assets/webp_images/Sports Events/KLE MR SAKHARE SPORTS EVENT/IMG_8576.webp",
@@ -1650,7 +1650,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-6",
                 "title": "National Level Kabaddi By Basavaraj Bommai Ji Event",
-                "image": "/assets/webp_images/Sports Events/National Level Kabaddi By Basavaraj Bommai Ji Event/19b051c5-dfca-4109-89d8-5f4f724fc4b0.webp",
+                "image": "/assets/Layout_page.png",
                 "allImages": [
                     "/assets/webp_images/Sports Events/National Level Kabaddi By Basavaraj Bommai Ji Event/19b051c5-dfca-4109-89d8-5f4f724fc4b0.webp",
                     "/assets/webp_images/Sports Events/National Level Kabaddi By Basavaraj Bommai Ji Event/IMG_1917.webp",

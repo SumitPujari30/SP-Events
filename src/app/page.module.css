@@ -433,6 +433,7 @@
   0% {
     background-position: -200% center;
   }
+
   100% {
     background-position: 200% center;
   }
@@ -449,23 +450,22 @@
   margin-top: 10px;
   display: block;
   width: 100%;
-  overflow: visible; /* Ensure we see it even if it slightly overflows */
-  
+  overflow: visible;
+  /* Ensure we see it even if it slightly overflows */
+
   /* Premium Design: Shimmering Gradient */
-  background: linear-gradient(
-    90deg, 
-    var(--color-text) 0%, 
-    var(--color-gold-light) 25%, 
-    var(--color-text) 50%, 
-    var(--color-gold-light) 75%, 
-    var(--color-text) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--color-text) 0%,
+      var(--color-gold-light) 25%,
+      var(--color-text) 50%,
+      var(--color-gold-light) 75%,
+      var(--color-text) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 5s linear infinite;
-  
+
   /* Depth and Elevation */
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   filter: drop-shadow(0 0 10px rgba(226, 201, 126, 0.1));
@@ -608,8 +608,8 @@
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  /* crisp glass edge */
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  /* more visible gold-tinted glass edge */
   border-radius: 24px;
   text-align: center;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -628,15 +628,15 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.4), transparent);
 }
 
 /* Hover effects (scaling/Y translation handled by Framer Motion, lighting handled here) */
 .statGlass:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(139, 92, 246, 0.4);
-  /* purple edge glow */
-  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.15), inset 0 0 60px rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.85);
+  /* prominent gold edge glow */
+  box-shadow: 1 20px 50px rgba(201, 168, 76, 0.15), inset 0 0 60px rgba(201, 168, 76, 0.05);
 }
 
 .statNumber {
@@ -664,51 +664,130 @@
    FOUNDER SECTION (CARD STYLE)
 ════════════════════════════════════════════════════════════ */
 .founderSection {
-  padding: 40px 20px;
+  padding: 80px 20px;
   width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-dark);
+}
+
+/* Spotlight Effect */
+.founderSpotlight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at center, rgba(201, 168, 76, 0.08) 0%, rgba(28, 25, 53, 0) 60%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .founderCard {
-  max-width: 1100px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
+  background: rgba(13, 11, 30, 0.4);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 2px solid rgba(201, 168, 76, 0.25);
+  border-radius: 24px;
   display: flex;
   flex-direction: row;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  overflow: visible;
+  /* Allow image offset */
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(201, 168, 76, 0.1);
+}
+
+/* Secondary Bold Elevated Border Design */
+.founderCard::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 27px;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.6) 0%, transparent 40%, transparent 60%, rgba(201, 168, 76, 0.6) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .founderImageWrapper {
-  flex: 0 0 30%;
+  flex: 0 0 35%;
   position: relative;
+  margin: -20px 0 -20px 40px;
+  max-height: 650px;
+  align-self: center;
+  z-index: 2;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.2);
 }
 
 .founderImage {
   width: 100%;
   height: 100%;
-  min-height: 200px;
   object-fit: cover;
   display: block;
+  transform: scale(1.05);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.founderCard:hover .founderImage {
+  transform: scale(1);
 }
 
 .founderContent {
   flex: 1;
-  padding: 30px 50px;
+  padding: 30px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+}
+
+/* Premium Quote Watermark */
+.quoteIcon {
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  font-size: 12rem;
+  font-family: var(--font-display);
+  color: var(--color-gold);
+  opacity: 0.03;
+  line-height: 1;
+  pointer-events: none;
+  font-style: italic;
 }
 
 .founderQuote {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
   font-weight: 500;
   color: #ffffff;
-  line-height: 1.3;
-  margin: 0 0 20px 0;
-  letter-spacing: -0.3px;
+  line-height: 1.25;
+  margin: 0 0 40px 0;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+}
+
+.founderQuote::before {
+  content: '"';
+  color: var(--color-gold);
+  margin-right: 5px;
 }
 
 .founderNameBlock {
@@ -716,28 +795,30 @@
 }
 
 .founderName {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-accent-gold, #d4af37);
-  letter-spacing: 2px;
+  color: var(--color-accent-gold);
+  letter-spacing: 4px;
   text-transform: uppercase;
   margin: 0;
 }
 
 .founderTitle {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 1px;
+  color: var(--color-text-muted);
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin: 5px 0 0 0;
+  margin: 8px 0 0 0;
+  opacity: 0.8;
 }
 
 .founderText {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0 0 20px 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  max-width: 600px;
 }
 
 .founderSignature {
@@ -754,10 +835,12 @@
   .founderCard {
     flex-direction: column;
   }
+
   .founderImageWrapper {
     flex: 0 0 auto;
     height: 300px;
   }
+
   .founderContent {
     padding: 40px 30px;
   }

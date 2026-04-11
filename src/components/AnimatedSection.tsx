@@ -1,7 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useInView, type Variants } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
 type Variant = 'fadeUp' | 'fadeDown' | 'fadeLeft' | 'fadeRight' | 'scaleUp' | 'fade';
 
@@ -53,14 +52,11 @@ export default function AnimatedSection({
     amount = 0.2,
     style,
 }: Props) {
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once, amount });
-
     return (
         <motion.div
-            ref={ref}
             initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
+            whileInView="visible"
+            viewport={{ once, amount }}
             variants={variants[variant]}
             transition={{
                 duration,

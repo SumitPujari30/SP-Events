@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker, HiArrowRight, HiChatAlt2 } from 'react-icons/hi';
-import { FaLinkedinIn, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaLinkedinIn, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import AnimatedSection from '@/components/AnimatedSection';
 import ParticleBackground from '@/components/ParticleBackground';
 import styles from './contact.module.css';
@@ -22,6 +22,13 @@ const contactMethods = [
         value: '+91 74118 63227',
         label: 'Mon – Sat, 10 AM – 7 PM',
         href: 'tel:+917411863227'
+    },
+    {
+        icon: FaWhatsapp,
+        title: 'WhatsApp Us',
+        value: '+91 74118 63227',
+        label: 'Message on WhatsApp',
+        href: 'https://wa.me/917411863227'
     },
     {
         icon: HiOutlineLocationMarker,
@@ -273,7 +280,7 @@ export default function ContactPage() {
                 <div className="container">
                     <div className={styles.infoGrid}>
                         {contactMethods.map((method, idx) => (
-                            <AnimatedSection key={idx} variant="fadeUp" delay={0.6 + idx * 0.1}>
+                            <AnimatedSection key={idx} variant="fadeUp" delay={0.1 + idx * 0.1}>
                                 <motion.a 
                                     href={method.href} 
                                     target="_blank" 

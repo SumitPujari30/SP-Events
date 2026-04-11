@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import AnimatedSection from '@/components/AnimatedSection';
 import CounterAnimation from '@/components/CounterAnimation';
 import Stats3DBackground from '@/components/Stats3DBackground';
@@ -194,10 +195,13 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════════ */}
             <section className={styles.heroSection}>
                 <div className={styles.videoBg}>
-                    <img
+                    <Image
                         src="/assets/Layout_page.png"
                         alt="About SP Events Hero"
+                        fill
                         className={styles.heroImage}
+                        priority
+                        quality={90}
                     />
                     <div className={styles.videoOverlayBase} />
                     <div className={styles.videoOverlayGradient} />
@@ -253,29 +257,40 @@ export default function AboutPage() {
                     >
 
                         {/* FOUNDER'S WORDS CARD */}
-                        <div className={styles.grassrootsCard}>
-                        <div className={styles.founderPhotoContainer}>
-                            <div className={styles.founderHalo} />
-                            <div className={styles.founderPhotoWrap}>
-                                <img src="/assets/samarth.png" alt="Samarth U Patangi" className={styles.founderPhoto} />
+                        <motion.div 
+                            className={styles.grassrootsCard}
+                            whileHover={{ y: -10, scale: 1.01 }}
+                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                            <div className={styles.founderPhotoContainer}>
+                                <div className={styles.founderHalo} />
+                                <div className={styles.founderPhotoWrap}>
+                                    <Image 
+                                        src="/assets/samarth.png" 
+                                        alt="Samarth U Patangi" 
+                                        fill
+                                        className={styles.founderPhoto} 
+                                        sizes="(max-width: 768px) 100vw, 400px"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div className={styles.founderContent}>
-                            <div className={styles.bgQuoteIcon}>“</div>
-                            <div className={styles.founderEyebrow}>CLIENT PHILOSOPHY</div>
-                            <blockquote className={styles.founderQuote}>
-                                We have been entrusted by renowned and prosperous companies, as well as emerging disruptors who are making waves in their industries. Our mission is to create extraordinary experiences that inspire and leave a lasting impact."
-                            </blockquote>
-                            <div className={styles.founderInfo}>
-                                <h4 className={styles.founderName}>
-                                    Samarth U Patangi
-                                    <div className={styles.signatureUnderline} />
-                                </h4>
-                                <p className={styles.founderRole}>Founder & Visionary</p>
+                            
+                            <div className={styles.founderContent}>
+                                <div className={styles.bgQuoteIcon}>“</div>
+                                <div className={styles.founderEyebrow}>THE FOUNDER'S VISION</div>
+                                <div className={styles.founderQuote}>
+                                    <p>Mr. Samarth U Patangi is the visionary Founder and Managing Director of THE SP EVENTS. An engineer by education and an entrepreneur by passion, he built the company to transform creative ideas into unforgettable experiences.</p>
+                                    <p>What began as a passion for music and live entertainment has evolved into a dynamic platform delivering world-class corporate events, social celebrations, and large-scale productions.</p>
+                                </div>
+                                <div className={styles.founderInfo}>
+                                    <h4 className={styles.founderName}>
+                                        Samarth U Patangi
+                                        <div className={styles.signatureUnderline} />
+                                    </h4>
+                                    <p className={styles.founderRole}>Founder & Visionary</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </motion.div>
                     </motion.div>
                 </div>
 
@@ -295,7 +310,13 @@ export default function AboutPage() {
                         {/* Double array for seamless feel or single, since we have arrows single is fine */}
                         {grassrootsImages.map((img, i) => (
                             <div key={i} className={styles.sliderItem} draggable={false}>
-                                <img src={img.url} alt={`Gallery ${i}`} draggable={false} />
+                                <Image 
+                                    src={img.url} 
+                                    alt={`Gallery ${i}`} 
+                                    fill
+                                    draggable={false} 
+                                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                                />
                             </div>
                         ))}
                     </div>
@@ -358,6 +379,7 @@ export default function AboutPage() {
                                         r={p.r}
                                         fill="white"
                                         initial={{ opacity: 0.1 }}
+                                        style={{ willChange: 'transform, opacity' }}
                                         animate={{
                                             opacity: [0.1, 0.5, 0.1],
                                             scale: [1, 2, 1],
@@ -462,9 +484,14 @@ export default function AboutPage() {
             {/* LOCATIONS SECTION */}
             <section className={styles.locationsSection}>
                 <div className="container" style={{ padding: '0 40px' }}>
-                    <AnimatedSection>
-                        <h2 className={styles.locationsTitle}>Where You Can Find Us</h2>
-                    </AnimatedSection>
+                    <div className={styles.locationsHeader}>
+                        <AnimatedSection>
+                            <h2 className={styles.locationsTitle}>Where You Can Find <span style={{color:'var(--color-accent-gold)'}}>Us</span></h2>
+                            <p className={styles.locationsSubheading}>
+                                Our services and expertise extend across multiple locations, ensuring seamless event execution wherever you need us.
+                            </p>
+                        </AnimatedSection>
+                    </div>
 
                     <div className={styles.locationCardsGrid}>
                         {locations.map((loc, i) => (
@@ -478,7 +505,13 @@ export default function AboutPage() {
                                         className={styles.locationLinkWrapper}
                                     >
                                         <div className={styles.locationCardImgWrap}>
-                                            <img src={loc.img} alt={loc.city} className={styles.locationCardImg} />
+                                            <Image 
+                                                src={loc.img} 
+                                                alt={loc.city} 
+                                                fill
+                                                className={styles.locationCardImg} 
+                                                sizes="(max-width: 768px) 100vw, 50vw"
+                                            />
                                             <div className={styles.locationOverlayContent}>
                                                 <h2 className={styles.locationCity}>{loc.city}</h2>
                                                 <div className={styles.locationDetails}>

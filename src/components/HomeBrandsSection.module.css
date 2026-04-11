@@ -1,19 +1,35 @@
 .section {
     width: 100%;
     padding: 120px 0;
-    background-color: var(--color-bg-dark); /* Using darker indigo-purple to match site theme */
+    background-color: var(--color-bg-dark);
+    /* Deeper dark for curtain feel */
     overflow: hidden;
     position: relative;
     color: var(--color-text);
 }
 
-/* Add a subtle glow for depth */
+/* ▬▬▬ CURTAIN GRID & GLOW ▬▬▬ */
 .section::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 70% 50%, var(--color-purple-glow) 0%, transparent 70%);
+    /* Subtle 60px curtain grid */
+    background-image:
+        linear-gradient(rgba(201, 168, 76, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201, 168, 76, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
     pointer-events: none;
+    z-index: 1;
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 50%, var(--color-purple-glow) 0%, transparent 75%);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 2;
 }
 
 .container {
@@ -35,9 +51,9 @@
 }
 
 .mainTitle {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 4vw, 3.5rem); /* Slightly smaller for balance */
-    font-weight: 800;
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 850;
     line-height: 1.1;
     text-transform: uppercase;
     letter-spacing: -2px;
@@ -45,7 +61,8 @@
 }
 
 .titleAccent {
-    color: var(--color-gold); /* Site's warm gold */
+    color: var(--color-gold);
+    /* Site's warm gold */
     display: block;
 }
 
@@ -61,11 +78,12 @@
 
 .preTitle {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
-    font-weight: 500;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 600;
     color: var(--color-white);
     margin: 0;
     letter-spacing: -0.5px;
+    font-style: italic;
 }
 
 .underline {
@@ -98,28 +116,36 @@
 .marqueeSide {
     flex: 1;
     height: 650px;
+    margin-left: -150px;
     position: relative;
     display: flex;
-    gap: 40px;
-    /* Clean vertical fade */
+    gap: 10px;
+    /* Closer columns */
+    /* Clean vertical fade - ensuring horizontal overflow is visible for hover scaling */
     mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    overflow-x: visible;
 }
 
 .marqueeColumn {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 0px;
     position: relative;
-    align-items: center; /* Ensures logos are centered within the column */
+    align-items: center;
+    /* Ensures logos are centered within the column */
+    padding: 0 15px;
+    /* Added spacing to prevent clipping when logos scale up on hover */
+    overflow: visible;
 }
 
 .marqueeTrack {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 0px;
     animation: scrollVertical var(--duration, 40s) linear infinite;
+    overflow: visible;
 }
 
 .marqueeTrack.reverse {
@@ -127,36 +153,61 @@
 }
 
 @keyframes scrollVertical {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
 }
 
 /* ▬▬▬ LOGO ITEM (Larger & Centered) ▬▬▬ */
 .logoItem {
     width: 100%;
-    height: 150px; /* Increased size as requested */
+    height: 195px;
+    /* Tighter fit for the scale */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     transition: all 0.4s var(--transition-base);
+    overflow: visible;
 }
 
 .logoItem:hover {
-    transform: scale(1.15) translateY(-5px);
     z-index: 5;
 }
 
 .logoImage {
+    max-width: 100%;
+    height: auto;
     object-fit: contain;
-    filter: none; 
+    object-position: center !important;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 18px;
+    display: block;
+    margin: 0 auto;
+
+    /* Use a more stable blend effect: subtle opacity and glow */
+    /* This avoids the 'breaking' mask jumps */
     opacity: 0.9;
-    transition: all 0.4s ease;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+
+    /* Constant soft mask for merging edges */
+    mask-image: radial-gradient(circle at center, black 65%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 65%, transparent 100%);
+
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.6s ease,
+        box-shadow 0.6s ease;
 }
 
 .logoItem:hover .logoImage {
-    filter: none; /* Show full colors on hover */
+    transform: translateY(-12px) scale(1.12);
     opacity: 1;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
 }
 
 /* ▬▬▬ RESPONSIVE ▬▬▬ */
@@ -166,11 +217,11 @@
         text-align: center;
         gap: 80px;
     }
-    
+
     .titleSide {
         max-width: 100%;
     }
-    
+
     .marqueeSide {
         width: 100%;
         height: 500px;
@@ -182,12 +233,12 @@
         font-size: 2.2rem;
         letter-spacing: 0;
     }
-    
+
     .marqueeSide {
         gap: 20px;
         height: 400px;
     }
-    
+
     .logoItem {
         height: 100px;
     }

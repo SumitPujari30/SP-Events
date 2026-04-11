@@ -16,14 +16,14 @@ interface Props {
 /**
  * Vertical Marquee column.
  */
-function VerticalMarqueeColumn({ 
-    list, 
-    duration, 
-    reverse, 
-    getImgSrc 
-}: { 
-    list: Brand[]; 
-    duration: number; 
+function VerticalMarqueeColumn({
+    list,
+    duration,
+    reverse,
+    getImgSrc
+}: {
+    list: Brand[];
+    duration: number;
     reverse?: boolean;
     getImgSrc: (l?: string) => string;
 }) {
@@ -32,7 +32,7 @@ function VerticalMarqueeColumn({
 
     return (
         <div className={styles.marqueeColumn}>
-            <div 
+            <div
                 className={`${styles.marqueeTrack} ${reverse ? styles.reverse : ''}`}
                 style={{ '--duration': `${duration}s` } as React.CSSProperties}
             >
@@ -41,8 +41,8 @@ function VerticalMarqueeColumn({
                         <Image
                             src={getImgSrc(brand.logo)}
                             alt={brand.name}
-                            width={180} // Increased from 140 for larger impact
-                            height={120} // Increased from 80 for larger impact
+                            width={320} // Massive scaling
+                            height={200} // Massive scaling
                             className={styles.logoImage}
                             priority={i < 15}
                         />
@@ -72,7 +72,7 @@ export default function HomeBrandsSection({ brands }: Props) {
     return (
         <section className={styles.section}>
             <div className={styles.container}>
-                
+
                 {/* ▬▬▬ LEFT: BOLD TITLE (Refined for uniqueness) ▬▬▬ */}
                 <div className={styles.titleSide}>
                     <div className={styles.headerGroup}>
@@ -82,7 +82,7 @@ export default function HomeBrandsSection({ brands }: Props) {
 
                     <h2 className={styles.mainTitle}>
                         <span className={styles.titleAccent}>OUR PARTNERS IN</span>
-                        <span className={styles.titleAccent}>EXCELLENCE <span style={{color:"white"}}>:</span></span>
+                        <span className={styles.titleAccent}>EXCELLENCE <span style={{ color: "white" }}>:</span></span>
                         <span className={styles.titleWhite}>TRANSCENDING</span>
                         <span className={styles.titleWhite}>BOUNDARIES TO</span>
                         <span className={styles.titleWhite}>DELIVER MAGICAL</span>
@@ -96,21 +96,21 @@ export default function HomeBrandsSection({ brands }: Props) {
 
                 {/* ▬▬▬ RIGHT: MULTI-COLUMN VERTICAL MARQUEE ▬▬▬ */}
                 <div className={styles.marqueeSide}>
-                    <VerticalMarqueeColumn 
-                        list={columns[0]} 
+                    <VerticalMarqueeColumn
+                        list={columns[0]}
                         duration={35} // Slightly faster given higher volume
-                        getImgSrc={getImgSrc} 
+                        getImgSrc={getImgSrc}
                     />
-                    <VerticalMarqueeColumn 
-                        list={columns[1]} 
-                        duration={50} 
-                        reverse 
-                        getImgSrc={getImgSrc} 
+                    <VerticalMarqueeColumn
+                        list={columns[1]}
+                        duration={50}
+                        reverse
+                        getImgSrc={getImgSrc}
                     />
-                    <VerticalMarqueeColumn 
-                        list={columns[2]} 
-                        duration={45} 
-                        getImgSrc={getImgSrc} 
+                    <VerticalMarqueeColumn
+                        list={columns[2]}
+                        duration={45}
+                        getImgSrc={getImgSrc}
                     />
                 </div>
 

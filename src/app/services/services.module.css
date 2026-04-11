@@ -1,7 +1,7 @@
 /* =============================================
    SP EVENTS — SERVICES PAGE
    3-Level Drill-Down: Categories → Events → Gallery
-   ============================================= */
+   ==================== ========================= */
 
 /* ──── PAGE FOUNDATION ──── */
 .mainContainer {
@@ -150,8 +150,8 @@
 
 .eventsGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
     padding-bottom: 60px;
 }
 
@@ -173,7 +173,7 @@
 .eventCardImgWrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
 }
 
@@ -185,7 +185,7 @@
 }
 
 .eventCard:hover .eventCardImg {
-    transform: scale(1.08);
+    transform: scale(1.04);
 }
 
 .eventCardOverlay {

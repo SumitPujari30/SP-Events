@@ -10,10 +10,13 @@ function ParticleSwarm() {
   const { mouse, viewport } = useThree();
   const count = 400;
 
-  // Generate random positions and unique floating speeds
-  const [positions, floatSpeeds] = useMemo(() => {
+  // Generate random positions, unique floating speeds, and thematic colors
+  const [positions, floatSpeeds, colors] = useMemo(() => {
     const positions = new Float32Array(count * 3);
     const floatSpeeds = new Float32Array(count);
+    const colors = new Float32Array(count * 3);
+
+    const colorGold = new THREE.Color('#C9A84C');
     
     for (let i = 0; i < count; i++) {
       positions[i * 3]     = (Math.random() - 0.5) * 30; // x spread
@@ -21,8 +24,13 @@ function ParticleSwarm() {
       positions[i * 3 + 2] = (Math.random() - 0.5) * 15; // z depth
       
       floatSpeeds[i] = Math.random() * 0.2 + 0.1;
+
+      // Assign brand gold color to all particles
+      colors[i * 3] = colorGold.r;
+      colors[i * 3 + 1] = colorGold.g;
+      colors[i * 3 + 2] = colorGold.b;
     }
-    return [positions, floatSpeeds];
+    return [positions, floatSpeeds, colors];
   }, []);
 
   useFrame((state, delta) => {
@@ -41,11 +49,10 @@ function ParticleSwarm() {
   });
 
   return (
-    <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
+    <Points ref={ref} positions={positions} colors={colors} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        // Mix of purple and light blue tint for futuristic feel
-        color="#8b5cf6" 
+        vertexColors
         size={0.06}
         sizeAttenuation={true}
         depthWrite={false}
