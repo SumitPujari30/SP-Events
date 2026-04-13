@@ -147,11 +147,21 @@
 
 @media (max-width: 768px) {
   .header {
-    padding: 20px 30px;
+    padding: 12px 20px;
   }
+
+  .scrolled {
+    padding: 8px 20px;
+  }
+
+  .logoImage {
+    width: 140px;
+    max-width: 140px;
+  }
+
   .overlayContent {
     flex-direction: column-reverse;
-    padding: 100px 40px;
+    padding: 100px 24px;
   }
   .overlayLeft {
     display: none; /* Hide images on small mobile for space */
@@ -162,10 +172,44 @@
     width: 100%;
   }
   .link {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
   }
   .closeBtn {
-    top: 20px;
-    right: 20px;
+    top: 16px;
+    right: 16px;
+  }
+
+  .socialIcons {
+    gap: 20px;
+    margin-right: 0;
+  }
+
+  .navLinks {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 14px;
+  }
+
+  .logoImage {
+    width: 120px;
+    max-width: 120px;
+  }
+
+  .link {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .overlayContent {
+    padding: 80px 16px;
+  }
+
+  .menuBtn {
+    padding: 8px;
   }
 }

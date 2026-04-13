@@ -313,6 +313,22 @@
         grid-template-columns: 1fr 1fr;
         gap: 40px;
     }
+
+    .footerLogo {
+        margin-left: 0;
+    }
+
+    .tagline {
+        margin-left: 0;
+    }
+
+    .divider {
+        margin-left: 0;
+    }
+
+    .socials {
+        margin-left: 0;
+    }
 }
 
 @media (max-width: 600px) {
@@ -323,15 +339,75 @@
     .grid {
         grid-template-columns: 1fr;
         gap: 36px;
+        padding-bottom: 30px;
     }
 
     .footerLogo {
-        max-width: 240px;
+        max-width: 180px;
+        margin-left: 0;
+        margin-bottom: -10px;
+    }
+
+    .logoWrap {
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .tagline {
+        margin-left: 0;
+        font-size: 0.85rem;
+    }
+
+    .divider {
+        margin: 0 0 5px;
+        width: 100px;
+    }
+
+    .socials {
+        margin-left: 0;
+        gap: 10px;
+    }
+
+    .brand {
+        align-items: center;
+        text-align: center;
+    }
+
+    .column {
+        align-items: center;
+        text-align: center;
+    }
+
+    .contactItem {
+        justify-content: center;
+        text-align: center;
     }
 
     .bottom {
         flex-direction: column;
         gap: 12px;
         text-align: center;
+    }
+
+    .bottomLinks {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .copyright {
+        font-size: 0.85rem;
+    }
+
+    .columnTitle {
+        font-size: 1.15rem;
+    }
+
+    .footerLink {
+        font-size: 0.95rem;
+    }
+
+    .contactItem {
+        font-size: 0.95rem;
     }
 }

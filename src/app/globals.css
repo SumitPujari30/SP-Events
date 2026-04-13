@@ -1,6 +1,6 @@
 /* ============================================
    SP EVENTS — Premium Design System
-   Deep Indigo-Purple + Warm Gold
+   Pure Black + Warm Gold
    Playfair Display · Inter · Premium Typography
    ============================================ */
 
@@ -8,12 +8,12 @@
 
    /* --- CSS Variables / Design Tokens --- */
    :root {
-     /* Core Palette — Deep Indigo-Purple + Warm Gold */
-     --color-bg: #0D0B1E;              /* Deep indigo-purple background */
-     --color-bg-dark: #08061A;          /* Darker variant */
-     --color-surface: #1C1935;          /* Surface / cards */
-     --color-surface-dark: #12102A;     /* Darker surface */
-     --color-surface-hover: rgba(28, 25, 53, 0.85);
+     /* Core Palette — Pure Black + Warm Gold */
+     --color-bg: #050505;              /* Pure black background */
+     --color-bg-dark: #000000;          /* Darker variant */
+     --color-surface: #111111;          /* Surface / cards */
+     --color-surface-dark: #0A0A0A;     /* Darker surface */
+     --color-surface-hover: rgba(17, 17, 17, 0.85);
 
      /* Gold Accent System */
      --color-gold: #C9A84C;             /* Primary gold */
@@ -26,22 +26,22 @@
      /* Text */
      --color-white: #ffffff;
      --color-text: #FAF8F5;             /* Warm off-white */
-     --color-text-muted: #a8a4b8;       /* Muted lavender */
-     --color-black: #0D0B1E;
+     --color-text-muted: #a0a0a0;       /* Muted lavender */
+     --color-black: #050505;
 
      /* Borders & Effects */
      --color-border: rgba(201, 168, 76, 0.08);
      --color-border-glow: rgba(201, 168, 76, 0.3);
 
      /* Purple Accents (for effects/glows) */
-     --color-purple-primary: #1C1935;
-     --color-purple-glow: rgba(88, 60, 180, 0.25);
+     --color-dark-primary: #111111;
+     --color-dark-glow: rgba(200, 200, 200, 0.25);
 
      /* Gradients */
      --gradient-gold: linear-gradient(135deg, #C9A84C, #E2C97E);
-     --gradient-elegant: linear-gradient(135deg, #C9A84C 0%, #E2C97E 50%, #0D0B1E 100%);
+     --gradient-elegant: linear-gradient(135deg, #C9A84C 0%, #E2C97E 50%, #050505 100%);
      --gradient-primary: linear-gradient(90deg, #9B7730, #C9A84C, #E2C97E);
-     --gradient-purple: linear-gradient(135deg, rgba(28, 25, 53, 0.6) 0%, rgba(13, 11, 30, 0.95) 50%, #08061A 100%);
+     --gradient-dark: linear-gradient(135deg, rgba(17, 17, 17, 0.6) 0%, rgba(5, 5, 5, 0.95) 50%, #000000 100%);
 
      /* Typography */
      --font-display: 'Playfair Display', 'Didot', 'Bodoni MT', Georgia, serif;  /* Display headings */
@@ -57,7 +57,7 @@
      --radius-full: 50px;
 
      --shadow-glow: 0 0 20px rgba(201, 168, 76, 0.2);
-     --shadow-glow-soft: 0 0 40px rgba(88, 60, 180, 0.2);
+     --shadow-glow-soft: 0 0 40px rgba(200, 200, 200, 0.2);
 
      --transition-fast: 0.2s ease-out;
      --transition-base: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -87,7 +87,7 @@
 
    ::selection {
      background: var(--color-gold);
-     color: #0D0B1E;
+     color: #050505;
    }
 
    a {
@@ -126,7 +126,7 @@
    }
 
    .glass-panel {
-     background: rgba(28, 25, 53, 0.65);
+     background: rgba(17, 17, 17, 0.65);
      backdrop-filter: blur(16px);
      -webkit-backdrop-filter: blur(16px);
      border: 1px solid var(--color-border);
@@ -228,7 +228,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(88, 60, 180, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(200, 200, 200, 0.2) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -274,7 +274,7 @@
 
 .form-input, .form-textarea, select.form-input {
   width: 100%;
-  background: rgba(28, 25, 53, 0.5);
+  background: rgba(17, 17, 17, 0.5);
   border: 1px solid rgba(201, 168, 76, 0.1);
   border-radius: var(--radius-sm);
   padding: 16px 20px;
@@ -288,12 +288,12 @@
 }
 
 .form-input:hover, .form-textarea:hover, select.form-input:hover {
-  background: rgba(28, 25, 53, 0.7);
+  background: rgba(17, 17, 17, 0.7);
   border-color: rgba(201, 168, 76, 0.2);
 }
 
 .form-input:focus, .form-textarea:focus, select.form-input:focus {
-  background: rgba(28, 25, 53, 0.8);
+  background: rgba(17, 17, 17, 0.8);
   border-color: var(--color-gold);
   box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
 }
@@ -340,7 +340,7 @@ select.form-input option {
 
 .btn-primary {
   background: var(--gradient-gold);
-  color: #0D0B1E;
+  color: #050505;
   box-shadow: 0 4px 15px rgba(201, 168, 76, 0.2);
 }
 
@@ -354,7 +354,7 @@ select.form-input option {
 }
 
 .btn-glass {
-  background: rgba(28, 25, 53, 0.5);
+  background: rgba(17, 17, 17, 0.5);
   color: var(--color-gold);
   border: 1px solid rgba(201, 168, 76, 0.3);
   backdrop-filter: blur(8px);
@@ -369,4 +369,151 @@ select.form-input option {
 .btn-glass:active {
   border-color: var(--color-gold-pressed);
   color: var(--color-gold-pressed);
+}
+
+/* ════════════════════════════════════════════════════════════
+   GLOBAL UTILITY ANIMATIONS
+   Used across pages for micro-interactions
+════════════════════════════════════════════════════════════ */
+
+/* Sweep light across a card surface */
+@keyframes sweepLight {
+  0%   { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(300%) skewX(-15deg); }
+}
+
+/* Subtle vertical float for decorative elements */
+@keyframes floatSubtle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+/* Pulsing ring expansion */
+@keyframes pulseRing {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Horizontal text scroll for marquee bands */
+@keyframes marqueeScrollLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeScrollRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Gradient border rotation */
+@keyframes rotateBorderGradient {
+  0%   { --border-angle: 0deg; }
+  100% { --border-angle: 360deg; }
+}
+
+/* Smooth text reveal clip */
+@keyframes revealClipUp {
+  0%   { clip-path: inset(100% 0 0 0); opacity: 0; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+@keyframes revealClipLeft {
+  0%   { clip-path: inset(0 100% 0 0); opacity: 0; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+/* Sparkle micro-animation */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+/* ── Scroll Reveal Utility Classes ── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-from-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-from-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-from-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ════════════════════════════════════════════════════════════
+   GLOBAL MOBILE RESPONSIVENESS
+════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .page-hero {
+    height: 50vh;
+    min-height: 320px;
+    padding-top: 60px;
+  }
+
+  .page-hero-title {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+
+  .page-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 14px 24px;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+  }
+
+  .form-input, .form-textarea, select.form-input {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
+  .page-hero {
+    height: 45vh;
+    min-height: 280px;
+  }
 }

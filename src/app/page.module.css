@@ -124,7 +124,7 @@
   width: 1000px;
   height: 1000px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -471,6 +471,15 @@
   filter: drop-shadow(0 0 10px rgba(226, 201, 126, 0.1));
 }
 
+@media (max-width: 768px) {
+  .uniqueTitle {
+    white-space: normal;
+    word-wrap: break-word;
+    font-size: clamp(1.2rem, 5vw, 2.5rem);
+    padding: 0 16px;
+  }
+}
+
 .catTitleGold {
   color: var(--color-accent-gold);
   font-style: italic;
@@ -529,6 +538,8 @@
   /* Fills the wide banner area just like the old image */
   pointer-events: none;
   border-radius: 12px;
+  will-change: transform;
+  transition: transform 0.1s linear;
 }
 
 .magicTextWrapper {
@@ -631,12 +642,35 @@
   background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.4), transparent);
 }
 
+/* Inner sweep light effect */
+.statSweepLight {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 168, 76, 0.06),
+    rgba(255, 255, 255, 0.04),
+    transparent
+  );
+  z-index: 0;
+  pointer-events: none;
+  transform: skewX(-15deg);
+}
+
+.statGlass:hover .statSweepLight {
+  animation: sweepLight 0.8s ease-out forwards;
+}
+
 /* Hover effects (scaling/Y translation handled by Framer Motion, lighting handled here) */
 .statGlass:hover {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(201, 168, 76, 0.85);
   /* prominent gold edge glow */
-  box-shadow: 1 20px 50px rgba(201, 168, 76, 0.15), inset 0 0 60px rgba(201, 168, 76, 0.05);
+  box-shadow: 0 20px 50px rgba(201, 168, 76, 0.15), inset 0 0 60px rgba(201, 168, 76, 0.05);
 }
 
 .statNumber {
@@ -647,6 +681,8 @@
   margin-bottom: 15px;
   line-height: 1;
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
   /* soft inner glow */
 }
 
@@ -657,6 +693,8 @@
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  position: relative;
+  z-index: 1;
 }
 
 
@@ -682,7 +720,7 @@
   transform: translate(-50%, -50%);
   width: 120%;
   height: 120%;
-  background: radial-gradient(circle at center, rgba(201, 168, 76, 0.08) 0%, rgba(28, 25, 53, 0) 60%);
+  background: radial-gradient(circle at center, rgba(201, 168, 76, 0.08) 0%, rgba(17, 17, 17, 0) 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -691,7 +729,7 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  background: rgba(13, 11, 30, 0.4);
+  background: rgba(5, 5, 5, 0.4);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 2px solid rgba(201, 168, 76, 0.25);
@@ -705,6 +743,16 @@
   box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(201, 168, 76, 0.1);
+  /* 3D tilt preparation */
+  transform-style: preserve-3d;
+  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.founderCard:hover {
+  box-shadow:
+    0 40px 80px rgba(201, 168, 76, 0.12),
+    0 0 0 1px rgba(201, 168, 76, 0.2),
+    0 0 60px rgba(201, 168, 76, 0.06);
 }
 
 /* Secondary Bold Elevated Border Design */
@@ -839,10 +887,56 @@
   .founderImageWrapper {
     flex: 0 0 auto;
     height: 300px;
+    margin: 0;
+    border-radius: 10px 10px 0 0;
   }
 
   .founderContent {
     padding: 40px 30px;
+  }
+
+  .founderSection {
+    padding: 60px 16px;
+    min-height: auto;
+  }
+
+  .founderCard::before {
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .founderImageWrapper {
+    height: 250px;
+  }
+
+  .founderContent {
+    padding: 24px 20px;
+  }
+
+  .founderQuote {
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+  }
+
+  .founderName {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .founderTitle {
+    font-size: 0.75rem;
+  }
+
+  .founderText {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .quoteIcon {
+    font-size: 6rem;
+    top: 20px;
+    right: 20px;
   }
 }
 
@@ -981,8 +1075,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-
-
   .expContainer {
     flex-direction: column;
     gap: 60px;
@@ -1014,6 +1106,53 @@
 }
 
 @media (max-width: 768px) {
+  .heroSection {
+    height: 70vh;
+    min-height: 400px;
+  }
+
+  .experiencesSection {
+    height: auto;
+    min-height: auto;
+    padding: 60px 0;
+  }
+
+  .expContainer {
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .expTitle {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+  }
+
+  .expText {
+    font-size: 1.15rem;
+  }
+
+  .expTextSecondary {
+    font-size: 0.95rem;
+  }
+
+  .expValuesWrapper {
+    margin-top: 24px;
+  }
+
+  .expValueItem {
+    padding: 6px 14px;
+  }
+
+  .expValueText {
+    font-size: 0.75rem;
+  }
+
+  .expButton {
+    padding: 14px 24px;
+    font-size: 0.85rem;
+  }
+
   .catGrid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -1023,8 +1162,25 @@
     font-size: clamp(2rem, 8vw, 3.2rem);
   }
 
+  .catStickyWrapper {
+    height: auto;
+    padding: 40px 0;
+  }
+
+  .catHeader {
+    margin-bottom: 40px;
+  }
+
+  .categoriesSection {
+    padding-bottom: 20px;
+  }
+
   .statsSection {
     padding: 40px 0 80px;
+  }
+
+  .statsGrid {
+    padding: 0 16px;
   }
 
   .statGlass {
@@ -1035,8 +1191,35 @@
     font-size: 2.8rem;
   }
 
+  .statLabel {
+    font-size: 0.95rem;
+  }
+
   .dividerBanner {
-    padding: 60px 24px;
+    padding: 40px 16px;
+  }
+
+  .wowImage {
+    height: 220px;
+    border-radius: 8px;
+  }
+
+  .magicTextWrapper {
+    bottom: 16px;
+    left: 16px;
+    padding: 8px 16px;
+  }
+
+  .magicText {
+    font-size: 0.9rem;
+  }
+
+  .scrollIndicator {
+    bottom: 24px;
+  }
+
+  .scrollLine {
+    height: 36px;
   }
 
   .logoCard {
@@ -1052,11 +1235,80 @@
   .marqueeWrapper {
     gap: 14px;
   }
+
+  .marqueeSection {
+    padding: 60px 0;
+  }
 }
 
 @media (max-width: 480px) {
+  .heroSection {
+    height: 60vh;
+    min-height: 350px;
+  }
+
+  .experiencesSection {
+    padding: 40px 0;
+  }
+
+  .expContainer {
+    padding: 0 14px;
+    gap: 30px;
+  }
+
+  .expTitle {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+  }
+
+  .expBadge {
+    font-size: 0.65rem;
+    margin-bottom: 16px;
+  }
+
+  .expText {
+    font-size: 1rem;
+  }
+
+  .expRight {
+    gap: 14px;
+  }
+
   .catCardTitle {
     font-size: 1.15rem;
+  }
+
+  .catStickyWrapper {
+    padding: 20px 0;
+  }
+
+  .catHeader {
+    margin-bottom: 24px;
+  }
+
+  .statsGrid {
+    padding: 0 12px;
+    gap: 12px;
+  }
+
+  .statGlass {
+    padding: 28px 16px;
+    border-radius: 16px;
+  }
+
+  .statNumber {
+    font-size: 2.2rem;
+  }
+
+  .statLabel {
+    font-size: 0.8rem;
+  }
+
+  .dividerBanner {
+    padding: 24px 12px;
+  }
+
+  .wowImage {
+    height: 180px;
   }
 
   .logoCard {

@@ -244,6 +244,7 @@
   position: relative;
   z-index: 5;
   width: 480px;
+  max-width: 90%;
   text-align: center;
   height: 300px;
 }
@@ -352,6 +353,42 @@
 @media (max-width: 768px) {
   .pLayer1 {
     display: none;
+  }
+
+  .pLayer2 {
+    width: 180px;
+    height: 230px;
+    opacity: 0.4;
+  }
+
+  .pLayer3 {
+    width: 150px;
+    height: 190px;
+    opacity: 0.3;
+  }
+
+  .parallaxTextWrap {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    height: auto;
+  }
+
+  .parallaxTitle {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+  }
+
+  .bgNumber {
+    font-size: 4rem;
+  }
+
+  .stageHeroTitleDark,
+  .stageHeroTitleLit {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+  }
+
+  .curtainContent h2 {
+    font-size: clamp(2rem, 7vw, 4rem);
   }
 }
 
@@ -1046,7 +1083,17 @@
 @media (max-width: 900px) {
   .cultureAccordionWrap {
     flex-direction: column;
-    height: 600px;
+    height: auto;
+    min-height: 400px;
+  }
+
+  .cultureAccordionCard {
+    min-height: 80px;
+  }
+
+  .accContent h3 {
+    font-size: 1.2rem;
+    white-space: normal;
   }
 }
 
@@ -1195,8 +1242,15 @@
 }
 
 @media (max-width: 768px) {
+  .builtSection {
+    flex-direction: column;
+    padding: 40px 16px;
+    min-height: auto;
+    gap: 24px;
+  }
+
   .builtPlate {
-    margin: 24px;
+    margin: 0;
     padding: 36px 28px;
     border-radius: var(--radius-lg);
     border-left: 3px solid var(--color-gold);
@@ -1213,6 +1267,86 @@
 
   .builtRight {
     display: none;
+  }
+
+  .builtCenterImg {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .builtCenterImg img {
+    height: 350px;
+  }
+
+  .builtTitle {
+    font-size: clamp(1.6rem, 5vw, 2.5rem);
+  }
+
+  .builtLabel {
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .builtSection {
+    padding: 24px 12px;
+  }
+
+  .builtPlate {
+    padding: 28px 20px;
+  }
+
+  .builtCenterImg {
+    display: none;
+  }
+
+  .builtItemTitle {
+    font-size: 1rem;
+  }
+
+  .builtItemBody {
+    font-size: 0.85rem;
+  }
+
+  .marqueeItem {
+    width: 220px;
+    height: 160px;
+  }
+
+  .stageHeroTitleDark,
+  .stageHeroTitleLit {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .curtainContent h2 {
+    font-size: clamp(1.8rem, 6vw, 3rem);
+  }
+
+  .jobCardRow {
+    padding: 20px 16px;
+  }
+
+  .jobInfoMain h3 {
+    font-size: 1.2rem;
+  }
+
+  .applyBtnArrow {
+    font-size: 0.8rem;
+  }
+
+  .filterBar {
+    padding: 12px;
+  }
+
+  .modalContent {
+    padding: 28px 20px;
+  }
+
+  .modalTitle {
+    font-size: 1.5rem;
   }
 }
 

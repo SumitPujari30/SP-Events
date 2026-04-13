@@ -281,6 +281,18 @@
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .introSection {
+        padding: 80px 24px 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .introSection {
+        padding: 60px 16px 40px;
+    }
+}
+
 .introInner {
     max-width: 900px;
     margin: 0 auto;
@@ -820,7 +832,7 @@
     position: absolute;
     width: 70vw;
     height: 70vw;
-    background: radial-gradient(ellipse, rgba(28, 25, 53, 0.5) 0%, transparent 65%);
+    background: radial-gradient(ellipse, rgba(17, 17, 17, 0.5) 0%, transparent 65%);
     top: -20%;
     right: -25%;
     filter: blur(130px);
@@ -883,6 +895,60 @@
     border-radius: 28px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 900px) {
+    .testiSplitPanel {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .testiList {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .testiTopRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .testiFeatured {
+        padding: 30px 24px;
+    }
+
+    .testiGiantQuote {
+        font-size: 14rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .testiSplitPanel {
+        border-radius: 16px;
+    }
+
+    .testiFeatured {
+        padding: 24px 16px;
+    }
+
+    .testiFeaturedText {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .testiFeaturedInitial {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+    }
+
+    .testiListItem {
+        padding: 12px 16px;
+    }
+
+    .testiHeaderTitle {
+        font-size: clamp(1.8rem, 6vw, 3rem);
+    }
 }
 
 /* LEFT: Featured quote area */
@@ -1233,6 +1299,46 @@
     .testiSideBtn.right {
         right: -24px;
         background: rgba(18, 16, 42, 0.9);
+    }
+}
+
+@media (max-width: 768px) {
+    .testiSideBtn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.6rem;
+    }
+
+    .testiSideBtn.left {
+        left: -10px;
+    }
+
+    .testiSideBtn.right {
+        right: -10px;
+    }
+
+    .testiInner {
+        padding: 0 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testiSideBtn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+    }
+
+    .testiSideBtn.left {
+        left: 4px;
+    }
+
+    .testiSideBtn.right {
+        right: 4px;
+    }
+
+    .testiInner {
+        padding: 0 12px;
     }
 }
 

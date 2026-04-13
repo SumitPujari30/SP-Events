@@ -4,10 +4,15 @@ import { useState, useEffect, useRef } from 'react';
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedSection from '@/components/AnimatedSection';
 import CounterAnimation from '@/components/CounterAnimation';
 import Stats3DBackground from '@/components/Stats3DBackground';
+import FloatingParticles from '@/components/FloatingParticles';
 import styles from './about.module.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const grassrootsImages = [
     { url: '/assets/grassroots/IMG_0350.webp', artist: 'Grassroots' },
@@ -58,6 +63,7 @@ export default function AboutPage() {
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
     const sliderRef = useRef<HTMLDivElement>(null);
+    const pageRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false); // only for UI styling if needed, logic is native
 
     const checkScroll = () => {
@@ -188,8 +194,43 @@ export default function AboutPage() {
         setParticles(generated);
     }, []);
 
+    // ── GSAP scroll-driven effects ──
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+
+            // ── Intro section — text blocks stagger reveal ──
+            const introBlocks = document.querySelectorAll(`.${styles.pioneeringBlock}`);
+            if (introBlocks.length) {
+                gsap.fromTo(introBlocks, 
+                    { y: 60, opacity: 0 },
+                    {
+                        y: 0, opacity: 1,
+                        duration: 1, stagger: 0.2, ease: 'power3.out',
+                        scrollTrigger: { trigger: `.${styles.introSection}`, start: 'top 75%' },
+                    }
+                );
+            }
+
+            // ── Locations title horizontal enter ──
+            const locTitle = document.querySelector(`.${styles.locationsTitle}`);
+            if (locTitle) {
+                gsap.fromTo(locTitle,
+                    { x: 80, opacity: 0 },
+                    {
+                        x: 0, opacity: 1,
+                        duration: 1.2, ease: 'power3.out',
+                        scrollTrigger: { trigger: `.${styles.locationsSection}`, start: 'top 80%' },
+                    }
+                );
+            }
+
+        }, pageRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <main className={styles.pageWrap}>
+        <main className={styles.pageWrap} ref={pageRef}>
             {/* ═══════════════════════════════════════════════════════
                 1. HERO — pure video/image, matching homepage
             ════════════════════════════════════════════════════════ */}
@@ -216,6 +257,7 @@ export default function AboutPage() {
 
             {/* INTRO TEXT SECTION */}
             <section className={styles.introSection}>
+                <FloatingParticles count={8} shapes={['dot', 'diamond', 'dotWhite']} seed={789} />
                 <AnimatedSection delay={0.2}>
                     <h2 className={styles.pioneeringTitle}>A Method to the Madness That is <span style={{ color: 'var(--color-accent-gold, #d4af37)', fontStyle: 'italic' }}>Creating Magic</span></h2>
                     <div className={styles.pioneeringTextBlocks}>
@@ -240,6 +282,7 @@ export default function AboutPage() {
 
             {/* GRASSROOTS SECTION */}
             <section className={styles.grassrootsSection}>
+                <FloatingParticles count={6} shapes={['dotPurple', 'ring']} seed={321} />
                 <motion.h2 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -276,7 +319,7 @@ export default function AboutPage() {
                             </div>
                             
                             <div className={styles.founderContent}>
-                                <div className={styles.bgQuoteIcon}>“</div>
+                                <div className={styles.bgQuoteIcon}>"</div>
                                 <div className={styles.founderEyebrow}>THE FOUNDER'S VISION</div>
                                 <div className={styles.founderQuote}>
                                     <p>Mr. Samarth U Patangi is the visionary Founder and Managing Director of THE SP EVENTS. An engineer by education and an entrepreneur by passion, he built the company to transform creative ideas into unforgettable experiences.</p>
@@ -534,4 +577,3 @@ export default function AboutPage() {
         </main>
     );
 }
-

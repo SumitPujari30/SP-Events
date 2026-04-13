@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/no-img-element, react/no-unescaped-entities */
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './page.module.css';
 import HomeBrandsSection from '@/components/HomeBrandsSection';
-import JoinUsSection from '@/components/JoinUsSection';
 import CounterAnimation from '@/components/CounterAnimation';
 import Stats3DBackground from '@/components/Stats3DBackground';
+import FloatingParticles from '@/components/FloatingParticles';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { clientsData } from '@/lib/clientData';
@@ -65,6 +65,7 @@ export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroImageRef = useRef<HTMLImageElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const dividerImageRef = useRef<HTMLImageElement>(null);
   const router = useRouter();
   const [wordIndex, setWordIndex] = useState(0);
 
@@ -73,6 +74,27 @@ export default function HomePage() {
       setWordIndex((prev) => (prev + 1) % rhymeWords.length);
     }, 2800); // Cycle every 2.8 seconds
     return () => clearInterval(interval);
+  }, []);
+
+  // ── Magnetic button effect ──
+  const magneticBtnRef = useRef<HTMLAnchorElement>(null);
+  const handleMagneticMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const btn = magneticBtnRef.current;
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+  }, []);
+
+  const handleMagneticLeave = useCallback(() => {
+    const btn = magneticBtnRef.current;
+    if (!btn) return;
+    btn.style.transform = 'translate(0, 0)';
+    btn.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+    setTimeout(() => {
+      if (btn) btn.style.transition = '';
+    }, 500);
   }, []);
 
   useEffect(() => {
@@ -131,16 +153,29 @@ export default function HomePage() {
         }
       );
 
+      // ── Divider banner image parallax + arrival ─────────────
+      if (dividerImageRef.current) {
+        gsap.fromTo(
+          dividerImageRef.current,
+          { y: 120, opacity: 0, scale: 0.9 },
+          {
+            y: 0, opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(1.2)',
+            scrollTrigger: { trigger: `.${styles.dividerBanner}`, start: 'top 85%' },
+          }
+        );
 
-      // ── Divider banner image arrival ─────────────────────────
-      gsap.fromTo(
-        `.${styles.wowImage}`,
-        { y: 120, opacity: 0, scale: 0.9 },
-        {
-          y: 0, opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(1.2)',
-          scrollTrigger: { trigger: `.${styles.dividerBanner}`, start: 'top 85%' },
-        }
-      );
+        // Parallax effect while scrolling through
+        gsap.to(dividerImageRef.current, {
+          y: -50,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: `.${styles.dividerBanner}`,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.5,
+          },
+        });
+      }
 
       // Magic Text arrival
       gsap.fromTo(
@@ -183,9 +218,49 @@ export default function HomePage() {
           scrollTrigger: { trigger: `.${styles.founderSection}`, start: 'top 80%' },
         }
       );
+
+      // ── Horizontal slide-in for services section title ──────
+      gsap.fromTo(
+        `.${styles.catHeader}`,
+        { x: -80, opacity: 0 },
+        {
+          x: 0, opacity: 1,
+          duration: 1.2, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: `.${styles.categoriesSection}`,
+            start: 'top 80%',
+          },
+        }
+      );
+
     }, containerRef);
 
     return () => ctx.revert();
+  }, []);
+
+  // ── Founder card tilt ──
+  const founderCardRef = useRef<HTMLDivElement>(null);
+  const handleFounderTilt = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const card = founderCardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -3;
+    const rotateY = ((x - centerX) / centerX) * 3;
+    card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  }, []);
+
+  const handleFounderTiltLeave = useCallback(() => {
+    const card = founderCardRef.current;
+    if (!card) return;
+    card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+    card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+    setTimeout(() => {
+      if (card) card.style.transition = '';
+    }, 600);
   }, []);
 
   return (
@@ -224,6 +299,9 @@ export default function HomePage() {
         {/* Soft glowing orbs for brand identity */}
         <div className={styles.expOrbGold} />
         <div className={styles.expOrbPurple} />
+
+        {/* Floating micro-graphics */}
+        <FloatingParticles count={10} shapes={['dot', 'dotWhite', 'diamond']} seed={123} />
 
         <div className={`container ${styles.expContainer}`}>
 
@@ -267,7 +345,13 @@ export default function HomePage() {
             </div>
 
             <div className={`${styles.expAction} ${styles.expTextFade}`}>
-              <a href="/about" className={styles.expButton}>
+              <a
+                href="/about"
+                className={styles.expButton}
+                ref={magneticBtnRef}
+                onMouseMove={handleMagneticMove}
+                onMouseLeave={handleMagneticLeave}
+              >
                 <span className={styles.expButtonText}>Discover Our Story</span>
                 <span className={styles.expButtonArrow}>→</span>
               </a>
@@ -278,9 +362,6 @@ export default function HomePage() {
       </section>
 
 
-      {/* ═══════════════════════════════════════════════════════
-          3. OUR SERVICES — Horizontal Scroll
-      ════════════════════════════════════════════════════════ */}
       {/* ═══════════════════════════════════════════════════════
           3. OUR SERVICES — 3x2 Grid View
       ════════════════════════════════════════════════════════ */}
@@ -307,6 +388,7 @@ export default function HomePage() {
       <div className={styles.dividerBanner}>
         <div className={styles.dividerBannerInner}>
           <img
+            ref={dividerImageRef}
             src="/assets/Layout_page.png"
             alt="Creating Magic Layout"
             className={styles.wowImage}
@@ -323,6 +405,8 @@ export default function HomePage() {
       ════════════════════════════════════════════════════════ */}
       <section className={styles.statsSection}>
         <Stats3DBackground />
+        {/* Floating particles behind stats */}
+        <FloatingParticles count={8} shapes={['dotPurple', 'ring', 'dotWhite']} seed={456} />
         <div className={styles.statsGrid} style={{ position: 'relative', zIndex: 1 }}>
           {stats.map((stat, i) => (
             <motion.div
@@ -332,6 +416,8 @@ export default function HomePage() {
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             >
               <div className={styles.statGlass}>
+                {/* Inner sweep light effect */}
+                <div className={styles.statSweepLight} />
                 <CounterAnimation end={stat.value} suffix={stat.suffix} className={styles.statNumber} />
                 <div className={styles.statLabel}>{stat.label}</div>
               </div>
@@ -347,7 +433,12 @@ export default function HomePage() {
       <section className={styles.founderSection}>
         <div className={styles.founderSpotlight} />
 
-        <div className={styles.founderCard}>
+        <div
+          className={styles.founderCard}
+          ref={founderCardRef}
+          onMouseMove={handleFounderTilt}
+          onMouseLeave={handleFounderTiltLeave}
+        >
           <div className={styles.founderImageWrapper}>
             <img src="/assets/samarth.png" alt="Samarth U Patangi" className={styles.founderImage} />
           </div>

@@ -89,6 +89,20 @@
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .introSection {
+        padding: 60px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .introSection {
+        padding: 40px 14px;
+    }
 }
 
 .pioneeringTitle {
@@ -184,15 +198,16 @@
 
 @media (max-width: 768px) {
     .pioneeringTextBlocks {
-        gap: 40px;
-        padding: 0 20px;
+        flex-direction: column;
+        gap: 24px;
+        padding: 0 16px;
     }
     
     .pioneeringBlock {
         max-width: 100%;
         text-align: left !important;
         align-self: flex-start !important;
-        padding: 20px;
+        padding: 24px 20px;
     }
 
     .pioneeringVerticalLine {
@@ -204,6 +219,32 @@
         filter: none;
         transform: none;
     }
+
+    .pioneeringTitle {
+        font-size: clamp(1.8rem, 6vw, 2.8rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .pioneeringTextBlocks {
+        gap: 16px;
+        padding: 0;
+    }
+
+    .pioneeringBlock {
+        padding: 20px 16px;
+    }
+
+    .pioneeringBlock p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .pioneeringLabel {
+        font-size: 0.75rem;
+        letter-spacing: 3px;
+        margin-bottom: 16px;
+    }
 }
 
 
@@ -211,6 +252,8 @@
 
 .grassrootsSection {
     padding: 100px 0;
+    position: relative;
+    overflow: hidden;
 }
 
 .grassrootsTopTitle {
@@ -304,6 +347,22 @@
         0 40px 100px rgba(0, 0, 0, 0.5),
         inset 0 0 20px rgba(255, 255, 255, 0.02);
     align-items: center; /* PERFECT VERTICAL ALIGNMENT */
+}
+
+@media (max-width: 900px) {
+    .grassrootsCard {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grassrootsCard {
+        padding: 20px;
+        border-radius: 20px;
+        gap: 24px;
+    }
 }
 
 .grassrootsCard::before {
@@ -588,7 +647,8 @@
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     .valuesLayoutWrapper {
-        height: 600px;
+        height: auto;
+        min-height: 400px;
         flex-direction: column;
         gap: 40px;
         padding-top: 40px;
@@ -603,6 +663,23 @@
     
     .valuesLinesContainer {
         display: none; /* Hide SVG lines on mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .valuesSection {
+        padding: 60px 0;
+    }
+
+    .valuesLayoutWrapper {
+        min-height: 300px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .valuesSection {
+        padding: 40px 0;
     }
 }
 
@@ -655,6 +732,49 @@
     transform: translateZ(0);
 }
 
+@media (max-width: 768px) {
+    .locationCardImgWrap {
+        height: 350px;
+    }
+
+    .locationCardsGrid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .locationsSection {
+        padding: 60px 0;
+    }
+
+    .locationsHeader {
+        margin-bottom: 32px;
+        padding: 0 16px;
+    }
+
+    .locationsTitle {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    .locationCity {
+        font-size: 1.6rem;
+        letter-spacing: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .locationCardImgWrap {
+        height: 280px;
+    }
+
+    .locationCity {
+        font-size: 1.3rem;
+    }
+
+    .locationOverlayContent {
+        padding: 30px 20px;
+    }
+}
+
 .locationOverlayContent {
     position: absolute;
     inset: 0;
@@ -678,6 +798,7 @@
     object-fit: cover;
     transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s ease;
     filter: brightness(0.9); /* Increased from 0.7 for better default visibility */
+    will-change: transform;
 }
 
 .locationCard:hover .locationCardImgWrap {
@@ -865,6 +986,31 @@
     .valuesCenterNode { flex: 0 0 auto; margin-bottom: 50px; }
     .valuesConnections { display: none; } /* Hide complex SVG connecting lines on mobile layout! */
     .valuesNodesList { padding-left: 0; width: 100%; align-items: center; gap: 20px; height: auto; }
+
+    .grassrootsSection {
+        padding: 60px 0;
+    }
+
+    .grassrootsTopTitle {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        margin-bottom: 32px;
+    }
+
+    .heroSection {
+        height: 60vh;
+        min-height: 350px;
+    }
+
+    .founderQuote {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        margin-bottom: 30px;
+    }
+
+    .founderEyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -872,4 +1018,54 @@
     .gridCol2, .gridCol1, .gridRow2, .gridCol1Square { grid-column: span 1 !important; grid-row: span 1 !important; }
     .statsGrid { grid-template-columns: 1fr 1fr; }
     .heroTitle { font-size: clamp(2.5rem, 8vw, 4rem); }
+
+    .statGlass {
+        padding: 35px 20px;
+    }
+
+    .statNumber {
+        font-size: 2.5rem;
+    }
+
+    .statLabel {
+        font-size: 0.9rem;
+    }
+
+    .grassrootsBox {
+        min-height: 220px;
+    }
+
+    .sliderTitle {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        letter-spacing: 2px;
+        margin-bottom: 32px;
+    }
+
+    .founderPhotoWrap {
+        aspect-ratio: 1 / 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .statsGrid { grid-template-columns: 1fr; }
+
+    .founderCard {
+        padding: 20px;
+        gap: 20px;
+        border-radius: 20px;
+    }
+
+    .founderQuote::before {
+        font-size: 5rem;
+        top: -30px;
+        left: -20px;
+    }
+
+    .locationsSubheading {
+        font-size: 0.95rem;
+    }
+
+    .grassrootsSection {
+        padding: 40px 0;
+    }
 }
