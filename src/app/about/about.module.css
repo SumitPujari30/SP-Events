@@ -286,7 +286,9 @@
     grid-template-columns: 350px 1fr;
     gap: 100px;
     padding: 80px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    background: 
+        linear-gradient(to left, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-left: 1px solid rgba(255, 255, 255, 0.2);
