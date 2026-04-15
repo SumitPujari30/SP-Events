@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './HomeBrandsSection.module.css';
 
@@ -10,7 +10,7 @@ interface Brand {
 }
 
 interface Props {
-    brands: Brand[];
+    brands?: Brand[]; // Optional, as we now fetch dynamically
 }
 
 /**
@@ -45,6 +45,7 @@ function VerticalMarqueeColumn({
                             height={200} // Massive scaling
                             className={styles.logoImage}
                             priority={i < 15}
+                            unoptimized={true} // Bypasses Next.js image cache for edited backgrounds
                         />
                     </div>
                 ))}
@@ -53,9 +54,33 @@ function VerticalMarqueeColumn({
     );
 }
 
-export default function HomeBrandsSection({ brands }: Props) {
+export default function HomeBrandsSection({ brands: initialBrands }: Props) {
+    const [brands, setBrands] = useState<Brand[]>(initialBrands || []);
+
+    useEffect(() => {
+        // Fetch dynamic logos from our new API
+        const fetchLogos = async () => {
+            try {
+                const response = await fetch('/api/logos');
+                if (!response.ok) throw new Error('Failed to fetch logos');
+                const data = await response.json();
+                
+                // Randomly shuffle the brands as requested
+                const shuffled = [...data.brands].sort(() => Math.random() - 0.5);
+                setBrands(shuffled);
+            } catch (error) {
+                console.error('Error loading dynamic logos:', error);
+                // Fallback to initialBrands if provided
+                if (initialBrands) setBrands(initialBrands);
+            }
+        };
+
+        fetchLogos();
+    }, [initialBrands]);
+
     // Divide brands into 3 columns for vertical marquee
     const columns = useMemo(() => {
+        if (brands.length === 0) return [[], [], []];
         const brandsPerCol = Math.ceil(brands.length / 3);
         return [
             brands.slice(0, brandsPerCol),
@@ -65,8 +90,8 @@ export default function HomeBrandsSection({ brands }: Props) {
     }, [brands]);
 
     const getImgSrc = useCallback((logo: string | undefined) => {
-        if (!logo) return '/assets/Layout_page.png';
-        return `/assets/webp_client/${logo}`;
+        if (!logo) return '/assets/client_transparent_images/Infosys.png';
+        return `/assets/client_transparent_images/${encodeURIComponent(logo)}`;
     }, []);
 
     return (
@@ -96,25 +121,32 @@ export default function HomeBrandsSection({ brands }: Props) {
 
                 {/* ▬▬▬ RIGHT: MULTI-COLUMN VERTICAL MARQUEE ▬▬▬ */}
                 <div className={styles.marqueeSide}>
-                    <VerticalMarqueeColumn
-                        list={columns[0]}
-                        duration={35} // Slightly faster given higher volume
-                        getImgSrc={getImgSrc}
-                    />
-                    <VerticalMarqueeColumn
-                        list={columns[1]}
-                        duration={50}
-                        reverse
-                        getImgSrc={getImgSrc}
-                    />
-                    <VerticalMarqueeColumn
-                        list={columns[2]}
-                        duration={45}
-                        getImgSrc={getImgSrc}
-                    />
+                    {columns[0].length > 0 && (
+                        <VerticalMarqueeColumn
+                            list={columns[0]}
+                            duration={35} // Slightly faster given higher volume
+                            getImgSrc={getImgSrc}
+                        />
+                    )}
+                    {columns[1].length > 0 && (
+                        <VerticalMarqueeColumn
+                            list={columns[1]}
+                            duration={50}
+                            reverse
+                            getImgSrc={getImgSrc}
+                        />
+                    )}
+                    {columns[2].length > 0 && (
+                        <VerticalMarqueeColumn
+                            list={columns[2]}
+                            duration={45}
+                            getImgSrc={getImgSrc}
+                        />
+                    )}
                 </div>
 
             </div>
         </section>
     );
 }
+

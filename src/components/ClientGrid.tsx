@@ -27,11 +27,11 @@ const cardVariants = {
     },
 };
 
-/* ── Flip Variants ── */
-const flipVariants = {
-    initial: { rotateY: -90, opacity: 0 },
-    animate: { rotateY: 0, opacity: 1 },
-    exit: { rotateY: 90, opacity: 0 },
+/* ── Dissolve Variants ── */
+const dissolveVariants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
 };
 
 /* ── Types ── */
@@ -54,7 +54,8 @@ function getInitials(name: string): string {
 
 function getLogoSrc(logo?: string): string {
     if (!logo) return '/assets/Layout_page.png';
-    return `/assets/webp_client/${encodeURIComponent(logo)}`;
+    // Point to the brand new transparent images folder
+    return `/assets/client_transparent_images/${encodeURIComponent(logo)}`;
 }
 
 function LogoFace({ client, index }: { client: ClientRecord | null, index: number }) {
@@ -72,40 +73,32 @@ function LogoFace({ client, index }: { client: ClientRecord | null, index: numbe
     const isPriority = index < 15;
 
     return (
-        <div className={styles.cardContent}>
-            <div className={styles.nameSection}>
-                <span className={styles.clientName}>{brandName}</span>
-            </div>
-            <div className={styles.divider} />
-            <div className={styles.logoSection}>
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={client.name}
-                        variants={flipVariants}
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-                        style={{ width: '100%', height: '100%', position: 'relative' }}
-                    >
-                        {client.logo && !imgError ? (
-                            <Image
-                                src={src}
-                                alt={brandName}
-                                fill
-                                sizes="140px"
-                                className={styles.logoImage}
-                                priority={isPriority}
-                                style={{ objectFit: 'contain', objectPosition: 'left bottom' }}
-                                onError={() => setImgError(true)}
-                            />
-                        ) : (
-                            <div className={styles.backInitials}>{initials}</div>
-                        )}
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-        </div>
+        <AnimatePresence>
+            <motion.div
+                key={client.name}
+                variants={dissolveVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 1.5, ease: 'easeInOut' }}
+                style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+            >
+                {client.logo && !imgError ? (
+                    <Image
+                        src={src}
+                        alt={brandName}
+                        fill
+                        sizes="(max-width: 768px) 50vw, 20vw"
+                        className={styles.logoImage}
+                        priority={isPriority}
+                        style={{ objectFit: 'contain' }}
+                        onError={() => setImgError(true)}
+                    />
+                ) : (
+                    <div className={styles.backInitials}>{initials}</div>
+                )}
+            </motion.div>
+        </AnimatePresence>
     );
 }
 
@@ -199,14 +192,6 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
     return (
         <section className={styles.section} id="client-grid">
             <div className={styles.header}>
-                <motion.span
-                    className={styles.label}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    Elite Partnerships
-                </motion.span>
                 <motion.h2
                     className={styles.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -217,7 +202,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                     WHO WE <span style={{color: "var(--color-gold)"}}>WORK</span> WITH
                 </motion.h2>
                 <motion.p
-                    className={styles.subtitle}
+                    className={styles.label}
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -228,48 +213,53 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
             </div>
 
             <div className={styles.gridContainer}>
-                <motion.div
-                    className={styles.grid}
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
-                >
-                    {slotsRef.current.slice(0, 15).map((slot, index) => (
-                        <motion.div
-                            key={slot.id}
-                            className={styles.flipCard}
-                            variants={cardVariants}
-                            tabIndex={0}
-                        >
-                            <LogoFace client={slot.currentLogo} index={index} />
-                        </motion.div>
-                    ))}
-                </motion.div>
+                <div className={styles.gridWrapper}>
+                    <motion.div
+                        className={styles.grid}
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: "-50px" }}
+                    >
+                        {slotsRef.current.slice(0, 15).map((slot, index) => (
+                            <motion.div
+                                key={slot.id}
+                                className={styles.matrixCard}
+                                variants={cardVariants}
+                                tabIndex={0}
+                            >
+                                <LogoFace client={slot.currentLogo} index={index} />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
             </div>
 
             {children && <div className={styles.breakSection}>{children}</div>}
 
             <div className={styles.gridContainer}>
-                <motion.div
-                    className={styles.grid}
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
-                >
-                    {slotsRef.current.slice(15, 30).map((slot, index) => (
-                        <motion.div
-                            key={slot.id}
-                            className={styles.flipCard}
-                            variants={cardVariants}
-                            tabIndex={0}
-                        >
-                            <LogoFace client={slot.currentLogo} index={index + 15} />
-                        </motion.div>
-                    ))}
-                </motion.div>
+                <div className={styles.gridWrapper}>
+                    <motion.div
+                        className={styles.grid}
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: "-50px" }}
+                    >
+                        {slotsRef.current.slice(15, 30).map((slot, index) => (
+                            <motion.div
+                                key={slot.id}
+                                className={styles.matrixCard}
+                                variants={cardVariants}
+                                tabIndex={0}
+                            >
+                                <LogoFace client={slot.currentLogo} index={index + 15} />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
             </div>
         </section>
     );
 }
+

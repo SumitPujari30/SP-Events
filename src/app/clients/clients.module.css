@@ -818,560 +818,195 @@
 }
 
 /* =============================================
-   SECTION 3: TESTIMONIALS — SPLIT PANEL
+   SECTION 3: TESTIMONIALS — GLASS OVERLAY
    ============================================= */
 .testiSection {
-    padding: 40px 0 60px;
-    background: var(--color-bg-dark);
-    position: relative;
-    overflow: hidden;
-}
-
-.testiSection::before {
-    content: '';
-    position: absolute;
-    width: 70vw;
-    height: 70vw;
-    background: radial-gradient(ellipse, rgba(17, 17, 17, 0.5) 0%, transparent 65%);
-    top: -20%;
-    right: -25%;
-    filter: blur(130px);
-    pointer-events: none;
-}
-
-.testiSection::after {
-    content: '';
-    position: absolute;
-    width: 50vw;
-    height: 50vw;
-    background: radial-gradient(ellipse, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
-    bottom: -10%;
-    left: -15%;
-    filter: blur(100px);
-    pointer-events: none;
-}
-
-.testiInner {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 48px;
-    position: relative;
-    z-index: 2;
-}
-
-.testiTopRow {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.testiHeaderTitle {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 700;
-    color: var(--color-white);
-    margin-top: 16px;
-    letter-spacing: -1.5px;
-    line-height: 1.05;
-}
-
-.testiHeaderSubtitle {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: rgb(252, 247, 247);
-    max-width: 360px;
-    line-height: 1.75;
-    flex-shrink: 0;
-}
-
-/* ——— Split panel layout ——— */
-.testiSplitPanel {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 4px;
-    min-height: 520px;
-    border-radius: 28px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-@media (max-width: 900px) {
-    .testiSplitPanel {
-        grid-template-columns: 1fr;
-        min-height: auto;
-    }
-
-    .testiList {
-        max-height: 300px;
-        overflow-y: auto;
-    }
-
-    .testiTopRow {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
-
-    .testiFeatured {
-        padding: 30px 24px;
-    }
-
-    .testiGiantQuote {
-        font-size: 14rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .testiSplitPanel {
-        border-radius: 16px;
-    }
-
-    .testiFeatured {
-        padding: 24px 16px;
-    }
-
-    .testiFeaturedText {
-        font-size: clamp(1rem, 2vw, 1.2rem);
-    }
-
-    .testiFeaturedInitial {
-        width: 48px;
-        height: 48px;
-        font-size: 1.3rem;
-    }
-
-    .testiListItem {
-        padding: 12px 16px;
-    }
-
-    .testiHeaderTitle {
-        font-size: clamp(1.8rem, 6vw, 3rem);
-    }
-}
-
-/* LEFT: Featured quote area */
-.testiFeatured {
-    position: relative;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.025);
-    padding: 40px 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Big decorative quote mark in the background */
-.testiGiantQuote {
-    position: absolute;
-    top: -20px;
-    left: 40px;
-    font-family: var(--font-display);
-    font-size: 24rem;
-    font-weight: 900;
-    color: var(--color-gold);
-    opacity: 0.04;
-    line-height: 1;
-    user-select: none;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.testiFeaturedContent {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
-}
-
-.testiFeaturedTag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 36px;
-}
-
-.testiFeaturedTagDot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-gold);
-    flex-shrink: 0;
-}
-
-.testiFeaturedTagLabel {
-    font-family: var(--font-heading);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--color-gold);
-}
-
-.testiFeaturedText {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
-    font-weight: 400;
-    line-height: 1.6;
-    color: rgba(246, 235, 235, 0.9);
-    font-style: italic;
-    flex-grow: 1;
-    margin-bottom: 16px;
-    margin-top: -12px;
-}
-
-.testiFeaturedAuthor {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding-top: 36px;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.testiFeaturedInitial {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: rgba(201, 168, 76, 0.1);
-    border: 2px solid var(--color-gold);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--color-gold);
-}
-
-.testiFeaturedName {
-    font-family: var(--font-heading);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--color-white);
-    margin-bottom: 6px;
-}
-
-.testiFeaturedRole {
-    font-size: 0.82rem;
-    color: rgba(246, 237, 237, 0.918);
-    line-height: 1.4;
-}
-
-/* RIGHT: Author selector list */
-.testiList {
-    background: rgba(255, 255, 255, 0.02);
-    display: flex;
-    flex-direction: column;
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.testiListItem {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px 24px;
-    cursor: pointer;
-    position: relative;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    transition: background 0.35s ease;
-    overflow: hidden;
-}
-
-.testiListItem:last-child {
-    border-bottom: none;
-}
-
-/* Active gold left bar */
-.testiListItem::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: var(--color-gold);
-    transform: scaleY(0);
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    transform-origin: top;
-}
-
-.testiListItem:hover,
-.testiListItem.activeItem {
-    background: rgba(255, 255, 255, 0.04);
-}
-
-.testiListItem:hover::before,
-.testiListItem.activeItem::before {
-    transform: scaleY(1);
-}
-
-.testiListInitial {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    flex-shrink: 0;
-    border: 1.5px solid rgba(255, 255, 255, 0.1);
-    transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.testiListItem:hover .testiListInitial,
-.testiListItem.activeItem .testiListInitial {
-    border-color: var(--color-gold);
-    background: rgba(201, 168, 76, 0.15);
-    color: var(--color-white);
-}
-
-.testiListInfo {
-    flex: 1;
-    min-width: 0;
-}
-
-.testiListName {
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: rgba(236, 230, 230, 0.925);
-    margin-bottom: 4px;
-    transition: color 0.35s ease;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.testiListRole {
-    font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.4);
-    transition: color 0.35s ease;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.testiListItem:hover .testiListName,
-.testiListItem.activeItem .testiListName {
-    color: var(--color-white);
-}
-
-.testiListItem:hover .testiListRole,
-.testiListItem.activeItem .testiListRole {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.testiListArrow {
-    font-size: 1.1rem;
-    color: var(--color-gold);
-    opacity: 0;
-    transform: translateX(-8px);
-    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    flex-shrink: 0;
-}
-
-.testiListItem:hover .testiListArrow,
-.testiListItem.activeItem .testiListArrow {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Pagination Styles */
-.testiListScrollArea {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 480px; /* Keep height stable for the 5 items */
-}
-
-.testiListNav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 24px;
-    background: rgba(255, 255, 255, 0.03);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.testiNavBtn {
-    background: transparent;
-    border: 1px solid rgba(201, 168, 76, 0.3);
-    color: var(--color-gold);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.4rem;
-    transition: all 0.3s ease;
-    line-height: 1;
-    padding-bottom: 4px; /* Optical alignment */
-}
-
-.testiNavBtn:hover {
-    background: rgba(201, 168, 76, 0.1);
-    border-color: var(--color-gold);
-    transform: scale(1.1);
-}
-
-.testiPageIndicator {
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.testiListFooter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 24px;
-    background: rgba(255, 255, 255, 0.03);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* Side Navigation Arrows */
-.testiPanelWrapper {
     position: relative;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 40px; /* Matrix grid already has padding */
+    margin: 0;
+    z-index: 10;
 }
 
-.testiSideBtn {
+.testiGlassCard {
+    position: relative;
+    width: 100%;
+    max-width: 1320px; /* Match grid container width */
+    background: linear-gradient(135deg, rgba(8, 6, 12, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%),
+                url('/assets/testimonial_bg.png') center/cover no-repeat;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px; /* Tighter radius matching the image */
+    padding: 80px 100px; /* Increased padding */
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8), inset 0 0 40px rgba(255, 255, 255, 0.05); /* Deep shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Big decorative quote marks hanging slightly outside */
+.testiContentWrap {
+    position: relative;
+    width: 100%;
+    max-width: 1000px; /* Increased max-width */
+    margin: 0 auto 10px;
+    z-index: 1;
+}
+
+.quoteIconLeft,
+.quoteIconRight {
+    position: absolute;
+    font-family: var(--font-display);
+    font-size: 10rem; /* Increased quote size */
+    font-weight: 700;
+    color: var(--color-gold);
+    line-height: 0;
+    user-select: none;
+    pointer-events: none;
+    z-index: 5;
+    /* Remove shadow since image quotes are flat/crisp */
+}
+
+/* Position exactly on the borders like the reference image */
+.quoteIconLeft {
+    top: -50px;
+    left: -50px; /* Pull left out slightly more due to increased size */
+}
+
+.quoteIconRight {
+    bottom: -100px; /* Huge downward drop for the author tag area */
+    right: -50px;
+}
+
+.testiQuoteBody {
+    position: relative;
+    z-index: 2;
+    min-height: 280px; /* Significantly lock height to scale up the container */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.testiText {
+    font-family: var(--font-body);
+    font-size: 1.35rem; /* Increased for readability and grander scale */
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    font-style: italic;
+    margin-bottom: 30px;
+    letter-spacing: 0.4px;
+}
+
+.testiAuthorInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.testiAuthorName {
+    font-family: var(--font-heading);
+    font-size: 0.9rem; /* Scaled up */
+    font-weight: 700;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.testiAuthorRole {
+    font-family: var(--font-heading);
+    font-size: 0.75rem; /* Scaled up */
+    color: rgba(201, 168, 76, 0.7); /* Role is also golden but dimmer in the reference */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* Dots Pagination */
+.testiDots {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.testiDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.activeDot {
+    background: var(--color-gold);
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+}
+
+/* Embedded Edge Navigation Arrows */
+.testiArrowBtn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10;
-    background: rgba(18, 16, 42, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1.5px solid rgba(255, 255, 255, 0.1);
-    color: var(--color-gold);
-    width: 60px; /* Enhanced size as requested */
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.2); /* very dim grey like image */
+    font-size: 2rem;
     cursor: pointer;
-    font-size: 2.2rem; /* Scaled icon for visibility */
-    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    line-height: 0;
-    padding: 0;
-    /* Optical centering adjustment for large text icons */
-    padding-bottom: 6px; 
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 20px;
+    z-index: 10;
 }
 
-.testiSideBtn:hover {
-    background: var(--color-gold);
-    color: #0c0a1d;
-    border-color: var(--color-gold);
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
+.testiArrowBtn:hover {
+    color: rgba(255, 255, 255, 0.8);
 }
 
-.testiSideBtn.left {
-    left: -80px;
-    padding-right: 4px; /* Optical center for ‹ */
+.leftArrow {
+    left: 20px;
 }
+.leftArrow:hover { transform: translateY(-50%) translateX(-2px); }
 
-.testiSideBtn.right {
-    right: -80px;
-    padding-left: 4px; /* Optical center for › */
+.rightArrow {
+    right: 20px;
 }
+.rightArrow:hover { transform: translateY(-50%) translateX(2px); }
 
-@media (max-width: 1400px) {
-    .testiSideBtn.left {
-        left: -24px;
-        background: rgba(18, 16, 42, 0.9);
-    }
-    .testiSideBtn.right {
-        right: -24px;
-        background: rgba(18, 16, 42, 0.9);
-    }
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .quoteIconLeft { left: 10px; }
+    .quoteIconRight { right: 10px; }
 }
 
 @media (max-width: 768px) {
-    .testiSideBtn {
-        width: 44px;
-        height: 44px;
-        font-size: 1.6rem;
+    .testiGlassCard {
+        padding: 50px 60px;
     }
-
-    .testiSideBtn.left {
-        left: -10px;
+    .testiText {
+        font-size: 1rem;
     }
-
-    .testiSideBtn.right {
-        right: -10px;
-    }
-
-    .testiInner {
-        padding: 0 24px;
-    }
+    .quoteIconLeft { left: -10px; }
+    .quoteIconRight { right: -10px; }
+    .leftArrow { left: 0px; }
+    .rightArrow { right: 0px; }
 }
 
 @media (max-width: 480px) {
-    .testiSideBtn {
-        width: 36px;
-        height: 36px;
-        font-size: 1.2rem;
+    .testiGlassCard {
+        padding: 40px 30px;
     }
-
-    .testiSideBtn.left {
-        left: 4px;
+    .testiText {
+        font-size: 0.95rem;
     }
-
-    .testiSideBtn.right {
-        right: 4px;
-    }
-
-    .testiInner {
-        padding: 0 12px;
-    }
-}
-
-/* Progress bar at bottom of panel */
-.testiProgress {
-    margin-top: 48px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.testiProgressBar {
-    flex: 1;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 1px;
-    overflow: hidden;
-}
-
-.testiProgressFill {
-    height: 100%;
-    background: var(--gradient-gold);
-    border-radius: 1px;
-    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.testiProgressCount {
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 2px;
-    white-space: nowrap;
+    .quoteIconLeft { left: 0; font-size: 4rem; }
+    .quoteIconRight { right: 0; font-size: 4rem; }
+    .leftArrow, .rightArrow { display: none; } /* rely on dots/auto */
 }
 
 /* =============================================

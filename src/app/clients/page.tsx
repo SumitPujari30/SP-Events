@@ -280,172 +280,77 @@ const containerVariants = {
    ============================================= */
 function TestimonialsSection() {
     const [active, setActive] = useState(0);
-    const [testiPage, setTestiPage] = useState(0);
-    const itemsPerPage = 5;
 
-    const totalPages = Math.ceil(testimonials.length / itemsPerPage);
-    const startIndex = testiPage * itemsPerPage;
-    const testimonialsToDisplay = testimonials.slice(startIndex, startIndex + itemsPerPage);
+    // Auto-cycle logic
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActive((prev) => (prev + 1) % testimonials.length);
+        }, 7000); // 7 sec delay
+        return () => clearInterval(interval);
+    }, []);
 
-    const handleNext = () => {
-        const nextPage = (testiPage + 1) % totalPages;
-        setTestiPage(nextPage);
-        setActive(nextPage * itemsPerPage);
-    };
-
-    const handlePrev = () => {
-        const prevPage = (testiPage - 1 + totalPages) % totalPages;
-        setTestiPage(prevPage);
-        setActive(prevPage * itemsPerPage);
-    };
+    const handleNext = () => setActive((prev) => (prev + 1) % testimonials.length);
+    const handlePrev = () => setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
     const t = testimonials[active];
-    const overallProgress = ((active + 1) / testimonials.length) * 100;
 
     return (
         <section className={styles.testiSection}>
             <motion.div
-                className={styles.testiInner}
+                className={styles.testiGlassCard}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
             >
-                {/* Header row — title left, subtitle right */}
-                <div className={styles.testiTopRow}>
-                    <div>
-                        <motion.span
-                            className={styles.sectionLabel}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                {/* Navigation Arrows inside card edge */}
+                <button 
+                    onClick={handlePrev} 
+                    className={`${styles.testiArrowBtn} ${styles.leftArrow}`}
+                    aria-label="Previous testimonial"
+                >
+                    ‹
+                </button>
+                <button 
+                    onClick={handleNext} 
+                    className={`${styles.testiArrowBtn} ${styles.rightArrow}`}
+                    aria-label="Next testimonial"
+                >
+                    ›
+                </button>
+
+                <div className={styles.testiContentWrap}>
+                    <div className={styles.quoteIconLeft}>&ldquo;</div>
+                    <div className={styles.quoteIconRight}>&rdquo;</div>
+                    
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={active}
+                            className={styles.testiQuoteBody}
+                            initial={{ opacity: 0, translateY: 10, filter: 'blur(5px)' }}
+                            animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
+                            exit={{ opacity: 0, translateY: -10, filter: 'blur(5px)', transition: { duration: 0.3, ease: 'easeIn' } }}
                         >
-                            Voices of Trust
-                        </motion.span>
-                        <motion.h2
-                            className={styles.testiHeaderTitle}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                        >
-                            What They Say
-                        </motion.h2>
-                    </div>
-                    <motion.p
-                        className={styles.testiHeaderSubtitle}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        Don&apos;t take our word for it. Hear from the leaders who have experienced
-                        the unparalleled SP Events caliber firsthand.
-                    </motion.p>
+                            <p className={styles.testiText}>
+                                "{t.text}"
+                            </p>
+                            <div className={styles.testiAuthorInfo}>
+                                <h4 className={styles.testiAuthorName}>{t.name}</h4>
+                                <span className={styles.testiAuthorRole}>{t.role}</span>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
 
-                <div className={styles.testiPanelWrapper}>
-                    {/* Fixed side navigation buttons */}
-                    <button 
-                        onClick={handlePrev} 
-                        className={`${styles.testiSideBtn} ${styles.left}`}
-                        aria-label="Previous testimonials"
-                    >
-                        ‹
-                    </button>
-                    <button 
-                        onClick={handleNext} 
-                        className={`${styles.testiSideBtn} ${styles.right}`}
-                        aria-label="Next testimonials"
-                    >
-                        ›
-                    </button>
-
-                    <div className={styles.testiSplitPanel}>
-
-                    {/* LEFT: Animated featured quote */}
-                    <div className={styles.testiFeatured}>
-                        <div className={styles.testiGiantQuote}>&ldquo;</div>
-
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={active}
-                                className={styles.testiFeaturedContent}
-                                initial={{ opacity: 0, y: 16 }}
-                                animate={{ opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
-                                exit={{ opacity: 0, y: -8, transition: { duration: 0.15, ease: 'easeIn' } }}
-                            >
-                                {/* Category tag */}
-                                <div className={styles.testiFeaturedTag}>
-                                    <div className={styles.testiFeaturedTagDot} />
-                                    <span className={styles.testiFeaturedTagLabel}>{t.category}</span>
-                                </div>
-
-                                {/* Big quote */}
-                                <p className={styles.testiFeaturedText}>
-                                    &ldquo;{t.text}&rdquo;
-                                </p>
-
-                                {/* Author */}
-                                <div className={styles.testiFeaturedAuthor}>
-                                    <div className={styles.testiFeaturedInitial}>
-                                        {t.name.charAt(0)}
-                                    </div>
-                                    <div>
-                                        <div className={styles.testiFeaturedName}>{t.name}</div>
-                                        <div className={styles.testiFeaturedRole}>{t.role}</div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
-
-                    {/* RIGHT: Author selector list */}
-                    <div className={styles.testiList}>
-                        <div className={styles.testiListScrollArea}>
-                            {testimonialsToDisplay.map((item, i) => {
-                                const globalIndex = startIndex + i;
-                                return (
-                                    <div
-                                        key={globalIndex}
-                                        className={`${styles.testiListItem} ${active === globalIndex ? styles.activeItem : ''}`}
-                                        onMouseEnter={() => setActive(globalIndex)}
-                                        onClick={() => setActive(globalIndex)}
-                                    >
-                                        <div className={styles.testiListInitial}>
-                                            {item.name.charAt(0)}
-                                        </div>
-                                        <div className={styles.testiListInfo}>
-                                            <div className={styles.testiListName}>{item.name}</div>
-                                            <div className={styles.testiListRole}>{item.role}</div>
-                                        </div>
-                                        <div className={styles.testiListArrow}>›</div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-
-                        {/* Page Indicator (Arrows moved to sides) */}
-                        <div className={styles.testiListFooter}>
-                            <span className={styles.testiPageIndicator}>
-                                {testiPage + 1} / {totalPages}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Progress indicator */}
-                <div className={styles.testiProgress}>
-                    <div className={styles.testiProgressBar}>
-                        <div
-                            className={styles.testiProgressFill}
-                            style={{ width: `${overallProgress}%` }}
+                {/* Progress Dots */}
+                <div className={styles.testiDots}>
+                    {testimonials.map((_, i) => (
+                        <div 
+                            key={i} 
+                            className={`${styles.testiDot} ${i === active ? styles.activeDot : ''}`} 
+                            onClick={() => setActive(i)}
                         />
-                    </div>
-                    <span className={styles.testiProgressCount}>
-                        {String(active + 1).padStart(2, '0')} / {String(testimonials.length).padStart(2, '0')}
-                    </span>
+                    ))}
                 </div>
             </motion.div>
         </section>

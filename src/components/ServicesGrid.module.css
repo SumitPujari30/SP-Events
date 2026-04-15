@@ -1,18 +1,55 @@
+.gridContainerWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1500px; /* Increased from 1200px */
+    margin: 40px auto;
+    padding: 2px;
+}
+
+.gridCrosshair {
+    position: absolute;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.6;
+}
+
 .gridContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
-    margin: 0 auto;
-    height: auto;
+    gap: 5px; /* Reduced gap for a more high-density look */
+}
+
+.gridBoxWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/11; /* Made slightly taller */
+    /* Wrapper needed to hold the absolute bounding box behind the moving card */
+}
+
+.boundingBox {
+    position: absolute;
+    inset: -6px;
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    z-index: 0;
+    pointer-events: none;
+    transition: inset 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.gridBoxWrapper:hover .boundingBox {
+    inset: -10px;
+    border-color: rgba(201, 168, 76, 0.4);
 }
 
 .gridBox {
-    position: relative;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    aspect-ratio: 16/10;
+    height: 100%;
     overflow: hidden;
     cursor: pointer;
     background-color: #000;
+    z-index: 1;
     /* 3D tilt preparation */
     transform-style: preserve-3d;
     perspective: 800px;
@@ -94,12 +131,13 @@
 }
 
 .overlayTitle {
-    font-size: clamp(1.2rem, 2vw, 2rem);
+    font-size: clamp(1.1rem, 1.8vw, 1.8rem);
     font-weight: 700;
     text-transform: uppercase;
     color: #ffffff;
     text-align: right;
     letter-spacing: 2px;
+    white-space: nowrap;
     text-shadow: 0 5px 15px rgba(0,0,0,0.5);
     transition: color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.4s ease;
 }
@@ -108,6 +146,22 @@
     color: var(--color-accent-gold, #d4af37);
     transform: translateY(-6px);
     letter-spacing: 4px;
+}
+
+/* ── Technical Graphic ── */
+.techGraphicTop {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.gridBox:hover .techGraphicTop {
+    transform: rotate(90deg);
+    opacity: 1;
 }
 
 /* ── Corner accent marks ── */

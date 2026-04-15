@@ -8,11 +8,13 @@ import styles from './page.module.css';
 import HomeBrandsSection from '@/components/HomeBrandsSection';
 import CounterAnimation from '@/components/CounterAnimation';
 import Stats3DBackground from '@/components/Stats3DBackground';
-import FloatingParticles from '@/components/FloatingParticles';
+import ParallaxGraphics from '@/components/ParallaxGraphics';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { clientsData } from '@/lib/clientData';
+import { transparentBrands } from '@/lib/transparentBrands';
 import ServicesGrid from '@/components/ServicesGrid';
+import AmbientGraphics from '@/components/AmbientGraphics';
+import EventLights from '@/components/EventLights';
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── Event Categories ────────────────────────────────────────
@@ -59,7 +61,7 @@ const stats = [
 ];
 
 // ─── Component ───────────────────────────────────────────────
-const rhymeWords = ["Unforgettable", "Indelible", "Incredible", "Exceptional", "Unparalleled"];
+const rhymeWords = ["Unforgettable", "Incredible", "Exceptional", "Unparalleled"];
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -114,8 +116,15 @@ export default function HomePage() {
       });
 
       // ── Experiences Unique Text Reveal ─────────────────────
+      ScrollTrigger.create({
+        trigger: `.${styles.experiencesSection}`,
+        start: 'top 60%',
+        onEnter: () => document.querySelector(`.${styles.experiencesSection}`)?.classList.add(styles.revealed),
+      });
+
       const expTitleLines = document.querySelectorAll(`.${styles.expUniqueLineInner}`);
       if (expTitleLines.length) {
+        // Entrance reveal animation
         gsap.fromTo(
           expTitleLines,
           { y: '100%', rotation: 5 },
@@ -131,6 +140,24 @@ export default function HomePage() {
             },
           }
         );
+
+        // Interactive Left/Right scrub animation on the parent containers
+        const expUniqueLines = document.querySelectorAll(`.${styles.expUniqueLine}`);
+        expUniqueLines.forEach((line, i) => {
+          gsap.fromTo(line, 
+            { x: i % 2 === 0 ? '-1vw' : '1vw' }, // Very gentle start shift
+            {
+              x: i % 2 === 0 ? '1.5vw' : '-1.5vw', // Minimal scrub range
+              ease: 'none',
+              scrollTrigger: {
+                trigger: `.${styles.experiencesSection}`,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1.5,
+              }
+            }
+          );
+        });
       }
 
       // Exp text fade in
@@ -155,26 +182,30 @@ export default function HomePage() {
 
       // ── Divider banner image parallax + arrival ─────────────
       if (dividerImageRef.current) {
+        // Entrance fade for the container
         gsap.fromTo(
-          dividerImageRef.current,
-          { y: 120, opacity: 0, scale: 0.9 },
+          `.${styles.dividerBannerInner}`,
+          { opacity: 0 },
           {
-            y: 0, opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(1.2)',
+            opacity: 1, duration: 1.4, ease: 'sine.inOut',
             scrollTrigger: { trigger: `.${styles.dividerBanner}`, start: 'top 85%' },
           }
         );
 
-        // Parallax effect while scrolling through
-        gsap.to(dividerImageRef.current, {
-          y: -50,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: `.${styles.dividerBanner}`,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.5,
-          },
-        });
+        // Deep Cinematic Parallax effect on the image itself
+        gsap.fromTo(dividerImageRef.current,
+          { yPercent: -15 }, // Start slightly pulled up
+          {
+            yPercent: 15, // Scrub down as you scroll past
+            ease: 'none',
+            scrollTrigger: {
+              trigger: `.${styles.dividerBanner}`,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.5,
+            },
+          }
+        );
       }
 
       // Magic Text arrival
@@ -222,10 +253,40 @@ export default function HomePage() {
       // ── Horizontal slide-in for services section title ──────
       gsap.fromTo(
         `.${styles.catHeader}`,
-        { x: -80, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
-          x: 0, opacity: 1,
+          y: 0, opacity: 1,
           duration: 1.2, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: `.${styles.categoriesSection}`,
+            start: 'top 80%',
+          },
+        }
+      );
+
+      // ── Animate Underline Graphic ──
+      gsap.fromTo(
+        [`.${styles.underlineLineLeft}`, `.${styles.underlineLineRight}`],
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: `.${styles.categoriesSection}`,
+            start: 'top 80%',
+          },
+        }
+      );
+      gsap.fromTo(
+        `.${styles.underlineDiamond}`,
+        { scale: 0, rotation: 0 },
+        {
+          scale: 1, rotation: 45,
+          duration: 0.8,
+          ease: 'back.out(2)',
+          delay: 0.1,
           scrollTrigger: {
             trigger: `.${styles.categoriesSection}`,
             start: 'top 80%',
@@ -265,6 +326,10 @@ export default function HomePage() {
 
   return (
     <div className={styles.wrapper} ref={containerRef}>
+      
+      <AmbientGraphics />
+      <ParallaxGraphics />
+      <EventLights />
 
       {/* ═══════════════════════════════════════════════════════
           1. HERO — pure video, no text/buttons over it
@@ -300,9 +365,6 @@ export default function HomePage() {
         <div className={styles.expOrbGold} />
         <div className={styles.expOrbPurple} />
 
-        {/* Floating micro-graphics */}
-        <FloatingParticles count={10} shapes={['dot', 'dotWhite', 'diamond']} seed={123} />
-
         <div className={`container ${styles.expContainer}`}>
 
           {/* Left Column - Unique Staggered Title */}
@@ -318,7 +380,7 @@ export default function HomePage() {
               </div>
               <div className={styles.expUniqueLine}>
                 <span className={`${styles.expUniqueLineInner} ${styles.rhymeHoverWrapper}`}>
-                  <span key={wordIndex} className={`${styles.animatedWord} ${styles.expTextGoldItalic}`}>
+                  <span key={wordIndex} className={`${styles.animatedWord} ${styles.expTextGoldItalic}`} data-text={rhymeWords[wordIndex]}>
                     {rhymeWords[wordIndex]}
                   </span>
                 </span>
@@ -366,12 +428,23 @@ export default function HomePage() {
           3. OUR SERVICES — 3x2 Grid View
       ════════════════════════════════════════════════════════ */}
       <section className={styles.categoriesSection}>
-        <div style={{ width: '100%', margin: '0 auto', paddingBottom: '40px' }}>
+        {/* ── Background Depth Elements ── */}
+        <div className={styles.catBgOrnaments}>
+          <div className={styles.catWatermark}>EXPERTISE</div>
+        </div>
+
+        <div style={{ width: '100%', margin: '0 auto', paddingBottom: '40px', position: 'relative', zIndex: 2 }}>
           {/* Main heading */}
           <div className={styles.catHeader}>
             <h2 className={styles.uniqueTitle}>
               Corporate Event Management Company in India
             </h2>
+            {/* ── Geometric Underline Graphic ── */}
+            <div className={styles.titleUnderlineGraphic}>
+              <div className={styles.underlineLineLeft} />
+              <div className={styles.underlineDiamond} />
+              <div className={styles.underlineLineRight} />
+            </div>
           </div>
         </div>
 
@@ -405,8 +478,6 @@ export default function HomePage() {
       ════════════════════════════════════════════════════════ */}
       <section className={styles.statsSection}>
         <Stats3DBackground />
-        {/* Floating particles behind stats */}
-        <FloatingParticles count={8} shapes={['dotPurple', 'ring', 'dotWhite']} seed={456} />
         <div className={styles.statsGrid} style={{ position: 'relative', zIndex: 1 }}>
           {stats.map((stat, i) => (
             <motion.div
@@ -464,7 +535,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           6. TRUSTED BY — PREMIUM GRID
       ════════════════════════════════════════════════════════ */}
-      <HomeBrandsSection brands={clientsData} />
+      <HomeBrandsSection />
 
       {/* ═══════════════════════════════════════════════════════
           7. JOIN US

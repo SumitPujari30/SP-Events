@@ -39,23 +39,52 @@ export default function ServicesGrid({ categories, onCategoryClick }: ServicesGr
     }, []);
 
     return (
-        <div className={styles.gridContainer}>
-            {categories.map((category, index) => (
-                <motion.div
-                    key={category.id}
-                    className={styles.gridBox}
-                    ref={(el) => { cardRefs.current[index] = el; }}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-10%" }}
-                    transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    onClick={() => onCategoryClick && onCategoryClick(index)}
-                    onMouseMove={(e) => handleMouseMove(e, index)}
-                    onMouseLeave={() => handleMouseLeave(index)}
-                >
-                    {/* Corner accent marks */}
-                    <span className={`${styles.cornerAccent} ${styles.cornerTopLeft}`} />
-                    <span className={`${styles.cornerAccent} ${styles.cornerBottomRight}`} />
+        <div className={styles.gridContainerWrapper}>
+            {/* Architectural decorative crosshairs for the grid container */}
+            <svg className={styles.gridCrosshair} style={{ top: '-10px', left: '-10px' }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 0V20M0 10H20" stroke="rgba(201, 168, 76, 0.4)" strokeWidth="1"/>
+            </svg>
+            <svg className={styles.gridCrosshair} style={{ top: '-10px', right: '-10px' }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 0V20M0 10H20" stroke="rgba(201, 168, 76, 0.4)" strokeWidth="1"/>
+            </svg>
+            <svg className={styles.gridCrosshair} style={{ bottom: '-10px', left: '-10px' }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 0V20M0 10H20" stroke="rgba(201, 168, 76, 0.4)" strokeWidth="1"/>
+            </svg>
+            <svg className={styles.gridCrosshair} style={{ bottom: '-10px', right: '-10px' }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 0V20M0 10H20" stroke="rgba(201, 168, 76, 0.4)" strokeWidth="1"/>
+            </svg>
+
+            <div className={styles.gridContainer}>
+                {categories.map((category, index) => (
+                    <motion.div
+                        key={category.id}
+                        className={styles.gridBoxWrapper}
+                        ref={(el) => { cardRefs.current[index] = el; }}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, margin: "-10%" }}
+                        transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+                    >
+                        {/* Background wireframe bounding box */}
+                        <div className={styles.boundingBox}></div>
+
+                        <div 
+                            className={styles.gridBox}
+                            onClick={() => onCategoryClick && onCategoryClick(index)}
+                            onMouseMove={(e) => handleMouseMove(e, index)}
+                            onMouseLeave={() => handleMouseLeave(index)}
+                        >
+                            {/* Corner geometric dots (replacing text) */}
+                            <svg className={styles.techGraphicTop} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="2" cy="2" r="1.5" fill="rgba(255,255,255,0.4)"/>
+                                <circle cx="10" cy="2" r="1.5" fill="rgba(255,255,255,0.4)"/>
+                                <circle cx="2" cy="10" r="1.5" fill="rgba(255,255,255,0.4)"/>
+                                <circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.4)"/>
+                            </svg>
+                            
+                            {/* Corner accent marks */}
+                            <span className={`${styles.cornerAccent} ${styles.cornerTopLeft}`} />
+                            <span className={`${styles.cornerAccent} ${styles.cornerBottomRight}`} />
 
                     <Image 
                         src={category.image} 
@@ -64,11 +93,13 @@ export default function ServicesGrid({ categories, onCategoryClick }: ServicesGr
                         height={500} 
                         className={styles.gridImage} 
                     />
-                    <div className={styles.overlayTextContainer}>
-                        <h3 className={styles.overlayTitle}>{category.title}</h3>
-                    </div>
-                </motion.div>
-            ))}
+                            <div className={styles.overlayTextContainer}>
+                                <h3 className={styles.overlayTitle}>{category.title}</h3>
+                            </div>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
         </div>
     );
 }
