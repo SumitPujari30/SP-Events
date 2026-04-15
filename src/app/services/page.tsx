@@ -2,13 +2,78 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HiArrowRight, HiArrowLeft, HiX, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
+import { HiArrowRight, HiArrowLeft, HiX, HiChevronLeft, HiChevronRight, HiRefresh } from 'react-icons/hi';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './services.module.css';
 import ServicesGrid from '@/components/ServicesGrid';
+
+const DeckCard = ({ src, index, deckIndex, setDeckIndex, isTop, totalCards, openLightbox }: any) => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    
+    const offsetIndex = index - deckIndex;
+    const isUnder = offsetIndex > 0;
+    const isSwiped = offsetIndex < 0;
+    
+    const staticScale = isUnder ? Math.max(0.85, 1 - offsetIndex * 0.05) : 1;
+    const staticY = isUnder ? offsetIndex * 15 : 0;
+    const seedRotate = (index % 7 - 3) * 2; 
+
+    const rotate = useTransform(x, [-200, 200], [-15, 15]);
+
+    const handleDragEnd = (event: any, info: any) => {
+        const offset = Math.sqrt(info.offset.x ** 2 + info.offset.y ** 2);
+        const velocity = Math.sqrt(info.velocity.x ** 2 + info.velocity.y ** 2);
+        if (offset > 120 || velocity > 500) {
+            setDeckIndex(deckIndex + 1);
+        }
+    };
+
+    return (
+        <motion.div
+            style={{
+                position: 'absolute',
+                inset: 0,
+                x: isTop ? x : 0,
+                y: isTop ? y : staticY,
+                rotate: isTop && !isSwiped ? rotate : seedRotate,
+                scale: staticScale,
+                zIndex: totalCards - index,
+                cursor: isTop ? 'grab' : 'auto',
+                pointerEvents: isSwiped ? 'none' : 'auto',
+            }}
+            drag={isTop}
+            dragElastic={1}
+            onDragEnd={handleDragEnd}
+            whileDrag={{ cursor: 'grabbing', scale: 1.02 }}
+            animate={isSwiped ? {
+                x: x.get() >= 0 ? 1000 : -1000,
+                y: y.get() >= 0 ? 1000 : -1000,
+                opacity: 0,
+                scale: 0.5,
+                transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+            } : {
+                x: 0,
+                y: isTop ? 0 : staticY,
+                rotate: isTop ? 0 : seedRotate,
+                opacity: 1,
+                scale: staticScale,
+            }}
+            transition={{ type: 'spring', stiffness: 450, damping: 35, mass: 0.8 }}
+            className={styles.deckCardWrapper}
+        >
+            <div 
+                className={styles.deckCardInner} 
+                onClick={() => { if (isTop && Math.abs(x.get()) < 5 && Math.abs(y.get()) < 5) openLightbox(index); }}
+            >
+                <Image src={src} alt={`Deck Image ${index}`} fill className={styles.deckCardImage} draggable={false} sizes="(max-width: 768px) 90vw, 50vw" priority={index < 3} />
+            </div>
+        </motion.div>
+    );
+};
 
 gsap.registerPlugin(ScrollTrigger);
 //changes
@@ -70,6 +135,7 @@ export default function ServicesPage() {
     const [selectedEvent, setSelectedEvent] = useState<SubEvent | null>(null);
     const [isMobile, setIsMobile] = useState(true);
     const [mounted, setMounted] = useState(false);
+    const [deckIndex, setDeckIndex] = useState(0);
 
     /* Lightbox state */
     const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -114,6 +180,7 @@ export default function ServicesPage() {
     const handleSelectEvent = useCallback((ev: SubEvent) => {
         setSelectedEvent(ev);
         setView('gallery');
+        setDeckIndex(0);
         setHash(router, 'gallery', activeIndex, ev.id);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [activeIndex, router]);
@@ -247,39 +314,44 @@ export default function ServicesPage() {
             </AnimatePresence>
 
             {view === 'gallery' && selectedEvent && (
-                <section className={styles.galleryPage}>
-                    <div className={styles.galleryContainer}>
-                        <div className={styles.galleryHeader}>
-                            <button className={styles.backBtn} onClick={handleBackToEvents}>
-                                <HiArrowLeft /> Back to {activeCategory.title} Events
-                            </button>
-                            <div className={styles.galleryTitles}>
-                                <h2 className={styles.galleryTitle}>{selectedEvent.title}</h2>
-                                <p className={styles.gallerySubtitle}>SCROLL DOWN TO BROWSE PHOTOS →</p>
-                            </div>
-                        </div>
+                <section className={styles.galleryOverlay}>
+                    <Image
+                        src={selectedEvent.allImages[deckIndex] || selectedEvent.allImages[selectedEvent.allImages.length - 1]}
+                        alt={selectedEvent.title}
+                        fill
+                        className={styles.galleryBlurredBg}
+                        priority
+                    />
+                    
+                    <button className={styles.galleryOverlayClose} onClick={handleBackToEvents}>
+                        <HiX />
+                    </button>
 
-                        <div className={styles.galleryMasonry}>
-                            {selectedEvent.allImages.map((src, idx) => (
-                                <div
-                                    key={`${selectedEvent.id}-img-${idx}`}
-                                    className={styles.galleryMasonryItem}
-                                    onClick={() => openLightbox(idx)}
-                                >
-                                    <Image
-                                        src={src}
-                                        alt={`${selectedEvent.title} photo ${idx + 1}`}
-                                        width={500}
-                                        height={500}
-                                        className={styles.galleryImg}
-                                        draggable={false}
-                                        loading="lazy"
-                                        sizes="(max-width: 768px) 100vw, 33vw"
-                                    />
-                                    <div className={styles.galleryImgOverlay} />
-                                    <div className={styles.galleryZoomIcon}>🔍</div>
-                                </div>
-                            ))}
+                    <div className={styles.galleryDeckContainer}>
+                        {selectedEvent.allImages.map((src, idx) => (
+                            <DeckCard 
+                                key={`${selectedEvent.id}-img-${idx}`}
+                                src={src}
+                                index={idx}
+                                deckIndex={deckIndex}
+                                setDeckIndex={setDeckIndex}
+                                isTop={idx === deckIndex}
+                                totalCards={selectedEvent.allImages.length}
+                                openLightbox={openLightbox}
+                            />
+                        ))}
+                    </div>
+
+                    <div className={styles.galleryBottomInfo}>
+                        <h2 className={styles.galleryActiveTitle}>{selectedEvent.title}</h2>
+                        <div className={styles.galleryNavArrows}>
+                            {deckIndex >= selectedEvent.allImages.length ? (
+                                <button className={styles.galleryNavBtn} onClick={() => setDeckIndex(0)}>
+                                    <HiRefresh /> Restart Gallery
+                                </button>
+                            ) : (
+                                <p style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-heading)', fontSize: '0.85rem', letterSpacing: '2px' }}>SWIPE TO EXPLORE</p>
+                            )}
                         </div>
                     </div>
                 </section>

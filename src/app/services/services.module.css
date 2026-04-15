@@ -237,177 +237,164 @@
 }
 
 /* ========================================
-   LEVEL 3: Masonry Gallery Grid
-   Standard vertical scroll with dense grid.
+   LEVEL 3: PHYSICAL DECK GALLERY
    ======================================== */
-.galleryPage {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    padding: 120px 48px 100px;
-}
-
-.galleryContainer {
-    max-width: 1440px;
-    margin: 0 auto;
-}
-
-.galleryHeader {
+.galleryOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 60px;
-}
-
-.galleryTitles {
-    display: flex;
-    flex-direction: column;
-}
-
-.galleryTitle {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    line-height: 1;
-    font-weight: 700;
-    color: var(--color-white);
-    margin-bottom: 12px;
-}
-
-.gallerySubtitle {
-    font-family: var(--font-heading);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: rgba(255, 255, 255, 0.4);
-    text-transform: uppercase;
-}
-
-/* ──── MASONRY GRID ──── */
-.galleryMasonry {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 200px;
-    gap: 20px;
-    grid-auto-flow: dense;
-}
-
-.galleryMasonryItem {
-    position: relative;
-    border-radius: 20px;
+    justify-content: center;
+    background: #050505;
     overflow: hidden;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.galleryMasonryItem:hover {
-    transform: scale(0.985);
-    border-color: var(--color-gold);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-}
-
-.galleryMasonryItem:nth-child(9n+1) { grid-column: span 1; grid-row: span 1; }
-.galleryMasonryItem:nth-child(9n+2) { grid-column: span 1; grid-row: span 2; }
-.galleryMasonryItem:nth-child(9n+3) { grid-column: span 1; grid-row: span 3; }
-.galleryMasonryItem:nth-child(9n+4) { grid-column: span 2; grid-row: span 1; }
-.galleryMasonryItem:nth-child(9n+5) { grid-column: span 2; grid-row: span 2; }
-.galleryMasonryItem:nth-child(9n+6) { grid-column: span 1; grid-row: span 2; }
-.galleryMasonryItem:nth-child(9n+7) { grid-column: span 1; grid-row: span 2; }
-.galleryMasonryItem:nth-child(9n+8) { grid-column: span 2; grid-row: span 2; }
-.galleryMasonryItem:nth-child(9n+9) { grid-column: span 1; grid-row: span 1; }
-
-@media (max-width: 900px) {
-    .galleryMasonry {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 180px;
-    }
-
-    .galleryMasonryItem:nth-child(9n+1),
-    .galleryMasonryItem:nth-child(9n+2),
-    .galleryMasonryItem:nth-child(9n+3),
-    .galleryMasonryItem:nth-child(9n+6),
-    .galleryMasonryItem:nth-child(9n+7),
-    .galleryMasonryItem:nth-child(9n+9) {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-
-    .galleryMasonryItem:nth-child(9n+4),
-    .galleryMasonryItem:nth-child(9n+5),
-    .galleryMasonryItem:nth-child(9n+8) {
-        grid-column: span 2;
-        grid-row: span 1;
-    }
-
-    .galleryPage {
-        padding: 100px 24px 60px;
-    }
-}
-
-@media (max-width: 480px) {
-    .galleryMasonry {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 220px;
-        gap: 12px;
-    }
-
-    .galleryMasonryItem:nth-child(n) {
-        grid-column: span 1 !important;
-        grid-row: span 1 !important;
-    }
-
-    .galleryPage {
-        padding: 80px 12px 40px;
-    }
-
-    .galleryMasonryItem {
-        border-radius: 12px;
-    }
-
-    .galleryTitle {
-        font-size: clamp(1.8rem, 6vw, 3rem);
-    }
-}
-
-.galleryImg {
+.galleryBlurredBg {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    filter: blur(50px) brightness(0.25);
+    transform: scale(1.1);
+    z-index: -1;
+    transition: opacity 0.4s ease;
 }
 
-.galleryMasonryItem:hover .galleryImg {
-    transform: scale(1.05);
-}
-
-.galleryImgOverlay {
+.galleryOverlayClose {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.4) 100%);
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-}
-
-.galleryMasonryItem:hover .galleryImgOverlay {
-    opacity: 0.8;
-}
-
-.galleryZoomIcon {
-    position: absolute;
-    inset: 0;
+    top: 30px;
+    right: 40px;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,0.2);
+    color: white;
     font-size: 1.5rem;
-    opacity: 0;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
     transition: all 0.3s ease;
 }
 
-.galleryMasonryItem:hover .galleryZoomIcon {
-    opacity: 1;
+.galleryOverlayClose:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05) rotate(90deg);
+}
+
+.galleryDeckContainer {
+    position: relative;
+    width: 100%;
+    height: 65vh;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+}
+
+.deckCardWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: bottom center;
+    will-change: transform;
+}
+
+.deckCardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08);
+    background: #111;
+    will-change: transform;
+}
+
+.deckCardImage {
+    object-fit: cover;
+    pointer-events: none; /* Allows drag to pass correctly to the wrapper */
+}
+
+.galleryBottomInfo {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 2;
+}
+
+.galleryActiveTitle {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    text-align: center;
+    padding: 0 20px;
+}
+
+.galleryNavArrows {
+    display: flex;
+    gap: 20px;
+}
+
+.galleryNavBtn {
+    padding: 12px 28px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.galleryNavBtn:hover {
+    background: rgba(201, 168, 76, 0.2);
+    border-color: rgba(201, 168, 76, 0.4);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .galleryDeckContainer {
+        height: 55vh;
+        max-width: 80vw;
+    }
+    .galleryOverlayClose {
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+    }
+    .galleryActiveTitle {
+        font-size: 1.1rem;
+    }
+    .galleryNavBtn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
 }
 
 /* ========================================
