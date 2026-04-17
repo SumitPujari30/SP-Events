@@ -19,7 +19,7 @@ const navLinks = [
     { href: '/careers', label: 'CAREERS' },
 ];
 
-const menuImage = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80";
+//const menuImage = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -103,9 +103,10 @@ export default function Navbar() {
                 {isOpen && (
                     <motion.div
                         className={styles.menuOverlay}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{ clipPath: 'inset(0 0 100% 0)' }}
+                        animate={{ clipPath: 'inset(0 0 0% 0)' }}
+                        exit={{ clipPath: 'inset(0 0 100% 0)' }}
+                        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
                     >
                         {/* Interactive Background */}
                         <div className={styles.menuBackground}>

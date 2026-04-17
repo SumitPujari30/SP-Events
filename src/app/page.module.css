@@ -150,19 +150,6 @@
   z-index: 2;
 }
 
-/* Bright, fading vertical divider exactly between columns */
-.expContainer::after {
-  content: '';
-  position: absolute;
-  left: 58%;
-  top: 5%;
-  bottom: 5%;
-  width: 1.5px;
-  background: linear-gradient(to bottom, transparent, rgba(201, 168, 76, 0.8), transparent);
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 1;
-}
 
 /* Removed decorative coordinates in favor of interactive geometry. */
 
