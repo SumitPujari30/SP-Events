@@ -341,7 +341,7 @@
   padding: 8px 18px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(201, 168, 76, 0.15);
-  border-radius: 40px;
+  border-radius: 0;
   transition: all 0.4s ease;
 }
 
@@ -371,7 +371,7 @@
   padding: 16px 32px;
   background: transparent;
   border: 1px solid rgba(201, 168, 76, 0.4);
-  border-radius: 30px;
+  border-radius: 0;
   color: var(--color-text);
   font-size: 0.95rem;
   font-weight: 500;
@@ -555,58 +555,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 65%; /* Increased width */
-  max-width: 900px; /* Increased max width */
-  margin-top: 50px;
-  margin-bottom: -100px;
-  gap: 20px;
-  opacity: 1; /* Fully visible */
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: -40px;
+  opacity: 1;
 }
 
-.underlineLineLeft,
-.underlineLineRight {
-  flex: 1;
-  height: 2px; /* Made thicker */
-  position: relative;
-}
-
-.underlineLineLeft {
-  background: linear-gradient(to right, transparent, rgba(201, 168, 76, 1));
-  transform-origin: right center;
-}
-
-.underlineLineLeft::before {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: -4px;
-  width: 2px; /* Thicker notch */
-  height: 10px; /* Taller notch */
-  background: rgba(201, 168, 76, 1);
-}
-
-.underlineLineRight {
-  background: linear-gradient(to left, transparent, rgba(201, 168, 76, 1));
-  transform-origin: left center;
-}
-
-.underlineLineRight::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: -4px;
-  width: 2px; /* Thicker notch */
-  height: 10px; /* Taller notch */
-  background: rgba(201, 168, 76, 1);
-}
-
-.underlineDiamond {
-  width: 10px; /* Larger diamond */
-  height: 10px;
-  background: rgba(201, 168, 76, 0.2);
-  border: 2px solid var(--color-accent-gold); /* Thicker border */
-  transform: rotate(45deg);
-  box-shadow: 0 0 15px rgba(201, 168, 76, 0.8), inset 0 0 5px rgba(201, 168, 76, 0.5); /* Stronger glow + inner glow */
+.underlineThinLine {
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(
+    to right, 
+    transparent 0%, 
+    rgba(201, 168, 76, 0.3) 50%, 
+    transparent 100%
+  );
+  transform-origin: center center;
 }
 
 @media (max-width: 768px) {
@@ -667,7 +631,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden; /* Prevent parallax bleed */
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .wowImage {
@@ -687,7 +651,7 @@
   z-index: 2;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
-  border-radius: 30px;
+  border-radius: 0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
@@ -710,7 +674,7 @@
   padding: 100px 0 140px;
   position: relative;
   z-index: 5;
-  background: linear-gradient(135deg, #020008 0%, #0a0120 50%, #020008 100%);
+  background: var(--color-bg-dark);
   overflow: hidden;
 }
 
@@ -764,7 +728,7 @@
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(201, 168, 76, 0.35);
   /* more visible gold-tinted glass edge */
-  border-radius: 24px;
+  border-radius: 0;
   text-align: center;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
@@ -888,7 +852,7 @@
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 2px solid rgba(201, 168, 76, 0.25);
-  border-radius: 24px;
+  border-radius: 0;
   display: flex;
   flex-direction: row;
   overflow: visible;
@@ -915,7 +879,7 @@
   content: '';
   position: absolute;
   inset: -3px;
-  border-radius: 27px;
+  border-radius: 0;
   padding: 2px;
   background: linear-gradient(135deg, rgba(201, 168, 76, 0.6) 0%, transparent 40%, transparent 60%, rgba(201, 168, 76, 0.6) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -932,38 +896,10 @@
   max-height: 650px;
   align-self: center;
   z-index: 2;
-  border-radius: 10px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(201, 168, 76, 0.2);
-}
-
-/* ── Minimalist Architectural Frame ── */
-.founderImageWrapper::after {
-  content: '';
-  position: absolute;
-  inset: 15px;
-  border: 1px solid rgba(201, 168, 76, 0.5);
-  pointer-events: none;
-  z-index: 5;
-  transition: inset 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-width 0.4s ease;
-}
-
-.founderImageWrapper::before {
-  content: '+';
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  color: rgba(201, 168, 76, 0.8);
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  z-index: 6;
-  pointer-events: none;
-}
-
-.founderCard:hover .founderImageWrapper::after {
-  inset: 8px;
-  border-width: 2px;
+  padding: 0;
 }
 
 .founderImage {
@@ -1071,7 +1007,7 @@
     flex: 0 0 auto;
     height: 300px;
     margin: 0;
-    border-radius: 10px 10px 0 0;
+    border-radius: 0;
   }
 
   .founderContent {
@@ -1084,7 +1020,7 @@
   }
 
   .founderCard::before {
-    border-radius: 14px;
+    border-radius: 0;
   }
 }
 
@@ -1203,7 +1139,7 @@
   align-items: center;
   justify-content: center;
   padding: 18px;
-  border-radius: 14px;
+  border-radius: 0;
   background: rgba(0, 0, 0, 0.03);
   border: 1px solid rgba(0, 0, 0, 0.06);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1384,7 +1320,7 @@
 
   .wowImage {
     height: 220px;
-    border-radius: 8px;
+    border-radius: 0;
   }
 
   .magicTextWrapper {
@@ -1475,7 +1411,7 @@
 
   .statGlass {
     padding: 28px 16px;
-    border-radius: 16px;
+    border-radius: 0;
   }
 
   .statNumber {
@@ -1498,7 +1434,7 @@
     width: 110px;
     height: 60px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 0;
   }
 
   .logoImg {

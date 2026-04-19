@@ -12,12 +12,12 @@ import styles from './Footer.module.css';
 import AnimatedSection from './AnimatedSection';
 
 const quickLinks = [
-    { href: '/', label: 'HOME' },
-    { href: '/about', label: 'ABOUT' },
-    { href: '/services', label: 'SERVICES' },
-    { href: '/clients', label: 'CLIENT' },
-    { href: '/contact', label: 'CONNECT' },
-    { href: '/careers', label: 'CAREERS' },
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/services', label: 'Services' },
+    { href: '/clients', label: 'Clients' },
+    { href: '/contact', label: 'Connect' },
+    { href: '/careers', label: 'Careers' },
 ];
 
 const servicesList = [
@@ -91,19 +91,15 @@ export default function Footer() {
                                     <Image 
                                         src="/assets/sp_logo.png" 
                                         alt="SP Events Logo" 
-                                        width={250} 
-                                        height={110} 
+                                        width={300} 
+                                        height={132} 
                                         className={styles.footerLogo}
                                         priority
                                     />
                                 </motion.div>
                             </div>
-                            <div className={styles.divider} />
-                            <div className={styles.tagline}>
-                                How we create experiences<br />
-                                Is how we build trust<br />
-                                With <span>precision, passion & perfection</span>
-                            </div>
+                           
+
                             <div className={styles.socials}>
                                 {socials.map((s) => (
                                     <motion.a
@@ -114,7 +110,7 @@ export default function Footer() {
                                         whileHover={{ y: -3, scale: 1.1 }}
                                         whileTap={{ scale: 0.95 }}
                                     >
-                                        <s.icon size={16} />
+                                        <s.icon size={22} />
                                     </motion.a>
                                 ))}
                             </div>
@@ -186,7 +182,7 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className={styles.bottom}>
-                    <p className={styles.copyright}>
+                    <p className={styles.copyright} >
                         &copy; {new Date().getFullYear()} The SP Events. All rights reserved.
                     </p>
 

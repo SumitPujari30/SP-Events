@@ -9,7 +9,7 @@ function Scene() {
     const particlesRef = useRef<THREE.Points>(null);
 
     // Particle count and distribution
-    const count = 2000;
+    const count = 800;
     const positions = useMemo(() => {
         const pos = new Float32Array(count * 3);
         for (let i = 0; i < count; i++) {
@@ -53,11 +53,11 @@ function Scene() {
             <Stars 
                 radius={100} 
                 depth={50} 
-                count={5000} 
-                factor={4} 
+                count={2000} 
+                factor={2} 
                 saturation={0} 
                 fade 
-                speed={1} 
+                speed={0.5} 
             />
         </>
     );

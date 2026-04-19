@@ -67,7 +67,7 @@ export default function Stats3DBackground() {
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
       <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
-        <fog attach="fog" args={['#050014', 5, 20]} />
+        <fog attach="fog" args={['#000000', 5, 20]} />
         <ambientLight intensity={0.5} />
         <ParticleSwarm />
       </Canvas>

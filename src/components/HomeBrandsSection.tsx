@@ -114,7 +114,7 @@ export default function HomeBrandsSection({ brands: initialBrands }: Props) {
                         <span className={styles.titleWhite}>EXPERIENCES.</span>
                     </h2>
 
-                    <div className={styles.subtextContainer}>
+                    <div >
                         <p className={styles.subtext}>DRIVEN BY INNOVATION · DEFINED BY EXCELLENCE</p>
                     </div>
                 </div>

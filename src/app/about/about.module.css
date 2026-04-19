@@ -131,7 +131,7 @@
     padding: 60px 40px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    border-radius: 0;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
     transform: translateZ(0);
@@ -335,7 +335,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-left: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 32px;
+    border-radius: 0;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     position: relative;
@@ -360,7 +360,7 @@
 @media (max-width: 480px) {
     .grassrootsCard {
         padding: 20px;
-        border-radius: 20px;
+        border-radius: 0;
         gap: 24px;
     }
 }
@@ -369,7 +369,7 @@
     content: '';
     position: absolute;
     inset: -1px;
-    border-radius: 32px;
+    border-radius: 0;
     padding: 1px;
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), transparent 40%, transparent 60%, rgba(212, 175, 55, 0.1));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -399,7 +399,7 @@
 .founderPhotoWrap {
     width: 100%;
     aspect-ratio: 4/5;
-    border-radius: 16px;
+    border-radius: 0;
     overflow: hidden;
     position: relative;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
@@ -562,7 +562,14 @@
     object-fit: cover;
     object-position: center 20%; /* Prioritize the upper part of the photo where faces are located */
     display: block;
+    filter: grayscale(1);
+    transition: filter 0.4s ease, transform 0.4s ease;
 }
+
+.sliderItem:hover img {
+    filter: grayscale(0);
+}
+
 
 .sliderNavBtn {
     position: absolute;
@@ -609,80 +616,197 @@
     fill: currentColor;
 }
 
-/* OUR VALUES SECTION - Elegant Radial Vector Layout */
+/* OUR VALUES SECTION - Glass Pillar Grid */
 .valuesSection {
-    padding: 80px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background-image: url('/assets/sp_values_bg.png'); /* CUSTOM BRANDED ASSET */
-    background-size: cover;
-    background-position: center;
+    padding: 120px 0 160px;
+    background-color: var(--color-bg-dark, #000000); /* Matched to site background */
     position: relative;
     overflow: hidden;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.valuesOverlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(2, 0, 8, 0.82); /* Deep indigo tint for cleaner contrast */
-    z-index: 1;
-}
-
-.valuesLayoutWrapper {
-    width: 100%;
-    height: 600px; /* Compacted height */
+.valuesMainTitle {
+    font-family: var(--font-display, serif);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--color-accent-gold, #d4af37);
+    margin-bottom: 80px;
+    text-align: center;
     position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
+    z-index: 2;
+    display: inline-block;
 }
 
-.valuesLinesContainer {
+.valuesMainTitle::after {
+    content: '';
     position: absolute;
-    left: 0;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background-color: rgba(212, 175, 55, 0.4);
+}
+
+.valuesMainTitleWrapper {
+    text-align: center;
+    width: 100%;
+}
+
+.valuesMainTitle span {
+    color: #fff;
+}
+
+.valuesPillarGrid {
+    display: flex;
+    align-items: flex-end; /* Align to bottom to create pyramid effect */
+    justify-content: center;
+    gap: 20px;
+    max-width: 1400px;
+    width: 100%;
+    padding: 0 40px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.valuePillar {
+    flex: 1; /* Equal flexible width */
+    max-width: 280px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Top highlight */
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease, border-color 0.5s ease;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Glass shine diagonal line */
+.valuePillar::before {
+    content: '';
+    position: absolute;
     top: 0;
+    left: -150%;
     width: 100%;
     height: 100%;
-    z-index: 10;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.04), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.8s ease;
+    z-index: 1;
+    pointer-events: none;
 }
+
+.valuePillar:hover {
+    transform: translateY(-15px);
+    background: rgba(255, 255, 255, 0.04);
+    border-top: 1px solid var(--color-accent-gold, #d4af37);
+}
+
+.valuePillar:hover::before {
+    left: 150%;
+}
+
+.pillarContent {
+    position: relative;
+    z-index: 2;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.pillarBigNumber {
+    font-family: var(--font-display, serif);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: var(--color-accent-gold, #d4af37);
+    opacity: 0.9;
+    margin-bottom: auto; /* Push the rest to bottom */
+}
+
+.pillarInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.pillarSmallNumber {
+    font-family: var(--font-display, serif);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 0.8;
+}
+
+.pillarTitle {
+    font-family: var(--font-display, serif);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-accent-gold, #d4af37);
+    margin: 0;
+}
+
+.pillarDesc {
+    font-family: var(--font-body, sans-serif);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    max-width: 90%;
+}
+
+/* Pyramid Heights */
+.valuePillar:nth-child(1), .valuePillar:nth-child(5) { height: 380px; }
+.valuePillar:nth-child(2), .valuePillar:nth-child(4) { height: 460px; }
+.valuePillar:nth-child(3) { height: 540px; }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) {
-    .valuesLayoutWrapper {
-        height: auto;
-        min-height: 400px;
+@media (max-width: 1200px) {
+    .valuesPillarGrid {
+        gap: 15px;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .valuesPillarGrid {
         flex-direction: column;
-        gap: 40px;
-        padding-top: 40px;
+        align-items: center;
+        gap: 20px;
     }
-    
-    .valuesCircle {
-        width: 260px;
-        height: 260px;
-        font-size: 2.5rem;
-        margin-left: 0;
+    .valuePillar {
+        width: 100%;
+        max-width: 400px;
+        flex: none;
     }
-    
-    .valuesLinesContainer {
-        display: none; /* Hide SVG lines on mobile */
+    /* Reset heights for mobile stack */
+    .valuePillar:nth-child(1), .valuePillar:nth-child(2), .valuePillar:nth-child(3), .valuePillar:nth-child(4), .valuePillar:nth-child(5) {
+        height: 250px;
     }
-}
-
-@media (max-width: 768px) {
-    .valuesSection {
-        padding: 60px 0;
+    .pillarBigNumber {
+        display: none; /* Hide big number on mobile to save space */
     }
-
-    .valuesLayoutWrapper {
-        min-height: 300px;
-        padding: 20px;
+    .pillarInner {
+        margin-top: auto;
+        margin-bottom: auto; /* Center vertically on mobile */
     }
 }
-
-@media (max-width: 480px) {
-    .valuesSection {
-        padding: 40px 0;
-    }
-}
-
 /* LOCATIONS SECTION */
 .locationsSection {
     padding: 100px 0;
@@ -720,13 +844,13 @@
 
 .locationCardImgWrap {
     width: 100%;
-    height: 600px;
+    height: 400px;
     margin-bottom: 0;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(212, 175, 55, 0.5);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.1);
-    border-radius: 12px; /* Smoother corner */
+    border-radius: 0;
     background: #000;
     will-change: transform;
     transform: translateZ(0);
@@ -734,7 +858,7 @@
 
 @media (max-width: 768px) {
     .locationCardImgWrap {
-        height: 350px;
+        height: 280px;
     }
 
     .locationCardsGrid {
@@ -818,13 +942,13 @@
     text-transform: uppercase;
     letter-spacing: 5px;
     margin: 0;
-    transform: translateY(110px); /* Pushed slightly further down in non-hover state */
+    transform: translateY(60px); /* Adjusted for shorter 400px card height */
     transition: transform 0.5s ease, letter-spacing 0.5s ease;
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .locationCard:hover .locationCity {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
     letter-spacing: 8px;
     color: var(--color-accent-gold, #d4af37);
 }
@@ -924,7 +1048,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08); /* crisp glass edge */
-  border-radius: 24px;
+  border-radius: 0;
   text-align: center;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
@@ -1052,7 +1176,7 @@
     .founderCard {
         padding: 20px;
         gap: 20px;
-        border-radius: 20px;
+        border-radius: 0;
     }
 
     .founderQuote::before {

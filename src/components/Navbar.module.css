@@ -41,9 +41,9 @@
 .menuOverlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(7, 0, 18, 0.85); /* Dark translucent base */
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
+  background-color: rgba(0, 0, 0, 0.92); /* Darker and more opaque for better focus */
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
   z-index: 9999;
   overflow: hidden;
 }

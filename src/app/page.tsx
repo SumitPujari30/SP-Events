@@ -266,27 +266,13 @@ export default function HomePage() {
 
       // ── Animate Underline Graphic ──
       gsap.fromTo(
-        [`.${styles.underlineLineLeft}`, `.${styles.underlineLineRight}`],
+        `.${styles.underlineThinLine}`,
         { scaleX: 0 },
         {
           scaleX: 1,
-          duration: 1.2,
+          duration: 1.5,
           ease: 'power3.out',
-          delay: 0.3,
-          scrollTrigger: {
-            trigger: `.${styles.categoriesSection}`,
-            start: 'top 80%',
-          },
-        }
-      );
-      gsap.fromTo(
-        `.${styles.underlineDiamond}`,
-        { scale: 0, rotation: 0 },
-        {
-          scale: 1, rotation: 45,
-          duration: 0.8,
-          ease: 'back.out(2)',
-          delay: 0.1,
+          delay: 0.2,
           scrollTrigger: {
             trigger: `.${styles.categoriesSection}`,
             start: 'top 80%',
@@ -369,10 +355,10 @@ export default function HomePage() {
 
           {/* Left Column - Unique Staggered Title */}
           <div className={styles.expLeft}>
-            <div className={styles.expBadge}>
+            {/* <div className={styles.expBadge}>
               <span className={styles.expBadgeDiamond}>✧</span>
-              Our Philosophy
-            </div>
+              
+            </div> */}
 
             <h2 className={styles.expTitle}>
               <div className={styles.expUniqueLine}>
@@ -441,9 +427,7 @@ export default function HomePage() {
             </h2>
             {/* ── Geometric Underline Graphic ── */}
             <div className={styles.titleUnderlineGraphic}>
-              <div className={styles.underlineLineLeft} />
-              <div className={styles.underlineDiamond} />
-              <div className={styles.underlineLineRight} />
+              <div className={styles.underlineThinLine} />
             </div>
           </div>
         </div>
