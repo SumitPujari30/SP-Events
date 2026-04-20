@@ -22,12 +22,12 @@ const eventCategories = [
   {
     id: 'corporate',
     title: 'Corporate Events',
-    image: '/assets/services/corporate_bg.png',
+    image: '/assets/services/corporate_bg.jpeg',
   },
   {
     id: 'special',
     title: 'Special Events',
-    image: '/assets/services/Special-Events-covers.jpeg',
+    image: '/assets/services/Special-Events-covers.jpg.jpeg',
   },
   {
     id: 'launch',
@@ -192,17 +192,17 @@ export default function HomePage() {
           }
         );
 
-        // Deep Cinematic Parallax effect on the image itself
+        // Clean professional arriving intro animation
         gsap.fromTo(dividerImageRef.current,
-          { yPercent: -15 }, // Start slightly pulled up
+          { scale: 0.85, opacity: 0 },
           {
-            yPercent: 15, // Scrub down as you scroll past
-            ease: 'none',
+            scale: 1,
+            opacity: 1,
+            duration: 1.5,
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: `.${styles.dividerBanner}`,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1.5,
+              start: 'top 80%',
             },
           }
         );
@@ -451,10 +451,6 @@ export default function HomePage() {
             alt="Creating Magical Events"
             className={styles.wowImage}
           />
-
-
-          {/* Sweep Light Effect */}
-          <div className={styles.bannerSweepLight} />
         </div>
       </div>
 

@@ -23,7 +23,7 @@ export const services: ServiceCategory[] = [
         "num": "01",
         "tagline": "Strategy meets spectacle",
         "desc": "We elevate corporate gatherings into powerful brand moments.",
-        "bgImage": "/assets/services/corporate_bg.png",
+        "bgImage": "/assets/services/corporate_bg.jpeg",
         "events": [
             {
                 "id": "corporate-1",
@@ -613,7 +613,7 @@ export const services: ServiceCategory[] = [
         "num": "02",
         "tagline": "Moments that become memories",
         "desc": "Life's most meaningful occasions deserve flawless execution.",
-        "bgImage": "/assets/services/Special-Events-covers.jpeg",
+        "bgImage": "/assets/services/Special-Events-covers.jpg.jpeg",
         "events": [
             {
                 "id": "special-1",
