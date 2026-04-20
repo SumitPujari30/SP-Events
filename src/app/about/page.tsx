@@ -259,7 +259,7 @@ export default function AboutPage() {
             <section className={styles.introSection}>
                 <FloatingParticles count={8} shapes={['dot', 'diamond', 'dotWhite']} seed={789} />
                 <AnimatedSection delay={0.2}>
-                    <h2 className={styles.pioneeringTitle}>A Method to the Madness That is <span style={{ color: 'var(--color-accent-gold, #d4af37)', fontStyle: 'italic' }}>Creating Magic</span></h2>
+                    <h2 className={styles.pioneeringTitle}>A Method to the Madness <span style={{ color: 'var(--color-accent-gold, #d4af37)', fontStyle: 'italic' }}>Creating Magic</span></h2>
                     <div className={styles.pioneeringTextBlocks}>
                         <div className={styles.pioneeringBlock}>
                             <div className={styles.pioneeringLabel}>THE MAGIC</div>
