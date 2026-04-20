@@ -440,19 +440,21 @@ export default function HomePage() {
 
 
       {/* ═══════════════════════════════════════════════════════
-          4. CREATING WOW EXPERIENCES — Image Banner
+          4. CREATING MAGICAL EVENTS — Cinematic Banner
       ════════════════════════════════════════════════════════ */}
       <div className={styles.dividerBanner}>
         <div className={styles.dividerBannerInner}>
+
           <img
             ref={dividerImageRef}
-            src="/assets/Layout_page.png"
-            alt="Creating Magic Layout"
+            src="/assets/creating_magical_events.png"
+            alt="Creating Magical Events"
             className={styles.wowImage}
           />
-          <div className={styles.magicTextWrapper}>
-            <span className={styles.magicText}>Creating Magic Layout</span>
-          </div>
+
+
+          {/* Sweep Light Effect */}
+          <div className={styles.bannerSweepLight} />
         </div>
       </div>
 
