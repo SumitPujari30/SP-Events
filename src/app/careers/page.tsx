@@ -141,29 +141,29 @@ function CultureSection() {
                         We are a collective of dreamers, builders, and perfectionists.
                     </p>
                 </div>
-                
-                <div 
-                    className={styles.cultureAccordionWrap}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                >
-                    {culture.map((item, i) => {
-                        const isHovered = hoveredIndex === i;
-                        return (
-                            <div 
-                                key={i} 
-                                className={`${styles.cultureAccordionCard} ${isHovered ? styles.activeCard : ''}`}
-                                onMouseEnter={() => setHoveredIndex(i)}
-                            >
-                                <div className={styles.accNumber}>{item.num}</div>
-                                <div className={styles.accContent}>
-                                    <item.Icon className={styles.hoverIcon} strokeWidth={1.5} />
-                                    <h3>{item.title}</h3>
-                                    <p>{item.desc}</p>
-                                </div>
+            </div>
+            
+            <div 
+                className={styles.cultureAccordionWrap}
+                onMouseLeave={() => setHoveredIndex(null)}
+            >
+                {culture.map((item, i) => {
+                    const isHovered = hoveredIndex === i;
+                    return (
+                        <div 
+                            key={i} 
+                            className={`${styles.cultureAccordionCard} ${isHovered ? styles.activeCard : ''}`}
+                            onMouseEnter={() => setHoveredIndex(i)}
+                        >
+                            <div className={styles.accNumber}>{item.num}</div>
+                            <div className={styles.accContent}>
+                                <item.Icon className={styles.hoverIcon} strokeWidth={1.5} />
+                                <h3>{item.title}</h3>
+                                <p>{item.desc}</p>
                             </div>
-                        );
-                    })}
-                </div>
+                        </div>
+                    );
+                })}
             </div>
         </section>
     );
@@ -185,7 +185,7 @@ function ApplicationFormSection() {
             <div className="container">
                 <div className="section-header center" style={{ marginBottom: '40px' }}>
                     <span className="section-label">Apply Now</span>
-                    <h2 className="section-title">Submit Your <span className="text-gold">Application</span></h2>
+                    <h2 className="section-title">Join The <span className="text-gold">Crew</span></h2>
                 </div>
 
                 <div className={styles.formWrap}>

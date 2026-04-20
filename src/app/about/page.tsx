@@ -58,6 +58,15 @@ const locations = [
     }
 ];
 
+const coreValues = [
+    { num: '01', title: 'EXCELLENCE', desc: 'We strive for perfection in every detail, ensuring world-class outcomes.' },
+    { num: '02', title: 'CREATIVITY', desc: 'Innovation and originality are at the heart of our magical experiences.' },
+    { num: '03', title: 'PRECISION', desc: 'Flawless execution driven by meticulous planning and organization.' },
+    { num: '04', title: 'RELIABILITY', desc: 'A trusted partner you can count on to deliver beyond expectations.' },
+    { num: '05', title: 'COMMITMENT', desc: 'Dedicated to turning your vision into a remarkable reality.' },
+];
+
+
 export default function AboutPage() {
     const [particles, setParticles] = useState<any[]>([]);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -373,154 +382,36 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* OUR VALUES SECTION - Elegant Radial Vector Layout */}
+            {/* OUR VALUES SECTION - Glass Pillar Grid */}
             <section className={styles.valuesSection}>
-                <div className={styles.valuesOverlay} />
-                <div className="container" style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
+                <div className={styles.valuesMainTitleWrapper}>
+                    <AnimatedSection>
+                        <h2 className={styles.valuesMainTitle}>
+                            OUR <span>VALUES</span>
+                        </h2>
+                    </AnimatedSection>
+                </div>
 
-                    <div className={styles.valuesLayoutWrapper}>
-                        {/* Unified Liquid Electric SVG Layout */}
-                        <div className={styles.valuesLinesContainer}>
-                            <svg width="100%" height="100%" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
-                                <defs>
-                                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stopColor="rgba(212, 175, 55, 0.05)" />
-                                        <stop offset="50%" stopColor="rgba(212, 175, 55, 0.3)" />
-                                        <stop offset="100%" stopColor="rgba(212, 175, 55, 0.6)" />
-                                    </linearGradient>
-
-                                    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stopColor="transparent" />
-                                        <stop offset="50%" stopColor="rgba(212, 175, 55, 0.95)" />
-                                        <stop offset="100%" stopColor="transparent" />
-                                    </linearGradient>
-
-                                    <linearGradient id="textShimmer" x1="-100%" y1="0%" x2="0%" y2="0%">
-                                        <stop offset="0%" stopColor="white" />
-                                        <stop offset="50%" stopColor="#d4af37" />
-                                        <stop offset="100%" stopColor="white" />
-                                        <animate attributeName="x1" from="-100%" to="100%" dur="4s" repeatCount="indefinite" />
-                                        <animate attributeName="x2" from="0%" to="200%" dur="4s" repeatCount="indefinite" />
-                                    </linearGradient>
-
-                                    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto">
-                                        <polygon points="0 0, 12 6, 0 12" fill="rgba(212, 175, 55, 0.9)" />
-                                    </marker>
-
-                                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                                        <feGaussianBlur stdDeviation="6" result="blur" />
-                                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                                    </filter>
-                                </defs>
-
-                                {/* Nebula Particles - Memoized to prevent Hydration errors */}
-                                {particles.map((p: any, i: number) => (
-                                    <motion.circle
-                                        key={`particle-${i}`}
-                                        cx={p.cx}
-                                        cy={p.cy}
-                                        r={p.r}
-                                        fill="white"
-                                        initial={{ opacity: 0.1 }}
-                                        style={{ willChange: 'transform, opacity' }}
-                                        animate={{
-                                            opacity: [0.1, 0.5, 0.1],
-                                            scale: [1, 2, 1],
-                                            x: [0, p.moveX, 0],
-                                            y: [0, p.moveY, 0]
-                                        }}
-                                        transition={{ duration: p.duration, repeat: Infinity }}
-                                    />
-                                ))}
-                                {/* Organic Curved Paths (Quadratic Bezier) - Compacted for 600px height */}
-                                {[
-                                    { id: 'vp1', d: "M 200 300 Q 600 30 1550 20", delay: 0 },
-                                    { id: 'vp2', d: "M 200 300 Q 750 160 1550 170", delay: 0.2 },
-                                    { id: 'vp3', d: "M 200 300 Q 800 315 1550 310", delay: 0.4 },
-                                    { id: 'vp4', d: "M 200 300 Q 750 440 1550 430", delay: 0.6 },
-                                    { id: 'vp5', d: "M 200 300 Q 600 570 1550 580", delay: 0.8 }
-                                ].map((path, idx) => (
-                                    <g key={path.id}>
-                                        {/* Base Organic Path */}
-                                        <motion.path
-                                            id={path.id} d={path.d}
-                                            stroke="url(#lineGrad)" strokeWidth="2" fill="none"
-                                            initial={{ pathLength: 0, opacity: 0 }}
-                                            whileInView={{ pathLength: 1, opacity: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 1.5, delay: path.delay }}
-                                        />
-
-                                        {/* Electric Flow Animation Layer */}
-                                        <motion.path
-                                            d={path.d}
-                                            stroke="rgba(212, 175, 55, 0.4)" strokeWidth="2" fill="none"
-                                            strokeDasharray="60 180"
-                                            animate={{ strokeDashoffset: [0, -1000] }}
-                                            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                                        />
-
-                                        {/* Traveling Energy Pulse Ping */}
-                                        <motion.circle r="5" fill="#d4af37" filter="url(#glow)">
-                                            <animateMotion
-                                                path={path.d}
-                                                dur={`${5 + idx}s`}
-                                                repeatCount="indefinite"
-                                                rotate="auto"
-                                                begin={`${idx * 1.2}s`}
-                                            />
-                                        </motion.circle>
-
-                                        {/* Arrowhead at the end of eac h curved path */}
-                                        <use href={`#${path.id}`} stroke="none" markerEnd="url(#arrowhead)" />
-                                    </g>
-                                ))}
-
-                                {/* Curved Value Labels - Pushed out even further for BIG circle (Offset 55-60%) */}
-                                <g style={{ pointerEvents: 'none' }}>
-                                    {[
-                                        { id: 'vp1', text: '01 EXCELLENCE', offset: '55%' },
-                                        { id: 'vp2', text: '02 CREATIVITY', offset: '58%' },
-                                        { id: 'vp3', text: '03 PRECISION', offset: '62%' },
-                                        { id: 'vp4', text: '04 RELIABILITY', offset: '58%' },
-                                        { id: 'vp5', text: '05 COMMITMENT', offset: '55%' }
-                                    ].map((item, i) => (
-                                        <motion.text key={i} fill="url(#textShimmer)" fontSize="36" fontWeight="950"
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            transition={{ duration: 0.8, delay: 1.5 + (i * 0.2) }}
-                                        >
-                                            <textPath href={`#${item.id}`} startOffset={item.offset} textAnchor="start" dy="-30">{item.text}</textPath>
-                                        </motion.text>
-                                    ))}
-                                </g>
-
-                                {/* Central BIG Hub - Compacted Center */}
-                                <motion.g
-                                    initial={{ scale: 0.8, opacity: 0 }}
-                                    whileInView={{ scale: 1, opacity: 1 }}
-                                    transition={{ duration: 1.2, type: "spring", damping: 10 }}
-                                    viewport={{ once: true }}
-                                >
-                                    {/* Breathing Outer Ring - LARGER SCALE */}
-                                    <motion.circle
-                                        cx="200" cy="300" r="180"
-                                        fill="none" stroke="white" strokeWidth="2"
-                                        animate={{ r: [180, 200, 180], opacity: [0.5, 0, 0.5] }}
-                                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                    />
-                                    <circle cx="200" cy="300" r="180" fill="rgba(8,8,8,0.9)" stroke="white" strokeWidth="8" filter="url(#glow)" />
-
-                                    <text x="200" y="275" fill="white" fontSize="64" fontWeight="950" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: '3px' }}>
-                                        OUR
-                                    </text>
-                                    <text x="200" y="350" fill="white" fontSize="64" fontWeight="950" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: '3px' }}>
-                                        VALUES
-                                    </text>
-                                </motion.g>
-                            </svg>
-                        </div>
-                    </div>
+                <div className={styles.valuesPillarGrid}>
+                    {coreValues.map((value, i) => (
+                        <motion.div
+                            key={i}
+                            className={styles.valuePillar}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-10%" }}
+                            transition={{ duration: 0.8, delay: i * 0.15 }}
+                        >
+                            <div className={styles.pillarContent}>
+                                <div className={styles.pillarBigNumber}>{value.num}</div>
+                                <div className={styles.pillarInner}>
+                                    {/* <div className={styles.pillarSmallNumber}>{value.num}</div> */}
+                                    <h3 className={styles.pillarTitle}>{value.title}</h3>
+                                    <p className={styles.pillarDesc}>{value.desc}</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
 

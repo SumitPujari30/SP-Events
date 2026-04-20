@@ -117,7 +117,7 @@
 }
 
 .glassContainer {
-  background: rgba(17, 17, 17, 0.4);
+  background: var(--color-bg-dark, #000000);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -138,7 +138,7 @@
   right: 0;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-  opacity: 0.5;
+  opacity: 0.35;
 }
 
 .formHeader {
@@ -304,7 +304,7 @@
 /* --- Info Section --- */
 .infoSection {
   padding: 80px 0;
-  background: rgba(8, 6, 26, 0.4);
+  background: var(--color-bg-dark, #000000);
 }
 
 .infoGrid {

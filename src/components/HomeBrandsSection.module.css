@@ -87,20 +87,14 @@
 }
 
 .underline {
-    height: 4px;
-    width: 140px;
-    background: var(--color-gold);
-    margin-top: 8px;
-    border-radius: 2px;
+    height: 2px;
+    width: 180px;
+    background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.4), transparent);
+    margin: 12px 0 0;
+    border-radius: 1px;
 }
 
 /* ▬▬▬ SUBTEXT TAGLINE ▬▬▬ */
-.subtextContainer {
-    margin-top: 50px;
-    padding: 12px 20px;
-    border-left: 2px solid var(--color-gold);
-}
-
 .subtext {
     font-family: var(--font-heading);
     font-size: 0.82rem;
@@ -108,7 +102,7 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     color: var(--color-gold);
-    margin: 0;
+    margin: 50px 0 0; /* Add margin-top here instead of the wrapper */
     opacity: 0.9;
 }
 

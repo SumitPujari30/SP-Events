@@ -96,8 +96,6 @@ export default function ContactPage() {
             {/* Hero Section */}
             <section 
                 className={styles.hero}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
             >
                 {/* Interactive Glow Aura */}
                 <motion.div 
@@ -108,7 +106,6 @@ export default function ContactPage() {
                 <div className="container">
                     <motion.div 
                         className={styles.heroContent}
-                        style={{ rotateX: titleRotateX, rotateY: titleRotateY, perspective: 1000 }}
                     >
                         <motion.div 
                             className={styles.badge}
@@ -304,23 +301,6 @@ export default function ContactPage() {
                                 </motion.a>
                             </AnimatedSection>
                         ))}
-                    </div>
-
-                    {/* Social Connect */}
-                    <div className={styles.socialConnect}>
-                        <motion.p 
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className={styles.socialText}
-                        >
-                            Connect with us on Social Media
-                        </motion.p>
-                        <div className={styles.socialIcons}>
-                            <motion.a whileHover={{ y: -5, color: '#E2C97E' }} href="#" className={styles.socialIcon}><FaInstagram /></motion.a>
-                            <motion.a whileHover={{ y: -5, color: '#E2C97E' }} href="#" className={styles.socialIcon}><FaLinkedinIn /></motion.a>
-                            <motion.a whileHover={{ y: -5, color: '#E2C97E' }} href="#" className={styles.socialIcon}><FaTwitter /></motion.a>
-                        </div>
                     </div>
                 </div>
             </section>

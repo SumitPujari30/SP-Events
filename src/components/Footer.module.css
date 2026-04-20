@@ -93,7 +93,7 @@
 .brand {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px; /* Reduced gap */
     align-items: flex-start;
 }
 
@@ -105,7 +105,6 @@
     opacity: 0.85;
     font-weight: 400;
     letter-spacing: 0.2px;
-    margin-left: 60px;
 }
 
 .tagline span {
@@ -118,8 +117,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: -35px; /* Refined optical alignment */
-    margin-top: -10px; 
+    margin-top: -42px; /* Pulled up further to align visual top with neighboring column titles */
 }
 
 .divider {
@@ -127,15 +125,13 @@
     height: 2px;
     background: linear-gradient(90deg, var(--color-gold) 0%, rgba(201, 168, 76, 0) 100%);
     opacity: 0.6;
-    margin: -10px 0 5px 60px; /* Aligned with logo's manual margin-left */
+    margin: 0; /* Removed margins as gap handles spacing */
 }
 
 .footerLogo {
     height: auto;
     width: auto;
-    max-width: 200px;
-    margin-left: 90px;
-    margin-bottom: -30px;
+    max-width: 280px; /* Increased from 200px */
     object-fit: contain;
     filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05));
     transition: all 0.3s ease;
@@ -154,13 +150,12 @@
 
 .socials {
     display: flex;
-    gap: 12px;
-    margin-left: 55px; /* Subtle offset to align with logo's visual edge */
+    gap: 20px;
 }
 
 .socialIcon {
-    width: 38px;
-    height: 38px;
+    width: 46px;
+    height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,6 +163,7 @@
     border-radius: var(--radius-full);
     color: var(--color-text-on-dark-muted);
     transition: all var(--transition-base);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .socialIcon:hover {
@@ -280,7 +276,7 @@
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center; /* Properly centered */
     padding: 24px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -315,19 +311,15 @@
     }
 
     .footerLogo {
-        margin-left: 0;
+        max-width: 180px;
     }
 
     .tagline {
-        margin-left: 0;
+        font-size: 0.9rem;
     }
 
     .divider {
-        margin-left: 0;
-    }
-
-    .socials {
-        margin-left: 0;
+        width: 120px;
     }
 }
 
@@ -344,12 +336,10 @@
 
     .footerLogo {
         max-width: 180px;
-        margin-left: 0;
-        margin-bottom: -10px;
+        margin-bottom: 5px;
     }
 
     .logoWrap {
-        margin-left: 0;
         margin-top: 0;
     }
 
@@ -364,7 +354,6 @@
     }
 
     .socials {
-        margin-left: 0;
         gap: 10px;
     }
 

@@ -572,7 +572,7 @@
 .formWrap {
   max-width: 800px;
   margin: 0 auto;
-  background: rgba(10, 5, 20, 0.7);
+  background: var(--color-bg-dark, #000000);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 24px;
@@ -589,7 +589,8 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--gradient-gold);
+  background: linear-gradient(90deg, transparent, var(--color-gold, #C9A84C), transparent);
+  opacity: 0.35;
 }
 
 .formRow {
@@ -980,33 +981,35 @@
 .cultureAccordionWrap {
   display: flex;
   flex-direction: row;
-  height: 320px;
-  gap: 16px;
+  height: 480px; /* Increased for premium feel */
+  gap: 0; /* Continuous edge-to-edge look */
   width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .cultureAccordionCard {
   flex: 1;
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 32px 24px;
+  border-radius: 0; /* Sharp edges as per site style */
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(24px);
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.08); /* Minimalist separator */
+  padding: 60px 40px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: flex 0.6s cubic-bezier(0.16, 1, 0.3, 1), background 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: flex 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: flex, background;
+  transform: translateZ(0); /* Hardware acceleration */
 }
 
 .cultureAccordionCard.activeCard {
-  flex: 3;
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(201, 168, 76, 0.6);
+  flex: 4; /* More emphasis when focused */
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .accNumber {
@@ -1020,7 +1023,9 @@
   transform: translate(-50%, -50%);
   line-height: 1;
   pointer-events: none;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, color;
 }
 
 .activeCard .accNumber {
@@ -1041,7 +1046,8 @@
   height: 32px;
   color: rgba(255, 255, 255, 0.4);
   margin-bottom: 12px;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, color;
 }
 
 .activeCard .hoverIcon {
@@ -1055,7 +1061,8 @@
   color: var(--color-white);
   white-space: nowrap;
   margin: 0;
-  transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: color;
 }
 
 .activeCard .accContent h3 {
@@ -1070,13 +1077,17 @@
   overflow: hidden;
   max-height: 0;
   opacity: 0;
-  margin-top: 0;
-  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), margin-top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(10px); /* Avoid animating max-height alone */
+  transition: max-height 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: max-height, opacity, transform;
 }
 
 .activeCard .accContent p {
-  max-height: 150px;
+  max-height: 200px;
   opacity: 1;
+  transform: translateY(0);
   margin-top: 12px;
 }
 
@@ -1084,7 +1095,7 @@
   .cultureAccordionWrap {
     flex-direction: column;
     height: auto;
-    min-height: 400px;
+    min-height: 600px;
   }
 
   .cultureAccordionCard {
