@@ -22,32 +22,32 @@ const eventCategories = [
   {
     id: 'corporate',
     title: 'Corporate Events',
-    image: '/assets/Layout_page.png',
-  },
-  {
-    id: 'launches',
-    title: 'Launch Events',
-    image: '/assets/Layout_page.png',
-  },
-  {
-    id: 'musical',
-    title: 'Music Events',
-    image: '/assets/Layout_page.png',
+    image: '/assets/services/corporate_bg.png',
   },
   {
     id: 'special',
     title: 'Special Events',
-    image: '/assets/Layout_page.png',
+    image: '/assets/services/Special-Events-covers.jpeg',
+  },
+  {
+    id: 'launch',
+    title: 'Launch Events',
+    image: '/assets/services/launch_bg.jpeg',
+  },
+  {
+    id: 'music',
+    title: 'Music Events',
+    image: '/assets/services/Music-Events-cover.jpeg',
   },
   {
     id: 'sports',
     title: 'Sports Events',
-    image: '/assets/Layout_page.png',
+    image: '/assets/services/Sports-Cover.jpeg',
   },
   {
-    id: 'weddings',
+    id: 'wedding',
     title: 'Weddings',
-    image: '/assets/Layout_page.png',
+    image: '/assets/services/Wedding-cover.jpg.jpeg',
   },
 ];
 

@@ -863,7 +863,7 @@
     font-family: var(--font-display);
     font-size: 10rem; /* Increased quote size */
     font-weight: 700;
-    color: var(--color-gold);
+    color: rgba(201, 168, 76, 0.15); /* Reduced opacity for subtle annotation effect */
     line-height: 0;
     user-select: none;
     pointer-events: none;
@@ -922,7 +922,7 @@
 .testiAuthorRole {
     font-family: var(--font-heading);
     font-size: 0.75rem; /* Scaled up */
-    color: rgba(201, 168, 76, 0.7); /* Role is also golden but dimmer in the reference */
+    color: rgba(201, 168, 76, 0.45); /* Further dimmed role for hierarchy */
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }

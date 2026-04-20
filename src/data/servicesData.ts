@@ -613,7 +613,7 @@ export const services: ServiceCategory[] = [
         "num": "02",
         "tagline": "Moments that become memories",
         "desc": "Life's most meaningful occasions deserve flawless execution.",
-        "bgImage": "/assets/services/special_bg.png",
+        "bgImage": "/assets/services/Special-Events-covers.jpeg",
         "events": [
             {
                 "id": "special-1",
@@ -863,7 +863,7 @@ export const services: ServiceCategory[] = [
         "num": "03",
         "tagline": "First impressions, perfected",
         "desc": "A product launch is your brand's most critical moment.",
-        "bgImage": "/assets/services/launch_bg.png",
+        "bgImage": "/assets/services/launch_bg.jpeg",
         "events": [
             {
                 "id": "launch-1",
@@ -1087,7 +1087,7 @@ export const services: ServiceCategory[] = [
         "num": "04",
         "tagline": "Sonic experiences that move crowds",
         "desc": "From intimate acoustic evenings to stadium-filling concerts.",
-        "bgImage": "/assets/services/music_bg.png",
+        "bgImage": "/assets/services/Music-Events-cover.jpeg",
         "events": [
             {
                 "id": "music-1",
@@ -1529,7 +1529,7 @@ export const services: ServiceCategory[] = [
         "num": "05",
         "tagline": "Where champions are celebrated",
         "desc": "We bring the energy of sport to life.",
-        "bgImage": "/assets/services/sports_bg.png",
+        "bgImage": "/assets/services/Sports-Cover.jpeg",
         "events": [
             {
                 "id": "sports-1",
@@ -1671,7 +1671,7 @@ export const services: ServiceCategory[] = [
         "num": "06",
         "tagline": "Love stories brought to life",
         "desc": "Every love story is unique — and your wedding should be too.",
-        "bgImage": "/assets/services/wedding_bg.png",
+        "bgImage": "/assets/services/Wedding-cover.jpg.jpeg",
         "events": []
     }
 ];

@@ -90,8 +90,8 @@ export default function HomeBrandsSection({ brands: initialBrands }: Props) {
     }, [brands]);
 
     const getImgSrc = useCallback((logo: string | undefined) => {
-        if (!logo) return '/assets/client_transparent_images/Infosys.png';
-        return `/assets/client_transparent_images/${encodeURIComponent(logo)}`;
+        if (!logo) return '/assets/client_logos/Infosys.png';
+        return `/assets/client_logos/${encodeURIComponent(logo)}`;
     }, []);
 
     return (

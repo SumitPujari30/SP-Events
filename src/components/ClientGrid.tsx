@@ -54,8 +54,8 @@ function getInitials(name: string): string {
 
 function getLogoSrc(logo?: string): string {
     if (!logo) return '/assets/Layout_page.png';
-    // Point to the brand new transparent images folder
-    return `/assets/client_transparent_images/${encodeURIComponent(logo)}`;
+    // Point to the brand new logo folder
+    return `/assets/client_logos/${encodeURIComponent(logo)}`;
 }
 
 function LogoFace({ client, index }: { client: ClientRecord | null, index: number }) {

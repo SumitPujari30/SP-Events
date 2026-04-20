@@ -105,7 +105,8 @@
     background: #090909; /* Deep almost-black base */
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     transform-style: preserve-3d;
-    overflow: hidden;
+    /* Removed overflow: hidden to allow hover scale to pop out cleanly */
+    overflow: visible; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,10 +121,12 @@
 
 /* ── Logo Image ── */
 .logoImage {
-    width: 100%;
-    height: 100%;
-    max-width: 85%; /* Use percentage instead of fixed px to maximize scale */
-    max-height: 85%;
+    width: 75% !important; /* Reduced from 100% and constrained to avoid cutting */
+    height: 75% !important;
+    max-width: 75%;
+    max-height: 75%;
+    margin: auto; /* CRITICAL: Centers absolute 'fill' images */
+    inset: 0;
     object-fit: contain;
     object-position: center;
     /* Convert ANY logo to pure white with partial opacity */
@@ -135,7 +138,7 @@
 .matrixCard:hover .logoImage {
     /* Bloom into original vibrant color */
     filter: brightness(1) invert(0) opacity(1);
-    transform: scale(1.1); /* Slightly larger pop on wider logos */
+    transform: scale(1.15); /* Slightly larger pop permitted now that overflow is visible */
 }
 
 /* Fallback Initials */

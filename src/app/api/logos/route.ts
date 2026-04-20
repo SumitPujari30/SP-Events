@@ -4,7 +4,7 @@ import path from 'path';
 
 export async function GET() {
   try {
-    const imagesDirectory = path.join(process.cwd(), 'public/assets/client_transparent_images');
+    const imagesDirectory = path.join(process.cwd(), 'public/assets/client_logos');
     
     // Check if directory exists
     if (!fs.existsSync(imagesDirectory)) {
