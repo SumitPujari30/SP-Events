@@ -282,7 +282,7 @@ export default function ServicesPage() {
                             initial="initial"
                             animate="animate"
                         >
-                            {activeCategory.events.map((ev) => (
+                            {activeCategory.events.map((ev, index) => (
                                 <motion.div
                                     key={ev.id}
                                     className={styles.eventCard}
@@ -297,7 +297,8 @@ export default function ServicesPage() {
                                             width={800}
                                             height={450}
                                             className={styles.eventCardImg}
-                                            loading="lazy"
+                                            priority={index < 6}
+                                            loading={index < 6 ? undefined : "lazy"}
                                         />
                                         <div className={styles.eventCardOverlay} />
                                     </div>

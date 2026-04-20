@@ -92,6 +92,7 @@ export default function ServicesGrid({ categories, onCategoryClick }: ServicesGr
                         width={400} 
                         height={500} 
                         className={styles.gridImage} 
+                        priority={true}
                     />
                             <div className={styles.overlayTextContainer}>
                                 <h3 className={styles.overlayTitle}>{category.title}</h3>

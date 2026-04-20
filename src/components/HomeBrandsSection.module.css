@@ -187,8 +187,8 @@
 
     opacity: 0.8;
 
-    /* Convert image to pure white as requested */
-    filter: brightness(0) invert(1);
+    /* Clean black and white effect */
+    filter: grayscale(100%) contrast(120%);
 
     /* Re-introducing a slight base scale for a more 'filled' appearance */
     transform: scale(1.1);
