@@ -86,17 +86,17 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.50; /* Increased for clear texture */
-    filter: saturate(0.6) brightness(0.7);
+    opacity: 0.8;
+    filter: saturate(0.8) brightness(0.85);
 }
 
 .heroBgOverlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg,
-            rgba(17, 0, 28, 0.4) 0%,
-            rgba(17, 0, 28, 0.6) 50%,
-            rgba(17, 0, 28, 0.9) 100%);
+            rgba(17, 0, 28, 0.2) 0%,
+            rgba(17, 0, 28, 0.4) 50%,
+            rgba(17, 0, 28, 0.8) 100%);
     z-index: 1;
 }
 
@@ -118,32 +118,29 @@
 }
 
 .heroLetter {
-    font-family: var(--font-display);
-    font-size: clamp(5rem, 12vw, 10rem);
-    font-weight: 900;
+    font-family: var(--font-display); /* Cinzel */
+    font-size: clamp(4rem, 10vw, 8.5rem);
+    font-weight: 700;
     color: var(--color-white);
-    line-height: 0.9;
+    line-height: 1;
     text-transform: uppercase;
     display: inline-block;
     will-change: transform, opacity;
-    letter-spacing: -0.04em;
-    /* Multi-layered 3D depth + Floor shadow */
+    letter-spacing: 0.05em;
+    /* Clean high-contrast depth */
     text-shadow: 
-        1px 1px 0px rgba(0, 0, 0, 0.8),   /* Edge shadow */
-        3px 3px 0px rgba(0, 0, 0, 0.4),   /* Depth layer 1 */
-        6px 6px 0px rgba(0, 0, 0, 0.2),   /* Depth layer 2 */
-        0 15px 30px rgba(0, 0, 0, 0.6),   /* Ambient occlusion */
-        0 30px 60px rgba(0, 0, 0, 0.3);   /* Ground / Floor shadow */
+        0 10px 20px rgba(0, 0, 0, 0.4),
+        0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .heroLetter.gold {
-    color: var(--color-gold);
-    text-shadow: 
-        1px 1px 0px rgba(0, 0, 0, 0.8),
-        3px 3px 0px rgba(132, 107, 43, 0.5), /* Gold-tinted depth */
-        6px 6px 0px rgba(0, 0, 0, 0.3),
-        0 15px 30px rgba(132, 107, 43, 0.4), /* Gold ambient bloom */
-        0 30px 60px rgba(0, 0, 0, 0.4);      /* Ground shadow */
+    background: linear-gradient(135deg, #e5c05b 0%, #fff2d1 50%, #e5c05b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Fallback */
+    filter: drop-shadow(0 10px 15px rgba(229, 192, 91, 0.35));
+    text-shadow: none; /* Gradient doesn't play well with CSS shadow, use filter instead */
 }
 
 /* Scroll hint */

@@ -53,7 +53,7 @@ const locations = [
         city: 'BANGALORE',
         type: 'CORPORATE OFFICE',
         img: '/assets/bangaluru.jpeg',
-        address: '"The SP Events" , ITPL Main Road, Opp Capitol Towers, Kadugodi, Whitefield, Bengaluru - 560 066, Karnataka, India.',
+        address: '"The SP Events" , ITPL Main Road, Opp Capitol Towers, Kadugodi, Whitefield, Bengaluru - 560066, Karnataka, India.',
         mapLink: 'https://www.google.com/maps/search/?api=1&query=The+SP+Events+Whitefield+Bangalore'
     }
 ];
@@ -443,6 +443,7 @@ export default function AboutPage() {
                                                 src={loc.img} 
                                                 alt={loc.city} 
                                                 fill
+                                                unoptimized
                                                 className={styles.locationCardImg} 
                                                 sizes="(max-width: 768px) 100vw, 50vw"
                                             />

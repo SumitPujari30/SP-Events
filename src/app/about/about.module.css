@@ -106,11 +106,12 @@
 }
 
 .pioneeringTitle {
-    font-family: var(--font-heading, serif);
+    font-family: var(--font-heading);
     font-size: clamp(2.5rem, 4.5vw, 4rem);
-    font-weight: 400;
+    font-weight: 800;
     margin-bottom: 40px;
-    line-height: 1.25;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
 }
 
 .pioneeringTextBlocks {
@@ -257,10 +258,11 @@
 }
 
 .grassrootsTopTitle {
+    font-family: var(--font-heading);
     font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--color-white, #fff);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 60px;
@@ -427,7 +429,7 @@
 
 .founderEyebrow {
     font-family: var(--font-heading);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--color-accent-gold, #d4af37);
     letter-spacing: 6px;
@@ -501,7 +503,7 @@
     color: #fff;
     margin-bottom: 60px;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 0.1em;
 }
 
 .sliderTrack {
@@ -629,11 +631,11 @@
 }
 
 .valuesMainTitle {
-    font-family: var(--font-display, serif);
+    font-family: var(--font-display);
     font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 500;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 0.15em;
     color: var(--color-accent-gold, #d4af37);
     margin-bottom: 80px;
     text-align: center;

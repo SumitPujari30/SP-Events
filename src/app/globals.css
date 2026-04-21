@@ -1,10 +1,10 @@
 /* ============================================
    SP EVENTS — Premium Design System
    Pure Black + Warm Gold
-   Playfair Display · Inter · Premium Typography
+   Cinzel · Lato · Premium Typography
    ============================================ */
 
-   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Caveat:wght@700&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 
    /* --- CSS Variables / Design Tokens --- */
    :root {
@@ -44,10 +44,10 @@
      --gradient-dark: linear-gradient(135deg, rgba(17, 17, 17, 0.6) 0%, rgba(5, 5, 5, 0.95) 50%, #000000 100%);
 
      /* Typography */
-     --font-display: 'Playfair Display', 'Didot', 'Bodoni MT', Georgia, serif;  /* Display headings */
-     --font-heading: 'Inter', 'Helvetica Neue', sans-serif;                      /* Section headings & UI */
-     --font-body: 'Inter', 'Helvetica Neue', sans-serif;                         /* Body text */
-     --font-nav: 'Inter', 'Montserrat', sans-serif;                              /* Navigation */
+     --font-display: 'Cinzel', 'Playfair Display', 'Didot', serif;  /* Elegant Display headings */
+     --font-heading: 'Cinzel', 'Playfair Display', serif;           /* Section headings */
+     --font-body: 'Lato', 'Helvetica Neue', sans-serif;             /* Clean Body text */
+     --font-nav: 'Lato', 'Helvetica Neue', sans-serif;              /* Minimal Navigation */
 
      /* Utilities */
      --radius-sm: 8px;
@@ -106,6 +106,7 @@
      font-family: var(--font-heading);
      font-weight: 700;
      line-height: 1.1;
+     letter-spacing: 0.03em;
      color: var(--color-text);
    }
 
@@ -180,25 +181,29 @@
 .section-label {
   display: inline-block;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   color: var(--color-gold);
   margin-bottom: 16px;
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
   margin-bottom: 24px;
 }
 
 .section-subtitle {
+  font-family: var(--font-body);
   font-size: 1.1rem;
+  font-weight: 300;
   color: var(--color-text-muted);
-  max-width: 600px;
-  line-height: 1.6;
+  max-width: 650px;
+  line-height: 1.7;
 }
 
 .section-header.center .section-subtitle {
@@ -241,8 +246,10 @@
 
 .page-hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 800;
+  font-size: clamp(3.5rem, 10vw, 7.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 24px;
   line-height: 1;
 }

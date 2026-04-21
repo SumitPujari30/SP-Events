@@ -51,16 +51,18 @@
   font-family: var(--font-heading);
   font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--color-gold);
   margin-bottom: 8px;
 }
 
 .title {
-  font-family: var(--font-display);
-  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--color-white);
   line-height: 1.25;
   margin-bottom: 14px;

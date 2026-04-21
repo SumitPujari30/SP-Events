@@ -151,7 +151,7 @@ function SplitTextHero() {
                 {/* Background image */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src="/assets/hero_clients.png"
+                        src="/assets/luxury_event_hero_bg.png"
                         alt="Event background"
                         className={styles.heroBgImage}
                     />

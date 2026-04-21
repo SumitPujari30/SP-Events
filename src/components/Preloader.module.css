@@ -78,11 +78,11 @@
 
 .subtitleText {
     font-size: clamp(0.55rem, 1.2vw, 0.75rem);
-    font-weight: 500;
+    font-weight: 700;
     color: rgba(204, 164, 44, 0.85);
     text-transform: uppercase;
-    font-family: var(--font-body, sans-serif);
-    letter-spacing: 8px;
+    font-family: var(--font-heading);
+    letter-spacing: 12px;
     white-space: nowrap;
 }
 
