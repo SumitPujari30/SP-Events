@@ -138,7 +138,7 @@ function CultureSection() {
                     <span className="section-label">Life at SP Events</span>
                     <h2 className="section-title">A Culture of <span className="text-gold">Spectacle</span></h2>
                     <p className="section-subtitle">
-                        We are a collective of dreamers, builders, and perfectionists.
+                        SP EVENTS is at the forefront of the evolving world of experiential events. We believe the future lies in innovation, creativity, and flawless execution. Join us in creating immersive experiences that redefine the industry.
                     </p>
                 </div>
             </div>

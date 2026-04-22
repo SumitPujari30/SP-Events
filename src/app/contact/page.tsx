@@ -137,6 +137,33 @@ export default function ContactPage() {
                     </motion.div>
                 </div>
             </section>
+            
+            {/* Vision / Forefront Section */}
+            <section className={styles.visionSection}>
+                <div className="container">
+                    <AnimatedSection variant="fadeUp">
+                        <div className={styles.visionGrid}>
+                            <div className={styles.visionLeft}>
+                                <h2 className={styles.visionHeading}>
+                                    AT THE <span className="text-gold">FOREFRONT</span> OF<br />
+                                    EXPERIENTIAL EVENTS.
+                                </h2>
+                            </div>
+                            <div className={styles.visionRight}>
+                                <p className={styles.visionText}>
+                                    THE SP EVENTS is at the forefront of the evolving world of experiential events. Today’s audiences seek more than just events — they seek immersive experiences that inspire, engage, and create lasting connections.
+                                </p>
+                                <p className={styles.visionText}>
+                                    We believe the future of events lies in innovation, creativity, and flawless execution. Our team continuously pushes boundaries to design experiences that stand out, captivate audiences, and leave a meaningful impact.
+                                </p>
+                                <p className={styles.visionTextBold}>
+                                    If you are a brand looking to create powerful engagement or a visionary seeking a partner to bring bold ideas to life, THE SP EVENTS is ready to make it happen.
+                                </p>
+                            </div>
+                        </div>
+                    </AnimatedSection>
+                </div>
+            </section>
 
             {/* Centered Form Section */}
             <section className={styles.formSection}>
