@@ -220,18 +220,80 @@ export default function AboutPage() {
                 );
             }
 
-            // ── Locations title horizontal enter ──
-            const locTitle = document.querySelector(`.${styles.locationsTitle}`);
-            if (locTitle) {
-                gsap.fromTo(locTitle,
-                    { x: 80, opacity: 0 },
+            // ── Grassroots Title reveal ──
+            gsap.fromTo(`.${styles.grassrootsTopTitle}`,
+                { y: 40, opacity: 0 },
+                {
+                    y: 0, opacity: 1,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    scrollTrigger: { trigger: `.${styles.grassrootsSection}`, start: 'top 80%' }
+                }
+            );
+
+            // ── Grassroots Card reveal ──
+            gsap.fromTo(`.${styles.grassrootsCard}`,
+                { y: 80, opacity: 0, scale: 0.98 },
+                {
+                    y: 0, opacity: 1, scale: 1,
+                    duration: 1.5,
+                    ease: 'power4.out',
+                    scrollTrigger: { trigger: `.${styles.grassrootsCard}`, start: 'top 85%' }
+                }
+            );
+
+            // ── Slider Section reveal ──
+            gsap.fromTo(`.${styles.sliderSection}`,
+                { y: 60, opacity: 0 },
+                {
+                    y: 0, opacity: 1,
+                    duration: 1.2,
+                    delay: 0.3,
+                    ease: 'power3.out',
+                    scrollTrigger: { trigger: `.${styles.sliderSection}`, start: 'top 90%' }
+                }
+            );
+
+            // ── Values Title reveal ──
+            gsap.fromTo(`.${styles.valuesMainTitle}`,
+                { y: 30, opacity: 0 },
+                {
+                    y: 0, opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: { trigger: `.${styles.valuesSection}`, start: 'top 80%' }
+                }
+            );
+
+            // ── Values Pillars rising reveal ──
+            const pillars = document.querySelectorAll('.value-pillar-item');
+            if (pillars.length) {
+                gsap.fromTo(pillars,
+                    { y: 150, opacity: 0 },
                     {
-                        x: 0, opacity: 1,
-                        duration: 1.2, ease: 'power3.out',
-                        scrollTrigger: { trigger: `.${styles.locationsSection}`, start: 'top 80%' },
+                        y: 0, opacity: 1,
+                        duration: 1.5,
+                        stagger: 0.2,
+                        ease: 'power4.out',
+                        scrollTrigger: {
+                            trigger: `.${styles.valuesPillarGrid}`,
+                            start: 'top 85%',
+                        }
                     }
                 );
             }
+
+            // ── Locations Title reveal ──
+            gsap.fromTo([`.${styles.locationsTitle}`, `.${styles.locationsSubheading}`],
+                { y: 30, opacity: 0 },
+                {
+                    y: 0, opacity: 1,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: 'power3.out',
+                    scrollTrigger: { trigger: `.${styles.locationsHeader}`, start: 'top 85%' }
+                }
+            );
 
         }, pageRef);
 
@@ -273,7 +335,7 @@ export default function AboutPage() {
                         <div className={styles.pioneeringBlock}>
                             <div className={styles.pioneeringLabel}>THE MAGIC</div>
                             <p>
-                                At THE SP EVENTS, we design luxury, innovative, and impact-driven experiences that leave a lasting impression. Blending creativity with strategic thinking and flawless execution, we transform ideas into extraordinary events. Every detail is approached with precision and originality, ensuring each experience whether intimate or large scale is delivered with elegance, seamless coordination, and a commitment to excellence.
+                                Building on this vision, he further expanded into the luxury segment with the launch of MANE MADUVE, a dedicated wedding planning venture crafted to deliver premium and bespoke wedding experiences under the creative direction of THE SP EVENTS. Driven by creativity, precision, and strong leadership values, he continues to lead the brand towards becoming a leading name in the event and experiential industry.
                             </p>
                             <div className={styles.pioneeringVerticalLine} />
                         </div>
@@ -281,7 +343,7 @@ export default function AboutPage() {
                         <div className={styles.pioneeringBlock}>
                             <div className={styles.pioneeringLabel}>THE METHOD</div>
                             <p>
-                                Founded in 2022, THE SP EVENTS was created to redefine event management through a more professional, reliable, and innovation-led approach. With a growing foundation of experience and a passion for high-quality execution, we continue to evolve as a trusted partner, crafting memorable events that resonate long after they are experienced.
+                                Under his leadership, THE SP EVENTS has developed strong relationships with reputed organizations including KLE Society, Government of Karnataka, Deshpande Startups, IIIT Dharwad, Bureau of Indian Standards, VRL, Inorbit Malls, KIMS Hubli, BNI, Rotary Club, Vijayavani, Inner Wheel Club, Hodek, Adani Cement, and IIT Dharwad. Beyond work, his inspiration is rooted in music, live experiences, and creative collaborations.
                             </p>
                             <div className={styles.pioneeringVerticalLine} />
                         </div>
@@ -394,23 +456,24 @@ export default function AboutPage() {
 
                 <div className={styles.valuesPillarGrid}>
                     {coreValues.map((value, i) => (
-                        <motion.div
+                        <div
                             key={i}
-                            className={styles.valuePillar}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-10%" }}
-                            transition={{ duration: 0.8, delay: i * 0.15 }}
+                            className={`${styles.valuePillar} value-pillar-item`}
                         >
+                            {/* Decorative architectural elements */}
+                            <div className={styles.pillarGlow} />
+                            <div className={styles.pillarTopCap} />
+                            
                             <div className={styles.pillarContent}>
                                 <div className={styles.pillarBigNumber}>{value.num}</div>
                                 <div className={styles.pillarInner}>
-                                    {/* <div className={styles.pillarSmallNumber}>{value.num}</div> */}
                                     <h3 className={styles.pillarTitle}>{value.title}</h3>
                                     <p className={styles.pillarDesc}>{value.desc}</p>
                                 </div>
                             </div>
-                        </motion.div>
+                            
+                            <div className={styles.pillarBottomCap} />
+                        </div>
                     ))}
                 </div>
             </section>

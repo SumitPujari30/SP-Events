@@ -266,6 +266,7 @@
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 60px;
+    opacity: 0; /* Animated via GSAP */
 }
 
 .grassrootsFlex {
@@ -345,6 +346,7 @@
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
     transform: translateZ(0);
+    opacity: 0; /* Animated via GSAP */
     box-shadow: 
         0 40px 100px rgba(0, 0, 0, 0.5),
         inset 0 0 20px rgba(255, 255, 255, 0.02);
@@ -493,6 +495,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+    opacity: 0; /* Animated via GSAP */
 }
 
 .sliderTitle {
@@ -642,6 +645,7 @@
     position: relative;
     z-index: 2;
     display: inline-block;
+    opacity: 0; /* Animated via GSAP */
 }
 
 .valuesMainTitle::after {
@@ -650,9 +654,10 @@
     bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 1px;
-    background-color: rgba(212, 175, 55, 0.4);
+    width: 120px;
+    height: 1.5px;
+    background: linear-gradient(to right, transparent, var(--color-accent-gold, #d4af37), transparent);
+    opacity: 0.7;
 }
 
 .valuesMainTitleWrapper {
@@ -678,23 +683,28 @@
 }
 
 .valuePillar {
-    flex: 1; /* Equal flexible width */
-    max-width: 280px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Top highlight */
-    border-radius: 0;
+    flex: 1;
+    max-width: 260px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.02) 50%,
+        rgba(255, 255, 255, 0.04) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease, border-color 0.5s ease;
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: default;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 /* Glass shine diagonal line */
@@ -713,13 +723,18 @@
 }
 
 .valuePillar:hover {
-    transform: translateY(-15px);
-    background: rgba(255, 255, 255, 0.04);
-    border-top: 1px solid var(--color-accent-gold, #d4af37);
+    transform: translateY(-25px) scale(1.02);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(212, 175, 55, 0.4);
+    border-top-color: var(--color-accent-gold, #d4af37);
+    box-shadow: 
+        0 45px 80px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(212, 175, 55, 0.1);
 }
 
 .valuePillar:hover::before {
     left: 150%;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.1), transparent);
 }
 
 .pillarContent {
@@ -733,11 +748,23 @@
 }
 
 .pillarBigNumber {
-    font-family: var(--font-display, serif);
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 8vw, 6.5rem);
+    font-weight: 800;
     color: var(--color-accent-gold, #d4af37);
-    opacity: 0.9;
-    margin-bottom: auto; /* Push the rest to bottom */
+    opacity: 0.12;
+    position: absolute;
+    bottom: -5px;
+    right: 10px;
+    line-height: 0.8;
+    z-index: -1;
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.valuePillar:hover .pillarBigNumber {
+    opacity: 0.3;
+    transform: scale(1.1) translateY(-10px);
 }
 
 .pillarInner {
@@ -771,6 +798,41 @@
     color: rgba(255, 255, 255, 0.6);
     margin: 0;
     max-width: 90%;
+}
+
+/* ARCHITECTURAL DECORATIONS */
+.pillarGlow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 150px;
+    background: radial-gradient(circle at bottom, rgba(212, 175, 55, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.valuePillar:hover .pillarGlow {
+    opacity: 1;
+}
+
+.pillarTopCap, .pillarBottomCap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.5), transparent);
+    z-index: 10;
+}
+
+.pillarTopCap { top: 0; }
+.pillarBottomCap { bottom: 0; }
+
+.valuePillar:hover .pillarTopCap, 
+.valuePillar:hover .pillarBottomCap {
+    background: linear-gradient(to right, transparent, var(--color-accent-gold), transparent);
 }
 
 /* Pyramid Heights */
@@ -828,6 +890,7 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 20px;
+    opacity: 0; /* Animated via GSAP */
 }
 
 .locationsSubheading {
@@ -836,6 +899,7 @@
     color: rgba(255, 255, 255, 0.6);
     max-width: 600px;
     margin: 0 auto;
+    opacity: 0; /* Animated via GSAP */
 }
 
 .locationLinkWrapper {

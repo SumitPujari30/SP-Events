@@ -41,11 +41,11 @@ function VerticalMarqueeColumn({
                         <Image
                             src={getImgSrc(brand.logo)}
                             alt={brand.name}
-                            width={320} // Massive scaling
-                            height={200} // Massive scaling
+                            width={160} // Adjusted to a more realistic base size for optimization
+                            height={100}
                             className={styles.logoImage}
-                            priority={i < 15}
-                            unoptimized={true} // Bypasses Next.js image cache for edited backgrounds
+                            sizes="(max-width: 768px) 120px, 160px"
+                            loading="lazy"
                         />
                     </div>
                 ))}
@@ -106,11 +106,11 @@ export default function HomeBrandsSection({ brands: initialBrands }: Props) {
                     </div>
 
                     <h2 className={styles.mainTitle}>
-                        <span className={styles.titleAccent}>OUR PARTNERS IN</span>
-                        <span className={styles.titleAccent}>EXCELLENCE <span style={{ color: "white" }}>:</span></span>
-                        <span className={styles.titleWhite}>TRANSCENDING</span>
-                        <span className={styles.titleWhite}>BOUNDARIES TO</span>
-                        <span className={styles.titleWhite}>DELIVER MAGICAL</span>
+                        <span className={styles.titleAccent}>OUR PARTNERS<span style={{ color: "white" }}>:</span></span>
+                        <span className={styles.titleWhite}>WORKING</span>
+                        <span className={styles.titleWhite}>TOGETHER</span>
+                        <span className={styles.titleWhite}>TO CREATE</span>
+                        <span className={styles.titleWhite}>MAGICAL</span>
                         <span className={styles.titleWhite}>EXPERIENCES.</span>
                     </h2>
 

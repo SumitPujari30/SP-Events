@@ -10,7 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './services.module.css';
 import ServicesGrid from '@/components/ServicesGrid';
 
-const DeckCard = ({ src, index, deckIndex, setDeckIndex, isTop, totalCards, openLightbox }: any) => {
+const DeckCard = ({ src, index, deckIndex, setDeckIndex, isTop, totalCards, openLightbox, registerInteraction }: any) => {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
     
@@ -24,7 +24,12 @@ const DeckCard = ({ src, index, deckIndex, setDeckIndex, isTop, totalCards, open
 
     const rotate = useTransform(x, [-200, 200], [-15, 15]);
 
+    const handleDragStart = () => {
+        if (registerInteraction) registerInteraction();
+    };
+
     const handleDragEnd = (event: any, info: any) => {
+        if (registerInteraction) registerInteraction();
         const offset = Math.sqrt(info.offset.x ** 2 + info.offset.y ** 2);
         const velocity = Math.sqrt(info.velocity.x ** 2 + info.velocity.y ** 2);
         if (offset > 120 || velocity > 500) {
@@ -47,14 +52,15 @@ const DeckCard = ({ src, index, deckIndex, setDeckIndex, isTop, totalCards, open
             }}
             drag={isTop}
             dragElastic={1}
+            onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
             whileDrag={{ cursor: 'grabbing', scale: 1.02 }}
             animate={isSwiped ? {
-                x: x.get() >= 0 ? 1000 : -1000,
-                y: y.get() >= 0 ? 1000 : -1000,
+                x: x.get() !== 0 ? (x.get() >= 0 ? 1000 : -1000) : 0,     // Keep horizontal position steady if auto-swiped
+                y: y.get() !== 0 ? (y.get() >= 0 ? 1000 : -1000) : -1000, // Always glide UP gracefully if auto-swiped
                 opacity: 0,
-                scale: 0.5,
-                transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                scale: 0.85,
+                transition: { duration: 0.8, ease: 'easeInOut' } // Slower, elegant slide out
             } : {
                 x: 0,
                 y: isTop ? 0 : staticY,
@@ -62,7 +68,7 @@ const DeckCard = ({ src, index, deckIndex, setDeckIndex, isTop, totalCards, open
                 opacity: 1,
                 scale: staticScale,
             }}
-            transition={{ type: 'spring', stiffness: 450, damping: 35, mass: 0.8 }}
+            transition={{ type: 'spring', stiffness: 150, damping: 22, mass: 1 }} // Much softer, smoother arrival for the next image
             className={styles.deckCardWrapper}
         >
             <div 
@@ -141,9 +147,14 @@ export default function ServicesPage() {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
 
-    /* Gallery GSAP refs */
+    /* Gallery GSAP refs & Interaction */
     const galleryTrackRef = useRef<HTMLDivElement>(null);
     const gallerySectionRef = useRef<HTMLDivElement>(null);
+    const lastInteractionRef = useRef<number>(Date.now());
+
+    const registerInteraction = useCallback(() => {
+        lastInteractionRef.current = Date.now();
+    }, []);
 
     /* ── Restore state from URL hash on mount ── */
     useEffect(() => {
@@ -234,7 +245,29 @@ export default function ServicesPage() {
         return () => window.removeEventListener('keydown', handleKey);
     }, [lightboxOpen, closeLightbox, lightboxPrev, lightboxNext]);
 
-    /* ── No longer using GSAP horizontal scroll ── */
+    /* Autoplay slideshow for the gallery deck */
+    useEffect(() => {
+        if (view !== 'gallery' || !selectedEvent || lightboxOpen) return;
+        
+        lastInteractionRef.current = Date.now(); // Reset timer when gallery opens
+
+        const autoplayTimer = setInterval(() => {
+            const timeSinceInteraction = Date.now() - lastInteractionRef.current;
+            
+            // Only auto-swipe if the user hasn't interacted for at least 3 seconds
+            if (timeSinceInteraction >= 3000) {
+                setDeckIndex((prev) => {
+                    if (prev >= selectedEvent.allImages.length) {
+                        return 0; // Rewind back to the start
+                    }
+                    return prev + 1;
+                });
+                lastInteractionRef.current = Date.now(); // Reset interaction timer after an auto-swipe
+            }
+        }, 1000); // Check every 1 second
+
+        return () => clearInterval(autoplayTimer);
+    }, [view, selectedEvent, lightboxOpen]);
 
     /* Don't render until hash state is restored */
     if (!mounted) return null;
@@ -339,6 +372,7 @@ export default function ServicesPage() {
                                 isTop={idx === deckIndex}
                                 totalCards={selectedEvent.allImages.length}
                                 openLightbox={openLightbox}
+                                registerInteraction={registerInteraction}
                             />
                         ))}
                     </div>

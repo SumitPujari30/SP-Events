@@ -1,20 +1,24 @@
 /* eslint-disable @next/next/no-img-element, react/no-unescaped-entities */
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './page.module.css';
-import HomeBrandsSection from '@/components/HomeBrandsSection';
-import CounterAnimation from '@/components/CounterAnimation';
-import Stats3DBackground from '@/components/Stats3DBackground';
-import ParallaxGraphics from '@/components/ParallaxGraphics';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { transparentBrands } from '@/lib/transparentBrands';
 import ServicesGrid from '@/components/ServicesGrid';
-import AmbientGraphics from '@/components/AmbientGraphics';
-import EventLights from '@/components/EventLights';
+
+// Dynamic imports for heavy UI components
+const HomeBrandsSection = dynamic(() => import('@/components/HomeBrandsSection'), { ssr: false });
+const CounterAnimation = dynamic(() => import('@/components/CounterAnimation'), { ssr: false });
+const Stats3DBackground = dynamic(() => import('@/components/Stats3DBackground'), { ssr: false });
+const ParallaxGraphics = dynamic(() => import('@/components/ParallaxGraphics'), { ssr: false });
+const AmbientGraphics = dynamic(() => import('@/components/AmbientGraphics'), { ssr: false });
+const EventLights = dynamic(() => import('@/components/EventLights'), { ssr: false });
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── Event Categories ────────────────────────────────────────
@@ -206,6 +210,18 @@ export default function HomePage() {
             },
           }
         );
+
+        // Massive watermark slow parallax
+        gsap.to(`.${styles.bannerWatermark}`, {
+          yPercent: 20,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: `.${styles.dividerBanner}`,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          }
+        });
       }
 
       // Magic Text arrival
@@ -323,11 +339,14 @@ export default function HomePage() {
       <section className={styles.heroSection}>
 
         <div className={styles.videoBg}>
-          <img
+          <Image
             ref={heroImageRef}
             src="/assets/Layout_page.png"
             alt="The SP Events Hero"
+            fill
             className={styles.heroImage}
+            priority
+            quality={90}
           />
           <div className={styles.videoOverlayBase} />
           <div className={styles.videoOverlayGradient} />
@@ -443,13 +462,26 @@ export default function HomePage() {
           4. CREATING MAGICAL EVENTS — Cinematic Banner
       ════════════════════════════════════════════════════════ */}
       <div className={styles.dividerBanner}>
-        <div className={styles.dividerBannerInner}>
+        {/* Architectural Lines */}
+        <div className={styles.bannerTopLine} />
+        <div className={styles.bannerBottomLine} />
 
-          <img
+        <div className={styles.dividerBannerInner}>
+          {/* Ambient Lighting Glow */}
+          <div className={styles.bannerGlow} />
+
+          {/* Kinetic Watermarks */}
+          <div className={`${styles.bannerWatermark} ${styles.watermarkTop}`}>THE SP</div>
+          <div className={`${styles.bannerWatermark} ${styles.watermarkMiddle}`}></div>
+          <div className={`${styles.bannerWatermark} ${styles.watermarkBottom}`}>EVENTS</div>
+
+          <Image
             ref={dividerImageRef}
             src="/assets/creating_magical_events.png"
             alt="Creating Magical Events"
+            fill
             className={styles.wowImage}
+            quality={85}
           />
         </div>
       </div>
@@ -493,7 +525,13 @@ export default function HomePage() {
           onMouseLeave={handleFounderTiltLeave}
         >
           <div className={styles.founderImageWrapper}>
-            <img src="/assets/samarth.png" alt="Samarth U Patangi" className={styles.founderImage} />
+            <Image 
+              src="/assets/samarth.png" 
+              alt="Samarth U Patangi" 
+              width={500} 
+              height={600} 
+              className={styles.founderImage} 
+            />
           </div>
           <div className={styles.founderContent}>
             <div className={styles.quoteIcon}>"</div>

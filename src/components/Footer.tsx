@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
-    FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube
+    FaFacebookF, FaInstagram, FaWhatsapp, FaTwitter, FaYoutube
 } from 'react-icons/fa';
 import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
 import styles from './Footer.module.css';
@@ -31,7 +31,7 @@ const servicesList = [
 
 const socials = [
     { icon: FaInstagram, href: 'https://www.instagram.com/the_sp_events/', label: 'Instagram' },
-    { icon: FaLinkedinIn, href: 'https://www.linkedin.com/company/the-sp-events/', label: 'LinkedIn' },
+    { icon: FaWhatsapp, href: 'https://wa.me/917411863227', label: 'WhatsApp' },
     { icon: FaYoutube, href: 'https://www.youtube.com/@TheSPEvents', label: 'YouTube' },
 ];
 

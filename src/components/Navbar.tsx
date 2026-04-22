@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import { FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaLinkedinIn, FaInstagram, FaYoutube, FaWhatsapp } from 'react-icons/fa';
 import MenuVisual from './MenuVisual';
 import styles from './Navbar.module.css';
 
@@ -74,7 +74,7 @@ export default function Navbar() {
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
                 <div className={styles.inner}>
-                    {/* Logo */}
+                    {/* Logo — always top left */}
                     <Link href="/" className={styles.logoLink} aria-label="SP Events Home">
                         <Image
                             src="/assets/sp_logo.png"
@@ -86,7 +86,7 @@ export default function Navbar() {
                         />
                     </Link>
 
-                    {/* Hamburger Button */}
+                    {/* Hamburger Button — always right */}
                     <motion.button
                         className={styles.menuBtn}
                         onClick={() => setIsOpen(!isOpen)}
@@ -94,7 +94,7 @@ export default function Navbar() {
                         whileTap={{ scale: 0.9 }}
                         suppressHydrationWarning
                     >
-                        <HiMenuAlt3 size={32} />
+                        <HiMenuAlt3 size={28} />
                     </motion.button>
                 </div>
             </motion.header>
@@ -113,59 +113,65 @@ export default function Navbar() {
                             <MenuVisual />
                         </div>
 
-                        <button
-                            className={styles.closeBtn}
-                            onClick={() => setIsOpen(false)}
-                        >
-                            <HiX size={40} />
-                        </button>
+                        {/* ── Top Bar ── */}
+                        <div className={styles.overlayTopBar}>
+                            {/* Logo top-left */}
+                            <Link href="/" onClick={() => setIsOpen(false)} className={styles.overlayLogoLink}>
+                                <Image
+                                    src="/assets/sp_logo.png"
+                                    alt="SP Events"
+                                    width={400}
+                                    height={80}
+                                    className={styles.overlayLogo}
+                                    priority
+                                />
+                            </Link>
 
-                        <div className={styles.overlayContent}>
-                            {/* Left Side: Empty container to keep the layout balanced if needed */}
-                            <div className={styles.overlayLeft}>
-                            </div>
+                            {/* Close button top-right */}
+                            <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>
+                                <HiX size={30} />
+                            </button>
+                        </div>
 
-                            {/* Right Side: Links */}
-                            <div className={styles.overlayRight}>
-                                <nav className={styles.navLinks}>
-                                    {navLinks.map((link, i) => (
-                                        <div key={link.href} className={styles.linkContainer}>
-                                            <motion.div
-                                                initial={{ y: "100%" }}
-                                                animate={{ y: 0 }}
-                                                transition={{ 
-                                                    delay: 0.4 + i * 0.08,
-                                                    duration: 0.8,
-                                                    ease: [0.22, 1, 0.36, 1]
-                                                }}
+                        {/* ── CENTER: Nav Links ── */}
+                        <nav className={styles.centeredNav}>
+                            {navLinks.map((link, i) => (
+                                <div key={link.href} className={styles.linkContainer}>
+                                    <motion.div
+                                        initial={{ y: '110%', opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        exit={{ y: '110%', opacity: 0 }}
+                                        transition={{
+                                            delay: 0.3 + i * 0.07,
+                                            duration: 0.75,
+                                            ease: [0.22, 1, 0.36, 1]
+                                        }}
+                                    >
+                                        <Link
+                                            href={link.href}
+                                            className={`${styles.link} ${pathname === link.href ? styles.activeLink : ''}`}
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            <motion.span
+                                                whileHover={{ x: 8, color: '#d4af37' }}
+                                                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                                                style={{ display: 'inline-block' }}
                                             >
-                                                <Link
-                                                    href={link.href}
-                                                    className={styles.link}
-                                                    onClick={() => setIsOpen(false)}
-                                                >
-                                                    <motion.span
-                                                        whileHover={{ x: -4, color: '#d4af37' }}
-                                                        transition={{ 
-                                                            type: "spring", 
-                                                            stiffness: 400, 
-                                                            damping: 30 
-                                                        }}
-                                                        style={{ display: 'inline-block' }}
-                                                    >
-                                                        {link.label}
-                                                    </motion.span>
-                                                </Link>
-                                            </motion.div>
-                                        </div>
-                                    ))}
-                                </nav>
-
-                                {/* Social Icons */}
-                                <div className={styles.socialIcons}>
-                                    <a href="#" className={styles.socialIcon}><FaInstagram /></a>
-                                    <a href="#" className={styles.socialIcon}><FaYoutube /></a>
+                                                {link.label}
+                                            </motion.span>
+                                        </Link>
+                                    </motion.div>
                                 </div>
+                            ))}
+                        </nav>
+
+                        {/* ── Bottom Bar ── */}
+                        <div className={styles.overlayBottomBar}>
+                            <p className={styles.overlayTagline}>Creating Magical Experiences.</p>
+                            <div className={styles.socialIcons}>
+                                <a href="https://wa.me/917411863227" target="_blank" rel="noreferrer" className={styles.socialIcon}><FaWhatsapp /></a>
+                                <a href="https://www.instagram.com/the_sp_events" target="_blank" rel="noreferrer" className={styles.socialIcon}><FaInstagram /></a>
+                                <a href="#" className={styles.socialIcon}><FaYoutube /></a>
                             </div>
                         </div>
                     </motion.div>

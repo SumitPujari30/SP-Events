@@ -20,6 +20,57 @@
   margin: 0 auto;
 }
 
+/* Desktop horizontal nav — centered */
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.desktopLink {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.desktopLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-accent-gold, #d4af37), transparent);
+  transition: transform 0.3s ease;
+}
+
+.desktopLink:hover {
+  color: #fff;
+}
+
+.desktopLink:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.activeLink {
+  color: var(--color-accent-gold, #d4af37) !important;
+}
+
+.activeLink::after {
+  transform: translateX(-50%) scaleX(1) !important;
+}
+
 .logoImage {
   height: auto;
   width: 200px; /* Reduced from 180px */
@@ -54,50 +105,109 @@
   z-index: 0;
 }
 
-.overlayContent {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+/* Logo pinned to top-left inside the overlay */
+.overlayLogoArea {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  z-index: 2010;
+}
+
+.overlayLogo {
+  height: auto !important;
+  width: 250px !important;
+  min-width: 200px;
+  max-width: 95vw; 
+  opacity: 0.95;
+}
+
+/* ─── Overlay: Top bar ─────────────────────────── */
+.overlayTopBar {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  right: 0;
+  padding: 36px 60px;
   display: flex;
-  padding: 0 100px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2010;
+  pointer-events: none; /* Allow clicks to pass through to links underneath */
+}
+
+.overlayLogoLink {
+  display: block;
+  pointer-events: auto; /* Re-enable clicks for the logo */
+}
+
+.overlayLogo {
+  height: auto;
+  width: 150px;
+  opacity: 0.9;
 }
 
 .closeBtn {
-  position: absolute;
-  top: 50px;
-  right: 60px;
   background: none;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
-  z-index: 2005;
-  transition: color 0.3s;
+  z-index: 2010;
+  transition: color 0.3s, border-color 0.3s;
+  width: 52px;
+  height: 52px;
   display: flex;
+  margin-top: -70px;
   align-items: center;
   justify-content: center;
+  pointer-events: auto; /* Re-enable clicks for the close button */
 }
 
 .closeBtn:hover {
   color: var(--color-accent-gold, #d4af37);
+  border-color: var(--color-accent-gold, #d4af37);
+}
+
+/* ─── Overlay: Centered Nav Links ──────────────── */
+.centeredNav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  z-index: 2000;
+}
+
+/* ─── Overlay: Bottom bar ───────────────────────── */
+.overlayBottomBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2010;
+}
+
+.overlayTagline {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .overlayLeft {
-  flex: 2.5;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 40px;
-  height: 100%;
+  display: none; /* No longer used */
 }
 
 .overlayRight {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  text-align: right;
+  display: none; /* No longer used */
 }
 
 .navLinks {
@@ -114,7 +224,7 @@
 
 .link {
   font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 600;
   color: var(--color-white);
   text-decoration: none;
@@ -124,11 +234,32 @@
   line-height: 1.1;
   text-transform: uppercase;
   cursor: pointer;
+  position: relative;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-accent-gold, #d4af37), transparent);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.4s;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .link:hover {
   color: var(--color-accent-gold, #d4af37);
   text-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
+}
+
+.link:hover::after,
+.activeLink::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
 }
 
 .socialIcons {
@@ -138,8 +269,8 @@
 }
 
 .socialIcon {
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.4rem;
   transition: color 0.3s;
 }
 
@@ -154,6 +285,11 @@
 
   .scrolled {
     padding: 8px 20px;
+  }
+
+  /* Hide centered links on mobile — menu button only */
+  .desktopNav {
+    display: none;
   }
 
   .logoImage {
