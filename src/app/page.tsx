@@ -69,7 +69,7 @@ const rhymeWords = ["Unforgettable", "Incredible", "Exceptional", "Unparalleled"
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroImageRef = useRef<HTMLImageElement>(null);
+  const heroImageRef = useRef<HTMLVideoElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const dividerImageRef = useRef<HTMLImageElement>(null);
   const router = useRouter();
@@ -339,14 +339,14 @@ export default function HomePage() {
       <section className={styles.heroSection}>
 
         <div className={styles.videoBg}>
-          <Image
+          <video
             ref={heroImageRef}
-            src="/assets/Layout_page.png"
-            alt="The SP Events Hero"
-            fill
+            src="/assets/Hero.webm"
+            autoPlay
+            loop
+            muted
+            playsInline
             className={styles.heroImage}
-            priority
-            quality={90}
           />
           <div className={styles.videoOverlayBase} />
           <div className={styles.videoOverlayGradient} />

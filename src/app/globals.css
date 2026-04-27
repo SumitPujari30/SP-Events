@@ -68,6 +68,8 @@
      scroll-behavior: smooth;
      -webkit-font-smoothing: antialiased;
      -moz-osx-font-smoothing: grayscale;
+     overflow-x: hidden;
+     background-color: var(--color-bg); /* Ensure outer space is black on ultrawides */
    }
 
    body {
@@ -76,8 +78,13 @@
      color: var(--color-text);
      overflow-x: hidden;
      min-height: 100vh;
-     cursor: none;
      line-height: 1.7; /* Premium readability */
+     
+     /* True 4K Monitor Support */
+     max-width: 4096px;
+     margin: 0 auto;
+     position: relative;
+     box-shadow: 0 0 100px rgba(0, 0, 0, 0.9); /* Subtle shadow on letterbox edges */
    }
 
    ::selection {
@@ -112,6 +119,19 @@
      max-width: 1200px;
      margin: 0 auto;
      padding: 0 24px;
+   }
+
+   /* --- 4K / Ultra-wide Native Scaling --- */
+   @media (min-width: 2560px) {
+     html {
+       /* 0.625vw of 2560px is 16px. As the screen grows to 4096px, 
+          1 rem scales up proportionally (to ~25.6px) */
+       font-size: 0.625vw; 
+     }
+     .container {
+       max-width: 80rem; /* Scales up to ~2048px on a 4K display */
+       padding: 0 3rem;
+     }
    }
 
    /* --- Utilities --- */
@@ -504,6 +524,11 @@ select.form-input option {
   .form-input, .form-textarea, select.form-input {
     padding: 14px 16px;
     font-size: 1rem;
+  }
+
+  /* Restore native cursor on touch devices */
+  body {
+    cursor: auto;
   }
 }
 

@@ -43,6 +43,25 @@
     overflow: hidden;
 }
 
+/* --- MOBILE: disable curtain reveal to prevent blank space gap --- */
+@media (max-width: 768px) {
+    .footerCurtainWrap {
+        overflow: visible;
+    }
+
+    .revealedFooterContent {
+        position: static;
+    }
+
+    .curtain {
+        display: none;
+    }
+
+    .footer {
+        padding: 48px 0 24px;
+    }
+}
+
 /* --- BACKGROUND VIDEO --- */
 .videoContainer {
     position: absolute;
@@ -325,18 +344,37 @@
 
 @media (max-width: 600px) {
     .footer {
-        padding: 70px 0 0;
+        padding: 48px 0 0;
     }
 
     .grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-        padding-bottom: 30px;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 20px;
+        padding-bottom: 24px;
+    }
+
+    /* Brand: spans full width */
+    .brand {
+        grid-column: 1 / -1;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    /* Contact: spans full width at bottom */
+    .column:last-child {
+        grid-column: 1 / -1;
+        align-items: center;
+        text-align: center;
+    }
+
+    .column:last-child .contactItem {
+        justify-content: center;
     }
 
     .footerLogo {
-        max-width: 180px;
-        margin-bottom: 5px;
+        max-width: 140px;
+        margin-bottom: 2px;
     }
 
     .logoWrap {
@@ -345,21 +383,23 @@
 
     .tagline {
         margin-left: 0;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .divider {
-        margin: 0 0 5px;
-        width: 100px;
+        margin: 0 auto 0;
+        width: 80px;
     }
 
     .socials {
         gap: 10px;
+        justify-content: center;
     }
 
-    .brand {
-        align-items: center;
-        text-align: center;
+    .socialIcon {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
     }
 
     .column {
@@ -367,15 +407,36 @@
         text-align: center;
     }
 
+    .columnTitle {
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .linkList {
+        gap: 6px;
+    }
+
+    .footerLink {
+        font-size: 0.82rem;
+    }
+
     .contactItem {
-        justify-content: center;
+        font-size: 0.82rem;
+        gap: 6px;
         text-align: center;
+        justify-content: center;
+    }
+
+    .contactList {
+        gap: 8px;
     }
 
     .bottom {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
         text-align: center;
+        padding: 14px 0;
     }
 
     .bottomLinks {
@@ -385,18 +446,6 @@
     }
 
     .copyright {
-        font-size: 0.85rem;
-    }
-
-    .columnTitle {
-        font-size: 1.15rem;
-    }
-
-    .footerLink {
-        font-size: 0.95rem;
-    }
-
-    .contactItem {
-        font-size: 0.95rem;
+        font-size: 0.75rem;
     }
 }

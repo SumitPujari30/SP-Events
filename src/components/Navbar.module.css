@@ -18,7 +18,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1800px;
+  max-width: 112.5rem; /* ~1800px on desktop, natively scales on 4K */
   margin: 0 auto;
 }
 
@@ -213,11 +213,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 32px 60px;
+  padding: 32px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 2010;
+  overflow: hidden;
 }
 
 .overlayTagline {
@@ -384,5 +385,22 @@
 
   .menuBtn {
     padding: 8px;
+  }
+
+  .overlayTopBar {
+    padding: 24px 20px;
+  }
+
+  .overlayBottomBar {
+    padding: 20px 20px;
+  }
+
+  .overlayTagline {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+
+  .socialIcons {
+    gap: 16px;
   }
 }

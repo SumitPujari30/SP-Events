@@ -51,8 +51,6 @@ export default function CustomCursor() {
     }, []);
 
     useEffect(() => {
-        // Abort on touch devices
-        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
         const canvas = canvasRef.current;
         const ring = ringRef.current;

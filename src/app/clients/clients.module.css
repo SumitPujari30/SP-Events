@@ -953,12 +953,16 @@
     transform: translateY(-50%);
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.2); /* very dim grey like image */
-    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.6); /* Increased visibility from 0.2 to 0.6 */
+    font-size: 3.5rem; /* Increased size for better visibility */
     cursor: pointer;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
     padding: 20px;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 .testiArrowBtn:hover {

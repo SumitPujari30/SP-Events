@@ -307,13 +307,13 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════════ */}
             <section className={styles.heroSection}>
                 <div className={styles.videoBg}>
-                    <Image
-                        src="/assets/Layout_page.png"
-                        alt="About SP Events Hero"
-                        fill
+                    <video
+                        src="/assets/Hero.webm"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                         className={styles.heroImage}
-                        priority
-                        quality={90}
                     />
                     <div className={styles.videoOverlayBase} />
                     <div className={styles.videoOverlayGradient} />

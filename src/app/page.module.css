@@ -9,6 +9,7 @@
   position: relative;
   background: transparent;
   width: 100%;
+  overflow-x: hidden;
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -29,6 +30,8 @@
 }
 
 .heroImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -130,7 +133,7 @@
 
 .expContainer {
   display: flex;
-  gap: 160px;
+  gap: 80px;
   align-items: flex-start;
   max-width: 1600px;
   width: 90%;
@@ -613,7 +616,16 @@
   align-items: center;
   overflow: hidden;
   min-height: 80vh;
-  /* Ensure there is enough vertical space for the massive text */
+  /* Premium cinematic background */
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 0, 20, 0.9) 0%,
+    rgba(10, 0, 20, 0.6) 50%,
+    rgba(10, 0, 20, 0.9) 100%
+  ), url('/assets/luxury_event_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .bannerTopLine,
@@ -1287,7 +1299,7 @@
 
   .expContainer {
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
     width: 100%;
     padding: 0 20px;
   }
@@ -1365,11 +1377,22 @@
   }
 
   .dividerBanner {
-    padding: 40px 16px;
+    padding: 24px 16px;
+    min-height: unset;
+    background-attachment: scroll; /* Fix for iOS Safari parallax bug */
+  }
+
+  .dividerBannerInner {
+    min-height: unset;
+    height: 240px;
+  }
+
+  .bannerWatermark {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    opacity: 0.05;
   }
 
   .wowImage {
-    height: 220px;
     border-radius: 0;
   }
 
@@ -1473,11 +1496,20 @@
   }
 
   .dividerBanner {
-    padding: 24px 12px;
+    padding: 16px 12px;
+    min-height: unset;
+  }
+
+  .dividerBannerInner {
+    min-height: unset;
+    height: 200px;
+  }
+
+  .bannerWatermark {
+    display: none;
   }
 
   .wowImage {
-    height: 180px;
   }
 
   .logoCard {

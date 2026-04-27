@@ -228,4 +228,18 @@
     .cornerAccent {
         display: none;
     }
+
+    .overlayTitle {
+        white-space: normal;
+        font-size: clamp(0.9rem, 3.5vw, 1.4rem);
+        letter-spacing: 1px;
+    }
+
+    .overlayTextContainer {
+        padding: 16px 20px;
+    }
+
+    .gridBoxWrapper {
+        aspect-ratio: 4/3;
+    }
 }
