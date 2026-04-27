@@ -67,7 +67,7 @@ export default function Footer() {
                             <video
                                 ref={videoRef}
                                 className={styles.bgVideo}
-                                src="https://mnafgrlvsjuhbjenwwcg.supabase.co/storage/v1/object/public/services/VN20260405_180925.mp4"
+                                src="./assets/Footer.webm"
                                 autoPlay
                                 muted
                                 loop
