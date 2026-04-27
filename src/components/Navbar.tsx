@@ -108,6 +108,9 @@ export default function Navbar() {
                         exit={{ clipPath: 'inset(0 0 100% 0)' }}
                         transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
                     >
+                        {/* ── DEDICATED BLUR LAYER ── */}
+                        <div className={styles.blurLayer} />
+
                         {/* Interactive Background */}
                         <div className={styles.menuBackground}>
                             <MenuVisual />

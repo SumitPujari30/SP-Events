@@ -148,7 +148,7 @@ export default function HomePage() {
         // Interactive Left/Right scrub animation on the parent containers
         const expUniqueLines = document.querySelectorAll(`.${styles.expUniqueLine}`);
         expUniqueLines.forEach((line, i) => {
-          gsap.fromTo(line, 
+          gsap.fromTo(line,
             { x: i % 2 === 0 ? '-1vw' : '1vw' }, // Very gentle start shift
             {
               x: i % 2 === 0 ? '1.5vw' : '-1.5vw', // Minimal scrub range
@@ -328,7 +328,7 @@ export default function HomePage() {
 
   return (
     <div className={styles.wrapper} ref={containerRef}>
-      
+
       <AmbientGraphics />
       <ParallaxGraphics />
       <EventLights />
@@ -525,12 +525,12 @@ export default function HomePage() {
           onMouseLeave={handleFounderTiltLeave}
         >
           <div className={styles.founderImageWrapper}>
-            <Image 
-              src="/assets/samarth.png" 
-              alt="Samarth U Patangi" 
-              width={500} 
-              height={600} 
-              className={styles.founderImage} 
+            <Image
+              src="/assets/samarth.png"
+              alt="Samarth U Patangi"
+              width={500}
+              height={600}
+              className={styles.founderImage}
             />
           </div>
           <div className={styles.founderContent}>

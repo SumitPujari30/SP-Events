@@ -3,13 +3,15 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 8px 60px; /* Reduced from 15px */
+  padding: 8px 60px;
+  /* Reduced from 15px */
   z-index: 1000;
   transition: background 0.3s ease, padding 0.3s ease;
 }
 
 .scrolled {
-  padding: 5px 60px; /* Thinner when scrolled */
+  padding: 5px 60px;
+  /* Thinner when scrolled */
 }
 
 .inner {
@@ -73,7 +75,8 @@
 
 .logoImage {
   height: auto;
-  width: 200px; /* Reduced from 180px */
+  width: 200px;
+  /* Reduced from 180px */
   max-width: 220px;
 }
 
@@ -92,19 +95,40 @@
 .menuOverlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.92); /* Darker and more opaque for better focus */
-  backdrop-filter: blur(100px);
-  -webkit-backdrop-filter: blur(100px);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 9999;
   overflow: hidden;
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.6);
+}
+
+.menuOverlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://www.transparenttextures.com/patterns/noise.png");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.blurLayer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(25px) saturate(140%);
+  -webkit-backdrop-filter: blur(25px) saturate(140%);
+  background:
+    radial-gradient(circle at 50% 40%, rgba(0,0,0,0.2), rgba(0,0,0,0.7)),
+    linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.85));
 }
 
 .menuBackground {
   position: absolute;
   inset: 0;
   z-index: 0;
+  transform: scale(1.05); /* Reduced scale slightly for better fit */
 }
-
+ 
 /* Logo pinned to top-left inside the overlay */
 .overlayLogoArea {
   position: absolute;
@@ -117,14 +141,14 @@
   height: auto !important;
   width: 250px !important;
   min-width: 200px;
-  max-width: 95vw; 
+  max-width: 95vw;
   opacity: 0.95;
 }
 
 /* ─── Overlay: Top bar ─────────────────────────── */
 .overlayTopBar {
   position: absolute;
-  top: 0; 
+  top: 0;
   left: 0;
   right: 0;
   padding: 36px 60px;
@@ -132,12 +156,14 @@
   align-items: center;
   justify-content: space-between;
   z-index: 2010;
-  pointer-events: none; /* Allow clicks to pass through to links underneath */
+  pointer-events: none;
+  /* Allow clicks to pass through to links underneath */
 }
 
 .overlayLogoLink {
   display: block;
-  pointer-events: auto; /* Re-enable clicks for the logo */
+  pointer-events: auto;
+  /* Re-enable clicks for the logo */
 }
 
 .overlayLogo {
@@ -148,7 +174,7 @@
 
 .closeBtn {
   background: none;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
@@ -160,7 +186,8 @@
   margin-top: -70px;
   align-items: center;
   justify-content: center;
-  pointer-events: auto; /* Re-enable clicks for the close button */
+  pointer-events: auto;
+  /* Re-enable clicks for the close button */
 }
 
 .closeBtn:hover {
@@ -195,19 +222,22 @@
 
 .overlayTagline {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: bold;
   letter-spacing: 3px;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255, 255, 255, 0.35);
   text-transform: uppercase;
   margin: 0;
 }
 
 .overlayLeft {
-  display: none; /* No longer used */
+  display: none;
+  /* No longer used */
 }
 
 .overlayRight {
-  display: none; /* No longer used */
+  display: none;
+  /* No longer used */
 }
 
 .navLinks {
@@ -301,18 +331,23 @@
     flex-direction: column-reverse;
     padding: 100px 24px;
   }
+
   .overlayLeft {
-    display: none; /* Hide images on small mobile for space */
+    display: none;
+    /* Hide images on small mobile for space */
   }
+
   .overlayRight {
     align-items: center;
     text-align: center;
     width: 100%;
   }
+
   .link {
     font-size: 2.2rem;
     letter-spacing: 2px;
   }
+
   .closeBtn {
     top: 16px;
     right: 16px;

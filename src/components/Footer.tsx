@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -38,6 +38,7 @@ const socials = [
 export default function Footer() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [videoError, setVideoError] = useState(false);
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -62,18 +63,31 @@ export default function Footer() {
                 <footer className={styles.footer}>
                     {/* Background Video */}
                     <div className={styles.videoContainer}>
-                        <video
-                            ref={videoRef}
-                            className={styles.bgVideo}
-                            src="https://mnafgrlvsjuhbjenwwcg.supabase.co/storage/v1/object/public/services/VN20260405_180925.mp4"
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            preload="auto"
-                            crossOrigin="anonymous"
-                            style={{ opacity: 0.9 }}
-                        />
+                        {!videoError ? (
+                            <video
+                                ref={videoRef}
+                                className={styles.bgVideo}
+                                src="https://mnafgrlvsjuhbjenwwcg.supabase.co/storage/v1/object/public/services/VN20260405_180925.mp4"
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                preload="auto"
+                                crossOrigin="anonymous"
+                                onError={() => setVideoError(true)}
+                                style={{ opacity: 0.9 }}
+                            />
+                        ) : (
+                            <div 
+                                className={styles.bgVideo} 
+                                style={{ 
+                                    backgroundImage: 'url(/assets/luxury_event_hero_bg.png)',
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    opacity: 0.6
+                                }} 
+                            />
+                        )}
                         <div className={styles.videoOverlay} />
                     </div>
 

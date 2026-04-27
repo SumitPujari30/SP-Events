@@ -118,9 +118,9 @@
 }
 
 .heroLetter {
-    font-family: var(--font-display); /* Cinzel */
-    font-size: clamp(4rem, 10vw, 8.5rem);
-    font-weight: 700;
+    font-family: var(--font-tagline);
+    font-size: clamp(5rem, 12vw, 10rem);
+    font-weight: 800;
     color: var(--color-white);
     line-height: 1;
     text-transform: uppercase;

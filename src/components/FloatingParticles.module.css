@@ -76,11 +76,11 @@
 }
 
 /* ── Size Classes ── */
-.sizeTiny  { width: 3px;  height: 3px; }
-.sizeSmall { width: 6px;  height: 6px; }
-.sizeMed   { width: 10px; height: 10px; }
-.sizeLg    { width: 16px; height: 16px; }
-.sizeXl    { width: 24px; height: 24px; }
+.sizeTiny  { width: 2px;  height: 2px; }
+.sizeSmall { width: 4px;  height: 4px; }
+.sizeMed   { width: 6px;  height: 6px; }
+.sizeLg    { width: 10px; height: 10px; }
+.sizeXl    { width: 14px; height: 14px; }
 
 /* ── Float Animations ── */
 .floatA {

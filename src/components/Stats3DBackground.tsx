@@ -53,7 +53,7 @@ function ParticleSwarm() {
       <PointMaterial
         transparent
         vertexColors
-        size={0.06}
+        size={0.04}
         sizeAttenuation={true}
         depthWrite={false}
         opacity={0.8}

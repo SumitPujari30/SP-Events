@@ -36,12 +36,12 @@
 
 .label {
     display: inline-block;
-    font-family: var(--font-heading);
-    font-size: 0.72rem;
-    font-weight: 700;
-    width: 35%;
+    font-family: var(--font-tagline);
+    font-size: 1rem;
+    font-weight: 800;
+    width: 50%;
     letter-spacing: 5px;
-    text-transform: capitalize;
+    text-transform: lowercase;
     color: var(--color-accent-gold);
     margin-bottom: 20px;
 }
