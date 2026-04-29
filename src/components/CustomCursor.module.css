@@ -74,3 +74,12 @@
         cursor: none !important;
     }
 }
+
+/* Hide custom cursor in mobile view */
+@media (max-width: 768px) {
+    .canvas,
+    .ring,
+    .dot {
+        display: none !important;
+    }
+}

@@ -82,7 +82,36 @@ export default function ContactPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        
+        const { name, email, phone, subject, otherSubject, message } = formData;
+        const eventType = subject === 'others' ? otherSubject : subject;
+        
+        const text = `Hello SP Events,
+
+I would like to start a conversation regarding an event. Here are my details:
+
+*Name:* ${name}
+*Email:* ${email}
+*Phone:* ${phone || 'Not provided'}
+*Event Type:* ${eventType}
+
+*Message:*
+${message}`;
+
+        const encodedText = encodeURIComponent(text);
+        const waUrl = `https://wa.me/917411863227?text=${encodedText}`;
+        
+        window.open(waUrl, '_blank');
+        
         setSubmitted(true);
+        setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            otherSubject: '',
+            message: '',
+        });
         setTimeout(() => setSubmitted(false), 4000);
     };
 

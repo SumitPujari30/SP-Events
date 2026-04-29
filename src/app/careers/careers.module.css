@@ -355,6 +355,11 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .stageHeroSection {
+    height: 60vh;
+    min-height: 400px;
+  }
+
   .pLayer1 {
     display: none;
   }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from 'framer-motion';
 import styles from './careers.module.css';
 
@@ -8,15 +8,24 @@ import styles from './careers.module.css';
    SECTION 1: STAGE LIGHT HERO
    ============================================= */
 function StageLightHero() {
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
+    const mouseX = useMotionValue(-1500);
+    const mouseY = useMotionValue(-1500);
 
     const maskX = useSpring(mouseX, { damping: 30, stiffness: 200, mass: 0.5 });
     const maskY = useSpring(mouseY, { damping: 30, stiffness: 200, mass: 0.5 });
 
+    useEffect(() => {
+        // Center the spotlight initially so the text is "turned on" and visible immediately
+        // for both PC and mobile users before any interaction.
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        mouseX.set(centerX - 1500);
+        mouseY.set(centerY - 1500);
+    }, [mouseX, mouseY]);
+
     const handlePointerMove = (e: React.PointerEvent) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        // offset is half of the 2000px mask size so the spotlight is centered on the cursor
+        // offset is half of the 3000px mask size so the spotlight is centered on the cursor
         mouseX.set(e.clientX - rect.left - 1500);
         mouseY.set(e.clientY - rect.top - 1500);
     };
@@ -174,9 +183,36 @@ function CultureSection() {
    ============================================= */
 function ApplicationFormSection() {
     const [submitted, setSubmitted] = useState(false);
-    const handleSubmit = (e: React.FormEvent) => {
+    
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        
+        const form = new FormData(e.currentTarget);
+        const name = form.get('name');
+        const email = form.get('email');
+        const phone = form.get('phone');
+        const portfolio = form.get('portfolio');
+        const why = form.get('why');
+
+        const text = `Hello SP Events,
+
+I am interested in joining your crew! Here is my application:
+
+*Name:* ${name}
+*Email:* ${email}
+*Phone:* ${phone || 'Not provided'}
+*Portfolio/LinkedIn:* ${portfolio || 'Not provided'}
+
+*Why SP Events:*
+${why}`;
+
+        const encodedText = encodeURIComponent(text);
+        const waUrl = `https://wa.me/917411863227?text=${encodedText}`;
+        
+        window.open(waUrl, '_blank');
+        
         setSubmitted(true);
+        e.currentTarget.reset();
         setTimeout(() => setSubmitted(false), 4000);
     };
 
@@ -208,26 +244,26 @@ function ApplicationFormSection() {
                             <div className={styles.formRow}>
                                 <div className="form-group">
                                     <label className="form-label">Full Name *</label>
-                                    <input className="form-input" type="text" required placeholder="John Doe" suppressHydrationWarning />
+                                    <input name="name" className="form-input" type="text" required placeholder="John Doe" suppressHydrationWarning />
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label">Email Address *</label>
-                                    <input className="form-input" type="email" required placeholder="john@example.com" suppressHydrationWarning />
+                                    <input name="email" className="form-input" type="email" required placeholder="john@example.com" suppressHydrationWarning />
                                 </div>
                             </div>
                             <div className={styles.formRow}>
                                 <div className="form-group">
                                     <label className="form-label">Phone Number</label>
-                                    <input className="form-input" type="tel" placeholder="+91 98765 43210" suppressHydrationWarning />
+                                    <input name="phone" className="form-input" type="tel" placeholder="+91 98765 43210" suppressHydrationWarning />
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label">Portfolio / LinkedIn URL</label>
-                                    <input className="form-input" type="url" placeholder="https://" suppressHydrationWarning />
+                                    <input name="portfolio" className="form-input" type="url" placeholder="https://" suppressHydrationWarning />
                                 </div>
                             </div>
                             <div className="form-group" style={{ marginBottom: '24px' }}>
                                 <label className="form-label">Why SP Events? *</label>
-                                <textarea className="form-textarea" required placeholder="Tell us why you want to join our spectacle..." suppressHydrationWarning />
+                                <textarea name="why" className="form-textarea" required placeholder="Tell us why you want to join our spectacle..." suppressHydrationWarning />
                             </div>
                             <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '16px' }} suppressHydrationWarning>
                                 Submit Application

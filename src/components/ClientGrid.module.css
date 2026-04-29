@@ -172,16 +172,21 @@
         padding: 0 16px;
     }
     .grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
     .section {
         padding: 80px 0 100px;
+    }
+    .label {
+        width: 90%;
+        letter-spacing: 2px;
+        line-height: 1.6;
     }
 }
 
 @media (max-width: 480px) {
     .grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
     .section {
         padding: 60px 0 80px;

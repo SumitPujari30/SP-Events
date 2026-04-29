@@ -543,7 +543,7 @@
 }
 
 @media (max-width: 480px) {
-    .clientsGrid { grid-template-columns: repeat(2, 1fr); }
+    .clientsGrid { grid-template-columns: repeat(3, 1fr); }
 }
 
 .gridItemWrapper {

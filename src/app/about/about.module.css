@@ -924,48 +924,6 @@
     transform: translateZ(0);
 }
 
-@media (max-width: 768px) {
-    .locationCardImgWrap {
-        height: 280px;
-    }
-
-    .locationCardsGrid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .locationsSection {
-        padding: 60px 0;
-    }
-
-    .locationsHeader {
-        margin-bottom: 32px;
-        padding: 0 16px;
-    }
-
-    .locationsTitle {
-        font-size: clamp(1.5rem, 6vw, 2.5rem);
-    }
-
-    .locationCity {
-        font-size: 1.6rem;
-        letter-spacing: 3px;
-    }
-}
-
-@media (max-width: 480px) {
-    .locationCardImgWrap {
-        height: 280px;
-    }
-
-    .locationCity {
-        font-size: 1.3rem;
-    }
-
-    .locationOverlayContent {
-        padding: 30px 20px;
-    }
-}
 
 .locationOverlayContent {
     position: absolute;
@@ -1082,6 +1040,60 @@
 }
 
 
+
+
+@media (max-width: 768px) {
+    .locationCardImgWrap {
+        height: 280px;
+    }
+
+    .locationCardsGrid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .locationsSection {
+        padding: 60px 0;
+    }
+
+    .locationsHeader {
+        margin-bottom: 32px;
+        padding: 0 16px;
+    }
+
+    .locationsTitle {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    .locationCity {
+        font-size: 1.6rem;
+        letter-spacing: 3px;
+        transform: translateY(60px); /* Adjust initial position for mobile */
+    }
+
+    .locationCard:hover .locationCity {
+        letter-spacing: 4px; /* Ensure hover state doesn't blow out on touch */
+    }
+}
+
+@media (max-width: 480px) {
+    .locationCardImgWrap {
+        height: 280px;
+    }
+
+    .locationCity {
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+    }
+
+    .locationCard:hover .locationCity {
+        letter-spacing: 3px; /* Ensure hover state doesn't blow out on touch */
+    }
+
+    .locationOverlayContent {
+        padding: 30px 20px;
+    }
+}
 
 /* ════════════════════════════════════════════════════════════
    STATS SECTION — Premium Metrics with 3D Background
