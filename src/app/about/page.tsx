@@ -74,7 +74,6 @@ export default function AboutPage() {
     const sliderRef = useRef<HTMLDivElement>(null);
     const pageRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
-    const [isScrolling, setIsScrolling] = useState(false);
 
     const checkScroll = () => {
         if (sliderRef.current) {
@@ -85,48 +84,41 @@ export default function AboutPage() {
     };
 
     const scrollLeft = () => {
-        if (isScrolling || !sliderRef.current) return;
+        if (!sliderRef.current) return;
         
-        setIsScrolling(true);
         const container = sliderRef.current;
         const item = container.querySelector(`.${styles.sliderItem}`) as HTMLElement;
-        if (!item) { setIsScrolling(false); return; }
+        if (!item) return;
         
-        const itemWidth = item.offsetWidth + 12; // 12px gap
+        const itemWidth = item.getBoundingClientRect().width + 12; // 12px gap
         const currentScroll = container.scrollLeft;
 
         if (currentScroll <= 10) {
             container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' });
         } else {
-            // Snap to nearest item position
-            const targetScroll = Math.ceil((currentScroll - itemWidth) / itemWidth) * itemWidth;
+            const currentIndex = Math.round(currentScroll / itemWidth);
+            const targetScroll = (currentIndex - 1) * itemWidth;
             container.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
         }
-        
-        setTimeout(() => setIsScrolling(false), 500);
     };
 
     const scrollRight = () => {
-        if (isScrolling || !sliderRef.current) return;
+        if (!sliderRef.current) return;
 
-        setIsScrolling(true);
         const container = sliderRef.current;
         const item = container.querySelector(`.${styles.sliderItem}`) as HTMLElement;
-        if (!item) { setIsScrolling(false); return; }
+        if (!item) return;
 
-        const itemWidth = item.offsetWidth + 12; // 12px gap
-        const currentScroll = container.scrollLeft;
-        const { clientWidth, scrollWidth } = container;
+        const itemWidth = item.getBoundingClientRect().width + 12; // 12px gap
+        const { clientWidth, scrollWidth, scrollLeft } = container;
 
-        if (currentScroll + clientWidth >= scrollWidth - 20) {
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
             container.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
-            // Snap to nearest item position
-            const targetScroll = Math.floor((currentScroll + itemWidth) / itemWidth) * itemWidth;
-            container.scrollTo({ left: Math.min(targetScroll, scrollWidth - clientWidth), behavior: 'smooth' });
+            const currentIndex = Math.round(scrollLeft / itemWidth);
+            const targetScroll = (currentIndex + 1) * itemWidth;
+            container.scrollTo({ left: targetScroll, behavior: 'smooth' });
         }
-
-        setTimeout(() => setIsScrolling(false), 500);
     };
 
     useEffect(() => {
@@ -140,7 +132,7 @@ export default function AboutPage() {
 
         const handleDown = (e: MouseEvent | TouchEvent) => {
             // Only allow manual drag on desktop
-            if (window.innerWidth <= 768 || isScrolling) return;
+            if (window.innerWidth <= 768) return;
 
             isDown = true;
             slider.classList.add(styles.grabbing);

@@ -531,21 +531,14 @@
     cursor: grab;
     user-select: none;
     touch-action: pan-x; /* Allow horizontal swiping */
+    scroll-snap-type: x mandatory;
     will-change: scroll-position, transform;
-}
-
-@media (max-width: 768px) {
-    .sliderTrack {
-        overflow-x: hidden; /* Disable manual swipe */
-        touch-action: pan-y; /* Allow vertical scroll only */
-        scroll-snap-type: none; /* Snap not needed if swipe is disabled */
-        cursor: default;
-    }
 }
 
 .sliderTrack.grabbing {
     cursor: grabbing;
     scroll-behavior: auto; /* Instant tracking for drag */
+    scroll-snap-type: none; /* Disable snapping while dragging for buttery smoothness */
 }
 
 .sliderTrack::-webkit-scrollbar {
@@ -557,6 +550,7 @@
     aspect-ratio: 1 / 1; 
     flex-shrink: 0;
     position: relative;
+    scroll-snap-align: start;
     pointer-events: auto; /* Allow hover and click events */
     will-change: transform;
 }
