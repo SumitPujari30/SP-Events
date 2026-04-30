@@ -1432,7 +1432,7 @@
   }
 
   .experiencesSection {
-    padding: 40px 0;
+    padding: 80px 0 40px;
   }
 
   .expContainer {
@@ -1441,7 +1441,8 @@
   }
 
   .expTitle {
-    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
+    line-height: 1.1;
   }
 
   .expBadge {
@@ -1501,8 +1502,8 @@
     display: none;
   }
 
-  .wowImage {
-  }
+  /* .wowImage {
+  } */
 
   .logoCard {
     width: 110px;

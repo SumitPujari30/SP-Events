@@ -250,7 +250,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-9",
                 "title": "Evening with legends",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Evening with legends at Infosys 2023.webp",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Evening with legends/DJI_0403 copy.webp",
                     "/assets/webp_images/Corporate Events/Evening with legends/DJI_0405 copy.webp",
@@ -374,7 +374,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-14",
                 "title": "Inner wheel club hubballi conference",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Inner wheel club hubballi conference.webp",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Inner wheel club hubballi conference/SDDS0735.webp",
                     "/assets/webp_images/Corporate Events/Inner wheel club hubballi conference/SDDS0736.webp",
@@ -484,7 +484,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-18",
                 "title": "KLE M R SAKHARE ALUMINI MEET",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/KLE M R SAKHARE ALUMINI MEET.webp",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/KLE M R SAKHARE ALUMINI MEET/SDDS0773.webp",
                     "/assets/webp_images/Corporate Events/KLE M R SAKHARE ALUMINI MEET/SDDS0791.webp",
@@ -520,7 +520,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-20",
                 "title": "Sriramlu Event",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Sriramlu Event.webp",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Sriramlu Event/IMG-6859.webp",
                     "/assets/webp_images/Corporate Events/Sriramlu Event/IMG-6860.webp",
@@ -567,7 +567,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "corporate-22",
                 "title": "Startup dailogue 2025",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/development_dialogue_15th_edition_2025.webp",
                 "allImages": [
                     "/assets/webp_images/Corporate Events/Startup dailogue 2025/473920720_1877581732981080_6983658011088004937_n.webp",
                     "/assets/webp_images/Corporate Events/Startup dailogue 2025/650964261_17917831068126797_5482659852724961435_n.webp",
@@ -618,7 +618,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-1",
                 "title": "14 H K Patil Book launch Event at KUD Dharwad 2024",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/H K Patil Book launch Event at KUD Dharwad 2024.webp",
                 "allImages": [
                     "/assets/webp_images/Special Events/14 H K Patil Book launch Event at KUD Dharwad 2024/0J0A3567.webp",
                     "/assets/webp_images/Special Events/14 H K Patil Book launch Event at KUD Dharwad 2024/0J0A3577.webp",
@@ -680,7 +680,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-3",
                 "title": "CM Basavaraj Bommai Ji Event",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/CM Basavaraj Bommai Ji Event.webp",
                 "allImages": [
                     "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/19b051c5-dfca-4109-89d8-5f4f724fc4b0.webp",
                     "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_1917.webp",
@@ -696,7 +696,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "special-4",
                 "title": "INORBIT MALL",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/INORBIT MALL.webp",
                 "allImages": [
                     "/assets/webp_images/Special Events/INORBIT MALL/SDDS2083.webp",
                     "/assets/webp_images/Special Events/INORBIT MALL/SDDS2085.webp",
@@ -868,7 +868,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-1",
                 "title": "ARROW LAUNCH EVENT",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/ARROW LAUNCH EVENT.webp",
                 "allImages": [
                     "/assets/webp_images/Launch Events/ARROW LAUNCH EVENT/_MAN1965.webp",
                     "/assets/webp_images/Launch Events/ARROW LAUNCH EVENT/_MAN1966.webp",
@@ -916,7 +916,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-3",
                 "title": "CRAVE CAFE LAUNCH",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/CRAVE CAFE LAUNCH.webp",
                 "allImages": [
                     "/assets/webp_images/Launch Events/CRAVE CAFE LAUNCH/C4018.00_00_14_12.Still002.webp",
                     "/assets/webp_images/Launch Events/CRAVE CAFE LAUNCH/C4018.00_00_16_00.Still005.webp",
@@ -1042,7 +1042,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "launch-10",
                 "title": "Toyota Hillix Launch Event 2023",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Toyota Hillix Launch Event 2023.webp",
                 "allImages": [
                     "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.54 PM (1).webp",
                     "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.54 PM.webp",
@@ -1118,7 +1118,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-2",
                 "title": "9 Sundari Udaya Utsava 2019 Event",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Sundari Udaya Utsava 2019 Event.webp",
                 "allImages": [
                     "/assets/webp_images/Music Events/9 Sundari Udaya Utsava 2019 Event/1.webp",
                     "/assets/webp_images/Music Events/9 Sundari Udaya Utsava 2019 Event/2.webp",
@@ -1203,7 +1203,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-5",
                 "title": "Emiway Bantai Concert 2018",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Emiway Bantai Concert 2018.webp",
                 "allImages": [
                     "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/1.webp",
                     "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/2.webp",
@@ -1214,7 +1214,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-6",
                 "title": "Evening with legends at Infosys 2023",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Evening with legends at Infosys 2023.webp",
                 "allImages": [
                     "/assets/webp_images/Music Events/Evening with legends at Infosys 2023/1.webp",
                     "/assets/webp_images/Music Events/Evening with legends at Infosys 2023/10.webp",
@@ -1232,7 +1232,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-7",
                 "title": "Global Karatagi School, Koppal 2019",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Global Karatagi School, Koppal 2019.webp",
                 "allImages": [
                     "/assets/webp_images/Music Events/Global Karatagi School, Koppal 2019/1.webp",
                     "/assets/webp_images/Music Events/Global Karatagi School, Koppal 2019/10.webp",
@@ -1311,7 +1311,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-11",
                 "title": "KLE BBA Equinox 2023",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/KLE BBA Equinox 2023.webp",
                 "allImages": [
                     "/assets/webp_images/Music Events/KLE BBA Equinox 2023/dwq (1).webp",
                     "/assets/webp_images/Music Events/KLE BBA Equinox 2023/dwq (2).webp",
@@ -1324,7 +1324,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-12",
                 "title": "KLE BBA NISHKARSH",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/KLE BBA NISHKARSH.webp",
                 "allImages": [
                     "/assets/webp_images/Music Events/KLE BBA NISHKARSH/DSC01418 (1).webp",
                     "/assets/webp_images/Music Events/KLE BBA NISHKARSH/DSC01418.webp",
@@ -1472,7 +1472,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "music-19",
                 "title": "Sharadha public school",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Sharadha public school.webp",
                 "allImages": [
                     "/assets/webp_images/Music Events/Sharadha public school/9O4A2346.webp",
                     "/assets/webp_images/Music Events/Sharadha public school/9O4A2350.webp",
@@ -1589,7 +1589,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-3",
                 "title": "Deshpande Skilling International Yoga Day 2023",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/Deshpande Skilling International Yoga Day 2023.webp",
                 "allImages": [
                     "/assets/webp_images/Sports Events/Deshpande Skilling International Yoga Day 2023/144A7229.webp",
                     "/assets/webp_images/Sports Events/Deshpande Skilling International Yoga Day 2023/144A7236.webp",
@@ -1603,7 +1603,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-4",
                 "title": "ITF DHARWAD",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/ITF DHARWAD.webp",
                 "allImages": [
                     "/assets/webp_images/Sports Events/ITF DHARWAD/C9499T01.webp",
                     "/assets/webp_images/Sports Events/ITF DHARWAD/C9505T01.webp",
@@ -1629,7 +1629,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-5",
                 "title": "KLE MR SAKHARE SPORTS EVENT",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/KLE MR SAKHARE SPORTS EVENT.webp",
                 "allImages": [
                     "/assets/webp_images/Sports Events/KLE MR SAKHARE SPORTS EVENT/IMG_8544.webp",
                     "/assets/webp_images/Sports Events/KLE MR SAKHARE SPORTS EVENT/IMG_8576.webp",
@@ -1650,7 +1650,7 @@ export const services: ServiceCategory[] = [
             {
                 "id": "sports-6",
                 "title": "National Level Kabaddi By Basavaraj Bommai Ji Event",
-                "image": "/assets/Layout_page.png",
+                "image": "/assets/cover_images/CM Basavaraj Bommai Ji Event.webp",
                 "allImages": [
                     "/assets/webp_images/Sports Events/National Level Kabaddi By Basavaraj Bommai Ji Event/19b051c5-dfca-4109-89d8-5f4f724fc4b0.webp",
                     "/assets/webp_images/Sports Events/National Level Kabaddi By Basavaraj Bommai Ji Event/IMG_1917.webp",

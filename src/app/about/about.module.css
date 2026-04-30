@@ -324,8 +324,15 @@
 }
 
 .grassrootsBox:hover img {
-    filter: grayscale(0);
+    filter: grayscale(1); /* Keep grayscale on hover */
     transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .grassrootsBox:hover img {
+        filter: grayscale(1);
+        transform: none;
+    }
 }
 
 /* FOUNDER'S WORDS CARD */
@@ -523,8 +530,17 @@
     scrollbar-width: none;
     cursor: grab;
     user-select: none;
-    touch-action: pan-y; /* Allow vertical scroll, we handle horizontal */
+    touch-action: pan-x; /* Allow horizontal swiping */
     will-change: scroll-position, transform;
+}
+
+@media (max-width: 768px) {
+    .sliderTrack {
+        overflow-x: hidden; /* Disable manual swipe */
+        touch-action: pan-y; /* Allow vertical scroll only */
+        scroll-snap-type: none; /* Snap not needed if swipe is disabled */
+        cursor: default;
+    }
 }
 
 .sliderTrack.grabbing {
@@ -541,9 +557,11 @@
     aspect-ratio: 1 / 1; 
     flex-shrink: 0;
     position: relative;
-    pointer-events: none; /* Let events pass to track for drag */
+    pointer-events: auto; /* Allow hover and click events */
     will-change: transform;
 }
+
+/* Mobile override no longer needed as auto is the base */
 
 /* Ensure common children are not draggable/selectable to prevent interference */
 .sliderItem img {
@@ -574,7 +592,13 @@
 }
 
 .sliderItem:hover img {
-    filter: grayscale(0);
+    filter: grayscale(1); /* Keep grayscale on hover */
+}
+
+@media (max-width: 768px) {
+    .sliderItem:hover img {
+        filter: grayscale(1); /* Force grayscale on mobile to prevent tap-to-color */
+    }
 }
 
 
@@ -585,21 +609,39 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #f5f5f5; /* Off-white */
-    color: #000000; /* Dark icon */
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.4); /* Decreased background opacity */
+    backdrop-filter: blur(4px); /* Optional: add blur for premium feel */
+    color: #000000; /* Fully opaque icon */
+    border: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 10;
+    z-index: 20; /* Increased to ensure it's above items */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 
+@media (max-width: 768px) {
+    .sliderNavBtn {
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(6px);
+    }
+    
+    .sliderNavBtnLeft {
+        left: 10px;
+    }
+    
+    .sliderNavBtnRight {
+        right: 10px;
+    }
+}
+
 .sliderNavBtn:hover:not(.disabled) {
     transform: translateY(-50%) scale(1.1);
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.8);
     border-color: var(--color-accent-gold, #d4af37);
 }
 
@@ -1067,12 +1109,34 @@
 
     .locationCity {
         font-size: 1.6rem;
-        letter-spacing: 3px;
-        transform: translateY(60px); /* Adjust initial position for mobile */
+        letter-spacing: 4px;
+        transform: translateY(0); /* Center vertically on mobile */
+        color: var(--color-accent-gold, #d4af37);
+        margin-bottom: 0;
+    }
+
+    .locationOverlayContent {
+        justify-content: flex-end; /* Move text towards the bottom */
+        padding: 40px 20px;
+    }
+
+    .locationDetails {
+        display: none; /* Hide address and button on phone */
     }
 
     .locationCard:hover .locationCity {
-        letter-spacing: 4px; /* Ensure hover state doesn't blow out on touch */
+        letter-spacing: 4px; 
+        transform: translateY(0);
+    }
+
+    .locationCard:hover .locationCardImg {
+        transform: none !important; /* Disable zoom on mobile tap */
+        filter: brightness(0.9) !important;
+    }
+
+    .locationCard:hover .locationCardImgWrap {
+        border-color: rgba(212, 175, 55, 0.5) !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
     }
 }
 
@@ -1084,14 +1148,12 @@
     .locationCity {
         font-size: 1.3rem;
         letter-spacing: 2px;
-    }
-
-    .locationCard:hover .locationCity {
-        letter-spacing: 3px; /* Ensure hover state doesn't blow out on touch */
+        transform: translateY(0);
+        color: var(--color-accent-gold, #d4af37);
     }
 
     .locationOverlayContent {
-        padding: 30px 20px;
+        padding: 20px;
     }
 }
 

@@ -45,14 +45,14 @@ const locations = [
     {
         city: 'HUBLI',
         type: 'HEAD QUARTERS',
-        img: '/assets/hubli_city.png',
+        img: '/assets/hubli_city.webp',
         address: '"Marvel Artiza" , CTS No. 4A/2, First Floor - 133, Jayanagara, Vidyanagar, Opposite KIMS, Hubli-580021, Karnataka, India.',
         mapLink: 'https://www.google.com/maps/search/?api=1&query=Marvel+Artiza+Hubli'
     },
     {
         city: 'BANGALORE',
         type: 'CORPORATE OFFICE',
-        img: '/assets/bangaluru.jpeg',
+        img: '/assets/bangaluru.webp',
         address: '"The SP Events" , ITPL Main Road, Opp Capitol Towers, Kadugodi, Whitefield, Bengaluru - 560066, Karnataka, India.',
         mapLink: 'https://www.google.com/maps/search/?api=1&query=The+SP+Events+Whitefield+Bangalore'
     }
@@ -73,7 +73,8 @@ export default function AboutPage() {
     const [canScrollRight, setCanScrollRight] = useState(true);
     const sliderRef = useRef<HTMLDivElement>(null);
     const pageRef = useRef<HTMLDivElement>(null);
-    const [isDragging, setIsDragging] = useState(false); // only for UI styling if needed, logic is native
+    const [isDragging, setIsDragging] = useState(false);
+    const [isScrolling, setIsScrolling] = useState(false);
 
     const checkScroll = () => {
         if (sliderRef.current) {
@@ -84,26 +85,48 @@ export default function AboutPage() {
     };
 
     const scrollLeft = () => {
-        if (sliderRef.current) {
-            const { scrollLeft, scrollWidth } = sliderRef.current;
-            if (scrollLeft <= 10) {
-                // At the start, jump to the end
-                sliderRef.current.scrollTo({ left: scrollWidth, behavior: 'smooth' });
-            } else {
-                sliderRef.current.scrollBy({ left: -(window.innerWidth / 3), behavior: 'smooth' });
-            }
+        if (isScrolling || !sliderRef.current) return;
+        
+        setIsScrolling(true);
+        const container = sliderRef.current;
+        const item = container.querySelector(`.${styles.sliderItem}`) as HTMLElement;
+        if (!item) { setIsScrolling(false); return; }
+        
+        const itemWidth = item.offsetWidth + 12; // 12px gap
+        const currentScroll = container.scrollLeft;
+
+        if (currentScroll <= 10) {
+            container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' });
+        } else {
+            // Snap to nearest item position
+            const targetScroll = Math.ceil((currentScroll - itemWidth) / itemWidth) * itemWidth;
+            container.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
         }
+        
+        setTimeout(() => setIsScrolling(false), 500);
     };
 
     const scrollRight = () => {
-        if (sliderRef.current) {
-            const { scrollLeft, clientWidth, scrollWidth } = sliderRef.current;
-            if (scrollLeft + clientWidth >= scrollWidth - 10) {
-                sliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                sliderRef.current.scrollBy({ left: window.innerWidth / 3, behavior: 'smooth' });
-            }
+        if (isScrolling || !sliderRef.current) return;
+
+        setIsScrolling(true);
+        const container = sliderRef.current;
+        const item = container.querySelector(`.${styles.sliderItem}`) as HTMLElement;
+        if (!item) { setIsScrolling(false); return; }
+
+        const itemWidth = item.offsetWidth + 12; // 12px gap
+        const currentScroll = container.scrollLeft;
+        const { clientWidth, scrollWidth } = container;
+
+        if (currentScroll + clientWidth >= scrollWidth - 20) {
+            container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            // Snap to nearest item position
+            const targetScroll = Math.floor((currentScroll + itemWidth) / itemWidth) * itemWidth;
+            container.scrollTo({ left: Math.min(targetScroll, scrollWidth - clientWidth), behavior: 'smooth' });
         }
+
+        setTimeout(() => setIsScrolling(false), 500);
     };
 
     useEffect(() => {
@@ -116,19 +139,16 @@ export default function AboutPage() {
         let rafId: number | null = null;
 
         const handleDown = (e: MouseEvent | TouchEvent) => {
+            // Only allow manual drag on desktop
+            if (window.innerWidth <= 768 || isScrolling) return;
+
             isDown = true;
             slider.classList.add(styles.grabbing);
             
-            // Handle both mouse and touch pageX
             const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
             startPoint = pageX - slider.offsetLeft;
             initialScroll = slider.scrollLeft;
             setIsDragging(true);
-
-            // Prevent text selection/drag starts on desktop
-            if (!('touches' in e)) {
-                // Keep default only for buttons if needed, but slider track is safe
-            }
         };
 
         const handleUpOrLeave = () => {
