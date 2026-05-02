@@ -137,13 +137,25 @@ export default function Navbar() {
                         </div>
 
                         {/* ── CENTER: Nav Links ── */}
-                        <nav className={styles.centeredNav}>
+                        <nav className={styles.rightNav}>
                             {navLinks.map((link, i) => (
                                 <div key={link.href} className={styles.linkContainer}>
+                                    <motion.div 
+                                        className={styles.navLine}
+                                        initial={{ scaleX: 0 }}
+                                        animate={{ scaleX: 1 }}
+                                        exit={{ scaleX: 0 }}
+                                        transition={{
+                                            delay: 0.3 + i * 0.07,
+                                            duration: 0.75,
+                                            ease: [0.22, 1, 0.36, 1]
+                                        }}
+                                    />
                                     <motion.div
-                                        initial={{ y: '110%', opacity: 0 }}
-                                        animate={{ y: 0, opacity: 1 }}
-                                        exit={{ y: '110%', opacity: 0 }}
+                                        className={styles.linkWrapper}
+                                        initial={{ x: '110%', opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        exit={{ x: '110%', opacity: 0 }}
                                         transition={{
                                             delay: 0.3 + i * 0.07,
                                             duration: 0.75,
@@ -156,7 +168,7 @@ export default function Navbar() {
                                             onClick={() => setIsOpen(false)}
                                         >
                                             <motion.span
-                                                whileHover={{ x: 8, color: '#d4af37' }}
+                                                whileHover={{ x: -8, color: '#d4af37' }}
                                                 transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                                                 style={{ display: 'inline-block' }}
                                             >
