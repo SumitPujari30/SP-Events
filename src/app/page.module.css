@@ -50,12 +50,12 @@
   background: linear-gradient(to bottom,
       rgba(7, 0, 18, 0.55) 0%,
       transparent 30%,
-      transparent 60%,
-      rgba(7, 0, 18, 1) 100%);
+      transparent 65%,
+      rgba(7, 0, 18, 0.55) 100%);
 }
 
 /* Scroll indicator */
-.scrollIndicator {
+/* .scrollIndicator {
   position: absolute;
   bottom: 48px;
   left: 50%;
@@ -65,7 +65,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-}
+} */
 
 .scrollLine {
   width: 1px;
@@ -87,7 +87,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 220px;
+  height: 110px;
   background: linear-gradient(to bottom, transparent, var(--color-bg-dark));
   z-index: 1;
   pointer-events: none;
@@ -105,7 +105,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 160px 0 60px;
+  padding: 80px 0 60px;
 }
 
 /* Atmospheric glowing orbs */
@@ -177,20 +177,12 @@
 .expTitle {
   font-family: var(--accent-font), serif;
   font-size: clamp(3.1rem, 7vw, 5.5rem);
-  font-weight: 400;
+  font-weight: 800;
   line-height: 1.0;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01rem;
   text-transform: none;
   color: var(--color-text);
   margin-top: 15px;
-  /* Smooth Directional Fade Shadow (White/Silver) */
-  text-shadow:
-    /* 1px 1px 1px rgba(255, 255, 255, 0.9),
-    2px 2px 2px rgba(255, 255, 255, 0.7), */
-    /* 4px 4px 5px rgba(255, 255, 255, 0.5), */
-    8px 8px 10px rgba(200, 200, 200, 0.35),
-    14px 14px 18px rgba(150, 150, 150, 0.2),
-    22px 22px 30px rgba(0, 0, 0, 0.9);
 }
 
 .expUniqueLine {
@@ -288,13 +280,13 @@
   font-size: 1.3rem;
   color: var(--color-text);
   line-height: 1.6;
-  font-weight: 500;
+  font-weight: 50;
   margin-bottom: 0;
   letter-spacing: -0.01em;
 }
 
 .expTextHighlight {
-  font-weight: 600;
+  font-weight: 800;
   color: var(--color-text);
 }
 
@@ -309,6 +301,7 @@
   font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.8;
+  font-weight: 300;
 }
 
 .expValuesWrapper {
@@ -431,8 +424,8 @@
   width: 100%;
   background: var(--color-bg-dark);
   overflow: hidden;
-  padding-top: 120px;
-  padding-bottom: 80px;
+  padding-top: 50px;
+  padding-bottom: 40px;
 }
 
 /* ── Geometric Background Illumination ── */
@@ -495,7 +488,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 
 .catTitle {
@@ -519,18 +512,19 @@
 }
 
 .uniqueTitle {
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 3vw, 5rem);
-  font-weight: 800;
+  font-family: var(--font-display);
+  /* 3.2vw ensures the ~44-char uppercase string fits on one line at all desktop widths */
+  font-size: clamp(0.7rem, 3.6vw, 7rem);
+  font-weight: 900;
   text-align: center;
   white-space: nowrap;
-  line-height: normal;
-  letter-spacing: 0.05em;
-  margin-top: 0;
+  text-transform: capitalize;
+  margin: 0 auto;
   display: block;
-  width: 100%;
+  letter-spacing: -0.05rem;
+  width: fit-content;
+  max-width: 100%;
   overflow: visible;
-  /* Ensure we see it even if it slightly overflows */
 
   /* Premium Design: Shimmering Gradient */
   background: linear-gradient(90deg,
@@ -546,7 +540,6 @@
   animation: shimmer 5s linear infinite;
 
   /* Depth and Elevation */
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   filter: drop-shadow(0 0 10px rgba(226, 201, 126, 0.1));
 }
 
@@ -556,8 +549,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 30px;
-  margin-bottom: -40px;
+  margin-top: 16px;
+  margin-bottom: 0;
   opacity: 1;
 }
 
@@ -571,12 +564,15 @@
   transform-origin: center center;
 }
 
+/* Mobile: allow text to wrap gracefully */
 @media (max-width: 768px) {
   .uniqueTitle {
     white-space: normal;
-    word-wrap: break-word;
-    font-size: clamp(1.1rem, 4.5vw, 2.2rem);
+    word-break: break-word;
+    /* 7vw gives ~2 words per line on small phones, looks balanced */
+    font-size: clamp(1.2rem, 7vw, 2.5rem);
     padding: 0 16px;
+    line-height: 1.1;
   }
 }
 
@@ -1058,9 +1054,14 @@
 
   .founderImageWrapper {
     flex: 0 0 auto;
-    height: 300px;
+    height: auto;
+    aspect-ratio: 5 / 6;
     margin: 0;
     border-radius: 0;
+  }
+
+  .founderImage {
+    transform: scale(1);
   }
 
   .founderContent {
@@ -1079,7 +1080,8 @@
 
 @media (max-width: 480px) {
   .founderImageWrapper {
-    height: 250px;
+    height: auto;
+    aspect-ratio: 5 / 6;
   }
 
   .founderContent {
@@ -1340,12 +1342,12 @@
   }
 
   .catHeader {
-    margin-bottom: 40px;
+    margin-bottom: 16px;
   }
 
   .categoriesSection {
-    padding-top: 60px;
-    padding-bottom: 20px;
+    padding-top: 30px;
+    padding-bottom: 16px;
   }
 
   .statsSection {

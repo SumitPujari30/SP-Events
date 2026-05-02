@@ -35,13 +35,13 @@
      --gradient-primary: linear-gradient(90deg, #9B7730, #C9A84C, #E2C97E);
      --gradient-dark: linear-gradient(135deg, rgba(17, 17, 17, 0.6) 0%, rgba(5, 5, 5, 0.95) 50%, #000000 100%);
 
-     /* Typography */
-     --font-display: var(--heading-font), 'Cinzel', serif;
-     --font-heading: var(--heading-font), 'Cinzel', serif;
-     --font-tagline: var(--tagline-font), 'Cormorant Garamond', serif;
-     --font-body: var(--body-font), 'Lato', sans-serif;
-     --font-nav: var(--body-font), 'Lato', sans-serif;
-     --font-accent: var(--accent-font), 'Libre Baskerville', serif;
+     /* Typography — Space Grotesk (site-wide) */
+     --font-display: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
+     --font-heading: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
+     --font-tagline: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
+     --font-body: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
+     --font-nav: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
+     --font-accent: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
 
      /* Utilities */
      --radius-sm: 8px;
@@ -73,7 +73,7 @@
    }
 
    body {
-     font-family: var(--font-body);
+     font-family: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
      background-color: var(--color-bg);
      color: var(--color-text);
      overflow-x: hidden;
@@ -108,9 +108,8 @@
      font-family: var(--font-heading);
      font-weight: 700;
      line-height: 1.2;
-     letter-spacing: 0.05em; /* Elegant spacing */
+     letter-spacing: 0.02em;
      color: var(--color-text);
-     text-transform: uppercase;
    }
 
    /* --- Containers --- */

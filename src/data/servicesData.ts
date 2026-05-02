@@ -23,7 +23,7 @@ export const services: ServiceCategory[] = [
         "num": "01",
         "tagline": "Strategy meets spectacle",
         "desc": "We elevate corporate gatherings into powerful brand moments.",
-        "bgImage": "/assets/services/corporate_bg.jpeg",
+        "bgImage": "/assets/services/corporate_bg.webp",
         "events": [
             {
                 "id": "corporate-1",
@@ -613,7 +613,7 @@ export const services: ServiceCategory[] = [
         "num": "02",
         "tagline": "Moments that become memories",
         "desc": "Life's most meaningful occasions deserve flawless execution.",
-        "bgImage": "/assets/services/Special-Events-covers.jpg.jpeg",
+        "bgImage": "/assets/services/special_bg.webp",
         "events": [
             {
                 "id": "special-1",
@@ -863,7 +863,7 @@ export const services: ServiceCategory[] = [
         "num": "03",
         "tagline": "First impressions, perfected",
         "desc": "A product launch is your brand's most critical moment.",
-        "bgImage": "/assets/services/launch_bg.jpeg",
+        "bgImage": "/assets/services/launch_bg.webp",
         "events": [
             {
                 "id": "launch-1",
@@ -1087,7 +1087,7 @@ export const services: ServiceCategory[] = [
         "num": "04",
         "tagline": "Sonic experiences that move crowds",
         "desc": "From intimate acoustic evenings to stadium-filling concerts.",
-        "bgImage": "/assets/services/Music-Events-cover.jpeg",
+        "bgImage": "/assets/services/music_bg.webp",
         "events": [
             {
                 "id": "music-1",
@@ -1529,7 +1529,7 @@ export const services: ServiceCategory[] = [
         "num": "05",
         "tagline": "Where champions are celebrated",
         "desc": "We bring the energy of sport to life.",
-        "bgImage": "/assets/services/Sports-Cover.jpeg",
+        "bgImage": "/assets/services/sports_bg.webp",
         "events": [
             {
                 "id": "sports-1",
@@ -1671,7 +1671,7 @@ export const services: ServiceCategory[] = [
         "num": "06",
         "tagline": "Love stories brought to life",
         "desc": "Every love story is unique — and your wedding should be too.",
-        "bgImage": "/assets/services/Wedding-cover.jpg.jpeg",
+        "bgImage": "/assets/services/weddings_bg.webp",
         "events": []
     }
 ];

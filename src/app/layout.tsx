@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Italiana, Cormorant_Garamond, Lato, Libre_Baskerville } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,34 +7,10 @@ import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import Preloader from "@/components/Preloader";
 
-const italiana = Italiana({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--heading-font",
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
+const spaceGrotesk = Space_Grotesk({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--tagline-font",
-  display: "swap",
-});
-
-const lato = Lato({
-  weight: ["100", "300", "400", "700", "900"],
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--body-font",
-  display: "swap",
-});
-
-const libreBaskerville = Libre_Baskerville({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--accent-font",
+  variable: "--space-grotesk-font",
   display: "swap",
 });
 
@@ -59,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${italiana.variable} ${cormorant.variable} ${lato.variable} ${libreBaskerville.variable}`}>
+    <html lang="en" className={spaceGrotesk.variable}>
       <body>
         <Preloader />
         <CustomCursor />

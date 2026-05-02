@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useInView, animate } from 'framer-motion';
+import { useInView, animate, useMotionValue, useTransform, motion } from 'framer-motion';
 
 interface Props {
     end: number;
@@ -20,30 +20,22 @@ export default function CounterAnimation({
 }: Props) {
     const ref = useRef<HTMLSpanElement>(null);
     const isInView = useInView(ref, { once: true, amount: 0.5 });
-    const hasAnimated = useRef(false);
+    const count = useMotionValue(0);
+    const rounded = useTransform(count, (latest) => `${prefix}${Math.floor(latest).toLocaleString()}${suffix}`);
 
     useEffect(() => {
-        if (!isInView || hasAnimated.current || !ref.current) return;
-        hasAnimated.current = true;
-
-        const node = ref.current;
-
-        const controls = animate(0, end, {
-            duration,
-            ease: "easeOut",
-            onUpdate(value) {
-                if (node) {
-                    node.textContent = `${prefix}${Math.floor(value).toLocaleString()}${suffix}`;
-                }
-            },
-        });
-
-        return () => controls.stop();
-    }, [isInView, end, duration, prefix, suffix]);
+        if (isInView) {
+            const controls = animate(count, end, {
+                duration,
+                ease: "easeOut",
+            });
+            return () => controls.stop();
+        }
+    }, [isInView, end, duration, count]);
 
     return (
-        <span ref={ref} className={className}>
-            {prefix}0{suffix}
-        </span>
+        <motion.span ref={ref} className={className}>
+            {rounded}
+        </motion.span>
     );
 }

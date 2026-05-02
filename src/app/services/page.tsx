@@ -289,7 +289,7 @@ export default function ServicesPage() {
                             <ServicesGrid 
                                 categories={services.map(s => ({
                                     id: s.id,
-                                    title: `${s.title} Events`,
+                                    title: s.title,
                                     image: s.bgImage
                                 }))}
                                 onCategoryClick={handleCategoryClick}

@@ -69,12 +69,14 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.7;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    filter: grayscale(100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
 }
 
 .gridBox:hover .gridImage {
     transform: scale(1.08);
-    opacity: 0.35;
+    opacity: 0.9;
+    filter: grayscale(0%);
 }
 
 /* ── Sweep light effect on hover ── */
@@ -251,10 +253,15 @@
         aspect-ratio: 4/3;
     }
 
+    .gridImage {
+        filter: grayscale(0%) !important;
+    }
+
     /* Disable hover effects on mobile to prevent "sticky" tap states */
     .gridBox:hover .gridImage {
         transform: none !important;
         opacity: 0.7 !important;
+        filter: grayscale(0%) !important;
     }
 
     .gridBox:hover::before {

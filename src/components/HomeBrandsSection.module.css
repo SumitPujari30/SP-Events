@@ -47,8 +47,8 @@
 
 /* ▬▬▬ LEFT SIDE: BOLD TITLE (Playfair) ▬▬▬ */
 .titleSide {
-    flex: 1.4;
-    max-width: 850px;
+    flex: 1.2;
+    max-width: 800px;
 }
 
 .mainTitle {
@@ -110,7 +110,7 @@
 
 /* ▬▬▬ RIGHT SIDE: VERTICAL MARQUEE ▬▬▬ */
 .marqueeSide {
-    flex: 1;
+    flex: 1.2;
     height: 650px;
     margin-left: 0;
     position: relative;
@@ -174,7 +174,7 @@
 }
 
 .logoImage {
-    max-width: 200px;
+    max-width: 96%;
     max-height: 100px;
     width: auto;
     height: auto;

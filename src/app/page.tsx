@@ -26,32 +26,32 @@ const eventCategories = [
   {
     id: 'corporate',
     title: 'Corporate Events',
-    image: '/assets/services/corporate_bg.jpeg',
+    image: '/assets/services/corporate_bg.webp',
   },
   {
     id: 'special',
     title: 'Special Events',
-    image: '/assets/services/Special-Events-covers.jpg.jpeg',
+    image: '/assets/services/special_bg.webp',
   },
   {
     id: 'launch',
     title: 'Launch Events',
-    image: '/assets/services/launch_bg.jpeg',
+    image: '/assets/services/launch_bg.webp',
   },
   {
     id: 'music',
     title: 'Music Events',
-    image: '/assets/services/Music-Events-cover.jpeg',
+    image: '/assets/services/music_bg.webp',
   },
   {
     id: 'sports',
     title: 'Sports Events',
-    image: '/assets/services/Sports-Cover.jpeg',
+    image: '/assets/services/sports_bg.webp',
   },
   {
     id: 'wedding',
     title: 'Weddings',
-    image: '/assets/services/Wedding-cover.jpg.jpeg',
+    image: '/assets/services/weddings_bg.webp',
   },
 ];
 
@@ -400,7 +400,7 @@ export default function HomePage() {
           <div className={styles.expRight}>
             <div className={styles.expStoryBlock}>
               <p className={`${styles.expText} ${styles.expTextFade}`}>
-                <strong className={styles.expTextHighlight}>THE SP EVENTS</strong> is an emerging event management and experiential production company known for delivering impactful and professionally executed events. Founded in 2022 by <strong className={styles.expTextHighlight}>Mr. Samarth U. Patangi</strong>, the company is built on the core pillars of enterprise, excellence, and innovation.
+                <strong className={styles.expTextHighlight}>THE SP EVENTS</strong> is an emerging event management and experiential production company known for delivering impactful and professionally executed events. <strong className={styles.expTextHighlight}>Founded in 2022 by Mr. Samarth U. Patangi</strong>, the company is built on the core pillars of <strong className={styles.expTextHighlight}>enterprise, excellence, and innovation</strong>.
               </p>
 
               <div className={`${styles.expDivider} ${styles.expTextFade}`} />
@@ -438,7 +438,7 @@ export default function HomePage() {
           <div className={styles.catWatermark}>EXPERTISE</div>
         </div>
 
-        <div style={{ width: '100%', margin: '0 auto', paddingBottom: '40px', position: 'relative', zIndex: 2 }}>
+        <div style={{ width: '100%', margin: '0 auto', paddingBottom: '12px', position: 'relative', zIndex: 2 }}>
           {/* Main heading */}
           <div className={styles.catHeader}>
             <h2 className={styles.uniqueTitle}>
@@ -471,9 +471,9 @@ export default function HomePage() {
           <div className={styles.bannerGlow} />
 
           {/* Kinetic Watermarks */}
-          <div className={`${styles.bannerWatermark} ${styles.watermarkTop}`}>THE SP</div>
+          {/* <div className={`${styles.bannerWatermark} ${styles.watermarkTop}`}>THE SP</div>
           <div className={`${styles.bannerWatermark} ${styles.watermarkMiddle}`}></div>
-          <div className={`${styles.bannerWatermark} ${styles.watermarkBottom}`}>EVENTS</div>
+          <div className={`${styles.bannerWatermark} ${styles.watermarkBottom}`}>EVENTS</div> */}
 
           <Image
             ref={dividerImageRef}
