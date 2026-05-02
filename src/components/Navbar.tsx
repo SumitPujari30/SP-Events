@@ -170,7 +170,6 @@ export default function Navbar() {
 
                         {/* ── Bottom Bar ── */}
                         <div className={styles.overlayBottomBar}>
-                            <p className={styles.overlayTagline}>Creating Magical Experiences.</p>
                             <div className={styles.socialIcons}>
                                 <a href="https://wa.me/917411863227" target="_blank" rel="noreferrer" className={styles.socialIcon}><FaWhatsapp /></a>
                                 <a href="https://www.instagram.com/the_sp_events" target="_blank" rel="noreferrer" className={styles.socialIcon}><FaInstagram /></a>

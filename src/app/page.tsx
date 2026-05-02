@@ -24,12 +24,12 @@ gsap.registerPlugin(ScrollTrigger);
 // ─── Event Categories ────────────────────────────────────────
 const eventCategories = [
   {
-    id: 'corporate',
+    id: 'Corporate Events',
     title: 'Corporate Events',
     image: '/assets/services/corporate_bg.webp',
   },
   {
-    id: 'special',
+    id: 'Special Events',
     title: 'Special Events',
     image: '/assets/services/special_bg.webp',
   },
@@ -59,7 +59,7 @@ const eventCategories = [
 const stats = [
   { value: 3, suffix: "+", label: "Years of Excellence" },
   { value: 315, suffix: "+", label: "Repeat Clients" },
-  { value: 1450, suffix: "+", label: "Magic Experiences" },
+  { value: 1450, suffix: "+", label: "Magical Experiences" },
   { value: 15, suffix: "+", label: "Professional Folks" },
   { value: 150, suffix: "+", label: "Events Per Year" },
 ];
@@ -458,33 +458,7 @@ export default function HomePage() {
       </section>
 
 
-      {/* ═══════════════════════════════════════════════════════
-          4. CREATING MAGICAL EVENTS — Cinematic Banner
-      ════════════════════════════════════════════════════════ */}
-      <div className={styles.dividerBanner}>
-        {/* Architectural Lines */}
-        <div className={styles.bannerTopLine} />
-        <div className={styles.bannerBottomLine} />
 
-        <div className={styles.dividerBannerInner}>
-          {/* Ambient Lighting Glow */}
-          <div className={styles.bannerGlow} />
-
-          {/* Kinetic Watermarks */}
-          {/* <div className={`${styles.bannerWatermark} ${styles.watermarkTop}`}>THE SP</div>
-          <div className={`${styles.bannerWatermark} ${styles.watermarkMiddle}`}></div>
-          <div className={`${styles.bannerWatermark} ${styles.watermarkBottom}`}>EVENTS</div> */}
-
-          <Image
-            ref={dividerImageRef}
-            src="/assets/creating_magical_events.png"
-            alt="Creating Magical Events"
-            fill
-            className={styles.wowImage}
-            quality={85}
-          />
-        </div>
-      </div>
 
 
       {/* ═══════════════════════════════════════════════════════
@@ -534,9 +508,8 @@ export default function HomePage() {
             />
           </div>
           <div className={styles.founderContent}>
-            <div className={styles.quoteIcon}>"</div>
             <h2 className={styles.founderQuote}>
-              Great events are not measured by scale, but by the impact they leave behind.
+              Great events are not measured by scale, but by the impact they leave behind
             </h2>
             <div className={styles.founderNameBlock}>
               <h3 className={styles.founderName}>SAMARTH UDAYKUMAR PATANGI</h3>

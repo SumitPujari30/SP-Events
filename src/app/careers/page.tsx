@@ -8,8 +8,8 @@ import styles from './careers.module.css';
    SECTION 1: STAGE LIGHT HERO
    ============================================= */
 function StageLightHero() {
-    const mouseX = useMotionValue(-1500);
-    const mouseY = useMotionValue(-1500);
+    const mouseX = useMotionValue(-1000);
+    const mouseY = useMotionValue(-1000);
 
     const maskX = useSpring(mouseX, { damping: 30, stiffness: 200, mass: 0.5 });
     const maskY = useSpring(mouseY, { damping: 30, stiffness: 200, mass: 0.5 });
@@ -19,15 +19,15 @@ function StageLightHero() {
         // for both PC and mobile users before any interaction.
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
-        mouseX.set(centerX - 1500);
-        mouseY.set(centerY - 1500);
+        mouseX.set(centerX - 1000);
+        mouseY.set(centerY - 1000);
     }, [mouseX, mouseY]);
 
     const handlePointerMove = (e: React.PointerEvent) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        // offset is half of the 3000px mask size so the spotlight is centered on the cursor
-        mouseX.set(e.clientX - rect.left - 1500);
-        mouseY.set(e.clientY - rect.top - 1500);
+        // offset is half of the 2000px mask size so the spotlight is centered on the cursor
+        mouseX.set(e.clientX - rect.left - 1000);
+        mouseY.set(e.clientY - rect.top - 1000);
     };
 
     return (
@@ -37,7 +37,7 @@ function StageLightHero() {
                 <div className={styles.stageHeroGridDark} />
                 <div className={styles.stageHeroContent}>
                     <h1 className={styles.stageHeroTitleDark}>
-                        SHAPE THE<br />SPECTACLE.
+                        SHAPE THE<br />SPECTACLE
                     </h1>
                 </div>
             </div>
@@ -55,7 +55,7 @@ function StageLightHero() {
                     <p className={styles.heroPreLit}>Join The Crew</p>
                     <h1 className={styles.stageHeroTitleLit}>
                         SHAPE THE<br />
-                        <span className={styles.textGold}>SPECTACLE.</span>
+                        <span className={styles.textGold}>SPECTACLE</span>
                     </h1>
                 </div>
             </motion.div>
@@ -81,7 +81,7 @@ function TeamPhotosSection() {
     ];
 
     return (
-        <section className="section" style={{ background: 'var(--color-bg-dark)', overflow: 'hidden' }}>
+        <section className="section" style={{ background: 'var(--color-bg-dark)', overflow: 'hidden', paddingBottom: '20px' }}>
             <div className="container" style={{ marginBottom: '60px' }}>
                 <div className="section-header center">
                     <span className="section-label">Behind The Scenes</span>
@@ -141,13 +141,13 @@ function CultureSection() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
-        <section className="section section-violet">
+        <section className="section section-violet" style={{ paddingTop: '20px' }}>
             <div className="container">
                 <div className="section-header center" style={{ marginBottom: '60px' }}>
                     <span className="section-label">Life at SP Events</span>
                     <h2 className="section-title">A Culture of <span className="text-gold">Spectacle</span></h2>
                     <p className="section-subtitle">
-                        SP EVENTS is at the forefront of the evolving world of experiential events. We believe the future lies in innovation, creativity, and flawless execution. Join us in creating immersive experiences that redefine the industry.
+                        THE SP EVENTS is at the forefront of the evolving world of experiential events. We believe the future lies in innovation, creativity, and flawless execution. Join us in creating immersive experiences that redefine the industry.
                     </p>
                 </div>
             </div>
@@ -265,7 +265,7 @@ ${why}`;
                                 <label className="form-label">Why SP Events? *</label>
                                 <textarea name="why" className="form-textarea" required placeholder="Tell us why you want to join our spectacle..." suppressHydrationWarning />
                             </div>
-                            <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '16px' }} suppressHydrationWarning>
+                            <button type="submit" className={`btn btn-primary ${styles.formSubmitBtn}`} style={{ width: '100%', justifyContent: 'center', padding: '16px' }} suppressHydrationWarning>
                                 Submit Application
                             </button>
                         </form>

@@ -15,55 +15,54 @@ import styles from './about.module.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const grassrootsImages = [
-    { url: '/assets/grassroots/IMG_0350.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_0452.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_0491.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_0756.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_0968.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_1450.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_1660.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_1925.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_2033.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_2813.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_3468.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_3535.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_3970.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_4210.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_4838.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_5489.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_5560.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_6278.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_7610.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_8331.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_9034.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_9054.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_9056.webp', artist: 'Grassroots' },
-    { url: '/assets/grassroots/IMG_9830.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/0.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/1.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/2.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/3.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/4.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/5.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/6.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/7.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/8.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/9.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/10.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/11.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/12.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/13.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/14.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/15.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/16.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/17.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/18.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/19.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/20.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/21.webp', artist: 'Grassroots' },
+    { url: '/assets/grassroots/22.webp', artist: 'Grassroots' },
 ];
 
 const locations = [
     {
-        city: 'HUBLI',
+        city: 'HUBBALLI',
         type: 'HEAD QUARTERS',
         img: '/assets/hubli_city.webp',
         address: '"Marvel Artiza" , CTS No. 4A/2, First Floor - 133, Jayanagara, Vidyanagar, Opposite KIMS, Hubli-580021, Karnataka, India.',
         mapLink: 'https://www.google.com/maps/search/?api=1&query=Marvel+Artiza+Hubli'
     },
     {
-        city: 'BANGALORE',
+        city: 'BENGALURU',
         type: 'CORPORATE OFFICE',
-        img: '/assets/bangaluru.webp',
+        img: '/assets/banglore_lineart.webp',
         address: '"The SP Events" , ITPL Main Road, Opp Capitol Towers, Kadugodi, Whitefield, Bengaluru - 560066, Karnataka, India.',
         mapLink: 'https://www.google.com/maps/search/?api=1&query=The+SP+Events+Whitefield+Bangalore'
     }
 ];
 
 const coreValues = [
-    { num: '01', title: 'EXCELLENCE', desc: 'We strive for perfection in every detail, ensuring world-class outcomes.' },
-    { num: '02', title: 'CREATIVITY', desc: 'Innovation and originality are at the heart of our magical experiences.' },
-    { num: '03', title: 'PRECISION', desc: 'Flawless execution driven by meticulous planning and organization.' },
-    { num: '04', title: 'RELIABILITY', desc: 'A trusted partner you can count on to deliver beyond expectations.' },
-    { num: '05', title: 'COMMITMENT', desc: 'Dedicated to turning your vision into a remarkable reality.' },
+    { num: '01', title: 'EXCELLENCE', desc: 'We strive for perfection in every detail, ensuring world-class outcomes. Our commitment to quality defines every production we undertake.' },
+    { num: '02', title: 'CREATIVITY', desc: 'Innovation and originality are at the heart of our magical experiences. We push boundaries to create unique stories that resonate.' },
+    { num: '03', title: 'PRECISION', desc: 'Flawless execution driven by meticulous planning and organization. We ensure every second counts for a seamless event flow.' },
+    { num: '04', title: 'RELIABILITY', desc: 'A trusted partner you can count on to deliver beyond expectations. We build trust through consistency and proactive delivery.' },
+    { num: '05', title: 'COMMITMENT', desc: 'Dedicated to turning your vision into a remarkable reality. We work tirelessly to align every element with your unique goals.' },
 ];
 
 
@@ -73,6 +72,9 @@ export default function AboutPage() {
     const [canScrollRight, setCanScrollRight] = useState(true);
     const sliderRef = useRef<HTMLDivElement>(null);
     const pageRef = useRef<HTMLDivElement>(null);
+    const headlineRef = useRef<HTMLDivElement>(null);
+    const textRef = useRef<HTMLHeadingElement>(null);
+    const trailRefs = useRef<(HTMLImageElement | null)[]>([]);
     const [isDragging, setIsDragging] = useState(false);
 
     const checkScroll = () => {
@@ -85,11 +87,11 @@ export default function AboutPage() {
 
     const scrollLeft = () => {
         if (!sliderRef.current) return;
-        
+
         const container = sliderRef.current;
         const item = container.querySelector(`.${styles.sliderItem}`) as HTMLElement;
         if (!item) return;
-        
+
         const itemWidth = item.getBoundingClientRect().width + 12; // 12px gap
         const currentScroll = container.scrollLeft;
 
@@ -136,7 +138,7 @@ export default function AboutPage() {
 
             isDown = true;
             slider.classList.add(styles.grabbing);
-            
+
             const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
             startPoint = pageX - slider.offsetLeft;
             initialScroll = slider.scrollLeft;
@@ -152,7 +154,7 @@ export default function AboutPage() {
 
         const handleMove = (e: MouseEvent | TouchEvent) => {
             if (!isDown) return;
-            
+
             // Allow vertical scrolling on touch devices while dragging horizontally? 
             // Usually not on a horizontal slider, so we prevent default
             if (e.cancelable) e.preventDefault();
@@ -160,7 +162,7 @@ export default function AboutPage() {
             const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
             const x = pageX - slider.offsetLeft;
             const walk = (x - startPoint) * 1.5; // Drag speed multiplier
-            
+
             if (rafId) cancelAnimationFrame(rafId);
             rafId = requestAnimationFrame(() => {
                 slider.scrollLeft = initialScroll - walk;
@@ -215,6 +217,106 @@ export default function AboutPage() {
         setParticles(generated);
     }, []);
 
+    // ── Mouse Trail Effect ──
+    useEffect(() => {
+        const headline = headlineRef.current;
+        if (!headline) return;
+
+        let lastPos = { x: 0, y: 0 };
+        let currentIndex = 0;
+        const threshold = 50; // pixels to move before dropping a new image
+
+        // Cache offset to avoid layout thrashing
+        let offsetLeft = 0;
+        let offsetTop = 0;
+
+        const updateOffset = () => {
+            const rect = headline.getBoundingClientRect();
+            offsetLeft = rect.left;
+            offsetTop = rect.top;
+        };
+
+        updateOffset();
+        window.addEventListener('scroll', updateOffset);
+        window.addEventListener('resize', updateOffset);
+
+        const handleMouseMove = (e: MouseEvent) => {
+            const x = e.clientX - offsetLeft;
+            const y = e.clientY - offsetTop;
+
+            const dist = Math.hypot(x - lastPos.x, y - lastPos.y);
+
+            if (dist > threshold) {
+                lastPos = { x, y };
+
+                const img = trailRefs.current[currentIndex];
+                if (img) {
+                    gsap.killTweensOf(img);
+
+                    gsap.set(img, {
+                        x: x - 75,
+                        y: y - 75,
+                        scale: 1,
+                        opacity: 1,
+                        zIndex: currentIndex
+                    });
+
+                    gsap.to(img, {
+                        opacity: 0,
+                        scale: 0.9,
+                        duration: 2, // 2 seconds fade out
+                        ease: "power1.out"
+                    });
+                }
+
+                currentIndex = (currentIndex + 1) % trailRefs.current.length;
+            }
+
+            // --- Unique Out of the Box Text Interaction ---
+            // The text physically tilts towards the cursor with a dynamic gold shadow
+            if (textRef.current) {
+                const rect = textRef.current.getBoundingClientRect();
+                const textCenterX = rect.left + rect.width / 2;
+                const textCenterY = rect.top + rect.height / 2;
+
+                // Calculate tilt angle (max 20 degrees)
+                const rotateX = ((e.clientY - textCenterY) / (window.innerHeight / 2)) * -20;
+                const rotateY = ((e.clientX - textCenterX) / (window.innerWidth / 2)) * 20;
+
+                gsap.to(textRef.current, {
+                    rotateX: rotateX,
+                    rotateY: rotateY,
+                    textShadow: `${-rotateY}px ${rotateX}px 30px rgba(212, 175, 55, 0.4)`, // Cast shadow opposite to light
+                    transformPerspective: 1200,
+                    ease: "power2.out",
+                    duration: 0.5
+                });
+            }
+        };
+
+        const handleMouseLeave = () => {
+            if (textRef.current) {
+                gsap.to(textRef.current, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    textShadow: `0px 0px 0px rgba(212, 175, 55, 0)`,
+                    ease: "elastic.out(1, 0.3)",
+                    duration: 1.5
+                });
+            }
+        };
+
+        headline.addEventListener('mousemove', handleMouseMove);
+        headline.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            headline.removeEventListener('mousemove', handleMouseMove);
+            headline.removeEventListener('mouseleave', handleMouseLeave);
+            window.removeEventListener('scroll', updateOffset);
+            window.removeEventListener('resize', updateOffset);
+        };
+    }, []);
+
     // ── GSAP scroll-driven effects ──
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -222,7 +324,7 @@ export default function AboutPage() {
             // ── Intro section — text blocks stagger reveal ──
             const introBlocks = document.querySelectorAll(`.${styles.pioneeringBlock}`);
             if (introBlocks.length) {
-                gsap.fromTo(introBlocks, 
+                gsap.fromTo(introBlocks,
                     { y: 60, opacity: 0 },
                     {
                         y: 0, opacity: 1,
@@ -314,48 +416,56 @@ export default function AboutPage() {
 
     return (
         <main className={styles.pageWrap} ref={pageRef}>
-            {/* ═══════════════════════════════════════════════════════
-                1. HERO — pure video/image, matching homepage
-            ════════════════════════════════════════════════════════ */}
-            <section className={styles.heroSection}>
-                <div className={styles.videoBg}>
-                    <video
-                        src="/assets/Hero.webm"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className={styles.heroImage}
-                    />
-                    <div className={styles.videoOverlayBase} />
-                    <div className={styles.videoOverlayGradient} />
-                </div>
 
-                {/* Scroll indicator with simple line */}
-                <div className={styles.scrollIndicator}>
-                    <div className={styles.scrollLine} />
-                    <span className={styles.scrollText}></span>
-                </div>
+
+            {/* HEADLINE SECTION */}
+            <section className={styles.headlineSection} ref={headlineRef}>
+                {/* Trail Images - Render a large pool of all available images so they don't recycle while fading */}
+                {[...grassrootsImages, ...grassrootsImages, ...grassrootsImages].map((img, i) => (
+                    <Image
+                        key={`trail-${i}`}
+                        src={img.url}
+                        alt="Trail"
+                        width={150}
+                        height={150}
+                        className={styles.trailImage}
+                        ref={(el) => {
+                            if (trailRefs.current) {
+                                trailRefs.current[i] = el;
+                            }
+                        }}
+                    />
+                ))}
+                <FloatingParticles count={4} shapes={['dot', 'diamond']} seed={789} />
+                <AnimatedSection delay={0.2} style={{ zIndex: 50, position: 'relative' }}>
+                    <h2
+                        ref={textRef}
+                        className={styles.pioneeringTitle}
+                        style={{ marginBottom: 0, transformStyle: 'preserve-3d', willChange: 'transform' }}
+                    >
+                        A Method to the Madness <br />
+                        <span style={{ color: 'var(--color-accent-gold, #d4af37)', fontStyle: 'italic', display: 'inline-block' }}>Creating Magic</span>
+                    </h2>
+                </AnimatedSection>
             </section>
 
-            {/* INTRO TEXT SECTION */}
-            <section className={styles.introSection}>
-                <FloatingParticles count={8} shapes={['dot', 'diamond', 'dotWhite']} seed={789} />
-                <AnimatedSection delay={0.2}>
-                    <h2 className={styles.pioneeringTitle}>A Method to the Madness <span style={{ color: 'var(--color-accent-gold, #d4af37)', fontStyle: 'italic' }}>Creating Magic</span></h2>
-                    <div className={styles.pioneeringTextBlocks}>
+            {/* TEXT BLOCKS SECTION */}
+            <section className={styles.introSection} style={{ paddingTop: '20px' }}>
+                <FloatingParticles count={4} shapes={['dotWhite']} seed={123} />
+                <AnimatedSection delay={0.3}>
+                    <div className={styles.pioneeringTextBlocks} style={{ marginTop: '0' }}>
                         <div className={styles.pioneeringBlock}>
                             <div className={styles.pioneeringLabel}>THE MAGIC</div>
                             <p>
-                                Building on this vision, he further expanded into the luxury segment with the launch of MANE MADUVE, a dedicated wedding planning venture crafted to deliver premium and bespoke wedding experiences under the creative direction of THE SP EVENTS. Driven by creativity, precision, and strong leadership values, he continues to lead the brand towards becoming a leading name in the event and experiential industry.
+                                Leading THE SP EVENTS with a focus on creativity and precision, the vision is delivering impactful and memorable experiences. Expanding into luxury through MANE MADUVE, premium and personalized weddings are being crafted with attention to detail. Driven by strong execution and creative direction, the brand is steadily growing in the event and experiential space.
                             </p>
                             <div className={styles.pioneeringVerticalLine} />
                         </div>
-                        
+
                         <div className={styles.pioneeringBlock}>
                             <div className={styles.pioneeringLabel}>THE METHOD</div>
                             <p>
-                                Under his leadership, THE SP EVENTS has developed strong relationships with reputed organizations including KLE Society, Government of Karnataka, Deshpande Startups, IIIT Dharwad, Bureau of Indian Standards, VRL, Inorbit Malls, KIMS Hubli, BNI, Rotary Club, Vijayavani, Inner Wheel Club, Hodek, Adani Cement, and IIT Dharwad. Beyond work, his inspiration is rooted in music, live experiences, and creative collaborations.
+                                Building strong relationships with reputed organizations like KLE Society, Government of Karnataka, IIIT Dharwad, and others, the brand is strengthening its presence. Consistent quality and professionalism are building trust across sectors. Inspired by music, live experiences, and collaborations, the journey is continuously evolving.
                             </p>
                             <div className={styles.pioneeringVerticalLine} />
                         </div>
@@ -366,7 +476,7 @@ export default function AboutPage() {
             {/* GRASSROOTS SECTION */}
             <section className={styles.grassrootsSection}>
                 <FloatingParticles count={6} shapes={['dotPurple', 'ring']} seed={321} />
-                <motion.h2 
+                <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -383,7 +493,7 @@ export default function AboutPage() {
                     >
 
                         {/* FOUNDER'S WORDS CARD */}
-                        <motion.div 
+                        <motion.div
                             className={styles.grassrootsCard}
                             whileHover={{ y: -10, scale: 1.01 }}
                             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -391,21 +501,20 @@ export default function AboutPage() {
                             <div className={styles.founderPhotoContainer}>
                                 <div className={styles.founderHalo} />
                                 <div className={styles.founderPhotoWrap}>
-                                    <Image 
-                                        src="/assets/samarth.png" 
-                                        alt="Samarth U Patangi" 
+                                    <Image
+                                        src="/assets/samarth_2.0.webp"
+                                        alt="Samarth U Patangi"
                                         fill
-                                        className={styles.founderPhoto} 
+                                        className={styles.founderPhoto}
                                         sizes="(max-width: 768px) 100vw, 400px"
                                     />
                                 </div>
                             </div>
-                            
                             <div className={styles.founderContent}>
                                 <div className={styles.bgQuoteIcon}>"</div>
                                 <div className={styles.founderEyebrow}>THE FOUNDER'S VISION</div>
                                 <div className={styles.founderQuote}>
-                                    <p>Mr. Samarth U Patangi is the visionary Founder and Managing Director of THE SP EVENTS. An engineer by education and an entrepreneur by passion, he built the company to transform creative ideas into unforgettable experiences.</p>
+                                    <p><strong><strong>Mr. Samarth U Patangi</strong></strong> is the visionary Founder and Managing Director of <strong><strong>THE SP EVENTS</strong></strong>. An engineer by education and an entrepreneur by passion, he built the company to transform creative ideas into unforgettable experiences.</p>
                                     <p>What began as a passion for music and live entertainment has evolved into a dynamic platform delivering world-class corporate events, social celebrations, and large-scale productions.</p>
                                 </div>
                                 <div className={styles.founderInfo}>
@@ -422,36 +531,36 @@ export default function AboutPage() {
 
                 {/* IMAGE SLIDER SECTION */}
                 <div className={styles.sliderSection}>
-                    <button 
-                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnLeft}`} 
-                        onClick={scrollLeft} 
+                    <button
+                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnLeft}`}
+                        onClick={scrollLeft}
                         aria-label="Scroll Left"
                     >
-                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" /></svg>
                     </button>
-                    <div 
-                        className={styles.sliderTrack} 
+                    <div
+                        className={styles.sliderTrack}
                         ref={sliderRef}
                     >
                         {/* Double array for seamless feel or single, since we have arrows single is fine */}
                         {grassrootsImages.map((img, i) => (
                             <div key={i} className={styles.sliderItem} draggable={false}>
-                                <Image 
-                                    src={img.url} 
-                                    alt={`Gallery ${i}`} 
+                                <Image
+                                    src={img.url}
+                                    alt={`Gallery ${i}`}
                                     fill
-                                    draggable={false} 
+                                    draggable={false}
                                     sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
                                 />
                             </div>
                         ))}
                     </div>
-                    <button 
-                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnRight}`} 
-                        onClick={scrollRight} 
+                    <button
+                        className={`${styles.sliderNavBtn} ${styles.sliderNavBtnRight}`}
+                        onClick={scrollRight}
                         aria-label="Scroll Right"
                     >
-                        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" /></svg>
                     </button>
                 </div>
             </section>
@@ -475,7 +584,7 @@ export default function AboutPage() {
                             {/* Decorative architectural elements */}
                             <div className={styles.pillarGlow} />
                             <div className={styles.pillarTopCap} />
-                            
+
                             <div className={styles.pillarContent}>
                                 <div className={styles.pillarBigNumber}>{value.num}</div>
                                 <div className={styles.pillarInner}>
@@ -483,7 +592,7 @@ export default function AboutPage() {
                                     <p className={styles.pillarDesc}>{value.desc}</p>
                                 </div>
                             </div>
-                            
+
                             <div className={styles.pillarBottomCap} />
                         </div>
                     ))}
@@ -495,7 +604,7 @@ export default function AboutPage() {
                 <div className="container" style={{ padding: '0 40px' }}>
                     <div className={styles.locationsHeader}>
                         <AnimatedSection>
-                            <h2 className={styles.locationsTitle}>Where You Can Find <span style={{color:'var(--color-accent-gold)'}}>Us</span></h2>
+                            <h2 className={styles.locationsTitle}>Where You Can Find <span style={{ color: 'var(--color-accent-gold)' }}>Us</span></h2>
                             <p className={styles.locationsSubheading}>
                                 Our services and expertise extend across multiple locations, ensuring seamless event execution wherever you need us.
                             </p>
@@ -507,19 +616,19 @@ export default function AboutPage() {
                             <AnimatedSection key={i} delay={i * 0.15}>
                                 <div className={styles.locationCard}>
                                     <h3 className={styles.locationType}>{loc.type}</h3>
-                                    <a 
-                                        href={loc.mapLink} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
+                                    <a
+                                        href={loc.mapLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className={styles.locationLinkWrapper}
                                     >
                                         <div className={styles.locationCardImgWrap}>
-                                            <Image 
-                                                src={loc.img} 
-                                                alt={loc.city} 
+                                            <Image
+                                                src={loc.img}
+                                                alt={loc.city}
                                                 fill
                                                 unoptimized
-                                                className={styles.locationCardImg} 
+                                                className={styles.locationCardImg}
                                                 sizes="(max-width: 768px) 100vw, 50vw"
                                             />
                                             <div className={styles.locationOverlayContent}>
@@ -540,7 +649,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-       
+
         </main>
     );
 }

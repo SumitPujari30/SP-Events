@@ -19,7 +19,7 @@ export interface ServiceCategory {
 export const services: ServiceCategory[] = [
     {
         "id": "corporate",
-        "title": "Corporate",
+        "title": "Corporate Events",
         "num": "01",
         "tagline": "Strategy meets spectacle",
         "desc": "We elevate corporate gatherings into powerful brand moments.",
@@ -609,7 +609,7 @@ export const services: ServiceCategory[] = [
     },
     {
         "id": "special",
-        "title": "Special",
+        "title": "Special Events",
         "num": "02",
         "tagline": "Moments that become memories",
         "desc": "Life's most meaningful occasions deserve flawless execution.",
@@ -859,7 +859,7 @@ export const services: ServiceCategory[] = [
     },
     {
         "id": "launch",
-        "title": "Launch",
+        "title": "Launch Events",
         "num": "03",
         "tagline": "First impressions, perfected",
         "desc": "A product launch is your brand's most critical moment.",
@@ -1083,7 +1083,7 @@ export const services: ServiceCategory[] = [
     },
     {
         "id": "music",
-        "title": "Music",
+        "title": "Music Events",
         "num": "04",
         "tagline": "Sonic experiences that move crowds",
         "desc": "From intimate acoustic evenings to stadium-filling concerts.",
@@ -1525,7 +1525,7 @@ export const services: ServiceCategory[] = [
     },
     {
         "id": "sports",
-        "title": "Sports",
+        "title": "Sports Events",
         "num": "05",
         "tagline": "Where champions are celebrated",
         "desc": "We bring the energy of sport to life.",

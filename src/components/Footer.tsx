@@ -169,12 +169,13 @@ export default function Footer() {
                                 <motion.li className={styles.contactItem}>
                                     <HiLocationMarker className={styles.contactIcon} />
                                     <a 
-                                        href="https://maps.app.goo.gl/hp1zdTG3crNiHLLD9" 
+                                        href="https://www.google.com/maps/search/?api=1&query=Marvel+Artiza+Hubli" 
                                         target="_blank" 
                                 rel="noopener noreferrer"
                                         className={styles.contactLink}
                                     >
-                                        Marvel Artiza, Vidya Nagar<br/>Hubli &mdash; 580029, Karnataka
+                                        Marvel Artiza, CTS No. 4A/2, First Floor - 133,
+                                         Jayanagara, Vidyanagar, Opposite KIMS, <br />Hubli-580021, Karnataka
                                     </a>
                                 </motion.li>
                                 <motion.li className={styles.contactItem}>

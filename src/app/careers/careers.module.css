@@ -7,6 +7,18 @@
   overflow-x: hidden;
 }
 
+.pageWrap :global(.btn),
+.pageWrap :global(.btn-primary),
+.pageWrap :global(.form-input),
+.pageWrap :global(.form-textarea),
+.pageWrap :global(.form-group) {
+  border-radius: 0 !important;
+}
+
+.formSubmitBtn {
+  border-radius: 0 !important;
+}
+
 /* ——— Ambient Orbs (Fixed Background) ——— */
 .ambientOrb1 {
   position: absolute;
@@ -45,14 +57,39 @@
   cursor: none;
 }
 
+.stageHeroSection::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(to bottom, transparent, #000000);
+  pointer-events: none;
+  z-index: 10;
+}
+
 /* Dark base layer */
 .stageHeroBase {
   position: absolute;
   inset: 0;
-  background: var(--color-bg-dark);
+  background-image: url('/assets/carrers_bg.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Dark overlay so text remains readable */
+.stageHeroBase::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
 }
 
 .stageHeroGridDark {
@@ -68,6 +105,7 @@
   position: relative;
   z-index: 2;
   text-align: center;
+  margin-top: -80px;
 }
 
 .heroPre {
@@ -103,7 +141,7 @@
 
 .stageHeroTitleLit {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 10vw, 9rem);
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: 0.05em;
@@ -120,18 +158,18 @@
 .stageHeroLit {
   position: absolute;
   inset: 0;
-  background: var(--color-purple-primary);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* 1200x1200px circular mask for higher brightness & spread */
-  -webkit-mask-image: radial-gradient(circle 1000px at center, black 15%, rgba(0,0,0,0.8) 45%, transparent 100%);
-  mask-image: radial-gradient(circle 1000px at center, black 15%, rgba(0,0,0,0.8) 45%, transparent 100%);
+  /* Spotlight mask */
+  -webkit-mask-image: radial-gradient(circle 600px at center, black 15%, rgba(0,0,0,0.8) 45%, transparent 100%);
+  mask-image: radial-gradient(circle 600px at center, black 15%, rgba(0,0,0,0.8) 45%, transparent 100%);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-size: 3000px 3000px;
-  mask-size: 3000px 3000px;
+  -webkit-mask-size: 2000px 2000px;
+  mask-size: 2000px 2000px;
 }
 
 .stageHeroGridLit {
@@ -413,7 +451,7 @@
   background: rgba(0, 0, 0, 0.03);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   padding: 48px 32px;
   transition: all 0.4s ease;
 }
@@ -459,7 +497,7 @@
   padding: 32px 40px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   cursor: pointer;
@@ -534,7 +572,7 @@
 .marqueeItem {
   width: 400px;
   height: 300px;
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   overflow: hidden;
   flex-shrink: 0;
   box-shadow: 0 15px 35px rgba(0,0,0,0.3);
@@ -584,7 +622,7 @@
   background: var(--color-bg-dark, #000000);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 24px;
+  border-radius: 0;
   padding: 56px 48px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   position: relative;
@@ -715,7 +753,7 @@
 .modalContent {
   background: #110e22;
   border: 1px solid rgba(201, 168, 76, 0.2);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   width: 100%;
   max-width: 600px;
   max-height: 90vh;
@@ -993,10 +1031,12 @@
 .cultureAccordionWrap {
   display: flex;
   flex-direction: row;
-  height: 480px; /* Increased for premium feel */
-  gap: 0; /* Continuous edge-to-edge look */
+  height: 250px; 
+  gap: 0; 
   width: 100%;
   margin: 0;
+  border-top: 1px  var(--color-gold);
+  border-bottom: 1px  var(--color-gold);
 }
 
 .cultureAccordionCard {
@@ -1005,7 +1045,7 @@
   background: rgba(10, 10, 10, 0.4);
   backdrop-filter: blur(24px);
   border: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.08); /* Minimalist separator */
+  border-right: 1px solid rgba(201, 168, 76, 0.3); 
   padding: 60px 40px;
   display: flex;
   flex-direction: column;
@@ -1207,7 +1247,7 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 40px;
+  border-radius: 0;
   box-shadow: 0 8px 24px rgba(201, 168, 76, 0.35);
   transition: box-shadow 0.3s ease;
   scroll-behavior: smooth;
@@ -1378,7 +1418,7 @@
   z-index: 2;
   width: 420px;
   flex-shrink: 0;
-  border-radius: 16px;
+  border-radius: 0;
   overflow: hidden;
   border: 1px solid rgba(201, 168, 76, 0.2);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.04);
@@ -1417,7 +1457,7 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   padding: 28px 32px;
   display: flex;
   flex-direction: column;

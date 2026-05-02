@@ -108,6 +108,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
 
     const initialData = useMemo(() => {
         const pool = [...clientsData];
+        
         const initialShown = pool.slice(0, NUM_SLOTS);
         const remainingPool = pool.slice(NUM_SLOTS);
         
@@ -127,6 +128,20 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
     const hiddenPoolRef = useRef<ClientRecord[]>(initialData.remainingPool);
 
     useEffect(() => {
+        // HYDRATION SAFE: Shuffle logos only after the component mounts on the client
+        const allLogos = [...slotsRef.current.map(s => s.currentLogo), ...hiddenPoolRef.current];
+        for (let i = allLogos.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [allLogos[i], allLogos[j]] = [allLogos[j], allLogos[i]];
+        }
+        
+        slotsRef.current = slotsRef.current.map((slot, i) => ({
+            ...slot,
+            currentLogo: allLogos[i]
+        }));
+        hiddenPoolRef.current = allLogos.slice(slotsRef.current.length);
+        setFlipTrigger(prev => prev + 1);
+
         let timeoutId: NodeJS.Timeout;
 
         const scheduleNextFlip = () => {
@@ -135,7 +150,7 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                 return;
             }
 
-            const delays = [5000, 7000, 9000];
+            const delays = [1500];
             const nextDelay = delays[Math.floor(Math.random() * delays.length)];
 
             timeoutId = setTimeout(() => {

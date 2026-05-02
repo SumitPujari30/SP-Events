@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring, color } from 'framer-motion';
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker, HiArrowRight, HiChatAlt2 } from 'react-icons/hi';
 import { FaLinkedinIn, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -180,7 +180,7 @@ ${message}`;
                             </div>
                             <div className={styles.visionRight}>
                                 <p className={styles.visionText}>
-                                    THE SP EVENTS is at the forefront of the evolving world of experiential events. Today’s audiences seek more than just events — they seek immersive experiences that inspire, engage, and create lasting connections.
+                                    <strong style={{color:"#ffffff"}}>THE SP EVENTS</strong> is at the forefront of the evolving world of experiential events. Today’s audiences seek more than just events — they seek immersive experiences that inspire, engage, and create lasting connections.
                                 </p>
                                 <p className={styles.visionText}>
                                     We believe the future of events lies in innovation, creativity, and flawless execution. Our team continuously pushes boundaries to design experiences that stand out, captivate audiences, and leave a meaningful impact.

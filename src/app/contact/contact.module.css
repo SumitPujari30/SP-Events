@@ -68,7 +68,7 @@
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01rem;
   line-height: 1.1;
   margin-bottom: 24px;
 }
@@ -159,7 +159,7 @@
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   margin: 0;
 }
 
@@ -355,7 +355,7 @@
   margin-top: 24px;
   width: 100%;
   padding: 20px;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   background: var(--gradient-gold);
   color: var(--color-bg-dark);
   font-weight: 400;
@@ -435,9 +435,9 @@
 }
 
 .contactCard {
-  background: rgba(17, 17, 17, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  border-radius: var(--radius-lg);
+  background: rgba(17, 17, 17, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 0;
   padding: 40px 32px;
   display: flex;
   flex-direction: column;
@@ -462,9 +462,9 @@
 }
 
 .contactCard:hover {
-  border-color: rgba(201, 168, 76, 0.3);
-  background: rgba(17, 17, 17, 0.7);
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+  border-color: rgba(201, 168, 76, 0.8);
+  background: rgba(17, 17, 17, 0.9);
+  box-shadow: 0 20px 60px rgba(201, 168, 76, 0.15), 0 40px 80px rgba(0, 0, 0, 0.4);
 }
 
 .methodIcon {
