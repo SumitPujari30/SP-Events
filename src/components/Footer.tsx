@@ -30,8 +30,9 @@ const servicesList = [
 ];
 
 const socials = [
-    { icon: FaInstagram, href: 'https://www.instagram.com/the_sp_events/', label: 'Instagram' },
     { icon: FaWhatsapp, href: 'https://wa.me/917411863227', label: 'WhatsApp' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/the_sp_events/', label: 'Instagram' },
+    { icon: FaFacebookF, href: 'https://www.facebook.com/profile.php?id=61579506142509', label: 'Facebook' },
     { icon: FaYoutube, href: 'https://www.youtube.com/@TheSPEvents', label: 'YouTube' },
 ];
 
@@ -78,138 +79,141 @@ export default function Footer() {
                                 style={{ opacity: 0.9 }}
                             />
                         ) : (
-                            <div 
-                                className={styles.bgVideo} 
-                                style={{ 
+                            <div
+                                className={styles.bgVideo}
+                                style={{
                                     backgroundImage: 'url(/assets/luxury_event_hero_bg.png)',
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     opacity: 0.6
-                                }} 
+                                }}
                             />
                         )}
                         <div className={styles.videoOverlay} />
                     </div>
 
                     <div className={styles.glowTop} />
-            <div className="container">
-                <AnimatedSection>
-                    <div className={styles.grid}>
-                        {/* Brand Column */}
-                        <motion.div className={styles.brand}>
-                            <div className={styles.logoWrap}>
-                                <motion.div 
-                                    whileHover={{ scale: 1.05 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                >
-                                    <Image 
-                                        src="/assets/sp_logo.png" 
-                                        alt="SP Events Logo" 
-                                        width={300} 
-                                        height={132} 
-                                        className={styles.footerLogo}
-                                        priority
-                                    />
+                    <div className="container">
+                        <AnimatedSection>
+                            <div className={styles.grid}>
+                                {/* Brand Column */}
+                                <motion.div className={styles.brand}>
+                                    <div className={styles.logoWrap}>
+                                        <motion.div
+                                            whileHover={{ scale: 1.05 }}
+                                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                        >
+                                            <Image
+                                                src="/assets/sp_logo.png"
+                                                alt="SP Events Logo"
+                                                width={300}
+                                                height={132}
+                                                className={styles.footerLogo}
+                                                priority
+                                            />
+                                        </motion.div>
+                                    </div>
+
+
+                                    <div className={styles.socials}>
+                                        {socials.map((s) => (
+                                            <motion.a
+                                                key={s.label}
+                                                href={s.href}
+                                                className={styles.socialIcon}
+                                                aria-label={s.label}
+                                                whileHover={{ y: -3, scale: 1.1 }}
+                                                whileTap={{ scale: 0.95 }}
+                                            >
+                                                <s.icon size={22} />
+                                            </motion.a>
+                                        ))}
+                                    </div>
+                                </motion.div>
+
+                                {/* Quick Links */}
+                                <motion.div className={styles.column}>
+                                    <h4 className={styles.columnTitle}>Quick Links</h4>
+                                    <ul className={styles.linkList}>
+                                        {quickLinks.map((link, i) => (
+                                            <motion.li key={link.href}>
+                                                <Link href={link.href} className={styles.footerLink}>
+                                                    {link.label}
+                                                </Link>
+                                            </motion.li>
+                                        ))}
+                                    </ul>
+                                </motion.div>
+
+                                {/* Services */}
+                                <motion.div className={styles.column}>
+                                    <h4 className={styles.columnTitle}>Services</h4>
+                                    <ul className={styles.linkList}>
+                                        {servicesList.map((s, i) => (
+                                            <motion.li key={s.href}>
+                                                <Link href={s.href} className={styles.footerLink}>
+                                                    {s.label}
+                                                </Link>
+                                            </motion.li>
+                                        ))}
+                                    </ul>
+                                </motion.div>
+
+                                {/* Contact */}
+                                <motion.div className={styles.column}>
+                                    <h4 className={styles.columnTitle}>
+                                        <Link href="/contact" className={styles.headerLink}>
+                                            Get In Touch
+                                        </Link>
+                                    </h4>
+                                    <ul className={styles.contactList}>
+                                        <motion.li className={styles.contactItem}>
+                                            <HiLocationMarker className={styles.contactIcon} />
+                                            <a
+                                                href="https://www.google.com/maps/search/?api=1&query=Marvel+Artiza+Hubli"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={styles.contactLink}
+                                            >
+                                                Marvel Artiza, CTS No. 4A/2, 1st Floor - 133, Jayanagara, Vidyanagar, Opposite KIMS, Hubli-580021, Karnataka, India.
+                                            </a>
+                                        </motion.li>
+                                        <motion.li className={styles.contactItem}>
+                                            <HiPhone className={styles.contactIcon} />
+                                            <a href="tel:+917411863227" className={styles.contactLink}>
+                                                +91 74118 63227, </a>
+                                            <a href="tel:+917411863227" className={styles.contactLink}>
+                                                +91 93530 63227
+                                            </a>
+                                        </motion.li>
+                                        
+                                        <motion.li className={styles.contactItem}>
+                                            <HiMail className={styles.contactIcon} />
+                                            <a href="mailto:thespevents@gmail.com" className={styles.contactLink}>
+                                                thespevents@gmail.com
+                                            </a>
+                                        </motion.li>
+                                    
+                                    </ul>
                                 </motion.div>
                             </div>
-                           
+                        </AnimatedSection>
 
-                            <div className={styles.socials}>
-                                {socials.map((s) => (
-                                    <motion.a
-                                        key={s.label}
-                                        href={s.href}
-                                        className={styles.socialIcon}
-                                        aria-label={s.label}
-                                        whileHover={{ y: -3, scale: 1.1 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <s.icon size={22} />
-                                    </motion.a>
-                                ))}
-                            </div>
-                        </motion.div>
+                        {/* Bottom Bar */}
+                        <div className={styles.bottom}>
+                            <p className={styles.copyright} >
+                                &copy; {new Date().getFullYear()} The SP Events. All rights reserved.
+                            </p>
 
-                        {/* Quick Links */}
-                        <motion.div className={styles.column}>
-                            <h4 className={styles.columnTitle}>Quick Links</h4>
-                            <ul className={styles.linkList}>
-                                {quickLinks.map((link, i) => (
-                                    <motion.li key={link.href}>
-                                        <Link href={link.href} className={styles.footerLink}>
-                                            {link.label}
-                                        </Link>
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </motion.div>
-
-                        {/* Services */}
-                        <motion.div className={styles.column}>
-                            <h4 className={styles.columnTitle}>Services</h4>
-                            <ul className={styles.linkList}>
-                                {servicesList.map((s, i) => (
-                                    <motion.li key={s.href}>
-                                        <Link href={s.href} className={styles.footerLink}>
-                                            {s.label}
-                                        </Link>
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </motion.div>
-
-                        {/* Contact */}
-                        <motion.div className={styles.column}>
-                            <h4 className={styles.columnTitle}>
-                                <Link href="/contact" className={styles.headerLink}>
-                                    Get In Touch
-                                </Link>
-                            </h4>
-                            <ul className={styles.contactList}>
-                                <motion.li className={styles.contactItem}>
-                                    <HiLocationMarker className={styles.contactIcon} />
-                                    <a 
-                                        href="https://www.google.com/maps/search/?api=1&query=Marvel+Artiza+Hubli" 
-                                        target="_blank" 
-                                rel="noopener noreferrer"
-                                        className={styles.contactLink}
-                                    >
-                                        Marvel Artiza, CTS No. 4A/2, First Floor - 133,
-                                         Jayanagara, Vidyanagar, Opposite KIMS, <br />Hubli-580021, Karnataka
-                                    </a>
-                                </motion.li>
-                                <motion.li className={styles.contactItem}>
-                                    <HiPhone className={styles.contactIcon} />
-                                    <a href="tel:+917411863227" className={styles.contactLink}>
-                                        +91 74118 63227
-                                    </a>
-                                </motion.li>
-                                <motion.li className={styles.contactItem}>
-                                    <HiMail className={styles.contactIcon} />
-                                    <a href="mailto:thespevents@gmail.com" className={styles.contactLink}>
-                                        thespevents@gmail.com
-                                    </a>
-                                </motion.li>
-                            </ul>
-                        </motion.div>
+                        </div>
                     </div>
-                </AnimatedSection>
-
-                {/* Bottom Bar */}
-                <div className={styles.bottom}>
-                    <p className={styles.copyright} >
-                        &copy; {new Date().getFullYear()} The SP Events. All rights reserved.
-                    </p>
-
-                </div>
+                </footer>
             </div>
-        </footer>
+
+            {/* The black curtain that slides up */}
+            <motion.div className={styles.curtain} style={{ y: curtainY }}>
+                <span className={styles.curtainLabel}>The SP Events</span>
+            </motion.div>
         </div>
-        
-        {/* The black curtain that slides up */}
-        <motion.div className={styles.curtain} style={{ y: curtainY }}>
-            <span className={styles.curtainLabel}>The SP Events</span>
-        </motion.div>
-    </div>
     );
 }

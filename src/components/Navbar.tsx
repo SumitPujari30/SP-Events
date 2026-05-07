@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import { FaLinkedinIn, FaInstagram, FaYoutube, FaWhatsapp } from 'react-icons/fa';
+import { FaLinkedinIn, FaInstagram, FaYoutube, FaWhatsapp, FaFacebookF } from 'react-icons/fa';
 import MenuVisual from './MenuVisual';
 import styles from './Navbar.module.css';
 
@@ -173,7 +173,8 @@ export default function Navbar() {
                             <div className={styles.socialIcons}>
                                 <a href="https://wa.me/917411863227" target="_blank" rel="noreferrer" className={styles.socialIcon}><FaWhatsapp /></a>
                                 <a href="https://www.instagram.com/the_sp_events" target="_blank" rel="noreferrer" className={styles.socialIcon}><FaInstagram /></a>
-                                <a href="#" className={styles.socialIcon}><FaYoutube /></a>
+                                <a href="https://www.facebook.com/profile.php?id=61579506142509" target="_blank" rel="noreferrer" className={styles.socialIcon}><FaFacebookF /></a>
+                                <a href="https://www.youtube.com/@TheSPEvents" target="_blank" rel="noreferrer" className={styles.socialIcon}><FaYoutube /></a>
                             </div>
                         </div>
                     </motion.div>

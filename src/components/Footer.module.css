@@ -102,7 +102,7 @@
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+    grid-template-columns: 1.4fr 0.8fr 0.8fr 2fr;
     gap: 64px;
     padding-bottom: 40px;
     border-bottom: 1px solid rgba(201, 168, 76, 0.1);
@@ -283,6 +283,8 @@
     text-decoration: none;
     transition: all var(--transition-base);
     cursor: pointer;
+    max-width: 450px;
+    display: inline-block;
 }
 
 .contactLink:hover {
@@ -430,6 +432,13 @@
 
     .contactList {
         gap: 8px;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .contactLink {
+        max-width: 100%;
     }
 
     .bottom {
