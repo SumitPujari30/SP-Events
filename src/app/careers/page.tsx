@@ -63,49 +63,7 @@ function StageLightHero() {
     );
 }
 
-/* =============================================
-   SECTION 2: BUILT DIFFERENT
-   ============================================= */
 
-/* =============================================
-   SECTION 3: TEAM PHOTOS
-   ============================================= */
-function TeamPhotosSection() {
-    const photos = [
-        "/assets/Layout_page.png",
-        "/assets/Layout_page.png",
-        "/assets/Layout_page.png",
-        "/assets/Layout_page.png",
-        "/assets/Layout_page.png",
-        "/assets/Layout_page.png"
-    ];
-
-    return (
-        <section className="section" style={{ background: 'var(--color-bg-dark)', overflow: 'hidden', paddingBottom: '20px' }}>
-            <div className="container" style={{ marginBottom: '60px' }}>
-                <div className="section-header center">
-                    <span className="section-label">Behind The Scenes</span>
-                    <h2 className="section-title">The <span className="text-gold">Crew</span></h2>
-                    <p className="section-subtitle">Meet the visionaries, the technicians, and the dreamers.</p>
-                </div>
-            </div>
-
-            <div className={styles.marqueeWrap}>
-                <motion.div
-                    className={styles.marqueeTrack}
-                    animate={{ x: [0, -2580] }}
-                    transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
-                >
-                    {[...photos, ...photos].map((src, i) => (
-                        <div key={i} className={styles.marqueeItem}>
-                            <img src={src} alt={`Team photo ${i}`} />
-                        </div>
-                    ))}
-                </motion.div>
-            </div>
-        </section>
-    );
-}
 
 
 
@@ -203,7 +161,7 @@ I am interested in joining your crew! Here is my application:
 *Phone:* ${phone || 'Not provided'}
 *Portfolio/LinkedIn:* ${portfolio || 'Not provided'}
 
-*Why SP Events:*
+*Why The SP Events:*
 ${why}`;
 
         const encodedText = encodeURIComponent(text);
@@ -221,7 +179,7 @@ ${why}`;
             <div className="container">
                 <div className="section-header center" style={{ marginBottom: '40px' }}>
                     <span className="section-label">Apply Now</span>
-                    <h2 className="section-title">Join The <span className="text-gold">Crew</span></h2>
+                    <h2 className="section-title">Join The <span className="text-gold">Team</span></h2>
                 </div>
 
                 <div className={styles.formWrap}>
@@ -244,11 +202,11 @@ ${why}`;
                             <div className={styles.formRow}>
                                 <div className="form-group">
                                     <label className="form-label">Full Name *</label>
-                                    <input name="name" className="form-input" type="text" required placeholder="John Doe" suppressHydrationWarning />
+                                    <input name="name" className="form-input" type="text" required placeholder="Enter your name" suppressHydrationWarning />
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label">Email Address *</label>
-                                    <input name="email" className="form-input" type="email" required placeholder="john@example.com" suppressHydrationWarning />
+                                    <input name="email" className="form-input" type="email" required placeholder="hello@yourdomain.com" suppressHydrationWarning />
                                 </div>
                             </div>
                             <div className={styles.formRow}>
@@ -258,12 +216,12 @@ ${why}`;
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label">Portfolio / LinkedIn URL</label>
-                                    <input name="portfolio" className="form-input" type="url" placeholder="https://" suppressHydrationWarning />
+                                    <input name="portfolio" className="form-input" type="url" placeholder="linkedin.com/in/yourprofile" suppressHydrationWarning />
                                 </div>
                             </div>
                             <div className="form-group" style={{ marginBottom: '24px' }}>
-                                <label className="form-label">Why SP Events? *</label>
-                                <textarea name="why" className="form-textarea" required placeholder="Tell us why you want to join our spectacle..." suppressHydrationWarning />
+                                <label className="form-label">Why The SP Events? *</label>
+                                <textarea name="why" className="form-textarea" required placeholder="What unique magic do you bring to the spectacle?" suppressHydrationWarning />
                             </div>
                             <button type="submit" className={`btn btn-primary ${styles.formSubmitBtn}`} style={{ width: '100%', justifyContent: 'center', padding: '16px' }} suppressHydrationWarning>
                                 Submit Application
@@ -281,7 +239,6 @@ export default function CareersPage() {
         <main className={styles.pageWrap}>
             <AmbientBackground />
             <StageLightHero />
-            <TeamPhotosSection />
             <CultureSection />
             <ApplicationFormSection />
             <CurtainCTA />

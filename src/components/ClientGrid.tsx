@@ -223,8 +223,10 @@ export default function ClientGrid({ children }: { children?: React.ReactNode })
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
                 >
-                    Trusted by leading brands and organizations, we take pride in building strong partnerships and delivering experiences that consistently exceed expectations.
+                    Trusted by leading brands and organizations, we take pride in building strong partnerships and delivering experiences that consistently exceed expectations. <br />
+                    Our mission is to create extraordinary experiences that inspire and leave a lasting impact.
                 </motion.p>
+                
             </div>
 
             <div className={styles.gridContainer}>

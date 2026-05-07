@@ -141,8 +141,7 @@ function SplitTextHero() {
         offset: ['start start', 'end start'],
     });
 
-    const line1 = 'Our';
-    const line2 = 'Clients';
+    const fullText = 'Trusted By';
     const subtitleOpacity = useTransform(scrollYProgress, [0.5, 0.72], [0, 1]);
 
     return (
@@ -160,26 +159,14 @@ function SplitTextHero() {
                 {/* Split text letters */}
                 <div className={styles.heroTextContainer}>
                     <div className={styles.heroTextRow}>
-                        {line1.split('').map((char, i) => (
+                        {fullText.split('').map((char, i) => (
                             <SplitLetter
-                                key={`l1-${i}`}
+                                key={`letter-${i}`}
                                 char={char}
                                 index={i}
-                                total={line1.length}
+                                total={fullText.length}
                                 scrollYProgress={scrollYProgress}
-                                isGold={false}
-                            />
-                        ))}
-                    </div>
-                    <div className={styles.heroTextRow}>
-                        {line2.split('').map((char, i) => (
-                            <SplitLetter
-                                key={`l2-${i}`}
-                                char={char}
-                                index={i}
-                                total={line2.length}
-                                scrollYProgress={scrollYProgress}
-                                isGold={true}
+                                isGold={i < 7}
                             />
                         ))}
                     </div>
@@ -195,14 +182,7 @@ function SplitTextHero() {
                     </p>
                 </motion.div>
 
-                {/* Scroll hint */}
-                <motion.div
-                    className={styles.heroScrollHint}
-                    style={{ opacity: useTransform(scrollYProgress, [0, 0.15], [1, 0]) }}
-                >
-                    <div className={styles.scrollDot} />
-                    <span>Scroll</span>
-                </motion.div>
+                
             </div>
         </section>
     );
@@ -231,9 +211,13 @@ function SplitLetter({
     return (
         <motion.span
             className={`${styles.heroLetter} ${isGold ? styles.gold : ''}`}
-            style={{ x, y, rotate, opacity }}
+            style={{ 
+                x, y, rotate, opacity,
+                width: char === ' ' ? '0.4em' : 'auto', // Add width for the space character
+                display: 'inline-block' 
+            }}
         >
-            {char}
+            {char === ' ' ? '\u00A0' : char}
         </motion.span>
     );
 }
@@ -367,75 +351,6 @@ function AnimatedStats() {
     );
 }
 
-// /* =============================================
-//    SECTION 5: CONTACT CTA
-//    ============================================= */
-// function ContactCTA() {
-//     return (
-//         <section className={styles.contactSection}>
-//             <motion.div
-//                 className={styles.contactInner}
-//                 initial={{ opacity: 0, y: 40 }}
-//                 whileInView={{ opacity: 1, y: 0 }}
-//                 viewport={{ once: true, margin: "-50px" }}
-//                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-//             >
-//                 {/* Top Label */}
-//                 <div className={styles.contactHeaderWrap}>
-//                     <div className={styles.contactLine} />
-//                     <span className={styles.contactLabel}>Let&apos;s Connect</span>
-//                     <div className={styles.contactLine} />
-//                 </div>
-
-//                 {/* Main Title */}
-//                 <h2 className={styles.contactTitle}>
-//                     Let&apos;s create<br />
-//                     something <em>epic</em><br />
-//                     together.
-//                 </h2>
-
-//                 {/* Subtitle */}
-//                 <p className={styles.contactSubtitle}>
-//                     Whether you&apos;re a brand seeking to break through the noise or a visionary who wants to partner on groundbreaking ideas — this is your moment.
-//                 </p>
-
-//                 {/* Button Row */}
-//                 <div className={styles.contactActionRow}>
-//                     <Link href="/contact" className={styles.contactBtn}>
-//                         Start a Conversation
-//                     </Link>
-//                     <div className={styles.contactPhoneWrap}>
-//                         <a href="tel:+917411863227" className={styles.contactPhone}>+91 74118 63227</a>
-//                         <div className={styles.contactPhoneLine} />
-//                     </div>
-//                 </div>
-
-//                 {/* Footer Columns */}
-//                 <div className={styles.contactFooterGrid}>
-//                     <div className={styles.contactFooterCol}>
-//                         <span className={styles.contactColHead}>Address</span>
-//                         <span className={styles.contactColText}>
-//                             Marvel Artiza, Vidya Nagar<br />
-//                             Hubli — 580029, Karnataka
-//                         </span>
-//                     </div>
-//                     <div className={styles.contactFooterCol}>
-//                         <span className={styles.contactColHead}>Email</span>
-//                         <span className={styles.contactColText}>
-//                             <a href="mailto:thespevents@gmail.com">thespevents@gmail.com</a>
-//                         </span>
-//                     </div>
-//                     <div className={styles.contactFooterCol}>
-//                         <span className={styles.contactColHead}>Website</span>
-//                         <span className={styles.contactColText}>
-//                             <a href="https://www.thespevents.com" target="_blank" rel="noopener noreferrer">www.thespevents.com</a>
-//                         </span>
-//                     </div>
-//                 </div>
-//             </motion.div>
-//         </section>
-//     );
-// }
 
 /* =============================================
    MAIN PAGE

@@ -179,7 +179,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid var(--color-border-dark);
-    border-radius: var(--radius-full);
+    border-radius: 0;
     color: var(--color-text-on-dark-muted);
     transition: all var(--transition-base);
     background: rgba(255, 255, 255, 0.02);
@@ -283,7 +283,7 @@
     text-decoration: none;
     transition: all var(--transition-base);
     cursor: pointer;
-    max-width: 450px;
+    max-width: 600px;
     display: inline-block;
 }
 

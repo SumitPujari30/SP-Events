@@ -10,6 +10,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import CounterAnimation from '@/components/CounterAnimation';
 import Stats3DBackground from '@/components/Stats3DBackground';
 import FloatingParticles from '@/components/FloatingParticles';
+import { HiPhone, HiMail } from 'react-icons/hi';
 import styles from './about.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -45,15 +46,19 @@ const locations = [
         city: 'HUBBALLI',
         type: 'HEAD QUARTERS',
         img: '/assets/hubli_city.webp',
-        address: '"Marvel Artiza" , CTS No. 4A/2, First Floor - 133, Jayanagara, Vidyanagar, Opposite KIMS, Hubli-580021, Karnataka, India.',
-        mapLink: 'https://www.google.com/maps/search/?api=1&query=Marvel+Artiza+Hubli'
+        address: '"Marvel Artiza" , CTS No. 4A/2, 1st Floor - 133, Jayanagara, Vidyanagar, Opposite KIMS, Hubli-580021, Karnataka, India.',
+        mapLink: 'https://maps.app.goo.gl/RAGkNyDVjg6FiiZX7',
+        phones: ['+91 74118 63227'],
+        email: 'thespevents@gmail.com'
     },
     {
         city: 'BENGALURU',
         type: 'CORPORATE OFFICE',
         img: '/assets/banglore_lineart.webp',
         address: '"The SP Events" , ITPL Main Road, Opp Capitol Towers, Kadugodi, Whitefield, Bengaluru - 560066, Karnataka, India.',
-        mapLink: 'https://www.google.com/maps/search/?api=1&query=The+SP+Events+Whitefield+Bangalore'
+        mapLink: 'https://www.google.com/maps/search/?api=1&query=The+SP+Events+Whitefield+Bangalore',
+        phones: ['+91 93530 63227'],
+        email: 'info.thespevents@gmail.com'
     }
 ];
 
@@ -443,8 +448,8 @@ export default function AboutPage() {
                         className={styles.pioneeringTitle}
                         style={{ marginBottom: 0, transformStyle: 'preserve-3d', willChange: 'transform' }}
                     >
-                        A Method to the Madness <br />
-                        <span style={{ color: 'var(--color-accent-gold, #d4af37)', fontStyle: 'italic', display: 'inline-block' }}>Creating Magic</span>
+                        A Method to the Madness of <br />
+                        <span style={{ color: 'var(--color-accent-gold, #d4af37)', fontStyle: 'italic', display: 'inline-block' }}>Creating Magic...</span>
                     </h2>
                 </AnimatedSection>
             </section>
@@ -465,7 +470,7 @@ export default function AboutPage() {
                         <div className={styles.pioneeringBlock}>
                             <div className={styles.pioneeringLabel}>THE METHOD</div>
                             <p>
-                                Building strong relationships with reputed organizations like KLE Society, Government of Karnataka, IIIT Dharwad, and others, the brand is strengthening its presence. Consistent quality and professionalism are building trust across sectors. Inspired by music, live experiences, and collaborations, the journey is continuously evolving.
+                                Under his leadership, THE SP EVENTS has established a strong portfolio of collaborations with esteemed organizations, including KLE Society, the Government of Karnataka, Deshpande Startups, IIIT Dharwad, the Bureau of Indian Standards, VRL Group, Inorbit Malls, KIMS Hubli, BNI, Rotary International, Vijayavani, PVR INOX, Sulthan Diamonds, Hodek Vibrations, Adani Cement, and IIT Dharwad.
                             </p>
                             <div className={styles.pioneeringVerticalLine} />
                         </div>
@@ -514,12 +519,14 @@ export default function AboutPage() {
                                 <div className={styles.bgQuoteIcon}>"</div>
                                 <div className={styles.founderEyebrow}>THE FOUNDER'S VISION</div>
                                 <div className={styles.founderQuote}>
-                                    <p><strong><strong>Mr. Samarth U Patangi</strong></strong> is the visionary Founder and Managing Director of <strong><strong>THE SP EVENTS</strong></strong>. An engineer by education and an entrepreneur by passion, he built the company to transform creative ideas into unforgettable experiences.</p>
+                                    <p><strong><strong>Mr. Samarth Udaykumar Patangi</strong></strong> is the visionary Founder and Managing Director of <strong><strong>THE SP EVENTS</strong></strong>. An engineer by education and an entrepreneur by passion, he built the company to transform creative ideas into unforgettable experiences.</p>
                                     <p>What began as a passion for music and live entertainment has evolved into a dynamic platform delivering world-class corporate events, social celebrations, and large-scale productions.</p>
+                                    <p>Driven by creativity, precision, and strong leadership values, he continues to lead THE SP EVENTS toward becoming a leading name in the event and experiential industry. Beyond work, his inspiration continues to come from music, live experiences, and creative collaborations.</p>
+
                                 </div>
                                 <div className={styles.founderInfo}>
                                     <h4 className={styles.founderName}>
-                                        Samarth U Patangi
+                                        Samarth Udaykumar Patangi
                                         <div className={styles.signatureUnderline} />
                                     </h4>
                                     <p className={styles.founderRole}>Founder & Visionary</p>
@@ -629,12 +636,24 @@ export default function AboutPage() {
                                                 fill
                                                 unoptimized
                                                 className={styles.locationCardImg}
-                                                sizes="(max-width: 768px) 100vw, 50vw"
+                                                sizes="100%"
                                             />
                                             <div className={styles.locationOverlayContent}>
                                                 <h2 className={styles.locationCity}>{loc.city}</h2>
                                                 <div className={styles.locationDetails}>
                                                     <p>{loc.address}</p>
+                                                    <div className={styles.locationContact}>
+                                                        {loc.phones.map((phone, pIdx) => (
+                                                            <a key={pIdx} href={`tel:${phone.replace(/\s+/g, '')}`} className={styles.locationContactItem}>
+                                                                <HiPhone className={styles.locationContactIcon} />
+                                                                <span>{phone}</span>
+                                                            </a>
+                                                        ))}
+                                                        <a href={`mailto:${loc.email}`} className={styles.locationContactItem}>
+                                                            <HiMail className={styles.locationContactIcon} />
+                                                            <span>{loc.email}</span>
+                                                        </a>
+                                                    </div>
                                                     <div className={styles.locationBtnSmall}>
                                                         View Location →
                                                     </div>

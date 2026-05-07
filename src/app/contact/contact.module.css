@@ -99,11 +99,24 @@
 }
 
 .subtitle {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: var(--color-text-muted);
-  max-width: 600px;
+  max-width: 850px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.subtitleText {
+  margin: 0;
+}
+
+.subtitleTextEmphasis {
+  color: var(--color-white);
+  font-weight: 500;
+  margin: 0;
 }
 
 /* --- Vision Section --- */
@@ -161,6 +174,7 @@
   line-height: 1.1;
   letter-spacing: 0.01em;
   margin: 0;
+  align-items: center;
 }
 
 .visionRight {
@@ -224,7 +238,7 @@
 /* --- Form Section (Centered) --- */
 .formSection {
   position: relative;
-  padding: 40px 0 100px;
+  padding: 0px 0 100px;
   z-index: 2;
 }
 
@@ -239,7 +253,7 @@
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-xl);
-  padding: 64px;
+  padding: 40px 64px 64px;
   box-shadow: 
     0 40px 100px rgba(0, 0, 0, 0.4),
     inset 0 0 0 1px rgba(255, 255, 255, 0.05);
@@ -260,7 +274,7 @@
 
 .formHeader {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
 .formHeader h2 {
@@ -269,12 +283,13 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 12px;
+  /* margin-bottom: 24px; */
 }
 
 .formHeader p {
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
+  color: var(--color-white);
+  font-size: 1rem;
+  margin-top: -24px;
 }
 
 .form {
@@ -562,6 +577,7 @@
 
   .subtitle {
     font-size: 1rem;
+    gap: 16px;
   }
 
   .formSection {

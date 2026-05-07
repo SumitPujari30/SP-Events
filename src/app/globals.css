@@ -44,11 +44,11 @@
      --font-accent: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
 
      /* Utilities */
-     --radius-sm: 8px;
-     --radius-md: 16px;
-     --radius-lg: 24px;
-     --radius-xl: 32px;
-     --radius-full: 50px;
+     --radius-sm: 0px;
+     --radius-md: 0px;
+     --radius-lg: 0px;
+     --radius-xl: 0px;
+     --radius-full: 0px;
 
      --shadow-glow: 0 0 20px rgba(201, 168, 76, 0.2);
      --shadow-glow-soft: 0 0 40px rgba(200, 200, 200, 0.2);
@@ -217,7 +217,7 @@
   font-family: var(--font-tagline);
   font-size: 1.2rem;
   font-weight: 400;
-  font-style: italic;
+  /* font-style: italic; */
   color: var(--color-text-muted);
   max-width: 650px;
   line-height: 1.8;

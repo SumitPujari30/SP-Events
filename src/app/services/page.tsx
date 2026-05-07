@@ -283,7 +283,7 @@ export default function ServicesPage() {
                     <motion.div key="level-categories" {...pageVariants} className={styles.gridPageLayout}>
                         <div className={styles.gridPageHeader}>
                             <h1 className={styles.gridPageTitle}>Our <span style={{ color: 'var(--color-accent-gold, #d4af37)' }}>Expertise</span></h1>
-                            <p className={styles.gridPageSubtitle}>Discover the diverse range of events we meticulously craft to perfection.</p>
+                            <p className={styles.gridPageSubtitle}>Delivering versatile expertise across corporate events, government events, launch events, music festivals, political events, and bespoke celebrations where every vision is transformed into a seamless and unforgettable experience.</p>
                         </div>
                         <div className={styles.gridWrapper}>
                             <ServicesGrid 
@@ -305,7 +305,9 @@ export default function ServicesPage() {
                             <button className={styles.backBtn} onClick={handleBackToCategories}>
                                 <HiArrowLeft /> Back to Services
                             </button>
-                            <h2 className={styles.eventsTitle}>{activeCategory.title} <span className={styles.eventsTitleGold}>Events</span></h2>
+                            <h2 className={styles.eventsTitle}>
+                                {activeCategory.title.replace(/\s*Events\s*$/i, '')} <span className={styles.eventsTitleGold}>Events</span>
+                            </h2>
                             <p className={styles.eventsSubtitle}>{activeCategory.tagline}</p>
                         </div>
 

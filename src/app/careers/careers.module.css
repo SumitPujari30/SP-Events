@@ -73,11 +73,12 @@
 .stageHeroBase {
   position: absolute;
   inset: 0;
-  background-image: url('/assets/carrers_bg.jpeg');
+  background-image: url('/assets/carrer.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: #000;
+  /* filter: grayscale(100%); */
   display: flex;
   align-items: center;
   justify-content: center;

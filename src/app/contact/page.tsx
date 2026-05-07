@@ -35,7 +35,7 @@ const contactMethods = [
         title: 'Visit Us',
         value: 'Hubli, Karnataka',
         label: 'HQ - Marvel Artiza',
-        href: 'https://maps.google.com/?q=Vidya+Nagar+Hubli+Karnataka'
+        href: 'https://maps.app.goo.gl/yqsGyc9teoTWabRe7'
     }
 ];
 
@@ -49,7 +49,7 @@ export default function ContactPage() {
         message: '',
     });
     const [submitted, setSubmitted] = useState(false);
-    
+
     // Parallax Motion Values
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -82,11 +82,11 @@ export default function ContactPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         const { name, email, phone, subject, otherSubject, message } = formData;
         const eventType = subject === 'others' ? otherSubject : subject;
-        
-        const text = `Hello SP Events,
+
+        const text = `Hello, The SP Events,
 
 I would like to start a conversation regarding an event. Here are my details:
 
@@ -100,9 +100,9 @@ ${message}`;
 
         const encodedText = encodeURIComponent(text);
         const waUrl = `https://wa.me/917411863227?text=${encodedText}`;
-        
+
         window.open(waUrl, '_blank');
-        
+
         setSubmitted(true);
         setFormData({
             name: '',
@@ -123,20 +123,20 @@ ${message}`;
             </div>
 
             {/* Hero Section */}
-            <section 
+            <section
                 className={styles.hero}
             >
                 {/* Interactive Glow Aura */}
-                <motion.div 
+                <motion.div
                     className={styles.magicalGlow}
                     style={{ x: glowX, y: glowY }}
                 />
 
                 <div className="container">
-                    <motion.div 
+                    <motion.div
                         className={styles.heroContent}
                     >
-                        <motion.div 
+                        <motion.div
                             className={styles.badge}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -144,8 +144,8 @@ ${message}`;
                         >
                             <HiChatAlt2 /> <span>Get in Touch</span>
                         </motion.div>
-                        
-                        <motion.h1 
+
+                        <motion.h1
                             className={styles.title}
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -153,44 +153,29 @@ ${message}`;
                         >
                             Let&apos;s Create <span className={`${styles.magicWord} text-gold`}>Magic</span> Together
                         </motion.h1>
-                        
-                        <motion.p 
+
+                        <motion.div
                             className={styles.subtitle}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
                         >
-                            Whether you have a vision for a grand spectacle or a delicate celebration, 
-                            we are here to turn your dreams into a breathtaking reality.
-                        </motion.p>
+                            <p className={styles.subtitleTextEmphasis}>
+                                THE SP EVENTS is at the forefront of the evolving world of experiential events. 
+                                Today’s audiences seek more than just events — they seek immersive experiences 
+                                that inspire, engage, and create lasting connections.
+                            </p>
+                            <p className={styles.subtitleTextEmphasis}>
+                                At THE SP EVENTS, we believe the future of events lies in innovation, creativity, 
+                                and flawless execution. Our team continuously pushes boundaries to design experiences 
+                                that stand out, captivate audiences, and leave a meaningful impact.
+                            </p>
+                            <p className={styles.subtitleTextEmphasis}>
+                                If you are a brand looking to create powerful engagement or a visionary seeking 
+                                a partner to bring bold ideas to life, THE SP EVENTS is ready to make it happen.
+                            </p>
+                        </motion.div>
                     </motion.div>
-                </div>
-            </section>
-            
-            {/* Vision / Forefront Section */}
-            <section className={styles.visionSection}>
-                <div className="container">
-                    <AnimatedSection variant="fadeUp">
-                        <div className={styles.visionGrid}>
-                            <div className={styles.visionLeft}>
-                                <h2 className={styles.visionHeading}>
-                                    AT THE <span className="text-gold">FOREFRONT</span> OF<br />
-                                    EXPERIENTIAL EVENTS.
-                                </h2>
-                            </div>
-                            <div className={styles.visionRight}>
-                                <p className={styles.visionText}>
-                                    <strong style={{color:"#ffffff"}}>THE SP EVENTS</strong> is at the forefront of the evolving world of experiential events. Today’s audiences seek more than just events — they seek immersive experiences that inspire, engage, and create lasting connections.
-                                </p>
-                                <p className={styles.visionText}>
-                                    We believe the future of events lies in innovation, creativity, and flawless execution. Our team continuously pushes boundaries to design experiences that stand out, captivate audiences, and leave a meaningful impact.
-                                </p>
-                                <p className={styles.visionTextBold}>
-                                    If you are a brand looking to create powerful engagement or a visionary seeking a partner to bring bold ideas to life, THE SP EVENTS is ready to make it happen.
-                                </p>
-                            </div>
-                        </div>
-                    </AnimatedSection>
                 </div>
             </section>
 
@@ -200,9 +185,9 @@ ${message}`;
                     <div className={styles.centeredContent}>
                         <AnimatedSection variant="fadeUp" delay={0.4}>
                             <div className={styles.glassContainer}>
+
                                 <div className={styles.formHeader}>
-                                    <h2>Start a Conversation</h2>
-                                    <p>Tell us about your event and we&apos;ll get back to you within 24 hours.</p>
+                                    <h2>Let&apos;s Connect</h2>
                                 </div>
 
                                 {submitted ? (
@@ -281,7 +266,7 @@ ${message}`;
                                         </div>
 
                                         {formData.subject === 'others' && (
-                                            <motion.div 
+                                            <motion.div
                                                 className={styles.inputGroup}
                                                 initial={{ opacity: 0, height: 0 }}
                                                 animate={{ opacity: 1, height: 'auto' }}
@@ -303,7 +288,7 @@ ${message}`;
                                             <textarea
                                                 className={styles.elegantTextarea}
                                                 name="message"
-                                                placeholder="Your Vision / Message"
+                                                placeholder="Your Message"
                                                 value={formData.message}
                                                 onChange={handleChange}
                                                 onInput={(e) => {
@@ -334,12 +319,12 @@ ${message}`;
                     <div className={styles.infoGrid}>
                         {contactMethods.map((method, idx) => (
                             <AnimatedSection key={idx} variant="fadeUp" delay={0.1 + idx * 0.1}>
-                                <motion.a 
-                                    href={method.href} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
+                                <motion.a
+                                    href={method.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className={styles.contactCard}
-                                    whileHover={{ 
+                                    whileHover={{
                                         y: -10,
                                         transition: { type: "spring", stiffness: 300, damping: 20 }
                                     }}

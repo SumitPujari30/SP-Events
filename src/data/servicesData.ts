@@ -26,66 +26,57 @@ export const services: ServiceCategory[] = [
         "bgImage": "/assets/services/corporate_bg.webp",
         "events": [
             {
-                "id": "corporate-1",
-                "title": "12 Vijayavani Eductaion Expo 2024",
-                "image": "/assets/cover_images/vijayvani_education_expo_2024.webp",
+                "id": "corporate-13",
+                "title": "IIT Dharwad nirmala sitharaman",
+                "image": "/assets/cover_images/nirmala_sitharaman_dharti_bionest_2025.webp",
                 "allImages": [
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3602.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3602.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3606.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3869.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3872.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3875.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3877.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_4018.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_4110.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 1.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 11.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 13.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 2.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 5.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 6.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 7.webp",
-                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 8.webp"
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/589425590_18027067862784343_4392061256232260283_n.webp",
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591122213_18027067826784343_6964502594823969748_n.webp",
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591148021_18027067814784343_4442919742336869394_n.webp",
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591152706_18027067118784343_4824954896490459338_n.webp",
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591156010_18027067127784343_1265763062334527558_n.webp",
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591156252_18027067142784343_5448144424714957406_n.webp",
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591172384_18027067835784343_6359399674931260847_n.webp",
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591172451_18027067100784343_7235112108383869884_n.webp",
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/592486845_18027067850784343_5402046310246555957_n.webp",
+                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/598655867_18027067754784343_7553688823197959222_n.webp"
                 ]
             },
             {
-                "id": "corporate-2",
-                "title": "16 Startup Gravity 2023",
-                "image": "/assets/cover_images/startup_gravity_deshpande_foundation_2023.webp",
+                "id": "corporate-12",
+                "title": "IIIT DHARWAD HR CONCLAVE",
+                "image": "/assets/cover_images/iiit_dharwad_hr_conclave_2024.webp",
                 "allImages": [
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0837.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0844.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0852.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0853.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0858.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0865.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0873.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0963.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0999.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_1365.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8254.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8261.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8275.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8332.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8336.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8337.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8338.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8339.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8340.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8341.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8342.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8343.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8344.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8345.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8346.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8355.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8357.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/Screenshot_2023-06-11-20-31-00-27_1c337646f29875672b5a61192b9010f9.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/Screenshot_2023-06-11-20-31-22-41_1c337646f29875672b5a61192b9010f9.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/SDDS2543.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/SDDS2785.webp",
-                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/SDDS3120.webp"
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482669173_17994986414784343_7085092992373466725_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482741738_17994985829784343_3720765909315366395_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482747009_17994985856784343_3217324367761392644_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482759828_17994986465784343_7378281863071787108_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482796598_17994986453784343_1546390754703528780_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482835922_17994985847784343_7271842429796920114_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482889165_17994985868784343_6199017948428688377_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482896190_17994986396784343_4866091047886821669_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482914248_17994985919784343_6735834076535987296_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482934519_17994985892784343_5395513252966300270_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483000177_17994986423784343_1264237424731417712_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483009350_17994986435784343_2166751712555523236_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483166787_17994986405784343_1589970197313201642_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483277827_17994985877784343_7508879490002994067_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483420745_17994986378784343_1860003109819037992_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483444266_17994986444784343_863003857796973978_n.webp",
+                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483472066_17994985838784343_8534562946949671203_n.webp"
+                ]
+            },
+            {
+                "id": "corporate-16",
+                "title": "KARNATAKA STATE SPICE DEVEOPMENT",
+                "image": "/assets/cover_images/karnataka_spice_buyer_seller_meet_2024.webp",
+                "allImages": [
+                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3692.webp",
+                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3702.webp",
+                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3737.webp",
+                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3748.webp",
+                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3811.webp",
+                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3842.webp"
                 ]
             },
             {
@@ -138,6 +129,69 @@ export const services: ServiceCategory[] = [
                     "/assets/webp_images/Corporate Events/BIS MANOK MAHOSTAV/SDDS2123.webp",
                     "/assets/webp_images/Corporate Events/BIS MANOK MAHOSTAV/SDDS2141.webp",
                     "/assets/webp_images/Corporate Events/BIS MANOK MAHOSTAV/SDDS2142.webp"
+                ]
+            },
+            {
+                "id": "corporate-1",
+                "title": "Vijayavani Eductaion Expo 2024",
+                "image": "/assets/cover_images/vijayvani_education_expo_2024.webp",
+                "allImages": [
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3602.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3602.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3606.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3869.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3872.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3875.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_3877.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_4018.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/DSC_4110.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 1.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 11.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 13.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 2.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 5.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 6.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 7.webp",
+                    "/assets/webp_images/Corporate Events/12 Vijayavani Eductaion Expo 2024/h5-Dharwad Expo 8.webp"
+                ]
+            },
+            {
+                "id": "corporate-2",
+                "title": "Startup Gravity 2023",
+                "image": "/assets/cover_images/startup_gravity_deshpande_foundation_2023.webp",
+                "allImages": [
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0837.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0844.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0852.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0853.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0858.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0865.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0873.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0963.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_0999.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_1365.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8254.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8261.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8275.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8332.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8336.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8337.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8338.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8339.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8340.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8341.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8342.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8343.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8344.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8345.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8346.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8355.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/IMG_8357.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/Screenshot_2023-06-11-20-31-00-27_1c337646f29875672b5a61192b9010f9.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/Screenshot_2023-06-11-20-31-22-41_1c337646f29875672b5a61192b9010f9.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/SDDS2543.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/SDDS2785.webp",
+                    "/assets/webp_images/Corporate Events/16 Startup Gravity 2023/SDDS3120.webp"
                 ]
             },
             {
@@ -331,47 +385,6 @@ export const services: ServiceCategory[] = [
                 ]
             },
             {
-                "id": "corporate-12",
-                "title": "IIIT DHARWAD HR CONCLAVE",
-                "image": "/assets/cover_images/iiit_dharwad_hr_conclave_2024.webp",
-                "allImages": [
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482669173_17994986414784343_7085092992373466725_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482741738_17994985829784343_3720765909315366395_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482747009_17994985856784343_3217324367761392644_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482759828_17994986465784343_7378281863071787108_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482796598_17994986453784343_1546390754703528780_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482835922_17994985847784343_7271842429796920114_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482889165_17994985868784343_6199017948428688377_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482896190_17994986396784343_4866091047886821669_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482914248_17994985919784343_6735834076535987296_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/482934519_17994985892784343_5395513252966300270_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483000177_17994986423784343_1264237424731417712_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483009350_17994986435784343_2166751712555523236_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483166787_17994986405784343_1589970197313201642_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483277827_17994985877784343_7508879490002994067_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483420745_17994986378784343_1860003109819037992_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483444266_17994986444784343_863003857796973978_n.webp",
-                    "/assets/webp_images/Corporate Events/IIIT DHARWAD HR CONCLAVE/483472066_17994985838784343_8534562946949671203_n.webp"
-                ]
-            },
-            {
-                "id": "corporate-13",
-                "title": "IIT Dharwad nirmala sitharaman",
-                "image": "/assets/cover_images/nirmala_sitharaman_dharti_bionest_2025.webp",
-                "allImages": [
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/589425590_18027067862784343_4392061256232260283_n.webp",
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591122213_18027067826784343_6964502594823969748_n.webp",
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591148021_18027067814784343_4442919742336869394_n.webp",
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591152706_18027067118784343_4824954896490459338_n.webp",
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591156010_18027067127784343_1265763062334527558_n.webp",
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591156252_18027067142784343_5448144424714957406_n.webp",
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591172384_18027067835784343_6359399674931260847_n.webp",
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/591172451_18027067100784343_7235112108383869884_n.webp",
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/592486845_18027067850784343_5402046310246555957_n.webp",
-                    "/assets/webp_images/Corporate Events/IIT Dharwad nirmala sitharaman/598655867_18027067754784343_7553688823197959222_n.webp"
-                ]
-            },
-            {
                 "id": "corporate-14",
                 "title": "Inner wheel club hubballi conference",
                 "image": "/assets/cover_images/Inner wheel club hubballi conference.webp",
@@ -445,19 +458,6 @@ export const services: ServiceCategory[] = [
                     "/assets/webp_images/Corporate Events/Kapicon doctore conference/513741924_18008065019784343_7431424607607861016_n.webp",
                     "/assets/webp_images/Corporate Events/Kapicon doctore conference/513886261_18008070956784343_7298205589462084993_n.webp",
                     "/assets/webp_images/Corporate Events/Kapicon doctore conference/514012761_18008070884784343_6086509218738152995_n.webp"
-                ]
-            },
-            {
-                "id": "corporate-16",
-                "title": "KARNATAKA STATE SPICE DEVEOPMENT",
-                "image": "/assets/cover_images/karnataka_spice_buyer_seller_meet_2024.webp",
-                "allImages": [
-                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3692.webp",
-                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3702.webp",
-                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3737.webp",
-                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3748.webp",
-                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3811.webp",
-                    "/assets/webp_images/Corporate Events/KARNATAKA STATE SPICE DEVEOPMENT/_MG_3842.webp"
                 ]
             },
             {
@@ -616,8 +616,84 @@ export const services: ServiceCategory[] = [
         "bgImage": "/assets/services/special_bg.webp",
         "events": [
             {
+                "id": "special-8",
+                "title": "PM NARENDRA MODI VISIT TO BAILHONGAL",
+                "image": "/assets/cover_images/pm_narendra_modi_visit_bailhongal_2023.webp",
+                "allImages": [
+                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/7013745e-7be6-4a95-8b04-172f8d772bda.webp",
+                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/bailhongal.webp",
+                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_0244.webp",
+                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_0297.webp",
+                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_20230508_105912.webp",
+                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_20230508_105935.webp",
+                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_20230508_110013.webp",
+                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_20230508_110107.webp",
+                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_7167.webp"
+                ]
+            },
+            {
+                "id": "special-7",
+                "title": "NaMo Drone DiDi Event",
+                "image": "/assets/cover_images/namo_drone_didi_event_pm_narendra_modi_2024.webp",
+                "allImages": [
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0106.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0122.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0126.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0127.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0139.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0140.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0147.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0175.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0182.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0230.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0231.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0234.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0235.webp",
+                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0237.webp"
+                ]
+            },
+            {
+                "id": "special-5",
+                "title": "KARNATAKA SPECTUALAR AGNIHOTRA",
+                "image": "/assets/cover_images/karnataka_agnihotra_world_record_2025.webp",
+                "allImages": [
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497126765_18002651462784343_8901075842888327536_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497208205_18002638367784343_1894064317270576739_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497245486_18002638358784343_7495264975272330053_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497310747_18002651414784343_2607286152475699562_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497351252_18002651444784343_6651504685614747276_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497399841_18002638328784343_4041966596863970570_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497515174_18002651483784343_3479330809527784925_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497524992_18002651435784343_2429562888677573993_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497566985_18002651405784343_8589255861180793213_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497606995_18002651453784343_913393843670842368_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497621914_18002651492784343_568589918208133911_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497699183_18002651357784343_5140106389542115105_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497737923_18002651375784343_1993239659604091673_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497739972_18002638346784343_3617176201159382431_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497899088_18002651396784343_5385480139621125955_n.webp",
+                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497963792_18002651384784343_3032327779641867531_n.webp"
+                ]
+            },
+            {
+                "id": "special-3",
+                "title": "CM Basavaraj Bommai Ji Event",
+                "image": "/assets/cover_images/CM Basavaraj Bommai Ji Event.webp",
+                "allImages": [
+                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/19b051c5-dfca-4109-89d8-5f4f724fc4b0.webp",
+                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_1917.webp",
+                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_5849.webp",
+                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9177.webp",
+                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9178.webp",
+                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9179.webp",
+                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9180.webp",
+                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9181.webp",
+                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9182.webp"
+                ]
+            },
+            {
                 "id": "special-1",
-                "title": "14 H K Patil Book launch Event at KUD Dharwad 2024",
+                "title": "H K Patil Book launch Event at KUD Dharwad 2024",
                 "image": "/assets/cover_images/H K Patil Book launch Event at KUD Dharwad 2024.webp",
                 "allImages": [
                     "/assets/webp_images/Special Events/14 H K Patil Book launch Event at KUD Dharwad 2024/0J0A3567.webp",
@@ -643,7 +719,7 @@ export const services: ServiceCategory[] = [
             },
             {
                 "id": "special-2",
-                "title": "15 Stonish Paul Birthday Party (Paul's Group) 2024",
+                "title": "Stonish Paul Birthday Party (Paul's Group) 2024",
                 "image": "/assets/cover_images/king_stonish_paul_1st_birthday_celebration_2024.webp",
                 "allImages": [
                     "/assets/webp_images/Special Events/15 Stonish Paul Birthday Party (Paul's Group) 2024/0C7A5062.webp",
@@ -675,22 +751,6 @@ export const services: ServiceCategory[] = [
                     "/assets/webp_images/Special Events/15 Stonish Paul Birthday Party (Paul's Group) 2024/DSC01694.webp",
                     "/assets/webp_images/Special Events/15 Stonish Paul Birthday Party (Paul's Group) 2024/DSC01748.webp",
                     "/assets/webp_images/Special Events/15 Stonish Paul Birthday Party (Paul's Group) 2024/WhatsApp Image 2024-04-12 at 4.54.23 PM.webp"
-                ]
-            },
-            {
-                "id": "special-3",
-                "title": "CM Basavaraj Bommai Ji Event",
-                "image": "/assets/cover_images/CM Basavaraj Bommai Ji Event.webp",
-                "allImages": [
-                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/19b051c5-dfca-4109-89d8-5f4f724fc4b0.webp",
-                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_1917.webp",
-                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_5849.webp",
-                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9177.webp",
-                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9178.webp",
-                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9179.webp",
-                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9180.webp",
-                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9181.webp",
-                    "/assets/webp_images/Special Events/CM Basavaraj Bommai Ji Event/IMG_9182.webp"
                 ]
             },
             {
@@ -756,29 +816,6 @@ export const services: ServiceCategory[] = [
                 ]
             },
             {
-                "id": "special-5",
-                "title": "KARNATAKA SPECTUALAR AGNIHOTRA",
-                "image": "/assets/cover_images/karnataka_agnihotra_world_record_2025.webp",
-                "allImages": [
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497126765_18002651462784343_8901075842888327536_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497208205_18002638367784343_1894064317270576739_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497245486_18002638358784343_7495264975272330053_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497310747_18002651414784343_2607286152475699562_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497351252_18002651444784343_6651504685614747276_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497399841_18002638328784343_4041966596863970570_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497515174_18002651483784343_3479330809527784925_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497524992_18002651435784343_2429562888677573993_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497566985_18002651405784343_8589255861180793213_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497606995_18002651453784343_913393843670842368_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497621914_18002651492784343_568589918208133911_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497699183_18002651357784343_5140106389542115105_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497737923_18002651375784343_1993239659604091673_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497739972_18002638346784343_3617176201159382431_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497899088_18002651396784343_5385480139621125955_n.webp",
-                    "/assets/webp_images/Special Events/KARNATAKA SPECTUALAR AGNIHOTRA/497963792_18002651384784343_3032327779641867531_n.webp"
-                ]
-            },
-            {
                 "id": "special-6",
                 "title": "kle bca kalakrithi",
                 "image": "/assets/cover_images/kalakriti_it_fest_kle_bca_2026.webp",
@@ -795,43 +832,6 @@ export const services: ServiceCategory[] = [
                     "/assets/webp_images/Special Events/kle bca kalakrithi/649979274_18037162697784343_2893562980367425524_n.webp",
                     "/assets/webp_images/Special Events/kle bca kalakrithi/650191230_18037161524784343_2221275835790696711_n - Copy.webp",
                     "/assets/webp_images/Special Events/kle bca kalakrithi/650204528_18037161536784343_702830317835103391_n - Copy.webp"
-                ]
-            },
-            {
-                "id": "special-7",
-                "title": "NaMo Drone DiDi",
-                "image": "/assets/cover_images/namo_drone_didi_event_pm_narendra_modi_2024.webp",
-                "allImages": [
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0106.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0122.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0126.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0127.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0139.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0140.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0147.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0175.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0182.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0230.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0231.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0234.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0235.webp",
-                    "/assets/webp_images/Special Events/NaMo Drone DiDi/1Z7A0237.webp"
-                ]
-            },
-            {
-                "id": "special-8",
-                "title": "PM NARENDRA MODI VISIT TO BAILHONGAL",
-                "image": "/assets/cover_images/pm_narendra_modi_visit_bailhongal_2023.webp",
-                "allImages": [
-                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/7013745e-7be6-4a95-8b04-172f8d772bda.webp",
-                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/bailhongal.webp",
-                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_0244.webp",
-                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_0297.webp",
-                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_20230508_105912.webp",
-                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_20230508_105935.webp",
-                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_20230508_110013.webp",
-                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_20230508_110107.webp",
-                    "/assets/webp_images/Special Events/PM NARENDRA MODI VISIT TO BAILHONGAL/IMG_7167.webp"
                 ]
             },
             {
@@ -865,6 +865,102 @@ export const services: ServiceCategory[] = [
         "desc": "A product launch is your brand's most critical moment.",
         "bgImage": "/assets/services/launch_bg.webp",
         "events": [
+            {
+                "id": "launch-4",
+                "title": "Eltu Mutha Film Audio launch",
+                "image": "/assets/cover_images/elutu_mutha_audio_launch_2025.webp",
+                "allImages": [
+                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/552638524_18018609950784343_661527463270855573_n.webp",
+                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/552692095_18018611408784343_3165154730889915559_n.webp",
+                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/552973081_18018609977784343_8692019903022624196_n.webp",
+                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/553514886_18018611435784343_2727442594203771682_n.webp",
+                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/553536954_18018611417784343_839873930650276038_n.webp",
+                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/553595918_18018611444784343_5517222513095648127_n.webp",
+                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/554398090_18018611426784343_4603498589852578978_n.webp",
+                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/554780347_18018609968784343_5010642308834873441_n.webp",
+                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/555305783_18018611456784343_4716837487175752294_n.webp"
+                ]
+            },
+            {
+                "id": "launch-6",
+                "title": "Hodek Plant 3",
+                "image": "/assets/cover_images/hodek_plant_3_grand_launch_2025.webp",
+                "allImages": [
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/517115720_18009648107784343_8689202822224037429_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/517671843_18009648749784343_4548510873422404300_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/517856952_18009648785784343_9185553224531534708_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/517974871_18009648089784343_5740744642232316132_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/517982600_18009648116784343_409407608490440838_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/518249110_18009648761784343_3684806744205075986_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/518258676_18009648068784343_2897017674436254815_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/518464991_18009648080784343_8948801001679808830_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/518475938_18009648797784343_7891375228552733169_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/518495839_18009648728784343_7923788438075832184_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/518984563_18009648776784343_4878892861789258660_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/519048704_18009648098784343_3819528342276537047_n.webp",
+                    "/assets/webp_images/Launch Events/Hodek Plant 3/519528165_18009648737784343_1595320898345830433_n.webp"
+                ]
+            },
+            {
+                "id": "launch-11",
+                "title": "vOLVO C40 LAUNCH & PROMO EVENT",
+                "image": "/assets/cover_images/volvo_c40_promotional_event_2024.webp",
+                "allImages": [
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8088.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8097.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8115.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8238.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8248.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8256.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8291.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8335.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8610.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8713.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8906.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8934.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8972.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8979.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8987.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A9047.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A9107.webp",
+                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A9128.webp"
+                ]
+            },
+            {
+                "id": "launch-10",
+                "title": "Toyota Hillix Launch Event 2023",
+                "image": "/assets/cover_images/Toyota Hillix Launch Event 2023.webp",
+                "allImages": [
+                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.54 PM (1).webp",
+                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.54 PM.webp",
+                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.55 PM (1).webp",
+                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.55 PM.webp",
+                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.56 PM (1).webp",
+                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.56 PM (2).webp",
+                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.56 PM.webp",
+                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.57 PM.webp"
+                ]
+            },
+            {
+                "id": "launch-9",
+                "title": "Sulthan Daimonds & Gold hubli",
+                "image": "/assets/cover_images/sulthan_diamonds_gold_14th_launch_2025.webp",
+                "allImages": [
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508484082_18006924140784343_7177194595607986231_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508566985_18006924158784343_8861070879208268381_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508587314_18006924170784343_1919327551599730232_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508610121_18006926537784343_5095645410067035870_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508621493_18006926546784343_969679441193341500_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508674458_18006926528784343_8166136676105983990_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508680702_18006924149784343_7555102905842327579_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508697924_18006926597784343_2722552679183085664_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508724913_18006926519784343_5550745059068397249_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508809090_18006926585784343_5592839498734634198_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508823570_18006926621784343_8042463911537714609_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508827682_18006926636784343_2382703241535502673_n.webp",
+                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/509218028_18006924182784343_1957957026868776474_n.webp"
+                ]
+            },
             {
                 "id": "launch-1",
                 "title": "ARROW LAUNCH EVENT",
@@ -925,22 +1021,6 @@ export const services: ServiceCategory[] = [
                 ]
             },
             {
-                "id": "launch-4",
-                "title": "Eltu Mutha Film Audio launch",
-                "image": "/assets/cover_images/elutu_mutha_audio_launch_2025.webp",
-                "allImages": [
-                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/552638524_18018609950784343_661527463270855573_n.webp",
-                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/552692095_18018611408784343_3165154730889915559_n.webp",
-                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/552973081_18018609977784343_8692019903022624196_n.webp",
-                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/553514886_18018611435784343_2727442594203771682_n.webp",
-                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/553536954_18018611417784343_839873930650276038_n.webp",
-                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/553595918_18018611444784343_5517222513095648127_n.webp",
-                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/554398090_18018611426784343_4603498589852578978_n.webp",
-                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/554780347_18018609968784343_5010642308834873441_n.webp",
-                    "/assets/webp_images/Launch Events/Eltu Mutha Film Audio launch/555305783_18018611456784343_4716837487175752294_n.webp"
-                ]
-            },
-            {
                 "id": "launch-5",
                 "title": "Eskay Silk N Sarees",
                 "image": "/assets/cover_images/eskay_silk_sarees_launch_event_2023.webp",
@@ -957,26 +1037,6 @@ export const services: ServiceCategory[] = [
                     "/assets/webp_images/Launch Events/Eskay Silk N Sarees/AKS_5601.webp",
                     "/assets/webp_images/Launch Events/Eskay Silk N Sarees/AKS_5633.webp",
                     "/assets/webp_images/Launch Events/Eskay Silk N Sarees/AKS_5667.webp"
-                ]
-            },
-            {
-                "id": "launch-6",
-                "title": "Hodek Plant 3",
-                "image": "/assets/cover_images/hodek_plant_3_grand_launch_2025.webp",
-                "allImages": [
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/517115720_18009648107784343_8689202822224037429_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/517671843_18009648749784343_4548510873422404300_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/517856952_18009648785784343_9185553224531534708_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/517974871_18009648089784343_5740744642232316132_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/517982600_18009648116784343_409407608490440838_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/518249110_18009648761784343_3684806744205075986_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/518258676_18009648068784343_2897017674436254815_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/518464991_18009648080784343_8948801001679808830_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/518475938_18009648797784343_7891375228552733169_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/518495839_18009648728784343_7923788438075832184_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/518984563_18009648776784343_4878892861789258660_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/519048704_18009648098784343_3819528342276537047_n.webp",
-                    "/assets/webp_images/Launch Events/Hodek Plant 3/519528165_18009648737784343_1595320898345830433_n.webp"
                 ]
             },
             {
@@ -1018,66 +1078,6 @@ export const services: ServiceCategory[] = [
                     "/assets/webp_images/Launch Events/sulthan daimonds & gold bijapur/639974320_18035110130784343_63934939660981510_n.webp",
                     "/assets/webp_images/Launch Events/sulthan daimonds & gold bijapur/639992454_18035111141784343_3171143706479578672_n.webp"
                 ]
-            },
-            {
-                "id": "launch-9",
-                "title": "Sulthan Daimonds & Gold hubli",
-                "image": "/assets/cover_images/sulthan_diamonds_gold_14th_launch_2025.webp",
-                "allImages": [
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508484082_18006924140784343_7177194595607986231_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508566985_18006924158784343_8861070879208268381_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508587314_18006924170784343_1919327551599730232_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508610121_18006926537784343_5095645410067035870_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508621493_18006926546784343_969679441193341500_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508674458_18006926528784343_8166136676105983990_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508680702_18006924149784343_7555102905842327579_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508697924_18006926597784343_2722552679183085664_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508724913_18006926519784343_5550745059068397249_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508809090_18006926585784343_5592839498734634198_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508823570_18006926621784343_8042463911537714609_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/508827682_18006926636784343_2382703241535502673_n.webp",
-                    "/assets/webp_images/Launch Events/Sulthan Daimonds & Gold hubli/509218028_18006924182784343_1957957026868776474_n.webp"
-                ]
-            },
-            {
-                "id": "launch-10",
-                "title": "Toyota Hillix Launch Event 2023",
-                "image": "/assets/cover_images/Toyota Hillix Launch Event 2023.webp",
-                "allImages": [
-                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.54 PM (1).webp",
-                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.54 PM.webp",
-                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.55 PM (1).webp",
-                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.55 PM.webp",
-                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.56 PM (1).webp",
-                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.56 PM (2).webp",
-                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.56 PM.webp",
-                    "/assets/webp_images/Launch Events/Toyota Hillix Launch Event 2023/WhatsApp Image 2023-06-11 at 1.43.57 PM.webp"
-                ]
-            },
-            {
-                "id": "launch-11",
-                "title": "vOLVO C40 LAUNCH & PROMO EVENT",
-                "image": "/assets/cover_images/volvo_c40_promotional_event_2024.webp",
-                "allImages": [
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8088.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8097.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8115.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8238.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8248.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8256.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8291.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8335.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8610.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8713.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8906.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8934.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8972.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8979.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A8987.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A9047.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A9107.webp",
-                    "/assets/webp_images/Launch Events/vOLVO C40 LAUNCH & PROMO EVENT/0X8A9128.webp"
-                ]
             }
         ]
     },
@@ -1090,8 +1090,40 @@ export const services: ServiceCategory[] = [
         "bgImage": "/assets/services/music_bg.webp",
         "events": [
             {
+                "id": "music-5",
+                "title": "Emiway Bantai Concert 2018",
+                "image": "/assets/cover_images/Emiway Bantai Concert 2018.webp",
+                "allImages": [
+                    "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/1.webp",
+                    "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/2.webp",
+                    "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/3.webp",
+                    "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/4.webp"
+                ]
+            },
+            {
+                "id": "music-9",
+                "title": "IIT DHARWAD SANGEET EVENT",
+                "image": "/assets/cover_images/iiit_dharwad_sangeet_2025.webp",
+                "allImages": [
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489069303_17998951040784343_8971419316430686365_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489415973_17998950452784343_209481492867560674_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489425733_17998951076784343_6494275718586909410_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489529268_17998951085784343_5484058955936557641_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489566744_17998951094784343_834695197304162304_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489571108_17998950401784343_349404353900083374_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489607656_17998950392784343_7777348105529060609_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489628655_17998951103784343_5288915390207342111_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489849412_17998951058784343_703292089816462712_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490106439_17998951067784343_6174989085439519855_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490196604_17998950413784343_742849204130024803_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490271272_17998950422784343_7786664730983404205_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490363852_17998950434784343_3824823103886556392_n.webp",
+                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490576188_17998950443784343_4688933996695255149_n.webp"
+                ]
+            },
+            {
                 "id": "music-1",
-                "title": "10 KLE M R Sakhare Annual Day Event",
+                "title": "KLE M R Sakhare Annual Day Event",
                 "image": "/assets/cover_images/kle_mr_sakhare_cbse_annual_day_2024.webp",
                 "allImages": [
                     "/assets/webp_images/Music Events/10 KLE M R Sakhare Annual Day Event/7a561c88-6c51-491d-a4cd-4127b9fdea61.webp",
@@ -1117,7 +1149,7 @@ export const services: ServiceCategory[] = [
             },
             {
                 "id": "music-2",
-                "title": "9 Sundari Udaya Utsava 2019 Event",
+                "title": "Sundari Udaya Utsava 2019 Event",
                 "image": "/assets/cover_images/Sundari Udaya Utsava 2019 Event.webp",
                 "allImages": [
                     "/assets/webp_images/Music Events/9 Sundari Udaya Utsava 2019 Event/1.webp",
@@ -1201,17 +1233,6 @@ export const services: ServiceCategory[] = [
                 ]
             },
             {
-                "id": "music-5",
-                "title": "Emiway Bantai Concert 2018",
-                "image": "/assets/cover_images/Emiway Bantai Concert 2018.webp",
-                "allImages": [
-                    "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/1.webp",
-                    "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/2.webp",
-                    "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/3.webp",
-                    "/assets/webp_images/Music Events/Emiway Bantai Concert 2018/4.webp"
-                ]
-            },
-            {
                 "id": "music-6",
                 "title": "Evening with legends at Infosys 2023",
                 "image": "/assets/cover_images/Evening with legends at Infosys 2023.webp",
@@ -1272,27 +1293,6 @@ export const services: ServiceCategory[] = [
                     "/assets/webp_images/Music Events/Hubballi Ugadi Utsava/IMG_9033.webp",
                     "/assets/webp_images/Music Events/Hubballi Ugadi Utsava/IMG_9043.webp",
                     "/assets/webp_images/Music Events/Hubballi Ugadi Utsava/IMG_9050.webp"
-                ]
-            },
-            {
-                "id": "music-9",
-                "title": "IIT DHARWAD SANGEET EVENT",
-                "image": "/assets/cover_images/iiit_dharwad_sangeet_2025.webp",
-                "allImages": [
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489069303_17998951040784343_8971419316430686365_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489415973_17998950452784343_209481492867560674_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489425733_17998951076784343_6494275718586909410_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489529268_17998951085784343_5484058955936557641_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489566744_17998951094784343_834695197304162304_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489571108_17998950401784343_349404353900083374_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489607656_17998950392784343_7777348105529060609_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489628655_17998951103784343_5288915390207342111_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/489849412_17998951058784343_703292089816462712_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490106439_17998951067784343_6174989085439519855_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490196604_17998950413784343_742849204130024803_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490271272_17998950422784343_7786664730983404205_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490363852_17998950434784343_3824823103886556392_n.webp",
-                    "/assets/webp_images/Music Events/IIT DHARWAD SANGEET EVENT/490576188_17998950443784343_4688933996695255149_n.webp"
                 ]
             },
             {
