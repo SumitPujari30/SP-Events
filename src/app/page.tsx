@@ -70,7 +70,6 @@ const rhymeWords = ["Unforgettable", "Incredible", "Exceptional", "Unparalleled"
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroImageRef = useRef<HTMLVideoElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const dividerImageRef = useRef<HTMLImageElement>(null);
   const router = useRouter();
   const [wordIndex, setWordIndex] = useState(0);
@@ -112,12 +111,6 @@ export default function HomePage() {
         { opacity: 0, scale: 1.05 },
         { opacity: 1, scale: 1, duration: 2.2, ease: 'power2.out', delay: 0.2 }
       );
-
-      // Scroll line bounce
-      gsap.fromTo(scrollIndicatorRef.current, { opacity: 0 }, { opacity: 1, duration: 0.6, delay: 1.2 });
-      gsap.to(scrollIndicatorRef.current, {
-        y: 10, repeat: -1, yoyo: true, duration: 1.2, ease: 'sine.inOut', delay: 1.4,
-      });
 
       // ── Experiences Unique Text Reveal ─────────────────────
       ScrollTrigger.create({
@@ -350,12 +343,6 @@ export default function HomePage() {
           />
           <div className={styles.videoOverlayBase} />
           <div className={styles.videoOverlayGradient} />
-        </div>
-
-        {/* Scroll indicator only */}
-        <div className={styles.scrollIndicator} ref={scrollIndicatorRef}>
-          <div className={styles.scrollLine} />
-          <span className={styles.scrollText}>SCROLL</span>
         </div>
 
         <div className={styles.heroBottomFade} />
