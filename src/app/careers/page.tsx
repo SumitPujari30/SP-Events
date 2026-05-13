@@ -99,7 +99,7 @@ function CultureSection() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
-        <section className="section section-violet" style={{ paddingTop: '20px' }}>
+        <section className="section section-dark" style={{ paddingTop: '20px' }}>
             <div className="container">
                 <div className="section-header center" style={{ marginBottom: '60px' }}>
                     <span className="section-label">Life at SP Events</span>
@@ -175,7 +175,7 @@ ${why}`;
     };
 
     return (
-        <section className="section" id="apply-form" style={{ background: 'var(--color-bg)' }}>
+        <section className="section section-dark" id="apply-form">
             <div className="container">
                 <div className="section-header center" style={{ marginBottom: '40px' }}>
                     <span className="section-label">Apply Now</span>
@@ -193,7 +193,7 @@ ${why}`;
                                 ✓
                             </div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '16px', fontWeight: 600 }}>Application Sent!</h3>
-                            <p style={{ color: 'rgba(0, 0, 0,0.6)', lineHeight: 1.7 }}>
+                            <p style={{ color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.7 }}>
                                 Thank you for wanting to join the crew. We will review your application and be in touch soon.
                             </p>
                         </div>

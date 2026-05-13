@@ -1,11 +1,11 @@
 /* --- Design Tokens --- */
 :root {
-     /* Core Palette — Pure Black + Warm Gold */
-     --color-bg: #050505;              /* Pure black background */
-     --color-bg-dark: #000000;          /* Darker variant */
-     --color-surface: #111111;          /* Surface / cards */
-     --color-surface-dark: #0A0A0A;     /* Darker surface */
-     --color-surface-hover: rgba(17, 17, 17, 0.85);
+     /* Core Palette — Balanced Midnight Violet */
+     --color-bg: #140C22;              /* Deep tinted background */
+     --color-bg-dark: #0E0918;          /* Foundation dark violet */
+     --color-surface: #1D1230;          /* Subtle violet surface */
+     --color-surface-dark: #24173B;     /* Soft violet accent */
+     --color-surface-hover: rgba(36, 23, 59, 0.85);
 
      /* Gold Accent System */
      --color-gold: #C9A84C;             /* Primary gold */
@@ -19,7 +19,7 @@
      --color-white: #ffffff;
      --color-text: #FAF8F5;             /* Warm off-white */
      --color-text-muted: #a0a0a0;       /* Muted lavender */
-     --color-black: #050505;
+     --color-black: #0E0918;
 
      /* Borders & Effects */
      --color-border: rgba(201, 168, 76, 0.08);
@@ -31,9 +31,9 @@
 
      /* Gradients */
      --gradient-gold: linear-gradient(135deg, #C9A84C, #E2C97E);
-     --gradient-elegant: linear-gradient(135deg, #C9A84C 0%, #E2C97E 50%, #050505 100%);
+     --gradient-elegant: linear-gradient(135deg, #C9A84C 0%, #E2C97E 50%, #0E0918 100%);
      --gradient-primary: linear-gradient(90deg, #9B7730, #C9A84C, #E2C97E);
-     --gradient-dark: linear-gradient(135deg, rgba(17, 17, 17, 0.6) 0%, rgba(5, 5, 5, 0.95) 50%, #000000 100%);
+     --gradient-dark: linear-gradient(135deg, rgba(20, 12, 34, 0.6) 0%, rgba(14, 9, 24, 0.95) 50%, #0E0918 100%);
 
      /* Typography — Space Grotesk (site-wide) */
      --font-display: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
@@ -89,7 +89,7 @@
 
    ::selection {
      background: var(--color-gold);
-     color: #050505;
+     color: #0E0918;
    }
 
    a {
@@ -142,7 +142,7 @@
    }
 
    .glass-panel {
-     background: rgba(17, 17, 17, 0.65);
+     background: rgba(29, 18, 48, 0.65);
      backdrop-filter: blur(16px);
      -webkit-backdrop-filter: blur(16px);
      border: 1px solid var(--color-border);
@@ -298,7 +298,7 @@
 
 .form-input, .form-textarea, select.form-input {
   width: 100%;
-  background: rgba(17, 17, 17, 0.5);
+  background: rgba(29, 18, 48, 0.5);
   border: 1px solid rgba(201, 168, 76, 0.1);
   border-radius: var(--radius-sm);
   padding: 16px 20px;
@@ -312,12 +312,12 @@
 }
 
 .form-input:hover, .form-textarea:hover, select.form-input:hover {
-  background: rgba(17, 17, 17, 0.7);
+  background: rgba(29, 18, 48, 0.7);
   border-color: rgba(201, 168, 76, 0.2);
 }
 
 .form-input:focus, .form-textarea:focus, select.form-input:focus {
-  background: rgba(17, 17, 17, 0.8);
+  background: rgba(29, 18, 48, 0.8);
   border-color: var(--color-gold);
   box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
 }
@@ -364,7 +364,7 @@ select.form-input option {
 
 .btn-primary {
   background: var(--gradient-gold);
-  color: #050505;
+  color: #0E0918;
   box-shadow: 0 4px 15px rgba(201, 168, 76, 0.2);
 }
 
@@ -378,7 +378,7 @@ select.form-input option {
 }
 
 .btn-glass {
-  background: rgba(17, 17, 17, 0.5);
+  background: rgba(29, 18, 48, 0.5);
   color: var(--color-gold);
   border: 1px solid rgba(201, 168, 76, 0.3);
   backdrop-filter: blur(8px);

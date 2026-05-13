@@ -39,7 +39,7 @@
 .categoryBgOverlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(8, 8, 8, 0.95) 0%, rgba(8, 8, 8, 0.4) 50%, rgba(8, 8, 8, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(20, 12, 34, 0.95) 0%, rgba(20, 12, 34, 0.4) 50%, rgba(20, 12, 34, 0.95) 100%);
     backdrop-filter: blur(4px);
 }
 
@@ -216,7 +216,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 22px;
-    background: rgba(12, 12, 12, 0.85);
+    background: rgba(29, 18, 48, 0.85);
     backdrop-filter: blur(8px);
 }
 
@@ -250,7 +250,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #050505;
+    background: #0E0918;
     overflow: hidden;
 }
 
@@ -320,7 +320,7 @@
     border-radius: 0;
     overflow: hidden;
     box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08);
-    background: #111;
+    background: #1D1230;
     will-change: transform;
 }
 
