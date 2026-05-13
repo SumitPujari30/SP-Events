@@ -98,7 +98,7 @@
             rgba(17, 0, 28, 0.4) 50%,
             rgba(17, 0, 28, 0.8) 100%);
     z-index: 1;
-}
+} 
 
 .heroTextContainer {
     position: absolute;
