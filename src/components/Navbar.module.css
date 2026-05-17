@@ -351,30 +351,43 @@
     max-width: 140px;
   }
 
-  .overlayContent {
-    flex-direction: column-reverse;
-    padding: 100px 24px;
-  }
-
-  .overlayLeft {
-    display: none;
-    /* Hide images on small mobile for space */
-  }
-
-  .overlayRight {
-    align-items: center;
-    text-align: center;
-    width: 100%;
-  }
-
-  .link {
-    font-size: 2.2rem;
-    letter-spacing: 2px;
+  .overlayTopBar {
+    padding: 20px 20px;
   }
 
   .closeBtn {
-    top: 16px;
-    right: 16px;
+    margin-top: 0;
+    width: 44px;
+    height: 44px;
+  }
+
+  .rightNav {
+    padding-right: 0;
+    align-items: center;
+  }
+
+  .linkContainer {
+    justify-content: center;
+  }
+
+  .navLine {
+    display: none;
+  }
+
+  .linkWrapper {
+    width: auto;
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  .link {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  .overlayBottomBar {
+    justify-content: center;
   }
 
   .socialIcons {
@@ -398,12 +411,8 @@
   }
 
   .link {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     letter-spacing: 1px;
-  }
-
-  .overlayContent {
-    padding: 80px 16px;
   }
 
   .menuBtn {
@@ -411,16 +420,11 @@
   }
 
   .overlayTopBar {
-    padding: 24px 20px;
+    padding: 16px 16px;
   }
 
   .overlayBottomBar {
     padding: 20px 20px;
-  }
-
-  .overlayTagline {
-    font-size: 0.75rem;
-    letter-spacing: 2px;
   }
 
   .socialIcons {

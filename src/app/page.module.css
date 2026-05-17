@@ -1357,11 +1357,12 @@
   }
 
   .statsSection {
-    padding: 40px 0 80px;
+    padding: 40px 0 60px;
   }
 
   .statsGrid {
     padding: 0 16px;
+    gap: 16px;
   }
 
   .statGlass {
@@ -1379,7 +1380,7 @@
   .dividerBanner {
     padding: 24px 16px;
     min-height: unset;
-    background-attachment: scroll; /* Fix for iOS Safari parallax bug */
+    background-attachment: scroll;
   }
 
   .dividerBannerInner {
@@ -1431,6 +1432,19 @@
   .marqueeSection {
     padding: 60px 0;
   }
+
+  .founderSection {
+    padding: 40px 16px;
+    min-height: auto;
+  }
+
+  .founderContent {
+    padding: 30px 20px;
+  }
+
+  .founderQuote {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1440,16 +1454,16 @@
   }
 
   .experiencesSection {
-    padding: 80px 0 40px;
+    padding: 50px 0 40px;
   }
 
   .expContainer {
     padding: 0 14px;
-    gap: 30px;
+    gap: 24px;
   }
 
   .expTitle {
-    font-size: clamp(2.4rem, 10vw, 3.5rem);
+    font-size: clamp(2rem, 9vw, 3rem);
     line-height: 1.1;
   }
 
@@ -1466,6 +1480,18 @@
     gap: 14px;
   }
 
+  .expValuesGrid {
+    gap: 8px;
+  }
+
+  .expValueItem {
+    padding: 5px 10px;
+  }
+
+  .expValueText {
+    font-size: 0.7rem;
+  }
+
   .catCardTitle {
     font-size: 1.15rem;
   }
@@ -1478,22 +1504,25 @@
     margin-bottom: 24px;
   }
 
+  .statsSection {
+    padding: 30px 0 50px;
+  }
+
   .statsGrid {
     padding: 0 12px;
     gap: 12px;
   }
 
   .statGlass {
-    padding: 28px 16px;
-    border-radius: 0;
+    padding: 24px 16px;
   }
 
   .statNumber {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .statLabel {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .dividerBanner {
@@ -1510,27 +1539,54 @@
     display: none;
   }
 
-  /* .wowImage {
-  } */
-
   .logoCard {
-    width: 110px;
-    height: 60px;
-    padding: 10px;
-    border-radius: 0;
+    width: 100px;
+    height: 56px;
+    padding: 8px;
   }
 
   .logoImg {
-    max-height: 32px;
+    max-height: 28px;
   }
 
   .fadeMaskLeft,
   .fadeMaskRight {
-    width: 60px;
+    width: 40px;
   }
 
-  .dividerSparkle {
-    width: 20px;
-    height: 20px;
+  .marqueeSection {
+    padding: 40px 0;
+  }
+
+  .founderSection {
+    padding: 30px 12px;
+  }
+
+  .founderContent {
+    padding: 20px 16px;
+  }
+
+  .founderQuote {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .founderName {
+    font-size: 0.95rem;
+  }
+
+  .founderTitle {
+    font-size: 0.7rem;
+  }
+
+  .founderText {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .quoteIcon {
+    font-size: 5rem;
+    top: 16px;
+    right: 16px;
   }
 }

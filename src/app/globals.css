@@ -545,4 +545,36 @@ select.form-input option {
     height: 45vh;
     min-height: 280px;
   }
+
+  .page-hero-title {
+    font-size: clamp(1.8rem, 9vw, 3rem);
+  }
+
+  .page-hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+  }
+
+  .section-subtitle, .tagline, .subtitle {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .form-input, .form-textarea, select.form-input {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
 }

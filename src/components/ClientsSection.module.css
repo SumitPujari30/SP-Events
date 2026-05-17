@@ -389,3 +389,50 @@
 @media (max-width: 768px) {
     .bottomGrid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
+
+@media (max-width: 480px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .header {
+        margin-bottom: 40px;
+    }
+
+    .topGrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .bottomGrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .testiSection {
+        padding: 60px 0;
+        margin: 40px 0;
+    }
+
+    .testiInner {
+        padding: 0 16px;
+    }
+
+    .testiFeatured {
+        padding: 24px;
+    }
+
+    .testiSplitPanel {
+        min-height: auto;
+    }
+
+    .testiTopRow {
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+}

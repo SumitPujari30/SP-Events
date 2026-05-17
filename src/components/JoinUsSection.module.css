@@ -187,3 +187,13 @@
   .imageLabel { font-size: 1.3rem; }
   .image { padding: 0 30px 40px 30px; }
 }
+
+@media (max-width: 480px) {
+  .section { padding: 40px 12px; }
+  .title { font-size: 2rem; }
+  .content { padding: 30px 16px; }
+  .text { font-size: 0.95rem; }
+  .imageLabelWrap { padding: 20px; }
+  .imageLabel { font-size: 1.1rem; }
+  .image { padding: 0 16px 24px 16px; }
+}

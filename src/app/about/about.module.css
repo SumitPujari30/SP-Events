@@ -1387,7 +1387,7 @@
 }
 
 @media (max-width: 480px) {
-    .statsGrid { grid-template-columns: 1fr; }
+    .statsGrid { grid-template-columns: 1fr; padding: 0 16px; }
 
     .founderCard {
         padding: 20px;
@@ -1398,7 +1398,7 @@
     .founderQuote::before {
         font-size: 5rem;
         top: -30px;
-        left: -20px;
+        left: 0;
     }
 
     .locationsSubheading {
@@ -1406,6 +1406,70 @@
     }
 
     .grassrootsSection {
-        padding: 40px 0;
+        padding: 40px 12px;
+    }
+
+    .headlineSection {
+        padding: 0 16px;
+        min-height: 400px;
+    }
+
+    .valuesSection {
+        padding: 60px 0 40px;
+    }
+
+    .valuesMainTitle {
+        margin-bottom: 40px;
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+    }
+
+    .valuesPillarGrid {
+        padding: 0 12px;
+        gap: 14px;
+    }
+
+    .valuePillar:nth-child(1), .valuePillar:nth-child(2), .valuePillar:nth-child(3), .valuePillar:nth-child(4), .valuePillar:nth-child(5) {
+        height: auto;
+        min-height: 180px;
+    }
+
+    .pillarContent {
+        padding: 24px 16px;
+    }
+
+    .statsSection {
+        padding: 60px 0;
+    }
+
+    .statGlass {
+        padding: 28px 16px;
+    }
+
+    .statNumber {
+        font-size: 2rem;
+    }
+
+    .statLabel {
+        font-size: 0.8rem;
+    }
+
+    .sliderSection {
+        margin-top: 32px;
+    }
+
+    .locationCardImgWrap {
+        height: 280px;
+    }
+
+    .scrollIndicator {
+        bottom: 24px;
+    }
+
+    .grassrootsBox {
+        min-height: 180px;
+    }
+
+    .heroSection {
+        min-height: 300px;
     }
 }

@@ -1486,4 +1486,72 @@
         width: 280px;
         padding: 28px;
     }
+
+    .clientsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .heroTextContainer {
+        bottom: 40px;
+    }
+
+    .testiSection {
+        padding: 0 16px;
+    }
+
+    .testiGlassCard {
+        padding: 30px 20px;
+    }
+
+    .testiQuoteBody {
+        min-height: auto;
+    }
+
+    .logoSection {
+        padding: 80px 0 100px;
+    }
+
+    .matrixSection {
+        padding: 60px 0 40px;
+    }
+
+    .statsSection {
+        padding: 80px 0;
+    }
+
+    .statsHeader {
+        margin-bottom: 48px;
+    }
+
+    .sectionHeader {
+        margin-bottom: 40px;
+    }
+
+    .contactSection {
+        padding: 60px 16px;
+    }
+
+    .contactTitle {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+    }
+
+    .contactBtn {
+        padding: 14px 24px;
+    }
+
+    .contactActionRow {
+        margin-bottom: 48px;
+    }
+
+    .heroSection {
+        min-height: 360px;
+    }
+
+    .statsInner {
+        padding: 0 16px;
+    }
+
+    .sectionContainer {
+        padding: 0 16px;
+    }
 }

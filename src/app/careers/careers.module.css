@@ -1385,8 +1385,25 @@
     font-size: clamp(2rem, 8vw, 3.5rem);
   }
 
+  .stageHeroContent {
+    margin-top: -40px;
+  }
+
+  .heroPre,
+  .heroPreLit {
+    letter-spacing: 2px;
+  }
+
   .curtainContent h2 {
     font-size: clamp(1.8rem, 6vw, 3rem);
+  }
+
+  .curtainContent {
+    gap: 20px;
+  }
+
+  .curtainLabel {
+    letter-spacing: 4px;
   }
 
   .jobCardRow {
@@ -1405,12 +1422,57 @@
     padding: 12px;
   }
 
+  .filterSelect {
+    width: 100%;
+  }
+
   .modalContent {
     padding: 28px 20px;
   }
 
   .modalTitle {
     font-size: 1.5rem;
+  }
+
+  .cultureAccordionCard {
+    padding: 24px 16px;
+  }
+
+  .accNumber {
+    font-size: 4rem;
+  }
+
+  .cultureCard {
+    padding: 28px 20px;
+  }
+
+  .cultureCard h3 {
+    font-size: 1.2rem;
+  }
+
+  .parallaxSection {
+    height: 200vh;
+  }
+
+  .bgNumber {
+    font-size: 3rem;
+  }
+
+  .openingsList {
+    padding: 0 16px;
+  }
+
+  .formWrap {
+    padding: 24px 16px;
+  }
+
+  .dropZone {
+    padding: 24px 16px;
+  }
+
+  .ambientOrb1,
+  .ambientOrb2 {
+    display: none;
   }
 }
 

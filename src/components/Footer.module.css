@@ -204,6 +204,11 @@
     margin-bottom: 24px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.columnTitle:hover {
+    color: #ffffff;
 }
 
 .headerLink {
