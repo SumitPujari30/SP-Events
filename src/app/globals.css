@@ -1,3 +1,14 @@
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400&display=swap');
+
+@font-face {
+  font-family: 'Neue Montreal Bold';
+  src: url('https://cdn.b3.fun/fonts/ppneuemontreal-bold-webfont.woff2') format('woff2'),
+       url('https://cdn.b3.fun/fonts/ppneuemontreal-bold-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* --- Design Tokens --- */
 :root {
      /* Core Palette — Balanced Midnight Violet */
@@ -36,10 +47,11 @@
      --gradient-dark: linear-gradient(135deg, rgba(20, 12, 34, 0.6) 0%, rgba(14, 9, 24, 0.95) 50%, #0E0918 100%);
 
      /* Typography — Space Grotesk (site-wide) */
-     --font-display: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
-     --font-heading: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
-     --font-tagline: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
-     --font-body: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
+     --font-display: 'Neue Montreal Bold', 'Neue Montreal', sans-serif;
+     --font-heading: 'Neue Montreal Bold', 'Neue Montreal', sans-serif;
+     --accent-font: 'Neue Montreal Bold', 'Neue Montreal', sans-serif;
+     --font-body: 'General Sans', sans-serif;
+     --font-tagline: 'General Sans', sans-serif;
      --font-nav: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
      --font-accent: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
 
@@ -73,7 +85,7 @@
    }
 
    body {
-     font-family: var(--space-grotesk-font), 'Space Grotesk', sans-serif;
+     font-family: var(--font-body);
      background-color: var(--color-bg);
      color: var(--color-text);
      overflow-x: hidden;
@@ -545,36 +557,76 @@ select.form-input option {
     height: 45vh;
     min-height: 280px;
   }
+}
 
-  .page-hero-title {
-    font-size: clamp(1.8rem, 9vw, 3rem);
-  }
+/* ==========================================================================
+   STRICT FONT FAMILY OVERRIDES
+   Ensures absolute adherence to user specifications across all components:
+   - Headlines: Neue Montreal Bold
+   - Body text: General Sans Regular
+   - Labels/numbers: Space Grotesk Medium (500 weight)
+   All other CSS properties (spacing, letter-spacing, sizing, etc.) are untouched.
+   ========================================================================== */
 
-  .page-hero-subtitle {
-    font-size: 0.9rem;
-  }
+/* 1. HEADLINES (Neue Montreal Bold) */
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.sectionTitle,
+.page-hero-title,
+.statsTitle,
+.contactTitle,
+.detailName,
+.detailInitials,
+.pioneeringTitle,
+.title,
+.expTitle,
+.uniqueTitle,
+.heroLetter {
+  font-family: 'Neue Montreal Bold', 'Neue Montreal', sans-serif !important;
+}
 
-  .section-title {
-    font-size: clamp(1.8rem, 7vw, 2.8rem);
-  }
+/* 2. BODY TEXT (General Sans Regular) */
+body, p,
+.section-subtitle, .tagline, .subtitle,
+.page-hero-subtitle,
+.heroSubtitle,
+.statsSubtitle,
+.contactSubtitle,
+.testiText,
+.detailDesc,
+.expText,
+.expTextSecondary,
+.detailDomain {
+  font-family: 'General Sans', sans-serif !important;
+}
 
-  .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-  }
-
-  .section-subtitle, .tagline, .subtitle {
-    font-size: 1rem;
-  }
-
-  .btn {
-    padding: 12px 20px;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-  }
-
-  .form-input, .form-textarea, select.form-input {
-    padding: 12px 14px;
-    font-size: 0.95rem;
-  }
+/* 3. LABELS / NUMBERS (Space Grotesk Medium - weight 500) */
+.btn,
+.btn-primary,
+.btn-glass,
+.viewBtn,
+.filterBtn,
+.contactBtn,
+.desktopLink,
+.link,
+.section-label,
+.sectionLabel,
+.form-label,
+.floatLabel,
+.statNumber,
+.statLabel,
+.builtStatLabel,
+.builtLabel,
+.methodLabel,
+.contactLabel,
+.category,
+.detailIndustry,
+.activeLink,
+.expValuesLabel,
+.expValueText,
+.socialIcon,
+.scrollText,
+.overlayTagline {
+  font-family: var(--space-grotesk-font), 'Space Grotesk', sans-serif !important;
+  font-weight: 500 !important;
 }
