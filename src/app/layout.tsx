@@ -13,7 +13,7 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--space-grotesk-font",
   display: "swap",
 });
-
+//
 export const metadata: Metadata = {
   title: "The SP Events | Creating Magical Experiences",
   description:
